@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public static class ElementReactionResolver
-{
+{/*
     // 원소들이 만나서, 원소 반응이 일어나는걸 판별하는 Resolve 함수
     public static ElementReaction Resolve(ElementType current, ElementType attack)
     {
@@ -23,5 +23,5 @@ public static class ElementReactionResolver
 
         return ElementReaction.None;
 
-    }
+  */  }
 }

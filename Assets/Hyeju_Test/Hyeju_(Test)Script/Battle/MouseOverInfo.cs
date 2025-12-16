@@ -5,7 +5,13 @@ public class MouseOverInfo : MonoBehaviour
 {
     [SerializeField] private GameObject _speedAttackInfoPanel;
     [SerializeField] private Text _skillInfo;
+    [SerializeField] private CharacterSkill _characterSkill;
+    [SerializeField] private SkillData[] _useSkillList = new SkillData[3];
 
+    private void Start()
+    {
+        _useSkillList[0] = _characterSkill.TestSkill1;
+    }
 
     public void OnCharacterOver()
     {
@@ -17,13 +23,23 @@ public class MouseOverInfo : MonoBehaviour
         _speedAttackInfoPanel.SetActive(false);
     }
 
-    public void OnSkillOver()
+    public void OnFirSkillInfo()
     {
-        _skillInfo.text = "마우스 올라감";
+        _skillInfo.text = $"{_useSkillList[0].skillName}";
     }
 
     public void OnSkillExit()
     {
-        _skillInfo.text = "기본적으로 1번 스킬 내용 출력";
+        _skillInfo.text = $"{_useSkillList[0].skillName}";
     }
+    public void OnSecSkillInfo()
+    {
+        _skillInfo.text = $"2번 스킬";
+    }
+
+    public void OnThirSkillInfo()
+    {
+        _skillInfo.text = $"3번 스킬";
+    }
+
 }

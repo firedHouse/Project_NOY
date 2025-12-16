@@ -1,0 +1,4 @@
+스킬 ID,스킬 이름,스킬 공격력,스킬 타입 ,스킬 원소 속성 ,스킬 툴팁 스트링 키,스킬 PP,"스킬 공격위치(전열=0,전중열=1,중열=2,중후열=3,후열=4,전후열=5,전중후열=6)",스킬 사운드,스킬 스프라이트
+skillID,skillName,skillAttack,effectType,skillElement,skillTooltip,skillPP,skillArea,skillSound,skillResource
+string,string,float,enum,enum,string,int,enum,string,string
+skill_00001,둔기에 의한 외상,0.1,0,3,,14,0,skill_sound_00001,skill_resource_00001

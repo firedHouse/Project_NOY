@@ -1,0 +1,4 @@
+캐릭터 id,캐릭터 이름,캐릭터 별명,해금 여부,공격력,체력,스피드,보유스킬01,보유스킬02,보유스킬03,성장 단계,최대 성장 단계 ,포지션,캐릭터 설명,캐릭터 리소스 경로,캐릭터 사운드 경로
+characterID,characterName,characterCodeName,unlock,attackLevel1,HPLevel1,speed,ownedSkill01,ownedSkill02,ownedSkill03,level,maxLevel,position,desc,characterResource,characterSound
+int,string,string,bool,float,float,int,string,string,string,int,enum,enum,string,string,string
+character_10001,최원규,깍두기,t,10,100,20,skill_character_10011,skill_character_10012,skill_character_10013,0,2,0,,character_resources_10001,character_sound_10001

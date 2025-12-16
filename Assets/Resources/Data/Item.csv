@@ -1,0 +1,4 @@
+소비 아이템 ID,소비 아이템 이름,상승 종류,상승 수치,소비아이템 설명,아이템 리소스,아이템 사용 사운드
+itemID,itemName,stateType,value,desc,itemResource,itemSound
+string,string,enum,int,string,string,string
+item_0001,회복약,1,20,,item_resource_0001,item_sound_0001

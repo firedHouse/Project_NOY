@@ -1,7 +1,7 @@
 using UnityEngine;
 
-// 각종 매니저 상속용 제네릭 기반 클래스
-// MonoBehaviour 상속받는 클래스로 제한
+//각종 매니저 상속용 제네릭 기반 클래스
+//MonoBehaviour 상속받는 클래스로 제한
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;

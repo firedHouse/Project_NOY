@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class TableManager : Singleton<TableManager>
 {
-    //Å×ÀÌºí ¸ñ·Ï
-    //Ãß°¡ ½Ã Á¦ÀÏ ¾Æ·¡¿¡ ÀÌ¾î ÀÛ¼º
+    //í…Œì´ë¸” ëª©ë¡
+    //ì¶”ê°€ ì‹œ ì œì¼ ì•„ë˜ì— ì´ì–´ ì‘ì„±
     public TableBase<MonsterData> MonsterTable = new TableBase<MonsterData>();
     public TableBase<CharacterData> CharacterTable = new TableBase<CharacterData>();
     public TableBase<SkillData> SkillTable = new TableBase<SkillData>();
@@ -25,33 +25,33 @@ public class TableManager : Singleton<TableManager>
 
     private void LoadAllData()
     {
-        //TableManagerÀÇ ¸ğµç public º¯¼ö¸¦ °¡Á®¿È
+        //TableManagerì˜ ëª¨ë“  public ë³€ìˆ˜ë¥¼ ê°€ì ¸ì˜´
         FieldInfo[] fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public);
 
         foreach (FieldInfo field in fields)
         {
-            //º¯¼ö Å¸ÀÔÀÌ TableBase·Î ½ÃÀÛÇÏ´Â °Í¸¸
+            //ë³€ìˆ˜ íƒ€ì…ì´ TableBaseë¡œ ì‹œì‘í•˜ëŠ” ê²ƒë§Œ
             if (field.FieldType.Name.Contains("TableBase"))
             {
-                //º¯¼ö ÀÌ¸§À» °¡Á®¿À±â
-                //12.15 ¼öÁ¤, º¯¼ö¸í¿¡¼­ Table ¶¼°í ÆÄÀÏ Ã£±â
+                //ë³€ìˆ˜ ì´ë¦„ì„ ê°€ì ¸ì˜¤ê¸°
+                //12.15 ìˆ˜ì •, ë³€ìˆ˜ëª…ì—ì„œ Table ë–¼ê³  íŒŒì¼ ì°¾ê¸°
                 string fileName = field.Name.Replace("Table", "");
-                string path = $"Data/{fileName}"; // °á°ú: "Data/MonsterTable"
+                string path = $"Data/{fileName}"; // ê²°ê³¼: "Data/MonsterTable"
 
-                //ÇØ´ç º¯¼öÀÇ ÀÎ½ºÅÏ½º¸¦ °¡Á®¿È
+                //í•´ë‹¹ ë³€ìˆ˜ì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ê°€ì ¸ì˜´
                 object tableInstance = field.GetValue(this);
 
-                //Load ÇÔ¼ö ½ÇÇà
+                //Load í•¨ìˆ˜ ì‹¤í–‰
                 MethodInfo loadMethod = field.FieldType.GetMethod("Load");
 
                 if (loadMethod != null)
                 {
                     loadMethod.Invoke(tableInstance, new object[] { path });
-                    Debug.Log($"{fileName} ·Îµå ¿Ï·á (°æ·Î: {path})");
+                    Debug.Log($"{fileName} ë¡œë“œ ì™„ë£Œ (ê²½ë¡œ: {path})");
                 }
             }
         }
 
-        Debug.Log("[TableManager] µ¥ÀÌÅÍ ¸®ÇÃ·º¼Ç ¿Ï·á");
+        Debug.Log("[TableManager] ë°ì´í„° ë¦¬í”Œë ‰ì…˜ ì™„ë£Œ");
     }
 }

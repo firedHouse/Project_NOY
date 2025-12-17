@@ -7,11 +7,11 @@ public class TestScripts : MonoBehaviour
         var monster = TableManager.Instance.MonsterTable.Get("monster_0001");
         if (monster != null)
         {
-            Debug.Log($"[Å×½ºÆ®½ºÅ©¸³Æ®] ÀÌ¸§: {monster.monsterName}, HP: {monster.monsterHP}, °ø°İ·Â: {monster.monsterAttack}");
+            Debug.Log($"[í…ŒìŠ¤íŠ¸ìŠ¤í¬ë¦½íŠ¸] ì´ë¦„: {monster.monsterName}, HP: {monster.monsterHP}, ê³µê²©ë ¥: {monster.monsterAttack}");
         }
         else
         {
-            Debug.LogError("Å×½ºÆ®½ÇÆĞ");
+            Debug.LogError("í…ŒìŠ¤íŠ¸ì‹¤íŒ¨");
         }
     }
 }

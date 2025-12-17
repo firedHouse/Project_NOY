@@ -24,4 +24,4 @@ public static class ElementReactionResolver
         return ElementReaction.None;
 
   */  }
-}
+

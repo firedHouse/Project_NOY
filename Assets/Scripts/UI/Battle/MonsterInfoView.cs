@@ -1,16 +1,24 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterInfoView : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private Text monsterNameText;
+    [SerializeField] private Text elementText;
+    [SerializeField] private Text posistionText;
+
+    public void UpdateMonsterName(string text)
     {
-        
+        monsterNameText.text = text;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateElement(int type)
     {
-        
+        elementText.text = type.ToString();
     }
+
+    //public void UpdatePosition(string text)
+    //{
+    //    posistionText.text = text;
+    //}
 }

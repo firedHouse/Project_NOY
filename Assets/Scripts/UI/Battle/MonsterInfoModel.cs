@@ -1,16 +1,47 @@
 using UnityEngine;
+using System;
 
 public class MonsterInfoModel : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private string _monsterId = "monster_id_10001";
+    [SerializeField] private MonsterData monster;
+    public event Action MonsterHPChanged;
+    public event Action DataLoaded;
+
+    private float maxHP;
+
+    public MonsterData Monster { get => monster; set => monster = value; }
+
+    public string MonsterName { get => monster.monsterName; }
+
+    private void Start()
     {
-        
+        monster = TableManager.Instance.MonsterTable.Get(_monsterId);
+        if (monster != null)
+        {
+            maxHP = monster.monsterHP;
+
+            DataLoaded?.Invoke();
+        }
+        else
+        {
+            Debug.LogError($"[MonsterInfoModel] {_monsterId} 데이터 가져오기 실패");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IncreaseMonsterHP(float amount)
     {
-        
+        monster.monsterHP += amount;
+        monster.monsterHP = Mathf.Clamp(monster.monsterHP, 0, maxHP);
+
+        MonsterHPChanged?.Invoke();
+    }
+
+    public void DecreaseMonsterHP(float amount)
+    {
+        monster.monsterHP -= amount;
+        monster.monsterHP = Mathf.Clamp(monster.monsterHP, 0, maxHP);
+
+        MonsterHPChanged?.Invoke();
     }
 }

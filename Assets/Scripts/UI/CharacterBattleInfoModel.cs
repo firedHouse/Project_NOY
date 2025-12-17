@@ -4,8 +4,9 @@ using UnityEngine;
 public class CharacterBattleInfoModel : MonoBehaviour
 {
     [SerializeField] private string _characterId = "character_id_10001";
-    [SerializeField] CharacterData character;
+    [SerializeField] public CharacterData character;
     public event Action HPChanged;
+    public event Action DataLoaded;
 
     private float maxHP;
 
@@ -14,11 +15,12 @@ public class CharacterBattleInfoModel : MonoBehaviour
 
     private void Start()
     {
-        character = TableManager.Instance.CharacterTable.Get("character_id_10001");
+        character = TableManager.Instance.CharacterTable.Get(_characterId);
         if (character != null)
         {
-            Debug.Log($"[CharacterBattleInfoModel] {character.characterName} {character.HPLevel1}");
             maxHP = character.HPLevel1;
+            // 모델이 데이터를 받아오면 프레젠터에게 알림
+            DataLoaded?.Invoke();
         }
         else
         {
@@ -26,7 +28,7 @@ public class CharacterBattleInfoModel : MonoBehaviour
         }
     }
 
-    public void IncreaseHP(float amount)
+    public void Increase(float amount)
     {
         character.HPLevel1 += amount;
         character.HPLevel1 = Mathf.Clamp(character.HPLevel1, 0, maxHP);
@@ -34,7 +36,7 @@ public class CharacterBattleInfoModel : MonoBehaviour
         HPChanged?.Invoke();
     }
 
-    public void DecreaseHP(float amount)
+    public void Decrease(float amount)
     {
         character.HPLevel1 -= amount;
         character.HPLevel1 = Mathf.Clamp(character.HPLevel1, 0, maxHP);

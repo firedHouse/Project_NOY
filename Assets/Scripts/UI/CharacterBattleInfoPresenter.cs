@@ -4,11 +4,33 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
 {
     [SerializeField] private CharacterBattleInfoModel infoModel;
     [SerializeField] private CharacterBattleInfoView infoView;
+    private CharacterData characterData;
 
-    void OnEnable()
+    private void Awake()
     {
-        infoModel.HPChanged += OnHPChanged;
-        UpdateUI();
+        infoModel.DataLoaded += OnDataLoaded;
+    }
+
+    void Initialize()
+    {
+        characterData = infoModel.character;
+        if(characterData != null)
+        {
+            Debug.Log($"[CharacterBattleInfoPresenter] characterData 내부 데이터 불러오기 성공");
+
+            infoModel.HPChanged += OnHPChanged;
+            UpdateUI();
+        }
+        else
+        {
+            Debug.Log($"[CharacterBattleInfoPresenter] characterData 내부 데이터 비어있음");
+        }
+    }
+
+    // 모델에 데이터가 들어오면 프레젠터에서도 가져온다
+    private void OnDataLoaded()
+    {
+        Initialize();
     }
 
     private void OnHPChanged()
@@ -16,12 +38,25 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
         UpdateUI();
     }
 
+    private void IncreaseHP(float hpChangeAmount)
+    {
+        infoModel.Increase(hpChangeAmount);
+    }
+
+    private void DecreaseHP(float hpChangeAmount)
+    {
+        infoModel.Decrease(hpChangeAmount);
+    }
 
     private void UpdateUI()
     {
-        // info에 접근하는게 안됨
-        infoView.UpdateCharacterName(infoModel.CharacterName);
-        Debug.Log($"[CharacterBattleInfoPresenter] {infoModel.CharacterName}");
-        Debug.Log($"[CharacterBattleInfoPresenter] {infoModel.Character.characterID}");
+        if(infoModel.Character != null)
+        {
+            infoView.UpdateCharacterName(infoModel.CharacterName);
+        }
+        else
+        {
+            Debug.LogError($"[CharacterBattleInfoPresenter] {infoModel} 없음");
+        }
     }
 }

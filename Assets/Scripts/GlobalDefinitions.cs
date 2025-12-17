@@ -38,10 +38,17 @@ public enum SkillArea //SkillTable 참조 참조
     FrontBack = 5,
     All = 6             
 }
-
-public enum StateType //아이템 효과 타입, ItemTable 참조
+public enum SkillType
 {
-    None = 0,
-    Heal = 1, 
-    Buff = 2
+    Attack = 0,
+    Heal = 1,
+    Buff = 2,
+    Debuff = 3
+}
+
+public enum MonsterGroup
+{
+    Normal = 0,
+    Elite = 1,
+    Boss = 2
 }

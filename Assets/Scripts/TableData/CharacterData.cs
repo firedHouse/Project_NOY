@@ -3,7 +3,7 @@
 [Serializable]
 public class CharacterData : ITableData
 {
-    public int characterID;
+    public string characterID;
     public string characterName;
     public string characterCodeName;
     public bool unlock;

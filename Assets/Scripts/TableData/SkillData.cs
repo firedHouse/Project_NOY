@@ -5,8 +5,10 @@ public class SkillData : ITableData
 {
     public string skillID;
     public string skillName;
-    public float skillAttack;
-    public int effectType;
+    public int skillBaseValue;
+    public string targetFaction;
+    public float skillFactor;
+    public int skillType;
     public int skillElement;
     public string skillTooltip;
     public int skillPP;

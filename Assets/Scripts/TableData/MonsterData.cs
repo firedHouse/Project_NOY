@@ -16,7 +16,6 @@ public class MonsterData : ITableData
     public int monsterDropShilling;
     public string monsterSound;
     public string monsterResource;
-    public int spawnStage;
     public int monsterClass;
 
     public string PrimaryID => monsterID.ToString();

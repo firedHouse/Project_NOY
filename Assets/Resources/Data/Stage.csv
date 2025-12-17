@@ -1,0 +1,6 @@
+﻿스테이지 ID,몬스터 ID,몬스터 그룹,몬스터 소환 확률
+stageID,monsterID,monsterGroup,value
+string,string,enum,float
+stage_id_10001,monster_id_10001,1,15
+stage_id_10002,monster_id_10002,1,35
+stage_id_10003,monster_id_10003,1,50

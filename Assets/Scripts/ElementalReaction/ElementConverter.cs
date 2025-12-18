@@ -1,15 +1,15 @@
 using UnityEngine;
-// CSV¿¡¼­ intÇüÀ¸·Î ¹Þ¾Æ¿Â ¿ø¼Ò Å¸ÀÔÀ» ElementType enumÀ¸·Î º¯È¯ÇØÁÖ´Â Å¬·¡½º
+// CSVì—ì„œ intí˜•ìœ¼ë¡œ ë°›ì•„ì˜¨ ì›ì†Œ íƒ€ìž…ì„ ElementType enumìœ¼ë¡œ ë³€í™˜í•´ì£¼ëŠ” í´ëž˜ìŠ¤
 public static class ElementConverter
-{//
- //   public static ElementType FromCSV(int value)
- //   {
- //       return value switch
- //       {
- //           0 => ElementType.Fire,
- //           1 => ElementType.Water,
- //           2 => ElementType.Electric,
- //           _ => ElementType.None,
- //       };
- //   }
+{/*
+    public static ElementType FromCSV(int value)
+    {
+        return value switch
+        {
+            0 => ElementType.Fire,
+            1 => ElementType.Water,
+            2 => ElementType.Electric,
+            _ => ElementType.None,
+        };
+   }*/
 }

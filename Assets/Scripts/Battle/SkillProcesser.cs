@@ -7,7 +7,7 @@ public class SkillProcesser : MonoBehaviour
     public void ApplySkill(ElementalManager target, SkillData skill, BattleUnit[] enemyTeam)
     {
         BattleUnit unit = target.Unit;
-        ElementType attackElement = ElementConverter.FromCSV(skill.skillElement);
+        ElementType attackElement = (ElementType)(1 << skill.skillElement);
         //속성 공격을 받았을 때, 원소 반응이 일어났었다면, 전체 무시
         if (target.isReactedThisTurn)
         {

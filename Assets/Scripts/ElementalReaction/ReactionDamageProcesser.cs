@@ -6,7 +6,7 @@ public static class ReactionDamageProcesser
     {
         switch (reaction)
         {
-            case ElementReaction.Vaporize:
+            case ElementReaction.Varporize:
                 ApplyVaporize(hitTarget);
                 Debug.Log("증발 발생");
                 break;

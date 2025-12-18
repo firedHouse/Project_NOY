@@ -3,7 +3,7 @@ using System;
 
 public class MonsterInfoModel : MonoBehaviour
 {
-    [SerializeField] private string _monsterId = "monster_id_10001";
+    [SerializeField] private string _monsterId; // = "monster_id_10001";
     [SerializeField] private MonsterData monster;
     public event Action MonsterHPChanged;
     public event Action DataLoaded;
@@ -13,6 +13,7 @@ public class MonsterInfoModel : MonoBehaviour
     public MonsterData Monster { get => monster; set => monster = value; }
 
     public string MonsterName { get => monster.monsterName; }
+    public float MaxHP { get => maxHP; set => maxHP = value; }
 
     private void Start()
     {

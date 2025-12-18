@@ -7,6 +7,9 @@ public class MonsterInfoPresenter : MonoBehaviour
     [SerializeField] private MonsterInfoView monsterView;
     private MonsterData monsterData;
 
+    // 테스트용 필드
+    private float HpChangeValue = 50;
+
     private void Awake()
     {
         monsterModel.DataLoaded += OnDataLoaded;
@@ -22,6 +25,9 @@ public class MonsterInfoPresenter : MonoBehaviour
             monsterModel.MonsterHPChanged += OnHPChanged;
             monsterView.UpdateMonsterName(monsterModel.Monster.monsterName);
             monsterView.UpdateElement(monsterModel.Monster.elementType);
+            monsterView.UpdateSpeed(monsterModel.Monster.monsterSpeed);
+            monsterView.UpdatePower(monsterModel.Monster.monsterAttack);
+            monsterView.SetMaxHP(monsterModel.MaxHP);
             UpdateUI();
         }
         else
@@ -37,7 +43,7 @@ public class MonsterInfoPresenter : MonoBehaviour
 
     private void OnHPChanged()
     {
-        //UpdateUI();
+        monsterView.UpdateHPBar(monsterModel.Monster.monsterHP);
     }
 
     private void UpdateUI()

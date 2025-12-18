@@ -1,24 +1,24 @@
-스킬 ID,스킬 이름,스킬 공격력,스킬 타입 ,스킬 원소 속성 ,스킬 툴팁 스트링 키,스킬 PP,"스킬 공격위치(전열=0,전중열=1,중열=2,중후열=3,후열=4,전후열=5,전중후열=6)",스킬 사운드,스킬 스프라이트
-skillID,skillName,skillAttack,effectType,skillElement,skillTooltip,skillPP,skillArea,skillSound,skillResource
-string,string,float,enum,enum,string,int,enum,string,string
-skill_character_10001,전기속성 광역,0.1,0,2,,999,6,skill_sound_10001,skill_resource_10001
-skill_character_10011,물속성 광역,0.3,0,1,,999,6,skill_sound_10002,skill_resource_10002
-skill_character_10021,불속성 광역,0.2,0,0,,999,6,skill_sound_10003,skill_resource_10003
-skill_character_10002,전기속성 광역,0.1,0,2,,999,6,skill_sound_10001,skill_resource_10001
-skill_character_10012,물속성 광역,0.3,0,1,,999,6,skill_sound_10002,skill_resource_10002
-skill_character_10022,불속성 광역,0.2,0,0,,999,6,skill_sound_10003,skill_resource_10003
-skill_character_10003,전기속성 광역,0.1,0,2,,999,6,skill_sound_10001,skill_resource_10001
-skill_character_10013,물속성 광역,0.3,0,1,,999,6,skill_sound_10002,skill_resource_10002
-skill_character_10023,불속성 광역,0.2,0,0,,999,6,skill_sound_10003,skill_resource_10003
-skill_character_10030,전기속성 광역,0.1,0,2,,999,6,skill_sound_10001,skill_resource_10001
-skill_character_10031,물속성 광역,0.3,0,1,,999,6,skill_sound_10002,skill_resource_10002
-skill_character_10032,불속성 광역,0.2,0,0,,999,6,skill_sound_10003,skill_resource_10003
-skill_monster_10001,회복,0.2,3,3,,999,6,skill_sound_10001,skill_resource_10001
-skill_monster_10011,공격디버프,0.2,4,3,,999,6,skill_sound_10002,skill_resource_10002
-skill_monster_10021,공버프,0.2,3,3,,999,6,skill_sound_10003,skill_resource_10003
-skill_monster_10002,회복,0.1,3,3,,999,6,skill_sound_10001,skill_resource_10001
-skill_monster_10012,속도디버프,0.1,4,3,,999,6,skill_sound_10002,skill_resource_10002
-skill_monster_10022,속도버프,0.1,3,3,,999,6,skill_sound_10003,skill_resource_10003
-skill_monster_10003,회복,0.3,3,3,,999,6,skill_sound_10001,skill_resource_10001
-skill_monster_10013,체력디버프,0.3,4,3,,999,6,skill_sound_10002,skill_resource_10002
-skill_monster_10023,체력버프,0.3,3,3,,999,6,skill_sound_10003,skill_resource_10003
+스킬 ID,스킬 이름,스킬 기본 수치,시전 진영,스킬 계수,스킬 타입 ,스킬 원소 속성 ,스킬 툴팁 스트링 키,스킬 PP,스킬 공격위치,스킬 사운드,스킬 스프라이트
+skillID,skillName,skillBaseValue,targetFaction,skillFactor,skillType,skillElement,skillTooltip,skillPP,skillArea,skillSound,skillResource
+string,string,int,boolean,float,enum,enum,string,int,enum,string,string
+skill_character_10001,전기속성 광역,50,f,0.1,0,2,,999,6,skill_sound_10001,skill_resource_10001
+skill_character_10011,물속성 광역,50,f,0.3,0,1,,999,6,skill_sound_10011,skill_resource_10011
+skill_character_10021,불속성 광역,50,f,0.2,0,0,,999,6,skill_sound_10021,skill_resource_10021
+skill_character_10002,전기속성 광역,50,f,0.1,0,2,,999,6,skill_sound_10002,skill_resource_10002
+skill_character_10012,물속성 광역,50,f,0.3,0,1,,999,6,skill_sound_10012,skill_resource_10012
+skill_character_10022,불속성 광역,50,f,0.2,0,0,,999,6,skill_sound_10022,skill_resource_10022
+skill_character_10003,전기속성 광역,50,f,0.1,0,2,,999,6,skill_sound_10003,skill_resource_10003
+skill_character_10013,물속성 광역,50,f,0.3,0,1,,999,6,skill_sound_10013,skill_resource_10013
+skill_character_10023,불속성 광역,50,f,0.2,0,0,,999,6,skill_sound_10023,skill_resource_10023
+skill_character_10004,전기속성 광역,50,f,0.1,0,2,,999,6,skill_sound_10004,skill_resource_10004
+skill_character_10014,물속성 광역,50,f,0.3,0,1,,999,6,skill_sound_10014,skill_resource_10014
+skill_character_10024,불속성 광역,50,f,0.2,0,0,,999,6,skill_sound_10024,skill_resource_10024
+skill_monster_20001,기본공격1,5,t,0.01,0,3,,999,5,skill_sound_20001,skill_resource_10001
+skill_monster_20011,기본공격2,5,t,0.01,0,3,,999,3,skill_sound_20011,skill_resource_10011
+skill_monster_20021,기본공격3,5,t,0.01,0,3,,999,1,skill_sound_20021,skill_resource_10021
+skill_monster_20002,기본공격4,5,t,0.01,0,3,,999,5,skill_sound_20002,skill_resource_10002
+skill_monster_20012,기본공격5,5,t,0.01,0,3,,999,3,skill_sound_20012,skill_resource_10012
+skill_monster_20022,기본공격6,5,t,0.01,0,3,,999,1,skill_sound_20022,skill_resource_10022
+skill_monster_20003,기본공격7,5,t,0.01,0,3,,999,5,skill_sound_20003,skill_resource_10003
+skill_monster_20013,기본공격8,5,t,0.01,0,3,,999,3,skill_sound_20013,skill_resource_10013
+skill_monster_20023,기본공격9,5,t,0.01,0,3,,999,1,skill_sound_20023,skill_resource_10023

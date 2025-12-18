@@ -1,54 +1,65 @@
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class SkillProcesser : MonoBehaviour
 {   //스킬에 원소 적용을 위한 프로세서, 데미지 관련한 메서드는 Unit 쪽에서 처리
-    /*
-
+  
     //스킬 적용 메서드
-    public void ApplySkill(Unit target, SkillData skill)
+    public void ApplySkill(BattleUnit caster, ElementalManager targetState, Skill skill, BattleUnit[] enemyTeam)
     {
-        ElementType attackElement = ElementConverter.FromCSV(skill.skillElement);
-        //속성 공격을 받았을 때, 원소 반응이 일어났었다면, 전체 무시
-        if (target.isReactionThisTurn)
+        /// <summary>
+        /// caster : 스킬을 사용하는 유닛
+        /// targetState : 스킬을 받는 유닛의 ElementalManager
+        /// skill : 사용되는 스킬
+        /// enemyTeam : 타격 유닛의 팀
+        /// </summary>
+        
+        //만약 스킬이 발동이 안되는 상황이라면 혹은 발동을 안했다면 사용하지 않음
+        if(!skill.IsValid() || !skill.TryUse())
         {
-            target.SetElement(attackElement);
             return;
         }
-        //원소 반응 메서드를 가져와 현재 공격과 대상의 속성으로 원소 반응 판정
-        ElementReaction reaction = ElementReactionResolver.Resolve(target.currentElement, attackElement);
+        // 맞을 타겟과 스킬 데이터를 가져옴
+        BattleUnit target = targetState.Unit;
+        SkillData data = skill.Data;
 
-        // 공격을 받았을 때, 원소 반응이 된다면 None으로 초기화, 아니라면 공격 받은 속성으로 CurrentElement 세팅
-        if (reaction != ElementReaction.None)
+        //스킬 타입이 공격일 경우 데미지 입히기
+        if ((SkillType)data.skillType == SkillType.Attack)
         {
-            TriggerReaction(target, reaction);
+            float damage = data.skillBaseValue + caster.AttacktPower * data.skillFactor;
 
-            target.MarkReact();
-            target.ClearElemental(); // 원소 발생 후 항상 None으로 초기화
+            target.TakeDamage(damage);
+        }
+        
+        // 스킬의 원소 타입을 가져와서 비트플래그로 변환
+        ElementType attackElement = (ElementType)(1 << data.skillElement);
+
+        //원소 반응이 일어난 턴이라면 원소 반응을 하지 않게 bool값을 확인
+        if(targetState.isReactedThisTurn)
+        {
+            target.SetElementalMark(attackElement);
+            return;
+        }
+
+        //원소 반응 판정
+        ElementReaction reaction = ElementReactionResolver.Resolve(target.CurrentMark, attackElement);
+        
+        //원소 반응 발생
+        if(reaction != ElementReaction.None)
+        {
+            ReactionDamageProcesser.Apply(reaction, target, enemyTeam);
+            
+            targetState.MarkReacted();
+            target.ClearMark();
+            
         }
         else
         {
-            target.SetElement(attackElement); //원소 발생이 
+            //반응이 없으면 표식만 생성
+            target.SetElementalMark(attackElement);
         }
-    }
+    
 
-    //원소 반응 트리거 함수
-    private void TriggerReaction(Unit target, ElementReaction reaction)
-    {
-        switch(reaction)
-        {
-            case ElementReaction.Vaporize:
-                Debug.Log("증발 발생");
-                break;
-            case ElementReaction.ElectroShock:
-                Debug.Log($"감전 발생");
-                break;
-            case ElementReaction.Overload:
-                Debug.Log($"과부하 발생");
-                break;
-            default:
-                Debug.Log("Debug.Log : None");
-                break;
-        }
-     }
-*/
+    }
+ 
 }

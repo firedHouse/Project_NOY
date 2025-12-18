@@ -7,33 +7,33 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
     [SerializeField] private CharacterBattleInfoView infoView;
     private CharacterData characterData;
 
-    //Hyeju : Ãß°¡
-    [SerializeField] private CharacterPosition deathMove;
+    //Hyeju
+    //[SerializeField] private CharacterPosition deathMove;
 
     private void Awake()
     {
         infoModel.DataLoaded += OnDataLoaded;
-        //hyeju : ÀÌº¥Æ® Ãß°¡
-        infoModel.Death += UpdatePosition;
+        //hyeju
+        //infoModel.Death += UpdatePosition;
     }
 
     void Initialize()
     {
         characterData = infoModel.character;
-        if (characterData != null)
+        if(characterData != null)
         {
-            Debug.Log($"[CharacterBattleInfoPresenter] characterData ³»ºÎ µ¥ÀÌÅÍ ºÒ·¯¿À±â ¼º°ø");
-
+            Debug.Log($"[CharacterBattleInfoPresenter] characterData ë‚´ë¶€ ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸° ì„±ê³µ");
             infoModel.HPChanged += OnHPChanged;
+            infoView.SetMaxHP(infoModel.MaxHP);
             UpdateUI();
         }
         else
         {
-            Debug.Log($"[CharacterBattleInfoPresenter] characterData ³»ºÎ µ¥ÀÌÅÍ ºñ¾îÀÖÀ½");
+            Debug.Log($"[CharacterBattleInfoPresenter] characterData ë‚´ë¶€ ë°ì´í„° ë¹„ì–´ìˆìŒ");
         }
     }
 
-    // ¸ğµ¨¿¡ µ¥ÀÌÅÍ°¡ µé¾î¿À¸é ÇÁ·¹Á¨ÅÍ¿¡¼­µµ °¡Á®¿Â´Ù
+    // ëª¨ë¸ì— ë°ì´í„°ê°€ ë“¤ì–´ì˜¤ë©´ í”„ë ˆì  í„°ì—ì„œë„ ê°€ì ¸ì˜¨ë‹¤
     private void OnDataLoaded()
     {
         Initialize();
@@ -41,62 +41,61 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
 
     private void OnHPChanged()
     {
-        UpdateUI();
+        infoView.UpdateHPBar(infoModel.Character.HPLevel1);
     }
 
     private void IncreaseHP(float hpChangeAmount)
     {
-        infoModel.Increase(hpChangeAmount);
+        infoModel.IncreaseHP(hpChangeAmount);
     }
 
-    //Hyeju : Å×½ºÆ® À§ÇØ¼­ publicÀ¸·Î ÀÓ½Ã º¯°æ
-    public void DecreaseHP(float hpChangeAmount)
+    private void DecreaseHP(float hpChangeAmount)
     {
-        infoModel.Decrease(hpChangeAmount);
+        infoModel.DecreaseHP(hpChangeAmount);
     }
 
     private void UpdateUI()
     {
-        if (infoModel.Character != null)
+        if(infoModel.Character != null)
         {
             infoView.UpdateCharacterName(infoModel.CharacterName);
         }
         else
         {
-            Debug.LogError($"[CharacterBattleInfoPresenter] {infoModel} ¾øÀ½");
+            Debug.LogError($"[CharacterBattleInfoPresenter] {infoModel} ï¿½ï¿½ï¿½ï¿½");
         }
     }
 
-    //Hyeju : Ä³¸¯ÅÍ »ç¸Á Á¤º¸ Ãß°¡
-    Queue<CharacterData> aliveList = new Queue<CharacterData>();
-    private void UpdatePosition(string characterID)
-    {
-        aliveList.Clear();
-        //»ç¸ÁÇÑ Ä³¸¯ÅÍ Á¦¿Ü / for·Î 3°³ Ä³¸¯ÅÍ °Ë»ç ÈÄ ¸®½ºÆ®¿¡ Ãß°¡
-        for (int i = 0; i < 3; i++)
-        {
-            if (infoModel.testCharacter[i] == null)
-            {
-                continue;
-            }
-            else if (infoModel.testCharacter[i].characterID != characterID)
-            {
-                //»ì¾ÆÀÖ´Â Ä³¸¯ÅÍ¸é ¸®½ºÆ®¿¡ Ãß°¡
-                aliveList.Enqueue(infoModel.testCharacter[i]);
+    //Hyeju : ìºë¦­í„° ì‚¬ë§ ì •ë³´ ì¶”ê°€
+    // Queue<CharacterData> aliveList = new Queue<CharacterData>();
+    // private void UpdatePosition(string characterID)
+    // {
+    //     aliveList.Clear();
+    //     //ï¿½ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ / forï¿½ï¿½ 3ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
+    //     for (int i = 0; i < 3; i++)
+    //     {
+    //         if (infoModel.testCharacter[i] == null)
+    //         {
+    //             continue;
+    //         }
+    //         else if (infoModel.testCharacter[i].characterID != characterID)
+    //         {
+    //             //ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ Ä³ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
+    //             aliveList.Enqueue(infoModel.testCharacter[i]);
 
-                Debug.Log($"[CharacterBattleInfoPresenter] : À§Ä¡ Àç¼³Á¤");
-            }
-        }
+    //             Debug.Log($"[CharacterBattleInfoPresenter] : ï¿½ï¿½Ä¡ ï¿½ç¼³ï¿½ï¿½");
+    //         }
+    //     }
 
-        if (aliveList.Count == 0)
-        {
-            Debug.Log("[CharacterBattleInfoPresenter] : Àü¸ê");
-        }
-        else if(aliveList.Count > 0)
-        {
-            deathMove.ReSetPosition(aliveList);
-        }
-    }
+    //     if (aliveList.Count == 0)
+    //     {
+    //         Debug.Log("[CharacterBattleInfoPresenter] : ï¿½ï¿½ï¿½ï¿½");
+    //     }
+    //     else if(aliveList.Count > 0)
+    //     {
+    //         deathMove.ReSetPosition(aliveList);
+    //     }
+    // }
     
 }
 

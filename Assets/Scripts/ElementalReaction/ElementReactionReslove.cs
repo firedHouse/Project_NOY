@@ -2,10 +2,10 @@ using UnityEngine;
 
 public static class ElementReactionResolver
 {/*
-    // ¿ø¼ÒµéÀÌ ¸¸³ª¼­, ¿ø¼Ò ¹İÀÀÀÌ ÀÏ¾î³ª´Â°É ÆÇº°ÇÏ´Â Resolve ÇÔ¼ö
+    // ì›ì†Œë“¤ì´ ë§Œë‚˜ì„œ, ì›ì†Œ ë°˜ì‘ì´ ì¼ì–´ë‚˜ëŠ”ê±¸ íŒë³„í•˜ëŠ” Resolve í•¨ìˆ˜
     public static ElementReaction Resolve(ElementType current, ElementType attack)
     {
-        // ºñÆ®¿¬»êÀÚ¸¦ ÀÌ¿ëÇÏ¿©, Ä¿·±Æ®¿Í ¾îÅÃÀÇ ¿ø¼Ò¹İÀÀÀ» Á¶ÇÕ(ÆÇº°)ÇÔ
+        // ë¹„íŠ¸ì—°ì‚°ìë¥¼ ì´ìš©í•˜ì—¬, ì»¤ëŸ°íŠ¸ì™€ ì–´íƒì˜ ì›ì†Œë°˜ì‘ì„ ì¡°í•©(íŒë³„)í•¨
         ElementType mix = current | attack;
 
         if (mix == (ElementType.Fire | ElementType.Water))

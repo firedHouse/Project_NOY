@@ -1,5 +1,5 @@
 using UnityEngine;
-// CSV¿¡¼­ intÇüÀ¸·Î ¹Ş¾Æ¿Â ¿ø¼Ò Å¸ÀÔÀ» ElementType enumÀ¸·Î º¯È¯ÇØÁÖ´Â Å¬·¡½º
+// CSVì—ì„œ intí˜•ìœ¼ë¡œ ë°›ì•„ì˜¨ ì›ì†Œ íƒ€ì…ì„ ElementType enumìœ¼ë¡œ ë³€í™˜í•´ì£¼ëŠ” í´ë˜ìŠ¤
 public static class ElementConverter
 {/*
     public static ElementType FromCSV(int value)

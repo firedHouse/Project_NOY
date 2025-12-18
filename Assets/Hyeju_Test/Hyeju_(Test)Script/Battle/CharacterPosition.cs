@@ -1,24 +1,17 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterPosition : MonoBehaviour
 {
     [SerializeField] private CharacterData _model;
 
-    [SerializeField] public Text text0;
-    [SerializeField] public Image Image0;
+    [SerializeField] private GameObject[] _characterBox;
 
-    [SerializeField] public Text text1;
-    [SerializeField] public Image Image1;
-
-    [SerializeField] public Text text2;
-    [SerializeField] public Image Image2;
-
-
-    private void Awake()
-    {
-    }
+    [SerializeField] public Text[] nameText;
+    //[SerializeField] public Text[] elementText;
+    //[SerializeField] public Text[] positionText;
+    //[SerializeField] public Image[] illustImage;
 
     private void Start()
     {
@@ -26,17 +19,34 @@ public class CharacterPosition : MonoBehaviour
     }
 
     //체력 닳을때마다 체크 (캐릭터 체력 구독, 실행해야 함.)
-    public void RemovePosition(int characterPosition)
+    public void ReSetPosition(Queue<CharacterData> aliveList)
     {
-        Debug.Log($"[사망, 위치변경] : {characterPosition} 에서 변경");
-    }
-
-    public void ResetPosition(int characterPosition)
-    {
-        //플레이어가 배치한 캐릭터의 정보를 알아야 함.
-        switch(characterPosition)
+        //칸 초기화
+        for (int i = 0; i < nameText.Length; i++)
         {
-
+            nameText[i].text = "";
+            //칸도 비활성화 시켜야 함.
+            _characterBox[i].SetActive(false);
         }
+
+        //사망한 캐릭터 출력 중단
+        //살아있는 캐릭터 수만큼 반복
+        for (int i = nameText.Length-1; i >= 0; i--)
+        {
+            
+
+            if (aliveList.Count > 0)
+            {
+                //3번 칸부터 데이터 작성
+                _characterBox[i].SetActive(true);
+                nameText[i].text = aliveList.Dequeue().characterCodeName;
+            }
+            else
+            {
+                nameText[i].text = "";
+            }
+        }
+
+        Debug.Log($"[CharacterPosition] : 위치 재설정");
     }
 }

@@ -5,10 +5,14 @@ public class CharacterBattleInfoModel : MonoBehaviour
 {
     [SerializeField] private string _characterId = "character_id_10001";
     [SerializeField] public CharacterData character;
+    [SerializeField] public CharacterData[] testCharacter = new CharacterData[3];
     public event Action HPChanged;
     public event Action DataLoaded;
 
     private float maxHP;
+
+    //Hyeju : 캐릭터 사망 이벤트 추가
+    public event Action<string> Death;
 
     public CharacterData Character { get => character; set => character = value; }
     public string CharacterName { get => character.characterName; }
@@ -16,6 +20,10 @@ public class CharacterBattleInfoModel : MonoBehaviour
     private void Start()
     {
         character = TableManager.Instance.CharacterTable.Get(_characterId);
+        //test 캐릭터
+        testCharacter[0] = character;
+        testCharacter[1] = TableManager.Instance.CharacterTable.Get("character_id_10002");
+
         if (character != null)
         {
             maxHP = character.HPLevel1;
@@ -42,5 +50,16 @@ public class CharacterBattleInfoModel : MonoBehaviour
         character.HPLevel1 = Mathf.Clamp(character.HPLevel1, 0, maxHP);
 
         HPChanged?.Invoke();
+        //hyeju 
+        Die();
+    }
+
+    //Hyeju : 캐릭터의 포지션 값을 전달
+    public void Die()
+    {
+        if(character.HPLevel1 <= 0)
+        {
+            Death?.Invoke(character.characterID);
+        }
     }
 }

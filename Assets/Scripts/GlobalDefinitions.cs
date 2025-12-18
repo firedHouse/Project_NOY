@@ -2,10 +2,18 @@
 
 public enum ElementType
 {
-    Fire = 0,       // 불
-    Water = 1,      // 물
-    Electric = 2,   // 전기
-    None = 3        // 무속성
+    Fire = 1 << 0,       // 불
+    Water = 1 << 1,      // 물
+    Electric = 1 << 2,   // 전기
+    None = 0        // 무속성
+}
+
+public enum  ElementReaction
+{
+    None = 0,
+    Varporize = 1,    // 증발 (물 + 불)
+    ElectricShock = 2, // 감전 (물 + 전기)
+    Overload = 3      // 과부하 (불 + 전기)
 }
 
 public enum UnitPosition

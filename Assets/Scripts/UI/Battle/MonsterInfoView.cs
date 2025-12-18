@@ -6,6 +6,9 @@ public class MonsterInfoView : MonoBehaviour
     [SerializeField] private Text monsterNameText;
     [SerializeField] private Text elementText;
     [SerializeField] private Text posistionText;
+    [SerializeField] private Text monsterSpeedText;
+    [SerializeField] private Text monsterPowerText;
+    [SerializeField] private Slider HpSlider;
 
     public void UpdateMonsterName(string text)
     {
@@ -21,4 +24,25 @@ public class MonsterInfoView : MonoBehaviour
     //{
     //    posistionText.text = text;
     //}
+    public void SetMaxHP(float hpAmount)
+    {
+        HpSlider.maxValue = hpAmount;
+        HpSlider.value = hpAmount;
+        Debug.Log($"[MonsterInfoView] 최대 Hp 설정 완료({HpSlider.maxValue})");
+    }
+
+    public void UpdateHPBar(float currentHP)
+    {
+        HpSlider.value = currentHP;
+    }
+
+    public void UpdateSpeed(int monsterSpeed)
+    {
+        monsterSpeedText.text = "스피드 : " + monsterSpeed.ToString();
+    }
+
+    public void UpdatePower(float monsterPower)
+    {
+        monsterPowerText.text = "공격력 : " + monsterPower.ToString();
+    }
 }

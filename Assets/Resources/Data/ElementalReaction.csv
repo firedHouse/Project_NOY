@@ -1,4 +1,6 @@
 원소 반응 ID,원소A ,원소B ,원소 반응 이름,공격 타입,데미지,지속시간,원소 반응 설명,원소 반응 사운드,원소 반응 스프라이트
 elementalReactionID,elementA,elementB,elementalReactionName,attackType,damage ,duration,desc,effectSound,effectResource
 string,enum,enum,string,int,float,int,string,string,string
-elemental_1001,0,1,증발,0,0.1,0,,elemental_sound_1001,elemental_resource_1001
+elemental_id_10001,0,1,증발,0,0.1,0,,elemental_sound_10001,elemental_resource_10001
+elemental_id_10002,1,2,감전,1,0.07,0,,elemental_sound_10002,elemental_resource_10002
+elemental_id_10003,2,0,과부하,2,0.04,3,,elemental_sound_10003,elemental_resource_10003

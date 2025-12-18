@@ -12,6 +12,7 @@ public class TableManager : Singleton<TableManager>
     public TableBase<ItemEquipData> ItemEquipTable = new TableBase<ItemEquipData>();
     public TableBase<ElementalReactionData> ElementalReactionTable = new TableBase<ElementalReactionData>();
     public TableBase<GradeData> GradeTable = new TableBase<GradeData>();
+    public TableBase<StageData> StageTable = new TableBase<StageData>();
 
 
     //TableManager.Instance.MonsterTable.Get(id);

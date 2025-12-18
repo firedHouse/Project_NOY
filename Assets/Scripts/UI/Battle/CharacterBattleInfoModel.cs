@@ -12,6 +12,7 @@ public class CharacterBattleInfoModel : MonoBehaviour
 
     public CharacterData Character { get => character; set => character = value; }
     public string CharacterName { get => character.characterName; }
+    public float MaxHP { get => maxHP; set => maxHP = value; }
 
     private void Start()
     {
@@ -28,7 +29,7 @@ public class CharacterBattleInfoModel : MonoBehaviour
         }
     }
 
-    public void Increase(float amount)
+    public void IncreaseHP(float amount)
     {
         character.HPLevel1 += amount;
         character.HPLevel1 = Mathf.Clamp(character.HPLevel1, 0, maxHP);
@@ -36,7 +37,7 @@ public class CharacterBattleInfoModel : MonoBehaviour
         HPChanged?.Invoke();
     }
 
-    public void Decrease(float amount)
+    public void DecreaseHP(float amount)
     {
         character.HPLevel1 -= amount;
         character.HPLevel1 = Mathf.Clamp(character.HPLevel1, 0, maxHP);

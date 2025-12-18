@@ -1,4 +1,4 @@
-스테이지 ID,몬스터 ID,몬스터 그룹,몬스터 소환 확률
+﻿스테이지 ID,몬스터 ID,몬스터 그룹,몬스터 소환 확률
 stageID,monsterID,monsterGroup,value
 string,string,enum,float
 stage_id_10001,monster_id_10001,1,15

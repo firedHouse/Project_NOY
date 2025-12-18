@@ -18,7 +18,6 @@ public class MonsterInfoPresenter : MonoBehaviour
     void Initialize()
     {
         monsterData = monsterModel.Monster;
-        HPBarController hPBarController = new HPBarController();
         if (monsterData != null)
         {
             Debug.Log($"[MonsterInfoPresenter] characterData 내부 데이터 불러오기 성공");

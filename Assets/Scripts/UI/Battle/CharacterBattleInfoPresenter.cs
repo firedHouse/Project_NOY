@@ -19,6 +19,7 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
             Debug.Log($"[CharacterBattleInfoPresenter] characterData 내부 데이터 불러오기 성공");
 
             infoModel.HPChanged += OnHPChanged;
+            infoView.SetMaxHP(infoModel.MaxHP);
             UpdateUI();
         }
         else
@@ -35,17 +36,17 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
 
     private void OnHPChanged()
     {
-        UpdateUI();
+        infoView.UpdateHPBar(infoModel.Character.HPLevel1);
     }
 
     private void IncreaseHP(float hpChangeAmount)
     {
-        infoModel.Increase(hpChangeAmount);
+        infoModel.IncreaseHP(hpChangeAmount);
     }
 
     private void DecreaseHP(float hpChangeAmount)
     {
-        infoModel.Decrease(hpChangeAmount);
+        infoModel.DecreaseHP(hpChangeAmount);
     }
 
     private void UpdateUI()

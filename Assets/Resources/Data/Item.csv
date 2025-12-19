@@ -1,6 +1,6 @@
-?? ??? ID,?? ??? ??,?? ??? ??,?? ??,?? ??,????? ??,??? ???,??? ?? ???,
-itemID,itemName,itemcost,stateType,value,desc,itemResource,itemSound,
-string,string,int,enum,int,string,string,string,
-item_id_10001,?????,50,0,20,,item_resource_10001,item_sound_10001,
-item_id_10002,?????,80,0,50,,item_resource_10002,item_sound_10002,
-item_id_10003,PP???,100,1,10,,item_resource_10003,item_sound_10003,
+소비 아이템 ID,소비 아이템 이름,소비 아이템 가격,상승 종류,상승 수치,소비아이템 설명,아이템 리소스,아이템 사용 사운드
+itemID,itemName,itemcost,stateType,value,desc,itemResource,itemSound
+string,string,int,enum,int,string,string,string
+item_id_10001,소형회복약,50,0,20,,item_resource_10001,item_sound_10001
+item_id_10002,중형회복약,80,0,50,,item_resource_10002,item_sound_10002
+item_id_10003,PP회복약,100,1,10,,item_resource_10003,item_sound_10003

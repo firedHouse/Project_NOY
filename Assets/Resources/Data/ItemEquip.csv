@@ -1,4 +1,4 @@
-﻿유물 아이템 ID,유물 아이템 이름,상승 종류 ,상승 수치 ,아이템 설명,아이템 리소스,아이템 사용 사운드
+유물 아이템 ID,유물 아이템 이름,상승 종류 ,상승 수치 ,아이템 설명,아이템 리소스,아이템 사용 사운드
 itemEquipID,itemEquipName,stateType,value,desc,ItemEquipResource,ItemEquipSound
 string,string,enum,float,string,string,string
 equip_id_10001,여신의눈물,0,0.5,,equip_resource_10001,equip_sound_10001

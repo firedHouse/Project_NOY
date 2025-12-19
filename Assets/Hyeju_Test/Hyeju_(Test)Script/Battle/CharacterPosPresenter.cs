@@ -1,33 +1,50 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterPosPresenter : MonoBehaviour
 {
     //프레젠터 나중에 하나로 합쳐야 함.
+    //프레젠터 : 현재스크립트-CharacterPosPresenter
 
-    public Queue<CharacterData> aliveList = new Queue<CharacterData>();
-    private void SurvivalList(string characterID, bool isDead)
+    //모델 : BattleUnit
+    //[SerializeField] private BattleUnit _battleUnit;
+    //[SerializeField] private TestBattleStarter _model;
+    //[SerializeField] private BattleManager _attleUnit;
+
+    //뷰 : CharacterPositionView
+    [SerializeField] private CharacterPositionView _view;
+
+    private List<Character> PlayerTeam = new List<Character>();
+
+    private UnitPosition position;
+
+    //BattleUnit.MovePosition(UnitPosition newPosition)
+
+    //모델 정보 받아서 뷰에 전달해야 함.
+    private void Start()
+    {
+        //팀 리스트
+        PlayerTeam = BattleManager.Instance.PlayerTeam;
+    }
+
+    public void SurvivalList()
     {
         // 데이터가 없으면 리턴
-        //if (infoModel.Character == null)
-        //{
-        //    return;
-        //}
+        if (PlayerTeam == null)
+        {
+            return;
+        }
 
-        //if (isDead == true)
-        //{
-        //    aliveList.Enqueue(infoModel.Character);
-        //    Debug.Log($"[CharacterBattleInfoPresenter] : 생존리스트에 {infoModel.Character} 추가");
-        //}
+        for(int i = 0; i < 3; i++)
+        {
+            if (PlayerTeam[i].IsDead == true)
+            {
+                BattleManager.Instance.OnUnitDead(PlayerTeam[i]);
+            }
 
-        //if (aliveList.Count == 0)
-        //{
-        //    Debug.Log("[CharacterBattleInfoPresenter] : 생존 캐릭터 없음");
-        //}
-        ////생존리스트 
-        //else if (aliveList.Count > 0)
-        //{
-        //    characterPosition.ReSetPosition(aliveList);
-        //}
+        }
     }
+
 }
+

@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -670,7 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.95294124, g: 0.76470596, b: 0.3529412, a: 1}
+  m_Color: {r: 0.95294124, g: 0.76470596, b: 0.3529412, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1214,7 +1214,6 @@ GameObject:
   - component: {fileID: 880086121327655653}
   - component: {fileID: 586829291992972657}
   - component: {fileID: 8938167085165136301}
-  - component: {fileID: 5581342858076321711}
   - component: {fileID: 278665921526244058}
   - component: {fileID: 8595145638539365658}
   - component: {fileID: 1318463423278411694}
@@ -1289,28 +1288,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5581342858076321711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8772183650163303183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5efc77692993a646be3244efa2f0ced, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Monster
-  unitID: 
-  unitName: 
-  maxHP: 0
-  currentHP: 0
-  speed: 0
-  attackPower: 0
-  position: 0
-  currentMark: 0
-  isDead: 0
-  dropGold: 0
 --- !u!114 &278665921526244058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1323,8 +1300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb47e178fed08b4e8daae970af04e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterInfoPresenter
-  monsterModel: {fileID: 5581342858076321711}
+  monsterModel: {fileID: 0}
   monsterView: {fileID: 8595145638539365658}
+  monId: 
   position: 0
 --- !u!114 &8595145638539365658
 MonoBehaviour:
@@ -1437,7 +1415,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8772183650163303183}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 

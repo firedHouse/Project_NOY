@@ -62,7 +62,7 @@ public class Monster : BattleUnit
         int randomIndex = Random.Range(0, skills.Count);
         Skill selectedSkill = skills[randomIndex];
 
-        //몬스터의 PP제한은 일단 없지만 PP는 존재하니 체크
+        //12.16 몬스터의 PP제한은 기획 상엔 일단 없지만 PP는 존재하니 체크
         if (selectedSkill.TryUse())
         {
             return selectedSkill;

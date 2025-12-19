@@ -53,10 +53,3 @@ public enum SkillType
     Buff = 2,
     Debuff = 3
 }
-
-public enum MonsterGroup
-{
-    Normal = 0,
-    Elite = 1,
-    Boss = 2
-}

@@ -1,15 +1,15 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 
 public class ShillingPresenter : MonoBehaviour
 {
-    [Tooltip("½Ç¸µ ºä")]
+    [Tooltip("ì‹¤ë§ ë·°")]
     [SerializeField] private ShillingView shillingView;
 
-    [Tooltip("½Ç¸µ ¸ğµ¨")]
+    [Tooltip("ì‹¤ë§ ëª¨ë¸")]
     [SerializeField] private ShillingModel shillingModel;
 
-    // test¿ë ÄÚµå
+    // testìš© ì½”ë“œ
     private int changeAmount = 5000;
 
     private void OnEnable()
@@ -18,30 +18,30 @@ public class ShillingPresenter : MonoBehaviour
         UpdateUI();
     }
 
-    // ½Ç¸µ º¯°æ ÀÌº¥Æ®
+    // ì‹¤ë§ ë³€ê²½ ì´ë²¤íŠ¸
     private void OnShillingChanged()
     {
         UpdateUI();
     }
 
-    // UI ¾÷µ¥ÀÌÆ® 
+    // UI ì—…ë°ì´íŠ¸ 
     private void UpdateUI()
     {
         shillingView.UpdateShilling(shillingModel.CurrentShilling);
     }
 
-    // ½Ç¸µ Ãß°¡
+    // ì‹¤ë§ ì¶”ê°€
     public void IncreaseShilling(int amount)
     {
-        // Å×½ºÆ®¿ë ÄÚµå
+        // í…ŒìŠ¤íŠ¸ìš© ì½”ë“œ
         shillingModel.Increase(changeAmount);
         //shillingModel.Increase(amount);
     }
 
-    // ½Ç¸µ °¨¼Ò
+    // ì‹¤ë§ ê°ì†Œ
     public void DecreaseShilling(int amount)
     {
-        // Å×½ºÆ®¿ë ÄÚµå
+        // í…ŒìŠ¤íŠ¸ìš© ì½”ë“œ
         shillingModel.Decrease(changeAmount);
         //shillingModel.Decrease(amount);
     }

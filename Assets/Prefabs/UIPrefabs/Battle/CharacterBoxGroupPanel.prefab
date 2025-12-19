@@ -233,6 +233,10 @@ PrefabInstance:
       propertyPath: deathMove
       value: 
       objectReference: {fileID: -3718171846197595249}
+    - target: {fileID: 3268719508118344517, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: characterPosition
+      value: 
+      objectReference: {fileID: -3718171846197595249}
     - target: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: m_Name
       value: CharacterBoxFrontPanel
@@ -367,6 +371,10 @@ PrefabInstance:
       propertyPath: deathMove
       value: 
       objectReference: {fileID: -3718171846197595249}
+    - target: {fileID: 3268719508118344517, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: characterPosition
+      value: 
+      objectReference: {fileID: -3718171846197595249}
     - target: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: m_Name
       value: CharacterBoxRoarPanel
@@ -499,6 +507,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3268719508118344517, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: deathMove
+      value: 
+      objectReference: {fileID: -3718171846197595249}
+    - target: {fileID: 3268719508118344517, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: characterPosition
       value: 
       objectReference: {fileID: -3718171846197595249}
     - target: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}

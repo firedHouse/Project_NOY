@@ -6,7 +6,7 @@ public class TestButton : MonoBehaviour
 
     public void OnHP0()
     {
-        Debug.Log($"[MonsterInfoModel] HP 삭제");
+        Debug.Log($"[TestButton] HP 삭제");
         _model.DecreaseHP(100);
     }
 }

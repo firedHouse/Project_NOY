@@ -1,14 +1,14 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterPosition : MonoBehaviour
+public class CharacterPositionView : MonoBehaviour
 {
     [SerializeField] private CharacterData _model;
 
-    [SerializeField] private GameObject[] _characterBox;
+    [SerializeField] private GameObject[] _characterBox = new GameObject[3];
 
-    [SerializeField] public Text[] nameText;
+    [SerializeField] public Text[] nameText = new Text[3];
     //[SerializeField] public Text[] elementText;
     //[SerializeField] public Text[] positionText;
     //[SerializeField] public Image[] illustImage;
@@ -18,26 +18,29 @@ public class CharacterPosition : MonoBehaviour
         
     }
 
-    //Ã¼·Â ´âÀ»¶§¸¶´Ù Ã¼Å© (Ä³¸¯ÅÍ Ã¼·Â ±¸µ¶, ½ÇÇàÇØ¾ß ÇÔ.)
+    //ì²´ë ¥ ë‹³ì„ë•Œë§ˆë‹¤ ì²´í¬ (ìºë¦­í„° ì²´ë ¥ êµ¬ë…, ì‹¤í–‰í•´ì•¼ í•¨.)
     public void ReSetPosition(Queue<CharacterData> aliveList)
     {
-        //Ä­ ÃÊ±âÈ­
+        //ì‚¬ë§í•œ ìºë¦­í„° ì¶œë ¥ ì¤‘ë‹¨
+        //ì¹¸ ì „ì²´ ì´ˆê¸°í™”
         for (int i = 0; i < nameText.Length; i++)
         {
             nameText[i].text = "";
-            //Ä­µµ ºñÈ°¼ºÈ­ ½ÃÄÑ¾ß ÇÔ.
+            //ì¹¸ë„ ë¹„í™œì„±í™” ì‹œì¼œì•¼ í•¨.
             _characterBox[i].SetActive(false);
         }
 
-        //»ç¸ÁÇÑ Ä³¸¯ÅÍ Ãâ·Â Áß´Ü
-        //»ì¾ÆÀÖ´Â Ä³¸¯ÅÍ ¼ö¸¸Å­ ¹İº¹
-        for (int i = nameText.Length-1; i >= 0; i--)
+        //ì¹¸ìˆ˜ë§Œí¼ ë°˜ë³µ
+        for (int i = 3; i > 0; i--)
         {
-            
-
+            //ì‚´ì•„ìˆëŠ” ìºë¦­í„° ìˆ˜ë§Œí¼ ë°˜ë³µ
             if (aliveList.Count > 0)
             {
-                //3¹ø Ä­ºÎÅÍ µ¥ÀÌÅÍ ÀÛ¼º
+                //3ë²ˆ ì¹¸ë¶€í„° ë°ì´í„° ì‘ì„±
+                //[0] = ì™¼ìª½ì¹¸
+                //[1] = ì¤‘ì•™
+                //[2] = ì˜¤ë¥¸ìª½ì¹¸
+
                 _characterBox[i].SetActive(true);
                 nameText[i].text = aliveList.Dequeue().characterCodeName;
             }
@@ -47,6 +50,6 @@ public class CharacterPosition : MonoBehaviour
             }
         }
 
-        Debug.Log($"[CharacterPosition] : À§Ä¡ Àç¼³Á¤");
+        Debug.Log($"[CharacterPosition] : ìœ„ì¹˜ ì¬ì„¤ì •");
     }
 }

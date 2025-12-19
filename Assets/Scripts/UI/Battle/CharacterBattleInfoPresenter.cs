@@ -8,20 +8,19 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
     private CharacterData characterData;
 
     //Hyeju
-    [SerializeField] private CharacterPosition characterPosition;
+    [SerializeField] private CharacterPositionView characterPosition;
 
     private void Awake()
     {
         infoModel.DataLoaded += OnDataLoaded;
         //hyeju
-        infoModel.Death += AddDeathList;
-        infoModel.Alive += AddDeathList;
+        infoModel.AddSurvivalList += SurvivalList;
     }
 
     void Initialize()
     {
         characterData = infoModel.character;
-        if(characterData != null)
+        if (characterData != null)
         {
             Debug.Log($"[CharacterBattleInfoPresenter] characterData 내부 데이터 불러오기 성공");
             infoModel.HPChanged += OnHPChanged;
@@ -57,7 +56,7 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
 
     private void UpdateUI()
     {
-        if(infoModel.Character != null)
+        if (infoModel.Character != null)
         {
             infoView.UpdateCharacterName(infoModel.CharacterName);
         }
@@ -69,28 +68,25 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
 
     //Hyeju :
     public Queue<CharacterData> aliveList = new Queue<CharacterData>();
-    public Queue<CharacterData> deathList = new Queue<CharacterData>();
-    private void AddDeathList(string characterID)
+    private void SurvivalList(string characterID, bool isDead)
     {
-        for (int i = 0; i < 3; i++)
+        // 데이터가 없으면 리턴
+        if (infoModel.Character == null)
         {
-            if (infoModel.Character == null)
-            {
-                continue;
-            }
-            else if (infoModel.Character.characterID != characterID)
-            {
-                //
-                aliveList.Enqueue(infoModel.Character);
+            return;
+        }
 
-                Debug.Log($"[CharacterBattleInfoPresenter] : 큐에 {infoModel.Character} 추가");
-            }
+        if(isDead == true)
+        {
+            aliveList.Enqueue(infoModel.Character);
+            Debug.Log($"[CharacterBattleInfoPresenter] : 생존리스트에 {infoModel.Character} 추가");
         }
 
         if (aliveList.Count == 0)
         {
             Debug.Log("[CharacterBattleInfoPresenter] : 생존 캐릭터 없음");
         }
+
         else if (aliveList.Count > 0)
         {
             characterPosition.ReSetPosition(aliveList);

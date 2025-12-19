@@ -11,9 +11,8 @@ public class CharacterBattleInfoModel : MonoBehaviour
     private float maxHP;
 
     //Hyeju : 캐릭터 생존상태 이벤트 추가
-    public bool isDeath;
-    public event Action<string> Death;
-    public event Action<string> Alive;
+    public event Action<string, bool> AddSurvivalList;
+    private bool isAlive;
 
     public CharacterData Character { get => character; set => character = value; }
     public string CharacterName { get => character.characterName; }
@@ -53,16 +52,18 @@ public class CharacterBattleInfoModel : MonoBehaviour
         PlayerSurvialState();
     }
 
-    //Hyeju : 캐릭터의 포지션 값을 전달
+    //Hyeju : 캐릭터 ID, 생존여부 전달
     public void PlayerSurvialState()
     {
-        if (character.HPLevel1 <= 0)
+        //살아 있을 때
+        if (character.HPLevel1 > 0)
         {
-            Death?.Invoke(character.characterID);
+            AddSurvivalList?.Invoke(character.characterID, true);
         }
-        else
+        //죽었을 때
+        else if(character.HPLevel1 <= 0)
         {
-            Alive?.Invoke(character.characterID);
+            AddSurvivalList?.Invoke(character.characterID, false);
         }
     }
 }

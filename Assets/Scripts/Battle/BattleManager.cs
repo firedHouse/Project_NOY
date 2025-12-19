@@ -1,32 +1,33 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-//»óÅÂ¸¦ °ü¸®ÇÏ°í ÇÊ¿äÇÑ µ¥ÀÌÅÍ(À¯´Ö ¸®½ºÆ®) ¸¦ Á¦°øÇÏ´Â ¸Å´ÏÀú
-//TestBattleStarter¿¡¼­ ¹Ş¾Æ¿È 
+//ìƒíƒœë¥¼ ê´€ë¦¬í•˜ê³  í•„ìš”í•œ ë°ì´í„°(ìœ ë‹› ë¦¬ìŠ¤íŠ¸) ë¥¼ ì œê³µí•˜ëŠ” ë§¤ë‹ˆì €
+//TestBattleStarterì—ì„œ ë°›ì•„ì˜´ 
 
 public class BattleManager : Singleton<BattleManager>
 {
-    //ÇöÀç ½ÇÇàÁßÀÎ »óÅÂ
+    //í˜„ì¬ ì‹¤í–‰ì¤‘ì¸ ìƒíƒœ
     private IBattleState currentState;
 
-    //µ¥ÀÌÅÍ ÀúÀå¼Ò (State Á¢±Ù¿ë Public) 
+    //ë°ì´í„° ì €ì¥ì†Œ (State ì ‘ê·¼ìš© Public) 
     public List<Character> PlayerTeam { get; private set; } = new List<Character>();
     public List<Monster> EnemyTeam { get; private set; } = new List<Monster>();
 
-    //¼ø¼­°¡ Á¤·ÄµÈ? ÃÖÁ¾ ½ÇÇà Å¥ 
+    //ìˆœì„œê°€ ì •ë ¬ëœ? ìµœì¢… ì‹¤í–‰ í 
     public Queue<BattleAction> ActionQueue { get; private set; } = new Queue<BattleAction>();
 
-    //°¢ ÅÏÀÇ Çàµ¿À» ¸ğ¾ÆµÎ´Â ¸®½ºÆ® 
+    //ê° í„´ì˜ í–‰ë™ì„ ëª¨ì•„ë‘ëŠ” ë¦¬ìŠ¤íŠ¸ 
     public List<BattleAction> TempPlayerActions { get; private set; } = new List<BattleAction>();
     public List<BattleAction> TempEnemyActions { get; private set; } = new List<BattleAction>();
 
 
-    //ÇÁ·¹Á¨ÅÍ ÀÌº¥Æ®
+    //í”„ë ˆì  í„° ì´ë²¤íŠ¸
     public event Action<List<Character>> OnPlayerTurnStart;
+    public event Action OnBattleSetted;
 
-    //»óÅÂ º¯°æ ¸Ş¼­µå
+    //ìƒíƒœ ë³€ê²½ ë©”ì„œë“œ
     public void ChangeState(IBattleState newState)
     {
         if (currentState != null)
@@ -36,83 +37,87 @@ public class BattleManager : Singleton<BattleManager>
 
         currentState = newState;
 
-        //»óÅÂ ÀüÈ¯ ÃßÀû
-        Debug.Log($"[BattleMnager] {currentState.GetType().Name} ÁøÀÔ");
+        //ìƒíƒœ ì „í™˜ ì¶”ì 
+        Debug.Log($"[BattleMnager] {currentState.GetType().Name} ì§„ì…");
         currentState.Enter(this);
     }
 
     private void Update()
     {
-        //¸Å ÇÁ·¹ÀÓ bool Ã¼Å©¸¸ ÁøÇà(¸®ÆÑÅä¸µ ÇÊ¿äÇÑ°¡?)
+        //ë§¤ í”„ë ˆì„ bool ì²´í¬ë§Œ ì§„í–‰(ë¦¬íŒ©í† ë§ í•„ìš”í•œê°€?)
         if (currentState != null)
         {
             currentState.Execute(this);
         }
     }
 
-    //ÀüÅõ ½ÃÀÛ ÁøÀÔÁ¡(È£Ãâ¿ë)
+    //ì „íˆ¬ ì‹œì‘ ì§„ì…ì (í˜¸ì¶œìš©)
     public void StartBattle(List<Character> players, List<Monster> enemies)
     {
         PlayerTeam = players;
         EnemyTeam = enemies;
 
-        //Setup »óÅÂ ÁøÀÔ
+        // Jihoo
+        // ê° í”„ë ˆì  í„° ì´ˆê¸°í™”í•˜ë„ë¡ ì´ë²¤íŠ¸ë¡œ ì•Œë¦¼
+        BattleSetted();
+
+        //Setup ìƒíƒœ ì§„ì…
         ChangeState(new StateSetup());
     }
 
-    //SkillArea¿¡ µû¸¥ Å¸°Ù ¸®½ºÆ® ¹İÈ¯
+    //SkillAreaì— ë”°ë¥¸ íƒ€ê²Ÿ ë¦¬ìŠ¤íŠ¸ ë°˜í™˜
     public List<BattleUnit> GetTargetsBySkill(List<BattleUnit> targetTeam, SkillData skillData)
     {
-        //¸ÅÇÎÇÒ Å¸°Ù ¸®½ºÆ® »ı¼º
+        //ë§¤í•‘í•  íƒ€ê²Ÿ ë¦¬ìŠ¤íŠ¸ ìƒì„±
         List<BattleUnit> validTargets = new List<BattleUnit>();
 
-        //SkillDataÀÇ intÇü skillArea¸¦ EnumÀ¸·Î º¯È¯
+        //SkillDataì˜ intí˜• skillAreaë¥¼ Enumìœ¼ë¡œ ë³€í™˜
         SkillArea area = (SkillArea)skillData.skillArea;
 
-        //ÇöÀç »ì¾ÆÀÖ´Â(¸®½ºÆ®¿¡ Á¸ÀçÇÏ´Â) À¯´ÖÀÇ ¼ö
+        //í˜„ì¬ ì‚´ì•„ìˆëŠ”(ë¦¬ìŠ¤íŠ¸ì— ì¡´ì¬í•˜ëŠ”) ìœ ë‹›ì˜ ìˆ˜
         int count = targetTeam.Count;
         if (count == 0) return validTargets;
 
-        //enum °ª¿¡ µû¸¥ ÀÎµ¦½º ¸ÅÇÎ
+        //enum ê°’ì— ë”°ë¥¸ ì¸ë±ìŠ¤ ë§¤í•‘
         switch (area)
         {
-            case SkillArea.Front: //Àü¿­
+            case SkillArea.Front: //ì „ì—´
                 if (count > 0) validTargets.Add(targetTeam[0]);
                 break;
 
-            case SkillArea.FrontMid: //ÀüÁß¿­
+            case SkillArea.FrontMid: //ì „ì¤‘ì—´
                 if (count > 0) validTargets.Add(targetTeam[0]);
                 if (count > 1) validTargets.Add(targetTeam[1]);
                 break;
 
-            case SkillArea.Mid: //Áß¿­
+            case SkillArea.Mid: //ì¤‘ì—´
                 if (count > 1) validTargets.Add(targetTeam[1]);
                 break;
 
-            case SkillArea.MidBack: //ÁßÈÄ¿­
+            case SkillArea.MidBack: //ì¤‘í›„ì—´
                 if (count > 1) validTargets.Add(targetTeam[1]);
                 if (count > 2) validTargets.Add(targetTeam[2]);
                 break;
 
-            case SkillArea.Back: //ÈÄ¿­
+            case SkillArea.Back: //í›„ì—´
                 if (count > 2) validTargets.Add(targetTeam[2]);
                 break;
 
-            case SkillArea.FrontBack: //ÀüÈÄ¿­
+            case SkillArea.FrontBack: //ì „í›„ì—´
                 if (count > 0) validTargets.Add(targetTeam[0]);
                 if (count > 2) validTargets.Add(targetTeam[2]);
                 break;
 
-            case SkillArea.All: //ÀüÃ¼
+            case SkillArea.All: //ì „ì²´
                 validTargets.AddRange(targetTeam);
                 break;
         }
-        //¸ÅÇÎµÈ ¸®½ºÆ® ¹İÈ¯
+        //ë§¤í•‘ëœ ë¦¬ìŠ¤íŠ¸ ë°˜í™˜
         return validTargets;
     }
 
-    //À¯´Ö »ç¸Á ½Ã ´ç°ÜÁü Ã³¸®
-    //¸®½ºÆ®¿¡¼­ Á¦°ÅÇÏ¸é ³¡
+    //ìœ ë‹› ì‚¬ë§ ì‹œ ë‹¹ê²¨ì§ ì²˜ë¦¬
+    //ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±°í•˜ë©´ ë
     public void OnUnitDead(BattleUnit deadUnit)
     {
         if (deadUnit is Character player)
@@ -120,7 +125,7 @@ public class BattleManager : Singleton<BattleManager>
             if (PlayerTeam.Contains(player))
             {
                 PlayerTeam.Remove(player);
-                Debug.Log($"¾Æ±º {player.UnitName}");
+                Debug.Log($"ì•„êµ° {player.UnitName}");
             }
         }
         else if (deadUnit is Monster enemy)
@@ -134,9 +139,9 @@ public class BattleManager : Singleton<BattleManager>
     }
 
 
-    //±×³É EnemyTurnÀÇ AI ·ÎÁ÷¿¡ GetTargetsBySkillÀ» »ç¿ëÇÏ¿© Å¸°Ù ÃßÀûÇÏµµ·Ï ÀÛ¾÷ ÀÌ°ü.
+    //ê·¸ëƒ¥ EnemyTurnì˜ AI ë¡œì§ì— GetTargetsBySkillì„ ì‚¬ìš©í•˜ì—¬ íƒ€ê²Ÿ ì¶”ì í•˜ë„ë¡ ì‘ì—… ì´ê´€.
 
-    ////AI°¡ ½ºÅ³ »ç¿ë °¡´É ¿©ºÎ¸¦ ÆÇ´Ü ½Ã, ÇØ´ç area¿¡ ÀûÀÌ ÀÖ´ÂÁö Ã¼Å©
+    ////AIê°€ ìŠ¤í‚¬ ì‚¬ìš© ê°€ëŠ¥ ì—¬ë¶€ë¥¼ íŒë‹¨ ì‹œ, í•´ë‹¹ areaì— ì ì´ ìˆëŠ”ì§€ ì²´í¬
     //public bool HasTargetInArea(List<BattleUnit> targetTeam, SkillArea area)
     //{
     //    int count = targetTeam.Count;
@@ -145,34 +150,34 @@ public class BattleManager : Singleton<BattleManager>
     //        case SkillArea.Front: return count > 0;
     //        case SkillArea.Mid: return count > 1;
     //        case SkillArea.Back: return count > 2;
-    //        case SkillArea.FrontMid: return count > 0; //Àü¿­¸¸ ÀÖ¾îµµ »ç¿ë °¡´É
-    //        case SkillArea.MidBack: return count > 1;  //Áß¿­¸¸ ÀÖ¾îµµ »ç¿ë °¡´É
+    //        case SkillArea.FrontMid: return count > 0; //ì „ì—´ë§Œ ìˆì–´ë„ ì‚¬ìš© ê°€ëŠ¥
+    //        case SkillArea.MidBack: return count > 1;  //ì¤‘ì—´ë§Œ ìˆì–´ë„ ì‚¬ìš© ê°€ëŠ¥
     //        case SkillArea.FrontBack: return count > 0;
     //        case SkillArea.All: return count > 0;
     //    }
     //    return false;
     //}
 
-    //»ó´ëÆÀ ÁöÁ¤(layerÃ³¸®¾ÈÇÏ·Á°í ÀÌ·¸°Ô)
+    //ìƒëŒ€íŒ€ ì§€ì •(layerì²˜ë¦¬ì•ˆí•˜ë ¤ê³  ì´ë ‡ê²Œ)
     public List<BattleUnit> GetOpponentTeam(BattleUnit user)
     {
-        //Monster¶ó¸é »ó´ë = PlayerTeam
+        //Monsterë¼ë©´ ìƒëŒ€ = PlayerTeam
         if (user is Monster)
         {
             return PlayerTeam.Cast<BattleUnit>().ToList();
         }
-        //Character¶ó¸é »ó´ë´Â EnemyTeam
+        //Characterë¼ë©´ ìƒëŒ€ëŠ” EnemyTeam
         return EnemyTeam.Cast<BattleUnit>().ToList();
     }
 
-    //UI¿¬µ¿¿ë, Presenter°¡ È£ÃâÇÒ ¸Ş¼­µå
+    //UIì—°ë™ìš©, Presenterê°€ í˜¸ì¶œí•  ë©”ì„œë“œ
     public void ReceivePlayerAction(BattleUnit user, Skill skill, BattleUnit target)
     {
-        //Ä¿¸Çµå °´Ã¼ »ı¼º ¹× ÀúÀå
+        //ì»¤ë§¨ë“œ ê°ì²´ ìƒì„± ë° ì €ì¥
         BattleAction newAction = new BattleAction(user, skill, target);
         TempPlayerActions.Add(newAction);
 
-        Debug.Log($"[UI ¿¬µ¿ Ã¼Å©] {user.UnitName}ÀÇ Ä¿¸Çµå ÀÔ·Â ¿Ï·á");
+        Debug.Log($"[UI ì—°ë™ ì²´í¬] {user.UnitName}ì˜ ì»¤ë§¨ë“œ ì…ë ¥ ì™„ë£Œ");
 
         if (currentState is StatePlayerTurn playerTurn)
         {
@@ -184,4 +189,8 @@ public class BattleManager : Singleton<BattleManager>
         OnPlayerTurnStart?.Invoke(PlayerTeam);
     }
 
+    public void BattleSetted()
+    {
+        OnBattleSetted?.Invoke();
+    }
 }

@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,43 +7,40 @@ using UnityEngine.UI;
 //model
 public class SkillList : MonoBehaviour
 {
-    [SerializeField] private CharacterBattleInfoModel _model;
-    private CharacterData _characterData;
+    [SerializeField] private BattleUnit _battleUnit;
 
-    public SkillData[] _characterSkill;
-    public SkillData[] _monsterSkill;
+    public Skill[] skillUI;
 
 
     private void Awake()
     {
-        _characterSkill = new SkillData[3];
-        _monsterSkill = new SkillData[3];
+        skillUI = new Skill[3];
 
-        _model.DataLoaded += SkillDataLoad;
+        //_battleUnit.DataLoaded += SkillDataLoad;
     }
+
+    private void Start()
+    {
+        SkillDataLoad();
+    }
+
+    //ê°€ì ¸ì™€ì•¼ í•˜ëŠ” ìŠ¤í‚¬ : í˜„ìž¬ í„´ ìºë¦­í„°ì˜ ìŠ¤í‚¬, 
 
     public void SkillDataLoad()
     {
-        _characterData = _model.character;
-        if(_characterData == null)
+        if (_battleUnit.Skills.Count == 0)
         {
-            Debug.Log($"[MouseOverInfo] : Ä³¸¯ÅÍ µ¥ÀÌÅÍ ¾øÀ½");
+            Debug.Log($"[MouseOverInfo] : ìŠ¤í‚¬ ì—†ìŒ");
         }
-        else if (_characterData != null)
+        else if (_battleUnit.Skills.Count > 0)
         {
-            //½ºÅ³ Á¤º¸ ¹Þ¾Æ¿À±â
-            _characterSkill[0] = TableManager.Instance.SkillTable.Get($"{_characterData.ownedSkill01}");
-            _characterSkill[1] = TableManager.Instance.SkillTable.Get($"{_characterData.ownedSkill02}");
-            _characterSkill[2] = TableManager.Instance.SkillTable.Get($"{_characterData.ownedSkill03}");
+            //ìŠ¤í‚¬ ì •ë³´ ë°›ì•„ì˜¤ê¸°
+            for (int i = 0; i < 3; i++)
+            {
+                skillUI[i] = _battleUnit.Skills[i];
+                Debug.Log($"[MouseOverInfo] :{skillUI[i].Data.skillName}");
+            }
 
-            Debug.Log($"[MouseOverInfo] :{_characterSkill[0].skillName}");
         }
-
-       
-    }
-
-    public void MonsterSkill()
-    { 
-        //¸ó½ºÅÍ ¸ðµ¨¿¡ ¸ÂÃç¼­ ÀÛ¼º - UI¿¡ Ç¥½Ã ¾ÈµÇ´Âµ¥ ¿©±â¼­ ÇØ¾ßÇÒ±î? ½ÍÀº »ý°¢.
     }
 }

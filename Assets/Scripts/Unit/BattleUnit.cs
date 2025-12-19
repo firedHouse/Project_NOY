@@ -7,6 +7,7 @@ public abstract class BattleUnit : MonoBehaviour
 {
     [Header("Base Stats")]
 
+
     [SerializeField] protected string unitID;
     [SerializeField] protected string unitName;
     [SerializeField] protected float maxHP;
@@ -23,7 +24,7 @@ public abstract class BattleUnit : MonoBehaviour
     protected List<Skill> skills = new List<Skill>();
 
     //프로퍼티
-    public string Name => unitName;
+    public string UnitName => unitName;
     public float CurrentHP => currentHP;
     public float MaxHP => maxHP;
     public int Speed => speed;

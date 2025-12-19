@@ -24,7 +24,7 @@ public class MonsterInfoPresenter : MonoBehaviour
         Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
 
         monsterModel.OnHpChanged += HandleHpChanged;
-        monsterView.UpdateMonsterName(monsterModel.Name);
+        monsterView.UpdateMonsterName(monsterModel.UnitName);
         //monsterView.UpdateElement(monsterModel.elementType);
         monsterView.UpdateSpeed(monsterModel.Speed);
         //monsterView.UpdatePower(monsterModel.Monster.monsterAttack);

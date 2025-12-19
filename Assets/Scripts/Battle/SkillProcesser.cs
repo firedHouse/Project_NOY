@@ -1,53 +1,65 @@
+ï»¿using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class SkillProcesser : MonoBehaviour
-{ //  //½ºÅ³¿¡ ¿ø¼Ò Àû¿ëÀ» À§ÇÑ ÇÁ·Î¼¼¼­, µ¥¹ÌÁö °ü·ÃÇÑ ¸Ş¼­µå´Â Unit ÂÊ¿¡¼­ Ã³¸®
-  //
-  //  //½ºÅ³ Àû¿ë ¸Ş¼­µå
-  //  public void ApplySkill(Unit target, SkillData skill)
-  //  {
-  //      ElementType attackElement = ElementConverter.FromCSV(skill.skillElement);
-  //      //¼Ó¼º °ø°İÀ» ¹Ş¾ÒÀ» ¶§, ¿ø¼Ò ¹İÀÀÀÌ ÀÏ¾î³µ¾ú´Ù¸é, ÀüÃ¼ ¹«½Ã
-  //      if (!target.isReactionThisTurn)
-  //      {
-  //          target.SetElementalMark(attackElement);
-  //          return;
-  //      }
-  //      //¿ø¼Ò ¹İÀÀ ¸Ş¼­µå¸¦ °¡Á®¿Í ÇöÀç °ø°İ°ú ´ë»óÀÇ ¼Ó¼ºÀ¸·Î ¿ø¼Ò ¹İÀÀ ÆÇÁ¤
-  //      ElementReaction reaction = ElementReactionResolver.Resolve(target.CurrentMark, attackElement);
-  //
-  //      // °ø°İÀ» ¹Ş¾ÒÀ» ¶§, ¿ø¼Ò ¹İÀÀÀÌ µÈ´Ù¸é NoneÀ¸·Î ÃÊ±âÈ­, ¾Æ´Ï¶ó¸é °ø°İ ¹ŞÀº ¼Ó¼ºÀ¸·Î CurrentElement ¼¼ÆÃ
-  //      if (reaction != ElementReaction.None)
-  //      {
-  //          TriggerReaction(target, reaction);
-  //
-  //          target.SetReactionturn();
-  //          target.ClearMark(); // ¿ø¼Ò ¹ß»ı ÈÄ Ç×»ó NoneÀ¸·Î ÃÊ±âÈ­
-  //      }
-  //      else
-  //      {
-  //          target.SetElementalMark(attackElement); //¿ø¼Ò ¹ß»ıÀÌ 
-  //      }
-  //  }
-  //
-  //  //¿ø¼Ò ¹İÀÀ Æ®¸®°Å ÇÔ¼ö
-  //  private void TriggerReaction(Unit target, ElementReaction reaction)
-  //  {
-  //      switch(reaction)
-  //      {
-  //          case ElementReaction.Vaporize:
-  //              Debug.Log("Áõ¹ß ¹ß»ı");
-  //              break;
-  //          case ElementReaction.ElectroShock:
-  //              Debug.Log($"°¨Àü ¹ß»ı");
-  //              break;
-  //          case ElementReaction.Overload:
-  //              Debug.Log($"°úºÎÇÏ ¹ß»ı");
-  //              break;
-  //          default:
-  //              Debug.Log("Debug.Log : None");
-  //              break;
-  //      }
-  //   }
-  //
+{   //ìŠ¤í‚¬ì— ì›ì†Œ ì ìš©ì„ ìœ„í•œ í”„ë¡œì„¸ì„œ, ë°ë¯¸ì§€ ê´€ë ¨í•œ ë©”ì„œë“œëŠ” Unit ìª½ì—ì„œ ì²˜ë¦¬
+  
+    //ìŠ¤í‚¬ ì ìš© ë©”ì„œë“œ
+    public void ApplySkill(BattleUnit caster, ElementalManager targetState, Skill skill, BattleUnit[] enemyTeam)
+    {
+        /// <summary>
+        /// caster : ìŠ¤í‚¬ì„ ì‚¬ìš©í•˜ëŠ” ìœ ë‹›
+        /// targetState : ìŠ¤í‚¬ì„ ë°›ëŠ” ìœ ë‹›ì˜ ElementalManager
+        /// skill : ì‚¬ìš©ë˜ëŠ” ìŠ¤í‚¬
+        /// enemyTeam : íƒ€ê²© ìœ ë‹›ì˜ íŒ€
+        /// </summary>
+        
+        //ë§Œì•½ ìŠ¤í‚¬ì´ ë°œë™ì´ ì•ˆë˜ëŠ” ìƒí™©ì´ë¼ë©´ í˜¹ì€ ë°œë™ì„ ì•ˆí–ˆë‹¤ë©´ ì‚¬ìš©í•˜ì§€ ì•ŠìŒ
+        if(!skill.IsValid() || !skill.TryUse())
+        {
+            return;
+        }
+        // ë§ì„ íƒ€ê²Ÿê³¼ ìŠ¤í‚¬ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜´
+        BattleUnit target = targetState.Unit;
+        SkillData data = skill.Data;
+
+        //ìŠ¤í‚¬ íƒ€ì…ì´ ê³µê²©ì¼ ê²½ìš° ë°ë¯¸ì§€ ì…íˆê¸°
+        if ((SkillType)data.skillType == SkillType.Attack)
+        {
+            float damage = data.skillBaseValue + caster.AttackPower * data.skillFactor;
+
+            target.TakeDamage(damage);
+        }
+        
+        // ìŠ¤í‚¬ì˜ ì›ì†Œ íƒ€ì…ì„ ê°€ì ¸ì™€ì„œ ë¹„íŠ¸í”Œë˜ê·¸ë¡œ ë³€í™˜
+        ElementType attackElement = (ElementType)(1 << data.skillElement);
+
+        //ì›ì†Œ ë°˜ì‘ì´ ì¼ì–´ë‚œ í„´ì´ë¼ë©´ ì›ì†Œ ë°˜ì‘ì„ í•˜ì§€ ì•Šê²Œ boolê°’ì„ í™•ì¸
+        if(targetState.isReactedThisTurn)
+        {
+            target.SetElementalMark(attackElement);
+            return;
+        }
+
+        //ì›ì†Œ ë°˜ì‘ íŒì •
+        ElementReaction reaction = ElementReactionResolver.Resolve(target.CurrentMark, attackElement);
+        
+        //ì›ì†Œ ë°˜ì‘ ë°œìƒ
+        if(reaction != ElementReaction.None)
+        {
+            ReactionDamageProcesser.Apply(reaction, target, enemyTeam);
+            
+            targetState.MarkReacted();
+            target.ClearMark();
+            
+        }
+        else
+        {
+            //ë°˜ì‘ì´ ì—†ìœ¼ë©´ í‘œì‹ë§Œ ìƒì„±
+            target.SetElementalMark(attackElement);
+        }
+    
+
+    }
+ 
 }

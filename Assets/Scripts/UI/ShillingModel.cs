@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
 public class ShillingModel : MonoBehaviour
@@ -14,7 +14,7 @@ public class ShillingModel : MonoBehaviour
 
     public void Awake()
     {
-        // ÃÊ±â°ª, ÃßÈÄ º¯°æ
+        // ì´ˆê¸°ê°’, ì¶”í›„ ë³€ê²½
         currentShilling = 5000;
     }
 
@@ -36,7 +36,7 @@ public class ShillingModel : MonoBehaviour
 
     public void Restore()
     {
-        // ÀúÀåµÇ¾î ÀÖ´Â ½Ç¸µ µ¥ÀÌÅÍ º¹±¸
+        // ì €ì¥ë˜ì–´ ìˆëŠ” ì‹¤ë§ ë°ì´í„° ë³µêµ¬
         //shilling = 
         ShillingChanged?.Invoke();
 

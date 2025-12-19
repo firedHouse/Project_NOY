@@ -9,6 +9,7 @@ public class Character : BattleUnit
     {
         //캐릭터 데이터 조회
         CharacterData data = TableManager.Instance.CharacterTable.Get(charID);
+        Debug.Log(data);
 
         if (data == null)
         {

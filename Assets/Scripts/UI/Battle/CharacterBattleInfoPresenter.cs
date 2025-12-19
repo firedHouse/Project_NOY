@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CharacterBattleInfoPresenter : MonoBehaviour
 {
@@ -6,9 +7,14 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
     [SerializeField] private CharacterBattleInfoView infoView;
     private CharacterData characterData;
 
+    //Hyeju
+    //[SerializeField] private CharacterPosition deathMove;
+
     private void Awake()
     {
         infoModel.DataLoaded += OnDataLoaded;
+        //hyeju
+        //infoModel.Death += UpdatePosition;
     }
 
     void Initialize()
@@ -16,19 +22,18 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
         characterData = infoModel.character;
         if(characterData != null)
         {
-            Debug.Log($"[CharacterBattleInfoPresenter] characterData ³»ºÎ µ¥ÀÌÅÍ ºÒ·¯¿À±â ¼º°ø");
-
+            Debug.Log($"[CharacterBattleInfoPresenter] characterData ë‚´ë¶€ ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸° ì„±ê³µ");
             infoModel.HPChanged += OnHPChanged;
             infoView.SetMaxHP(infoModel.MaxHP);
             UpdateUI();
         }
         else
         {
-            Debug.Log($"[CharacterBattleInfoPresenter] characterData ³»ºÎ µ¥ÀÌÅÍ ºñ¾îÀÖÀ½");
+            Debug.Log($"[CharacterBattleInfoPresenter] characterData ë‚´ë¶€ ë°ì´í„° ë¹„ì–´ìˆìŒ");
         }
     }
 
-    // ¸ğµ¨¿¡ µ¥ÀÌÅÍ°¡ µé¾î¿À¸é ÇÁ·¹Á¨ÅÍ¿¡¼­µµ °¡Á®¿Â´Ù
+    // ëª¨ë¸ì— ë°ì´í„°ê°€ ë“¤ì–´ì˜¤ë©´ í”„ë ˆì  í„°ì—ì„œë„ ê°€ì ¸ì˜¨ë‹¤
     private void OnDataLoaded()
     {
         Initialize();
@@ -57,7 +62,40 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"[CharacterBattleInfoPresenter] {infoModel} ¾øÀ½");
+            Debug.LogError($"[CharacterBattleInfoPresenter] {infoModel} ì—†ìŒ");
         }
     }
+
+    //Hyeju :
+    // Queue<CharacterData> aliveList = new Queue<CharacterData>();
+    // private void UpdatePosition(string characterID)
+    // {
+    //     aliveList.Clear();
+    //     //
+    //     for (int i = 0; i < 3; i++)
+    //     {
+    //         if (infoModel.testCharacter[i] == null)
+    //         {
+    //             continue;
+    //         }
+    //         else if (infoModel.testCharacter[i].characterID != characterID)
+    //         {
+    //             //
+    //             aliveList.Enqueue(infoModel.testCharacter[i]);
+
+    //             Debug.Log($"[CharacterBattleInfoPresenter] : íì— {infoModel.testCharacter[i]} ì¶”ê°€");
+    //         }
+    //     }
+
+    //     if (aliveList.Count == 0)
+    //     {
+    //         Debug.Log("[CharacterBattleInfoPresenter] : ìƒì¡´ ìºë¦­í„° ì—†ìŒ");
+    //     }
+    //     else if(aliveList.Count > 0)
+    //     {
+    //         deathMove.ReSetPosition(aliveList);
+    //     }
+    // }
+
 }
+

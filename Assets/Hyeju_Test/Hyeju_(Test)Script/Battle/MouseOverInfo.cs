@@ -1,45 +1,50 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+//view
 public class MouseOverInfo : MonoBehaviour
 {
-    [SerializeField] private GameObject _speedAttackInfoPanel;
+    //스킬 정보표시할 텍스트
     [SerializeField] private Text _skillInfo;
-    [SerializeField] private CharacterSkill _characterSkill;
-    [SerializeField] private SkillData[] _useSkillList = new SkillData[3];
+    [SerializeField] private SkillList _skillList;
 
-    private void Start()
-    {
-        _useSkillList[0] = _characterSkill.TestSkill1;
-    }
+    //스킬 이미지 : 스킬정보가 바뀌면 이미지도 바뀌어야 함.
+    //스킬 이미지 이름 > 스킬 리스트에서 받아와야 함.
+    private Image _ImageInfo;
 
-    public void OnCharacterOver()
-    {
-        _speedAttackInfoPanel.SetActive(true);
-    }
 
-    public void OnCharacterExit()
-    {
-        _speedAttackInfoPanel.SetActive(false);
-    }
-
+    #region 마우스오버
+    //1번스킬 출력
     public void OnFirSkillInfo()
     {
-        _skillInfo.text = $"{_useSkillList[0].skillName}";
+        _skillInfo.text = $"{_skillList._characterSkill[0]?.skillName}";
     }
 
-    public void OnSkillExit()
+    public void OnFirSkillExit()
     {
-        _skillInfo.text = $"{_useSkillList[0].skillName}";
+        _skillInfo.text = $"{_skillList._characterSkill[0]?.skillName}";
     }
+
+    //2번스킬 출력
     public void OnSecSkillInfo()
     {
-        _skillInfo.text = $"2번 스킬";
+        _skillInfo.text = $"{_skillList._characterSkill[1]?.skillName}";
     }
 
+    public void OnSecSkillExit()
+    {
+        _skillInfo.text = $"{_skillList._characterSkill[1]?.skillName}";
+    }
+
+    //3번스킬 출력
     public void OnThirSkillInfo()
     {
-        _skillInfo.text = $"3번 스킬";
+        _skillInfo.text = $"{_skillList._characterSkill[2]?.skillName}";
     }
 
+    public void OnThirSkillExit()
+    {
+        _skillInfo.text = $"{_skillList._characterSkill[2]?.skillName}";
+    }
+    #endregion
 }

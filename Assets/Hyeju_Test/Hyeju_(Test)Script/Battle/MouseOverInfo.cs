@@ -17,34 +17,36 @@ public class MouseOverInfo : MonoBehaviour
     //1번스킬 출력
     public void OnFirSkillInfo()
     {
-        _skillInfo.text = $"{_skillList._characterSkill[0]?.skillName}";
+        _skillInfo.text = $"{_skillList.skillUI[0]?.Data.skillName}";
     }
 
     public void OnFirSkillExit()
     {
-        _skillInfo.text = $"{_skillList._characterSkill[0]?.skillName}";
+        _skillInfo.text = $"{_skillList.skillUI[0]?.Data.skillName}";
     }
+
 
     //2번스킬 출력
     public void OnSecSkillInfo()
     {
-        _skillInfo.text = $"{_skillList._characterSkill[1]?.skillName}";
+        _skillInfo.text = $"{_skillList.skillUI[1]?.Data.skillName}";
     }
 
     public void OnSecSkillExit()
     {
-        _skillInfo.text = $"{_skillList._characterSkill[1]?.skillName}";
+        _skillInfo.text = $"{_skillList.skillUI[1]?.Data.skillName}";
     }
 
     //3번스킬 출력
     public void OnThirSkillInfo()
     {
-        _skillInfo.text = $"{_skillList._characterSkill[2]?.skillName}";
+        _skillInfo.text = $"{_skillList.skillUI[2]?.Data.skillName}";
     }
 
     public void OnThirSkillExit()
     {
-        _skillInfo.text = $"{_skillList._characterSkill[2]?.skillName}";
+        _skillInfo.text = $"{_skillList.skillUI[2]?.Data.skillName}";
     }
+
     #endregion
 }

@@ -158,7 +158,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3408629189412608758}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
@@ -285,8 +285,12 @@ GameObject:
   - component: {fileID: 7776265183520559437}
   - component: {fileID: 7894756583129607023}
   - component: {fileID: 69144063222922754}
+  - component: {fileID: 2378627751811758025}
   - component: {fileID: 3268719508118344517}
   - component: {fileID: 5918203193094852762}
+  - component: {fileID: 7796355342121340363}
+  - component: {fileID: 4015977688501727807}
+  - component: {fileID: 1505442958376565506}
   m_Layer: 0
   m_Name: CharacterBoxPanel
   m_TagString: Untagged
@@ -361,29 +365,35 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3853048329262905244}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74161af82297f0b4f94af41f0c609e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBattleInfoModel
   _characterId: character_id_10001
-  character:
-    characterID: 
-    characterName: 
-    characterCodeName: 
-    unlock: 0
-    attackLevel1: 0
-    HPLevel1: 0
-    speed: 0
-    ownedSkill01: 
-    ownedSkill02: 
-    ownedSkill03: 
-    level: 0
-    maxLevel: 0
-    position: 0
-    desc: 
-    characterResource: 
-    characterSound: 
+  position: 0
+  character: {fileID: 0}
+--- !u!114 &2378627751811758025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853048329262905244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29ae657980a2e5b46b8e2d92cda19231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Character
+  unitID: 
+  unitName: 
+  maxHP: 0
+  currentHP: 0
+  speed: 0
+  attackPower: 0
+  position: 0
+  currentMark: 0
+  isDead: 0
 --- !u!114 &3268719508118344517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,8 +406,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c632fe152811864cb1a7bc1318e7202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBattleInfoPresenter
-  infoModel: {fileID: 69144063222922754}
+  infoModel: {fileID: 2378627751811758025}
   infoView: {fileID: 5918203193094852762}
+  position: 0
 --- !u!114 &5918203193094852762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,10 +422,98 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBattleInfoView
   characterNameText: {fileID: 5089569390978521581}
+  elementText: {fileID: 8286519927564040532}
+  positionText: {fileID: 8343404767832518688}
   characterIllurstration: {fileID: 1500460977427851602}
   characterSpeedText: {fileID: 8636457942724961219}
   characterPowerText: {fileID: 8933048560357571884}
   HPSlider: {fileID: 2433697887733566675}
+--- !u!61 &7796355342121340363
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853048329262905244}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 250, y: 500}
+  m_EdgeRadius: 0
+--- !u!223 &4015977688501727807
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853048329262905244}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &1505442958376565506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853048329262905244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &4162587473706220717
 GameObject:
   m_ObjectHideFlags: 0

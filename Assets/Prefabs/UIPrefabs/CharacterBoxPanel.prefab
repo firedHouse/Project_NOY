@@ -284,7 +284,6 @@ GameObject:
   - component: {fileID: 851186819685483389}
   - component: {fileID: 7776265183520559437}
   - component: {fileID: 7894756583129607023}
-  - component: {fileID: 69144063222922754}
   - component: {fileID: 2378627751811758025}
   - component: {fileID: 3268719508118344517}
   - component: {fileID: 5918203193094852762}
@@ -358,21 +357,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &69144063222922754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3853048329262905244}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74161af82297f0b4f94af41f0c609e09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterBattleInfoModel
-  _characterId: character_id_10001
-  position: 0
-  character: {fileID: 0}
 --- !u!114 &2378627751811758025
 MonoBehaviour:
   m_ObjectHideFlags: 0

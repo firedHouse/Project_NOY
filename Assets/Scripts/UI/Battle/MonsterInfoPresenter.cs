@@ -1,4 +1,4 @@
-using UnityEditor.U2D.Animation;
+ï»¿using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class MonsterInfoPresenter : MonoBehaviour
@@ -7,8 +7,9 @@ public class MonsterInfoPresenter : MonoBehaviour
     [SerializeField] private MonsterInfoView monsterView;
     private MonsterData monsterData;
     private string monId = "monster_id_10001";
+    [SerializeField] private UnitPosition position;
 
-    // Å×½ºÆ®¿ë ÇÊµå
+    // í…ŒìŠ¤íŠ¸ìš© í•„ë“œ
     private float HpChangeValue = 50;
 
     private void Start()
@@ -19,11 +20,11 @@ public class MonsterInfoPresenter : MonoBehaviour
 
     void Initialize()
     {
-        monsterModel.InitializeMonster(monId, UnitPosition.Front, false);
-        Debug.Log($"[MonsterInfoPresenter] monsterData ³»ºÎ µ¥ÀÌÅÍ ºÒ·¯¿À±â ¼º°ø");
+        monsterModel.InitializeMonster(monId, position, false);
+        Debug.Log($"[MonsterInfoPresenter] monsterData ë‚´ë¶€ ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸° ì„±ê³µ");
 
         monsterModel.OnHpChanged += HandleHpChanged;
-        //monsterView.UpdateMonsterName(monsterModel.);
+        monsterView.UpdateMonsterName(monsterModel.Name);
         //monsterView.UpdateElement(monsterModel.elementType);
         monsterView.UpdateSpeed(monsterModel.Speed);
         //monsterView.UpdatePower(monsterModel.Monster.monsterAttack);

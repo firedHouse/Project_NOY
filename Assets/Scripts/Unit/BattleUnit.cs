@@ -1,8 +1,8 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Ãß»ó Å¬·¡½º·Î ¼±¾ğÇÏ¿© Á÷Á¢ ÀÎ½ºÅÏ½ºÈ­¸¦ ¹æÁö
+// ì¶”ìƒ í´ë˜ìŠ¤ë¡œ ì„ ì–¸í•˜ì—¬ ì§ì ‘ ì¸ìŠ¤í„´ìŠ¤í™”ë¥¼ ë°©ì§€
 public abstract class BattleUnit : MonoBehaviour
 {
     [Header("Base Stats")]
@@ -16,13 +16,14 @@ public abstract class BattleUnit : MonoBehaviour
 
     [Header("State")]
     [SerializeField] protected UnitPosition position;
-    [SerializeField] protected ElementType currentMark = ElementType.None; // ±âº» ¹«¼Ó¼º
+    [SerializeField] protected ElementType currentMark = ElementType.None; // ê¸°ë³¸ ë¬´ì†ì„±
     [SerializeField] protected bool isDead = false;
 
-    //[º¯°æ] À¯´ÖÀÌ º¸À¯ÇÑ ½ºÅ³ ¸®½ºÆ® (ÃÖ´ë 3°³)
+    //[ë³€ê²½] ìœ ë‹›ì´ ë³´ìœ í•œ ìŠ¤í‚¬ ë¦¬ìŠ¤íŠ¸ (ìµœëŒ€ 3ê°œ)
     protected List<Skill> skills = new List<Skill>();
 
-    //ÇÁ·ÎÆÛÆ¼
+    //í”„ë¡œí¼í‹°
+    public string Name => unitName;
     public float CurrentHP => currentHP;
     public float MaxHP => maxHP;
     public int Speed => speed;
@@ -32,19 +33,19 @@ public abstract class BattleUnit : MonoBehaviour
     public List<Skill> Skills => skills;
     public float AttackPower => attackPower;
 
-    //UI °»½Å ¹× ÀüÅõ ·ÎÁ÷ ¿¬°á¿ë
-    //UI °»½Å ¹× ÀüÅõ ·ÎÁ÷ ¿¬°á¿ë
-    //UI °»½Å ¹× ÀüÅõ ·ÎÁ÷ ¿¬°á¿ë
-    public event Action<BattleUnit> OnDeath;       //»ç¸Á ½Ã
-    public event Action<BattleUnit, float> OnHpChanged; //¤º¤Ä·Â º¯°æ ½Ã
-    public event Action<BattleUnit, ElementType> OnMarkChanged; //¿ø¼ÒÇ¥½Ä º¯°æ ½Ã
-    //UI °»½Å ¹× ÀüÅõ ·ÎÁ÷ ¿¬°á¿ë
-    //UI °»½Å ¹× ÀüÅõ ·ÎÁ÷ ¿¬°á¿ë
-    //UI °»½Å ¹× ÀüÅõ ·ÎÁ÷ ¿¬°á¿ë
+    //UI ê°±ì‹  ë° ì „íˆ¬ ë¡œì§ ì—°ê²°ìš©
+    //UI ê°±ì‹  ë° ì „íˆ¬ ë¡œì§ ì—°ê²°ìš©
+    //UI ê°±ì‹  ë° ì „íˆ¬ ë¡œì§ ì—°ê²°ìš©
+    public event Action<BattleUnit> OnDeath;       //ì‚¬ë§ ì‹œ
+    public event Action<BattleUnit, float> OnHpChanged; //ã…Šã…”ë ¥ ë³€ê²½ ì‹œ
+    public event Action<BattleUnit, ElementType> OnMarkChanged; //ì›ì†Œí‘œì‹ ë³€ê²½ ì‹œ
+    //UI ê°±ì‹  ë° ì „íˆ¬ ë¡œì§ ì—°ê²°ìš©
+    //UI ê°±ì‹  ë° ì „íˆ¬ ë¡œì§ ì—°ê²°ìš©
+    //UI ê°±ì‹  ë° ì „íˆ¬ ë¡œì§ ì—°ê²°ìš©
 
 
 
-    //ÃÊ±âÈ­ (ÀÚ½Ä Å¬·¡½º¿¡¼­ override ÇÒ µí?)
+    //ì´ˆê¸°í™” (ìì‹ í´ë˜ìŠ¤ì—ì„œ override í•  ë“¯?)
     public virtual void InitializeBase(string id, string name, float hp, int spd, float atk, UnitPosition pos)
     {
 
@@ -60,14 +61,14 @@ public abstract class BattleUnit : MonoBehaviour
         currentMark = ElementType.None;
     }
 
-    //½ºÅ³ ·Îµå °øÅë ·ÎÁ÷ (½ºÅ³ID ¸®½ºÆ®¸¦ ¹Ş¾Æ Skill °´Ã¼ »ı¼º)
+    //ìŠ¤í‚¬ ë¡œë“œ ê³µí†µ ë¡œì§ (ìŠ¤í‚¬ID ë¦¬ìŠ¤íŠ¸ë¥¼ ë°›ì•„ Skill ê°ì²´ ìƒì„±)
     protected void LoadSkills(List<string> skillIDs)
     {
         skills.Clear();
         foreach (var id in skillIDs)
         {
             Skill newSkill = new Skill(id);
-            //IsValid()°¡ trueÀÏ ¶§¸¸ ¸®½ºÆ®¿¡ Ãß°¡
+            //IsValid()ê°€ trueì¼ ë•Œë§Œ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
             if (newSkill.IsValid())
             {
                 skills.Add(newSkill);
@@ -75,7 +76,7 @@ public abstract class BattleUnit : MonoBehaviour
         }
     }
 
-    //µ¥¹ÌÁö Ã³¸® ·ÎÁ÷ 
+    //ë°ë¯¸ì§€ ì²˜ë¦¬ ë¡œì§ 
     public virtual void TakeDamage(float damage)
     {
         if (isDead)
@@ -85,17 +86,17 @@ public abstract class BattleUnit : MonoBehaviour
 
         currentHP = Mathf.Max(0, currentHP - damage);
 
-        //UI °»½Å ¾Ë¸²
+        //UI ê°±ì‹  ì•Œë¦¼
         OnHpChanged?.Invoke(this, currentHP);
 
-        //»ç¸Á ÆÇÁ¤ 
+        //ì‚¬ë§ íŒì • 
         if (currentHP <= 0)
         {
             Die();
         }
     }
 
-    //¼Ó¼º Ç¥½Ä ºÎ¿©
+    //ì†ì„± í‘œì‹ ë¶€ì—¬
     public void SetElementalMark(ElementType newMark)
     {
         if (isDead)
@@ -103,7 +104,7 @@ public abstract class BattleUnit : MonoBehaviour
             return;
         }
 
-        //ÀÌ¹Ì µ¿ÀÏÇÑ ¼Ó¼ºÀÌ ºÎ¿©µÈ °æ¿ì Ç¥½Ä ºÎ¿©µÇÁö ¾ÊÀ½
+        //ì´ë¯¸ ë™ì¼í•œ ì†ì„±ì´ ë¶€ì—¬ëœ ê²½ìš° í‘œì‹ ë¶€ì—¬ë˜ì§€ ì•ŠìŒ
         if (currentMark == newMark)
         {
             return;
@@ -113,27 +114,27 @@ public abstract class BattleUnit : MonoBehaviour
         OnMarkChanged?.Invoke(this, currentMark);
     }
 
-    //Ç¥½Ä Á¦°Å (¿ø¼Ò ¹İÀÀ ¹ß»ı ½Ã È£Ãâ)
+    //í‘œì‹ ì œê±° (ì›ì†Œ ë°˜ì‘ ë°œìƒ ì‹œ í˜¸ì¶œ)
     public void ClearMark()
     {
         currentMark = ElementType.None;
         OnMarkChanged?.Invoke(this, ElementType.None);
     }
 
-    //À§Ä¡ º¯°æ (ºóÀÚ¸® Ã¤¿ï ¶§ »ç¿ë) 
-    //¸®ÆÑÅä¸µ ÈÄ¼øÀ§(FieldManagerÁ¦ÀÛ ÈÄ)
+    //ìœ„ì¹˜ ë³€ê²½ (ë¹ˆìë¦¬ ì±„ìš¸ ë•Œ ì‚¬ìš©) 
+    //ë¦¬íŒ©í† ë§ í›„ìˆœìœ„(FieldManagerì œì‘ í›„)
     public void MovePosition(UnitPosition newPosition)
     {
         position = newPosition;
-        //ÀÌµ¿ ¾Ö´Ï¸ŞÀÌ¼Ç?(¹ÌÁ¤)
+        //ì´ë™ ì• ë‹ˆë©”ì´ì…˜?(ë¯¸ì •)
     }
 
     protected virtual void Die()
     {
         isDead = true;
 
-        //Ä³¸¯ÅÍ°¡ ¾ø¾îÁö°í ºóÀÚ¸® ¹ß»ı ½Ã, FieldManager°¡ ÀÌ ÀÌº¥Æ®¸¦ ¼ö½ÅÇÏ¿© Ä³¸¯ÅÍ ÀÌµ¿
-        //¸ó½ºÅÍ´Â ¸®¿öµå Á¦°ø
+        //ìºë¦­í„°ê°€ ì—†ì–´ì§€ê³  ë¹ˆìë¦¬ ë°œìƒ ì‹œ, FieldManagerê°€ ì´ ì´ë²¤íŠ¸ë¥¼ ìˆ˜ì‹ í•˜ì—¬ ìºë¦­í„° ì´ë™
+        //ëª¬ìŠ¤í„°ëŠ” ë¦¬ì›Œë“œ ì œê³µ
         OnDeath?.Invoke(this);
         gameObject.SetActive(false);
     }

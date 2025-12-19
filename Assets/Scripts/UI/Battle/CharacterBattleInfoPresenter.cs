@@ -62,16 +62,16 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"[CharacterBattleInfoPresenter] {infoModel} ����");
+            Debug.LogError($"[CharacterBattleInfoPresenter] {infoModel} 없음");
         }
     }
 
-    //Hyeju : 캐릭터 사망 정보 추가
+    //Hyeju :
     // Queue<CharacterData> aliveList = new Queue<CharacterData>();
     // private void UpdatePosition(string characterID)
     // {
     //     aliveList.Clear();
-    //     //����� ĳ���� ���� / for�� 3�� ĳ���� �˻� �� ����Ʈ�� �߰�
+    //     //
     //     for (int i = 0; i < 3; i++)
     //     {
     //         if (infoModel.testCharacter[i] == null)
@@ -80,22 +80,22 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
     //         }
     //         else if (infoModel.testCharacter[i].characterID != characterID)
     //         {
-    //             //����ִ� ĳ���͸� ����Ʈ�� �߰�
+    //             //
     //             aliveList.Enqueue(infoModel.testCharacter[i]);
 
-    //             Debug.Log($"[CharacterBattleInfoPresenter] : ��ġ �缳��");
+    //             Debug.Log($"[CharacterBattleInfoPresenter] : 큐에 {infoModel.testCharacter[i]} 추가");
     //         }
     //     }
 
     //     if (aliveList.Count == 0)
     //     {
-    //         Debug.Log("[CharacterBattleInfoPresenter] : ����");
+    //         Debug.Log("[CharacterBattleInfoPresenter] : 생존 캐릭터 없음");
     //     }
     //     else if(aliveList.Count > 0)
     //     {
     //         deathMove.ReSetPosition(aliveList);
     //     }
     // }
-    
+
 }
 

@@ -7,6 +7,6 @@ public class TestButton : MonoBehaviour
     public void OnHP0()
     {
         Debug.Log($"HP ªË¡¶");
-        m.DecreaseHP(100);
+        //m.DecreaseHP(100);
     }
 }

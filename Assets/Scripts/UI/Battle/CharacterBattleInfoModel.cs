@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class CharacterBattleInfoModel : MonoBehaviour
@@ -7,6 +7,8 @@ public class CharacterBattleInfoModel : MonoBehaviour
     [SerializeField] public CharacterData character;
     //Hyeju : 테스트용 데이터 배열
     //[SerializeField] public CharacterData[] testCharacter = new CharacterData[3];
+    [SerializeField] private UnitPosition position = UnitPosition.Front;
+    [SerializeField] public Character character;
     public event Action HPChanged;
     public event Action DataLoaded;
 
@@ -26,9 +28,10 @@ public class CharacterBattleInfoModel : MonoBehaviour
         // testCharacter[0] = character;
         // testCharacter[1] = TableManager.Instance.CharacterTable.Get("character_id_10002");
 
+        character.InitializeCharacter(_characterId, position);
         if (character != null)
         {
-            maxHP = character.HPLevel1;
+           
             // 모델이 데이터를 받아오면 프레젠터에게 알림
             DataLoaded?.Invoke();
         }
@@ -38,18 +41,18 @@ public class CharacterBattleInfoModel : MonoBehaviour
         }
     }
 
-    public void IncreaseHP(float amount)
-    {
-        character.HPLevel1 += amount;
-        character.HPLevel1 = Mathf.Clamp(character.HPLevel1, 0, maxHP);
+    //public void IncreaseHP(float amount)
+    //{
+    //    character.HPLevel1 += amount;
+    //    character.HPLevel1 = Mathf.Clamp(character.HPLevel1, 0, maxHP);
 
-        HPChanged?.Invoke();
-    }
+    //    HPChanged?.Invoke();
+    //}
 
-    public void DecreaseHP(float amount)
-    {
-        character.HPLevel1 -= amount;
-        character.HPLevel1 = Mathf.Clamp(character.HPLevel1, 0, maxHP);
+    //public void DecreaseHP(float amount)
+    //{
+    //    character.HPLevel1 -= amount;
+    //    character.HPLevel1 = Mathf.Clamp(character.HPLevel1, 0, maxHP);
 
         HPChanged?.Invoke();
         //hyeju 
@@ -64,4 +67,6 @@ public class CharacterBattleInfoModel : MonoBehaviour
     //         Death?.Invoke(character.characterID);
     //     }
     // }
+    //    HPChanged?.Invoke();
+    //}
 }

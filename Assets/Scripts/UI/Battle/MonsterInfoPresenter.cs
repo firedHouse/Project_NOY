@@ -3,58 +3,40 @@ using UnityEngine;
 
 public class MonsterInfoPresenter : MonoBehaviour
 {
-    [SerializeField] private MonsterInfoModel monsterModel;
+    [SerializeField] private Monster monsterModel;
     [SerializeField] private MonsterInfoView monsterView;
     private MonsterData monsterData;
+    private string monId = "monster_id_10001";
 
     // 테스트용 필드
     private float HpChangeValue = 50;
 
-    private void Awake()
+    private void Start()
     {
-        monsterModel.DataLoaded += OnDataLoaded;
+        //monsterModel.DataLoaded += OnDataLoaded;
+        Initialize();
     }
 
     void Initialize()
     {
-        monsterData = monsterModel.Monster;
-        if (monsterData != null)
-        {
-            Debug.Log($"[MonsterInfoPresenter] characterData 내부 데이터 불러오기 성공");
+        monsterModel.InitializeMonster(monId, UnitPosition.Front, false);
+        Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
 
-            monsterModel.MonsterHPChanged += OnHPChanged;
-            monsterView.UpdateMonsterName(monsterModel.Monster.monsterName);
-            monsterView.UpdateElement(monsterModel.Monster.elementType);
-            monsterView.UpdateSpeed(monsterModel.Monster.monsterSpeed);
-            monsterView.UpdatePower(monsterModel.Monster.monsterAttack);
-            monsterView.SetMaxHP(monsterModel.MaxHP);
-            UpdateUI();
-        }
-        else
-        {
-            Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 비어있음");
-        }
+        monsterModel.OnHpChanged += HandleHpChanged;
+        //monsterView.UpdateMonsterName(monsterModel.);
+        //monsterView.UpdateElement(monsterModel.elementType);
+        monsterView.UpdateSpeed(monsterModel.Speed);
+        //monsterView.UpdatePower(monsterModel.Monster.monsterAttack);
+        monsterView.SetMaxHP(monsterModel.MaxHP);
     }
 
-    private void OnDataLoaded()
+    private void HandleHpChanged(BattleUnit monster, float hpChangedAmount)
     {
-        Initialize();
+        monsterView.UpdateHPBar(hpChangedAmount);
     }
 
-    private void OnHPChanged()
+    private void HandleMarkChanged(BattleUnit monster, ElementType elementType)
     {
-        monsterView.UpdateHPBar(monsterModel.Monster.monsterHP);
-    }
 
-    private void UpdateUI()
-    {
-        //if (monsterModel.Monster != null)
-        //{
-        //    monsterView.UpdateMonsterName(monsterModel.MonsterName);
-        //}
-        //else
-        //{
-        //    Debug.LogError($"[MonsterInfoPresenter] {monsterModel} 없음");
-        //}
     }
 }

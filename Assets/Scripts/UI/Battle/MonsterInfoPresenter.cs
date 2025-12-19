@@ -1,60 +1,43 @@
-using UnityEditor.U2D.Animation;
+Ôªøusing UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class MonsterInfoPresenter : MonoBehaviour
 {
-    [SerializeField] private MonsterInfoModel monsterModel;
+    [SerializeField] private Monster monsterModel;
     [SerializeField] private MonsterInfoView monsterView;
     private MonsterData monsterData;
+    private string monId = "monster_id_10001";
+    [SerializeField] private UnitPosition position;
 
-    // ≈◊Ω∫∆ÆøÎ « µÂ
+    // ÌÖåÏä§Ìä∏Ïö© ÌïÑÎìú
     private float HpChangeValue = 50;
 
-    private void Awake()
+    private void Start()
     {
-        monsterModel.DataLoaded += OnDataLoaded;
+        //monsterModel.DataLoaded += OnDataLoaded;
+        Initialize();
     }
 
     void Initialize()
     {
-        monsterData = monsterModel.Monster;
-        if (monsterData != null)
-        {
-            Debug.Log($"[MonsterInfoPresenter] characterData ≥ª∫Œ µ•¿Ã≈Õ ∫“∑Øø¿±‚ º∫∞¯");
+        monsterModel.InitializeMonster(monId, position, false);
+        Debug.Log($"[MonsterInfoPresenter] monsterData ÎÇ¥Î∂Ä Îç∞Ïù¥ÌÑ∞ Î∂àÎü¨Ïò§Í∏∞ ÏÑ±Í≥µ");
 
-            monsterModel.MonsterHPChanged += OnHPChanged;
-            monsterView.UpdateMonsterName(monsterModel.Monster.monsterName);
-            monsterView.UpdateElement(monsterModel.Monster.elementType);
-            monsterView.UpdateSpeed(monsterModel.Monster.monsterSpeed);
-            monsterView.UpdatePower(monsterModel.Monster.monsterAttack);
-            monsterView.SetMaxHP(monsterModel.MaxHP);
-            UpdateUI();
-        }
-        else
-        {
-            Debug.Log($"[MonsterInfoPresenter] monsterData ≥ª∫Œ µ•¿Ã≈Õ ∫ÒæÓ¿÷¿Ω");
-        }
+        monsterModel.OnHpChanged += HandleHpChanged;
+        monsterView.UpdateMonsterName(monsterModel.Name);
+        //monsterView.UpdateElement(monsterModel.elementType);
+        monsterView.UpdateSpeed(monsterModel.Speed);
+        //monsterView.UpdatePower(monsterModel.Monster.monsterAttack);
+        monsterView.SetMaxHP(monsterModel.MaxHP);
     }
 
-    private void OnDataLoaded()
+    private void HandleHpChanged(BattleUnit monster, float hpChangedAmount)
     {
-        Initialize();
+        monsterView.UpdateHPBar(hpChangedAmount);
     }
 
-    private void OnHPChanged()
+    private void HandleMarkChanged(BattleUnit monster, ElementType elementType)
     {
-        monsterView.UpdateHPBar(monsterModel.Monster.monsterHP);
-    }
 
-    private void UpdateUI()
-    {
-        //if (monsterModel.Monster != null)
-        //{
-        //    monsterView.UpdateMonsterName(monsterModel.MonsterName);
-        //}
-        //else
-        //{
-        //    Debug.LogError($"[MonsterInfoPresenter] {monsterModel} æ¯¿Ω");
-        //}
     }
 }

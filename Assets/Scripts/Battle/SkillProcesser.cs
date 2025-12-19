@@ -1,50 +1,50 @@
-using Unity.Android.Gradle.Manifest;
+ï»¿using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class SkillProcesser : MonoBehaviour
-{   //½ºÅ³¿¡ ¿ø¼Ò Àû¿ëÀ» À§ÇÑ ÇÁ·Î¼¼¼­, µ¥¹ÌÁö °ü·ÃÇÑ ¸Ş¼­µå´Â Unit ÂÊ¿¡¼­ Ã³¸®
+{   //ìŠ¤í‚¬ì— ì›ì†Œ ì ìš©ì„ ìœ„í•œ í”„ë¡œì„¸ì„œ, ë°ë¯¸ì§€ ê´€ë ¨í•œ ë©”ì„œë“œëŠ” Unit ìª½ì—ì„œ ì²˜ë¦¬
   
-    //½ºÅ³ Àû¿ë ¸Ş¼­µå
+    //ìŠ¤í‚¬ ì ìš© ë©”ì„œë“œ
     public void ApplySkill(BattleUnit caster, ElementalManager targetState, Skill skill, BattleUnit[] enemyTeam)
     {
         /// <summary>
-        /// caster : ½ºÅ³À» »ç¿ëÇÏ´Â À¯´Ö
-        /// targetState : ½ºÅ³À» ¹Ş´Â À¯´ÖÀÇ ElementalManager
-        /// skill : »ç¿ëµÇ´Â ½ºÅ³
-        /// enemyTeam : Å¸°İ À¯´ÖÀÇ ÆÀ
+        /// caster : ìŠ¤í‚¬ì„ ì‚¬ìš©í•˜ëŠ” ìœ ë‹›
+        /// targetState : ìŠ¤í‚¬ì„ ë°›ëŠ” ìœ ë‹›ì˜ ElementalManager
+        /// skill : ì‚¬ìš©ë˜ëŠ” ìŠ¤í‚¬
+        /// enemyTeam : íƒ€ê²© ìœ ë‹›ì˜ íŒ€
         /// </summary>
         
-        //¸¸¾à ½ºÅ³ÀÌ ¹ßµ¿ÀÌ ¾ÈµÇ´Â »óÈ²ÀÌ¶ó¸é È¤Àº ¹ßµ¿À» ¾ÈÇß´Ù¸é »ç¿ëÇÏÁö ¾ÊÀ½
+        //ë§Œì•½ ìŠ¤í‚¬ì´ ë°œë™ì´ ì•ˆë˜ëŠ” ìƒí™©ì´ë¼ë©´ í˜¹ì€ ë°œë™ì„ ì•ˆí–ˆë‹¤ë©´ ì‚¬ìš©í•˜ì§€ ì•ŠìŒ
         if(!skill.IsValid() || !skill.TryUse())
         {
             return;
         }
-        // ¸ÂÀ» Å¸°Ù°ú ½ºÅ³ µ¥ÀÌÅÍ¸¦ °¡Á®¿È
+        // ë§ì„ íƒ€ê²Ÿê³¼ ìŠ¤í‚¬ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜´
         BattleUnit target = targetState.Unit;
         SkillData data = skill.Data;
 
-        //½ºÅ³ Å¸ÀÔÀÌ °ø°İÀÏ °æ¿ì µ¥¹ÌÁö ÀÔÈ÷±â
+        //ìŠ¤í‚¬ íƒ€ì…ì´ ê³µê²©ì¼ ê²½ìš° ë°ë¯¸ì§€ ì…íˆê¸°
         if ((SkillType)data.skillType == SkillType.Attack)
         {
-            float damage = data.skillBaseValue + caster.AttacktPower * data.skillFactor;
+            float damage = data.skillBaseValue + caster.AttackPower * data.skillFactor;
 
             target.TakeDamage(damage);
         }
         
-        // ½ºÅ³ÀÇ ¿ø¼Ò Å¸ÀÔÀ» °¡Á®¿Í¼­ ºñÆ®ÇÃ·¡±×·Î º¯È¯
+        // ìŠ¤í‚¬ì˜ ì›ì†Œ íƒ€ì…ì„ ê°€ì ¸ì™€ì„œ ë¹„íŠ¸í”Œë˜ê·¸ë¡œ ë³€í™˜
         ElementType attackElement = (ElementType)(1 << data.skillElement);
 
-        //¿ø¼Ò ¹İÀÀÀÌ ÀÏ¾î³­ ÅÏÀÌ¶ó¸é ¿ø¼Ò ¹İÀÀÀ» ÇÏÁö ¾Ê°Ô bool°ªÀ» È®ÀÎ
+        //ì›ì†Œ ë°˜ì‘ì´ ì¼ì–´ë‚œ í„´ì´ë¼ë©´ ì›ì†Œ ë°˜ì‘ì„ í•˜ì§€ ì•Šê²Œ boolê°’ì„ í™•ì¸
         if(targetState.isReactedThisTurn)
         {
             target.SetElementalMark(attackElement);
             return;
         }
 
-        //¿ø¼Ò ¹İÀÀ ÆÇÁ¤
+        //ì›ì†Œ ë°˜ì‘ íŒì •
         ElementReaction reaction = ElementReactionResolver.Resolve(target.CurrentMark, attackElement);
         
-        //¿ø¼Ò ¹İÀÀ ¹ß»ı
+        //ì›ì†Œ ë°˜ì‘ ë°œìƒ
         if(reaction != ElementReaction.None)
         {
             ReactionDamageProcesser.Apply(reaction, target, enemyTeam);
@@ -55,7 +55,7 @@ public class SkillProcesser : MonoBehaviour
         }
         else
         {
-            //¹İÀÀÀÌ ¾øÀ¸¸é Ç¥½Ä¸¸ »ı¼º
+            //ë°˜ì‘ì´ ì—†ìœ¼ë©´ í‘œì‹ë§Œ ìƒì„±
             target.SetElementalMark(attackElement);
         }
     

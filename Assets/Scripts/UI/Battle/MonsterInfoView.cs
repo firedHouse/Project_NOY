@@ -20,14 +20,15 @@ public class MonsterInfoView : MonoBehaviour
         elementText.text = type.ToString();
     }
 
-    //public void UpdatePosition(string text)
-    //{
-    //    posistionText.text = text;
-    //}
-    public void SetMaxHP(float hpAmount)
+    public void UpdatePosition(UnitPosition position)
     {
-        HPSlider.maxValue = hpAmount;
-        HPSlider.value = hpAmount;
+        posistionText.text = position.ToString();
+    }
+
+    public void SetMaxHP(float maxHP)
+    {
+        HPSlider.maxValue = maxHP;
+        HPSlider.value = maxHP;
         Debug.Log($"[MonsterInfoView] 최대 Hp 설정 완료({HPSlider.maxValue})");
     }
 

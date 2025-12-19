@@ -1,12 +1,12 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterBattleInfoView : MonoBehaviour
 {
     [SerializeField] private Text characterNameText;
-    //[SerializeField] private Text elementText;
-    //[SerializeField] private Text positionText;
+    [SerializeField] private Text elementText;
+    [SerializeField] private Text positionText;
     [SerializeField] private Image characterIllurstration;
     [SerializeField] private Text characterSpeedText;
     [SerializeField] private Text characterPowerText;
@@ -14,24 +14,39 @@ public class CharacterBattleInfoView : MonoBehaviour
  
     private void OnEnable()
     {
-        // ¿©·¯ µ¥ÀÌÅÍ·Î ºä¸¦ Ã¤¿ì´Â ¹æ¹ı Ã£¾Æº¸±â, List·Î ¹Ş¾Æ¿Í Ã¤¿öÁà¾ß ÇÏ³ª »ı°¢
+        // ì—¬ëŸ¬ ë°ì´í„°ë¡œ ë·°ë¥¼ ì±„ìš°ëŠ” ë°©ë²• ì°¾ì•„ë³´ê¸°, Listë¡œ ë°›ì•„ì™€ ì±„ì›Œì¤˜ì•¼ í•˜ë‚˜ ìƒê°
     }
 
-    // Ä³¸¯ÅÍ ÀÌ¸§À¸·Î UI º¯°æ
+    // ìºë¦­í„° ì´ë¦„ìœ¼ë¡œ UI ë³€ê²½
     public void UpdateCharacterName(string text)
     {
         characterNameText.text = text;
     }
 
-    public void SetMaxHP(float hpAmount)
+    public void UpdateElement()
     {
-        HPSlider.maxValue = hpAmount;
-        HPSlider.value = hpAmount;
-        Debug.Log($"[CharacterBattleInfoView] ÃÖ´ë Hp ¼³Á¤ ¿Ï·á({HPSlider.maxValue})");
+        //elementText.text = 
+    }
+
+    public void SetMaxHP(float maxHP)
+    {
+        HPSlider.maxValue = maxHP;
+        HPSlider.value = maxHP;
+        Debug.Log($"[CharacterBattleInfoView] ìµœëŒ€ Hp ì„¤ì • ì™„ë£Œ({HPSlider.maxValue})");
     }
 
     public void UpdateHPBar(float currentHP)
     {
         HPSlider.value = currentHP;
+    }
+
+    public void UpdateElementMark(ElementType elementType)
+    {
+
+    }
+
+    public void UpdateSpeed(int speed)
+    {
+        characterSpeedText.text = speed.ToString();
     }
 }

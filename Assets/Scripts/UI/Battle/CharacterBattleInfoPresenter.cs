@@ -1,70 +1,51 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class CharacterBattleInfoPresenter : MonoBehaviour
 {
-    [SerializeField] private CharacterBattleInfoModel infoModel;
+    //[SerializeField] private CharacterBattleInfoModel infoModel;
+    [SerializeField] private Character infoModel;
     [SerializeField] private CharacterBattleInfoView infoView;
     private CharacterData characterData;
+    private string charId = "character_id_10001";
+    [SerializeField] private UnitPosition position;
 
     //Hyeju
     //[SerializeField] private CharacterPosition deathMove;
-
-    private void Awake()
+    private void Start()
     {
-        infoModel.DataLoaded += OnDataLoaded;
         //hyeju
         //infoModel.Death += UpdatePosition;
-    }
-
-    void Initialize()
-    {
-        characterData = infoModel.character;
-        if(characterData != null)
-        {
-            Debug.Log($"[CharacterBattleInfoPresenter] characterData 내부 데이터 불러오기 성공");
-            infoModel.HPChanged += OnHPChanged;
-            infoView.SetMaxHP(infoModel.MaxHP);
-            UpdateUI();
-        }
-        else
-        {
-            Debug.Log($"[CharacterBattleInfoPresenter] characterData 내부 데이터 비어있음");
-        }
-    }
-
-    // 모델에 데이터가 들어오면 프레젠터에서도 가져온다
-    private void OnDataLoaded()
-    {
+        //BattleManager.Instance.OnPlayerTurnStart += // 플레이어턴이 되면 실행할 이벤트들 (ex. 스킬 출력)
+        Debug.Log("[CharacterBattleInfoPresenter] 초기화");
         Initialize();
     }
 
-    private void OnHPChanged()
+    //뷰 초기 설정
+    void Initialize()
     {
-        infoView.UpdateHPBar(infoModel.Character.HPLevel1);
+        // Character.cs에 초기화 메서드가 없어서 임시로 추가해둔 코드
+        infoModel.InitializeCharacter(charId, position);
+        // infoModel.OnDeath += // 사망 메서드;
+        infoModel.OnHpChanged += HandleHpChanged;
+        infoModel.OnMarkChanged += HandleMarkChanged;
+
+
+        //infoView.UpdateCharacterName(infoModel.); // 이름 프로퍼티 못찾음
+        infoView.SetMaxHP(infoModel.MaxHP);
+        infoView.UpdateSpeed(infoModel.Speed);
     }
 
-    private void IncreaseHP(float hpChangeAmount)
+    private void HandleHpChanged(BattleUnit character, float hpChangedAmount)
     {
-        infoModel.IncreaseHP(hpChangeAmount);
+        infoView.UpdateHPBar(hpChangedAmount);
     }
 
-    private void DecreaseHP(float hpChangeAmount)
+    private void HandleMarkChanged(BattleUnit character, ElementType elementType)
     {
-        infoModel.DecreaseHP(hpChangeAmount);
+        //infoView.
     }
 
-    private void UpdateUI()
-    {
-        if(infoModel.Character != null)
-        {
-            infoView.UpdateCharacterName(infoModel.CharacterName);
-        }
-        else
-        {
-            Debug.LogError($"[CharacterBattleInfoPresenter] {infoModel} 없음");
-        }
-    }
 
     //Hyeju :
     // Queue<CharacterData> aliveList = new Queue<CharacterData>();

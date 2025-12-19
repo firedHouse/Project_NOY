@@ -23,6 +23,7 @@ public abstract class BattleUnit : MonoBehaviour
     protected List<Skill> skills = new List<Skill>();
 
     //프로퍼티
+    public string UnitName => unitName;
     public float CurrentHP => currentHP;
     public float MaxHP => maxHP;
     public int Speed => speed;
@@ -30,6 +31,7 @@ public abstract class BattleUnit : MonoBehaviour
     public bool IsDead => isDead;
     public ElementType CurrentMark => currentMark;
     public List<Skill> Skills => skills;
+    public float AttackPower => attackPower;
 
     //UI 갱신 및 전투 로직 연결용
     //UI 갱신 및 전투 로직 연결용

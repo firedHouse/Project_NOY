@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.95294124, g: 0.76470596, b: 0.3529412, a: 1}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -284,13 +284,12 @@ GameObject:
   - component: {fileID: 851186819685483389}
   - component: {fileID: 7776265183520559437}
   - component: {fileID: 7894756583129607023}
-  - component: {fileID: 69144063222922754}
-  - component: {fileID: 2378627751811758025}
   - component: {fileID: 3268719508118344517}
   - component: {fileID: 5918203193094852762}
   - component: {fileID: 7796355342121340363}
   - component: {fileID: 4015977688501727807}
   - component: {fileID: 1505442958376565506}
+  - component: {fileID: 2897834653533478304}
   m_Layer: 0
   m_Name: CharacterBoxPanel
   m_TagString: Untagged
@@ -358,42 +357,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &69144063222922754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3853048329262905244}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74161af82297f0b4f94af41f0c609e09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterBattleInfoModel
-  _characterId: character_id_10001
-  position: 0
-  character: {fileID: 0}
---- !u!114 &2378627751811758025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3853048329262905244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29ae657980a2e5b46b8e2d92cda19231, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Character
-  unitID: 
-  unitName: 
-  maxHP: 0
-  currentHP: 0
-  speed: 0
-  attackPower: 0
-  position: 0
-  currentMark: 0
-  isDead: 0
 --- !u!114 &3268719508118344517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,8 +369,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c632fe152811864cb1a7bc1318e7202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBattleInfoPresenter
-  infoModel: {fileID: 2378627751811758025}
-  infoView: {fileID: 5918203193094852762}
+  characterModel: {fileID: 0}
+  characterView: {fileID: 5918203193094852762}
+  charId: 
   position: 0
 --- !u!114 &5918203193094852762
 MonoBehaviour:
@@ -514,6 +478,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2897834653533478304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853048329262905244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96f8994f0834e8459966e37b8f626ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitIPointerInteraction
 --- !u!1 &4162587473706220717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,7 +1092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

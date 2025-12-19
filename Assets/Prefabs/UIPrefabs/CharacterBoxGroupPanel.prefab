@@ -191,6 +191,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3268719508118344517, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: infoModel
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: m_Name
       value: CharacterBoxFrontPanel
@@ -203,7 +207,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2378627751811758025, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -5,8 +5,7 @@ public class MonsterInfoPresenter : MonoBehaviour
 {
     [SerializeField] private Monster monsterModel;
     [SerializeField] private MonsterInfoView monsterView;
-    private MonsterData monsterData;
-    private string monId = "monster_id_10001";
+    //private MonsterData monsterData;
     [SerializeField] private UnitPosition position;
 
     // 테스트용 필드
@@ -15,14 +14,23 @@ public class MonsterInfoPresenter : MonoBehaviour
     private void Start()
     {
         //monsterModel.DataLoaded += OnDataLoaded;
-        Initialize();
+        //Initialize();
+        BattleManager.Instance.OnBattleSetted += Initialize;
     }
 
     void Initialize()
     {
-        monsterModel.InitializeMonster(monId, position, false);
+        if(BattleManager.Instance.EnemyTeam != null)
+        {
+            monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
+        }
+        //monsterModel.InitializeMonster(monId, position, false);
         Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
+        ViewInit();
+    }
 
+    void ViewInit()
+    {
         monsterModel.OnHpChanged += HandleHpChanged;
         monsterView.UpdateMonsterName(monsterModel.UnitName);
         //monsterView.UpdateElement(monsterModel.elementType);

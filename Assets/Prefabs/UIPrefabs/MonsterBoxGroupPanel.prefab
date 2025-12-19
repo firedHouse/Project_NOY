@@ -31,9 +31,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 14741250085300295}
-  - {fileID: 3528241185745938460}
   - {fileID: 3489337565958576163}
+  - {fileID: 3528241185745938460}
+  - {fileID: 14741250085300295}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -118,7 +118,7 @@ PrefabInstance:
     - target: {fileID: 278665921526244058, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: monsterModel
       value: 
-      objectReference: {fileID: 2621935169155420979}
+      objectReference: {fileID: 0}
     - target: {fileID: 880086121327655653, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -241,17 +241,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 880086121327655653, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
   m_PrefabInstance: {fileID: 865516572441924258}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2621935169155420979 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2909345810472862097, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-  m_PrefabInstance: {fileID: 865516572441924258}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebf87e6633b57fd4eae57205ca49d319, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MonsterInfoModel
 --- !u!114 &8884187920890486712 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8595145638539365658, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
@@ -278,7 +267,7 @@ PrefabInstance:
     - target: {fileID: 278665921526244058, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: monsterModel
       value: 
-      objectReference: {fileID: 1457544726631605079}
+      objectReference: {fileID: 0}
     - target: {fileID: 880086121327655653, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -400,17 +389,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
---- !u!114 &1457544726631605079 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2909345810472862097, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-  m_PrefabInstance: {fileID: 4348840812153365190}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebf87e6633b57fd4eae57205ca49d319, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MonsterInfoModel
 --- !u!224 &3489337565958576163 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 880086121327655653, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
@@ -442,7 +420,7 @@ PrefabInstance:
     - target: {fileID: 278665921526244058, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: monsterModel
       value: 
-      objectReference: {fileID: 1486319378415211368}
+      objectReference: {fileID: 0}
     - target: {fileID: 880086121327655653, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -560,17 +538,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
---- !u!114 &1486319378415211368 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2909345810472862097, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-  m_PrefabInstance: {fileID: 4377609889136399097}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebf87e6633b57fd4eae57205ca49d319, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MonsterInfoModel
 --- !u!224 &3528241185745938460 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 880086121327655653, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}

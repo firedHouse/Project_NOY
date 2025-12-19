@@ -3,42 +3,43 @@ using System.Collections.Generic;
 
 public class CharacterBattleInfoPresenter : MonoBehaviour
 {
-    //[SerializeField] private CharacterBattleInfoModel infoModel;
-    [SerializeField] private Character infoModel;
-    [SerializeField] private CharacterBattleInfoView infoView;
-    private CharacterData characterData;
-    private string charId = "character_id_10001";
+    [SerializeField] private Character characterModel;
+    [SerializeField] private CharacterBattleInfoView characterView;
+    //private CharacterData characterData;
     [SerializeField] private UnitPosition position;
 
     //Hyeju
     //[SerializeField] private CharacterPosition deathMove;
     private void Start()
     {
+        BattleManager.Instance.OnBattleSetted += Initialize;
+
         //hyeju
         //infoModel.Death += UpdatePosition;
         //BattleManager.Instance.OnPlayerTurnStart += // 플레이어턴이 되면 실행할 이벤트들 (ex. 스킬 출력)
-        Debug.Log("[CharacterBattleInfoPresenter] 초기화");
-        Initialize();
+
+        //Debug.Log("[CharacterBattleInfoPresenter] 초기화");
+        //Initialize();
     }
 
     //뷰 초기 설정
-    void Initialize()
+    public void Initialize()
     {
-        // Character.cs에 초기화 메서드가 없어서 임시로 추가해둔 코드
-        infoModel.InitializeCharacter(charId, position);
+        characterModel = BattleManager.Instance.PlayerTeam[(int)position];
         // infoModel.OnDeath += // 사망 메서드;
-        infoModel.OnHpChanged += HandleHpChanged;
-        infoModel.OnMarkChanged += HandleMarkChanged;
+        characterModel.OnHpChanged += HandleHpChanged;
+        characterModel.OnMarkChanged += HandleMarkChanged;
 
 
-        //infoView.UpdateCharacterName(infoModel.); // 이름 프로퍼티 못찾음
-        infoView.SetMaxHP(infoModel.MaxHP);
-        infoView.UpdateSpeed(infoModel.Speed);
+        characterView.UpdateCharacterName(characterModel.UnitName);
+        characterView.SetMaxHP(characterModel.MaxHP);
+        characterView.UpdateSpeed(characterModel.Speed);
+        //characterView.UpdatePosition(characterModel.Position);
     }
 
     private void HandleHpChanged(BattleUnit character, float hpChangedAmount)
     {
-        infoView.UpdateHPBar(hpChangedAmount);
+        characterView.UpdateHPBar(hpChangedAmount);
     }
 
     private void HandleMarkChanged(BattleUnit character, ElementType elementType)

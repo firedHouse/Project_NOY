@@ -5,10 +5,15 @@ public class CharacterBattleInfoModel : MonoBehaviour
 {
     [SerializeField] private string _characterId = "character_id_10001";
     [SerializeField] public CharacterData character;
+    //Hyeju : í…ŒìŠ¤íŠ¸ìš© ë°ì´í„° ë°°ì—´
+    //[SerializeField] public CharacterData[] testCharacter = new CharacterData[3];
     public event Action HPChanged;
     public event Action DataLoaded;
 
     private float maxHP;
+
+    //Hyeju : ìºë¦­í„° ì‚¬ë§ ì´ë²¤íŠ¸ ì¶”ê°€
+    public event Action<string> Death;
 
     public CharacterData Character { get => character; set => character = value; }
     public string CharacterName { get => character.characterName; }
@@ -17,15 +22,19 @@ public class CharacterBattleInfoModel : MonoBehaviour
     private void Start()
     {
         character = TableManager.Instance.CharacterTable.Get(_characterId);
+        //Hyeju
+        // testCharacter[0] = character;
+        // testCharacter[1] = TableManager.Instance.CharacterTable.Get("character_id_10002");
+
         if (character != null)
         {
             maxHP = character.HPLevel1;
-            // ¸ğµ¨ÀÌ µ¥ÀÌÅÍ¸¦ ¹Ş¾Æ¿À¸é ÇÁ·¹Á¨ÅÍ¿¡°Ô ¾Ë¸²
+            // ëª¨ë¸ì´ ë°ì´í„°ë¥¼ ë°›ì•„ì˜¤ë©´ í”„ë ˆì  í„°ì—ê²Œ ì•Œë¦¼
             DataLoaded?.Invoke();
         }
         else
         {
-            Debug.LogError($"[CharacterBattleInfoModel] {_characterId} µ¥ÀÌÅÍ °¡Á®¿À±â ½ÇÆĞ");
+            Debug.LogError($"[CharacterBattleInfoModel] {_characterId} ë°ì´í„° ê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨");
         }
     }
 
@@ -43,5 +52,16 @@ public class CharacterBattleInfoModel : MonoBehaviour
         character.HPLevel1 = Mathf.Clamp(character.HPLevel1, 0, maxHP);
 
         HPChanged?.Invoke();
+        //hyeju 
+        //Die();
     }
+
+    //Hyeju : ìºë¦­í„°ì˜ í¬ì§€ì…˜ ê°’ì„ ì „ë‹¬
+    // public void Die()
+    // {
+    //     if (character.HPLevel1 <= 0)
+    //     {
+    //         Death?.Invoke(character.characterID);
+    //     }
+    // }
 }

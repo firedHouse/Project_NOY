@@ -1,12 +1,12 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
 public class TestButton : MonoBehaviour
 {
-    [SerializeField] CharacterBattleInfoPresenter m;
+    [SerializeField] CharacterBattleInfoModel _model;
 
     public void OnHP0()
     {
-        Debug.Log($"HP ªË¡¶");
-        //m.DecreaseHP(100);
+        Debug.Log($"[MonsterInfoModel] HP ÏÇ≠Ï†ú");
+        _model.DecreaseHP(100);
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4877083020921638346}
   - component: {fileID: 9131157803942685230}
   - component: {fileID: 8653989066091431456}
+  - component: {fileID: -3718171846197595249}
   m_Layer: 5
   m_Name: CharacterBoxGroupPanel
   m_TagString: Untagged
@@ -103,6 +104,43 @@ MonoBehaviour:
   m_Spacing: {x: 20, y: 20}
   m_Constraint: 0
   m_ConstraintCount: 3
+--- !u!114 &-3718171846197595249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2628477370230318201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127d3e226e9d7c4489f3a07054774f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterPosition
+  _model:
+    characterID: 
+    characterName: 
+    characterCodeName: 
+    unlock: 0
+    attackLevel1: 0
+    HPLevel1: 0
+    speed: 0
+    ownedSkill01: 
+    ownedSkill02: 
+    ownedSkill03: 
+    level: 0
+    maxLevel: 0
+    position: 0
+    desc: 
+    characterResource: 
+    characterSound: 
+  _characterBox:
+  - {fileID: 61115031478473504}
+  - {fileID: 8775590753870290395}
+  - {fileID: 3578861005664047663}
+  nameText:
+  - {fileID: 8286641609537191249}
+  - {fileID: 725121476511757226}
+  - {fileID: 4788351633253940318}
 --- !u!1001 &347458962858894771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191,6 +229,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3268719508118344517, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: deathMove
+      value: 
+      objectReference: {fileID: -3718171846197595249}
     - target: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: m_Name
       value: CharacterBoxFrontPanel
@@ -213,6 +255,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 851186819685483389, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
   m_PrefabInstance: {fileID: 347458962858894771}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3578861005664047663 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+  m_PrefabInstance: {fileID: 347458962858894771}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4788351633253940318 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5089569390978521581, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+  m_PrefabInstance: {fileID: 347458962858894771}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1001 &3864608302685398204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -305,6 +363,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3268719508118344517, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: deathMove
+      value: 
+      objectReference: {fileID: -3718171846197595249}
     - target: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: m_Name
       value: CharacterBoxRoarPanel
@@ -322,11 +384,27 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+--- !u!1 &61115031478473504 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+  m_PrefabInstance: {fileID: 3864608302685398204}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4499620638894303169 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 851186819685483389, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
   m_PrefabInstance: {fileID: 3864608302685398204}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8286641609537191249 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5089569390978521581, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+  m_PrefabInstance: {fileID: 3864608302685398204}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1001 &5526460181279713863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -419,6 +497,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3268719508118344517, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: deathMove
+      value: 
+      objectReference: {fileID: -3718171846197595249}
     - target: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: m_Name
       value: CharacterBoxMiddlePanel
@@ -436,8 +518,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+--- !u!114 &725121476511757226 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5089569390978521581, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+  m_PrefabInstance: {fileID: 5526460181279713863}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!224 &5143651348610132282 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 851186819685483389, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+  m_PrefabInstance: {fileID: 5526460181279713863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8775590753870290395 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
   m_PrefabInstance: {fileID: 5526460181279713863}
   m_PrefabAsset: {fileID: 0}

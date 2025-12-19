@@ -1324,8 +1324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb47e178fed08b4e8daae970af04e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterInfoPresenter
-  monsterModel: {fileID: 0}
-  monsterView: {fileID: 0}
+  monsterModel: {fileID: 2909345810472862097}
+  monsterView: {fileID: 8595145638539365658}
 --- !u!114 &8595145638539365658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1343,7 +1343,7 @@ MonoBehaviour:
   posistionText: {fileID: 5005119881112696352}
   monsterSpeedText: {fileID: 2256939635294768504}
   monsterPowerText: {fileID: 7457523021942129379}
-  HpSlider: {fileID: 3543405289841070783}
+  HPSlider: {fileID: 3543405289841070783}
 --- !u!1 &9172018792597341163
 GameObject:
   m_ObjectHideFlags: 0

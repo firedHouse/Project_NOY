@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class CharacterBattleInfoPresenter : MonoBehaviour
@@ -8,13 +8,14 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
     private CharacterData characterData;
 
     //Hyeju
-    //[SerializeField] private CharacterPosition deathMove;
+    [SerializeField] private CharacterPosition characterPosition;
 
     private void Awake()
     {
         infoModel.DataLoaded += OnDataLoaded;
         //hyeju
-        //infoModel.Death += UpdatePosition;
+        infoModel.Death += AddDeathList;
+        infoModel.Alive += AddDeathList;
     }
 
     void Initialize()
@@ -67,35 +68,34 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
     }
 
     //Hyeju :
-    // Queue<CharacterData> aliveList = new Queue<CharacterData>();
-    // private void UpdatePosition(string characterID)
-    // {
-    //     aliveList.Clear();
-    //     //
-    //     for (int i = 0; i < 3; i++)
-    //     {
-    //         if (infoModel.testCharacter[i] == null)
-    //         {
-    //             continue;
-    //         }
-    //         else if (infoModel.testCharacter[i].characterID != characterID)
-    //         {
-    //             //
-    //             aliveList.Enqueue(infoModel.testCharacter[i]);
+    public Queue<CharacterData> aliveList = new Queue<CharacterData>();
+    public Queue<CharacterData> deathList = new Queue<CharacterData>();
+    private void AddDeathList(string characterID)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (infoModel.Character == null)
+            {
+                continue;
+            }
+            else if (infoModel.Character.characterID != characterID)
+            {
+                //
+                aliveList.Enqueue(infoModel.Character);
 
-    //             Debug.Log($"[CharacterBattleInfoPresenter] : 큐에 {infoModel.testCharacter[i]} 추가");
-    //         }
-    //     }
+                Debug.Log($"[CharacterBattleInfoPresenter] : 큐에 {infoModel.Character} 추가");
+            }
+        }
 
-    //     if (aliveList.Count == 0)
-    //     {
-    //         Debug.Log("[CharacterBattleInfoPresenter] : 생존 캐릭터 없음");
-    //     }
-    //     else if(aliveList.Count > 0)
-    //     {
-    //         deathMove.ReSetPosition(aliveList);
-    //     }
-    // }
+        if (aliveList.Count == 0)
+        {
+            Debug.Log("[CharacterBattleInfoPresenter] : 생존 캐릭터 없음");
+        }
+        else if (aliveList.Count > 0)
+        {
+            characterPosition.ReSetPosition(aliveList);
+        }
+    }
 
 }
 

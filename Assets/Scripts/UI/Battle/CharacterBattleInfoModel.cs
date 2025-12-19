@@ -1,19 +1,19 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class CharacterBattleInfoModel : MonoBehaviour
 {
     [SerializeField] private string _characterId = "character_id_10001";
     [SerializeField] public CharacterData character;
-    //Hyeju : 테스트용 데이터 배열
-    //[SerializeField] public CharacterData[] testCharacter = new CharacterData[3];
     public event Action HPChanged;
     public event Action DataLoaded;
 
     private float maxHP;
 
-    //Hyeju : 캐릭터 사망 이벤트 추가
+    //Hyeju : 캐릭터 생존상태 이벤트 추가
+    public bool isDeath;
     public event Action<string> Death;
+    public event Action<string> Alive;
 
     public CharacterData Character { get => character; set => character = value; }
     public string CharacterName { get => character.characterName; }
@@ -22,9 +22,6 @@ public class CharacterBattleInfoModel : MonoBehaviour
     private void Start()
     {
         character = TableManager.Instance.CharacterTable.Get(_characterId);
-        //Hyeju
-        // testCharacter[0] = character;
-        // testCharacter[1] = TableManager.Instance.CharacterTable.Get("character_id_10002");
 
         if (character != null)
         {
@@ -53,15 +50,19 @@ public class CharacterBattleInfoModel : MonoBehaviour
 
         HPChanged?.Invoke();
         //hyeju 
-        //Die();
+        PlayerSurvialState();
     }
 
     //Hyeju : 캐릭터의 포지션 값을 전달
-    // public void Die()
-    // {
-    //     if (character.HPLevel1 <= 0)
-    //     {
-    //         Death?.Invoke(character.characterID);
-    //     }
-    // }
+    public void PlayerSurvialState()
+    {
+        if (character.HPLevel1 <= 0)
+        {
+            Death?.Invoke(character.characterID);
+        }
+        else
+        {
+            Alive?.Invoke(character.characterID);
+        }
+    }
 }

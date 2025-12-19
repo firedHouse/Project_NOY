@@ -33,7 +33,7 @@ public static class ReactionDamageProcesser
         {
             if (enemy != target && !enemy.IsDead)
             {
-                enemy.TakeDamage(target.MaxHP * 0.07f);
+                enemy.TakeDamage(enemy.MaxHP * 0.07f);
             }
         }
     }
@@ -44,7 +44,7 @@ public static class ReactionDamageProcesser
         {
             if (enemy != target && !enemy.IsDead)
             {
-                enemy.TakeDamage(target.MaxHP * 0.04f);
+                enemy.TakeDamage(enemy.MaxHP * 0.04f);
             }
         }
     }

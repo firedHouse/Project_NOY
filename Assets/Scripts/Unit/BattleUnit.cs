@@ -30,7 +30,7 @@ public abstract class BattleUnit : MonoBehaviour
     public bool IsDead => isDead;
     public ElementType CurrentMark => currentMark;
     public List<Skill> Skills => skills;
-    public float AttacktPower => attackPower;
+    public float AttackPower => attackPower;
 
     //UI 갱신 및 전투 로직 연결용
     //UI 갱신 및 전투 로직 연결용

@@ -25,6 +25,8 @@ public class BattleManager : Singleton<BattleManager>
 
     //프레젠터 이벤트
     public event Action<List<Character>> OnPlayerTurnStart;
+    // Jihoo
+    // 프레젠터 초기화를 위한 이벤트(아군/적군 공용)
     public event Action OnBattleSetted;
 
     //상태 변경 메서드
@@ -58,7 +60,7 @@ public class BattleManager : Singleton<BattleManager>
         EnemyTeam = enemies;
 
         // Jihoo
-        // 각 프레젠터 초기화하도록 이벤트로 알림
+        // 각 프레젠터 초기화하도록 이벤트로 알림 (아군/적군 공용)
         BattleSetted();
 
         //Setup 상태 진입
@@ -189,6 +191,8 @@ public class BattleManager : Singleton<BattleManager>
         OnPlayerTurnStart?.Invoke(PlayerTeam);
     }
 
+    // Jihoo
+    // 각 프레젠터 초기화하도록 이벤트로 알림 (아군/적군 공용)
     public void BattleSetted()
     {
         OnBattleSetted?.Invoke();

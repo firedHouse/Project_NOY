@@ -34,7 +34,7 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
         characterView.UpdateCharacterName(characterModel.UnitName);
         characterView.SetMaxHP(characterModel.MaxHP);
         characterView.UpdateSpeed(characterModel.Speed);
-        characterView.UpdatePosition(characterModel.Position);
+        //characterView.UpdatePosition(characterModel.Position);
     }
 
     private void HandleHpChanged(BattleUnit character, float hpChangedAmount)

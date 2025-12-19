@@ -8,6 +8,7 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
     [SerializeField] private CharacterBattleInfoView infoView;
     private CharacterData characterData;
     private string charId = "character_id_10001";
+    [SerializeField] private UnitPosition position;
 
     //Hyeju
     //[SerializeField] private CharacterPosition deathMove;
@@ -24,7 +25,7 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
     void Initialize()
     {
         // Character.cs에 초기화 메서드가 없어서 임시로 추가해둔 코드
-        infoModel.InitializeCharacter(charId, UnitPosition.Front);
+        infoModel.InitializeCharacter(charId, position);
         // infoModel.OnDeath += // 사망 메서드;
         infoModel.OnHpChanged += HandleHpChanged;
         infoModel.OnMarkChanged += HandleMarkChanged;

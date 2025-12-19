@@ -797,11 +797,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6945364636024774746, guid: 87f4f96862593cc49a7aaf682a5d89c1, type: 3}
   m_PrefabInstance: {fileID: 636476709}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &636476711 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5534162229298351610, guid: 87f4f96862593cc49a7aaf682a5d89c1, type: 3}
-  m_PrefabInstance: {fileID: 636476709}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &661391934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,11 +1293,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1263433461 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5037031133676978633, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
-  m_PrefabInstance: {fileID: 1322681481989524263}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1273171271
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,6 +1305,7 @@ GameObject:
   - component: {fileID: 1273171273}
   - component: {fileID: 1273171272}
   - component: {fileID: 1273171275}
+  - component: {fileID: 1273171276}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1440,6 +1431,22 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1273171276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273171271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.PhysicsRaycaster
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1001 &1310301865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1952,46 +1959,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eabcc7e40a18d74b9735c51124f6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseOverInfo
-  _speedAttackInfoPanel: {fileID: 636476711}
   _skillInfo: {fileID: 478631709}
-  _characterSkill: {fileID: 1205516125}
-  _useSkillList:
-  - skillID: 
-    skillName: 
-    skillBaseValue: 0
-    targetFaction: 
-    skillFactor: 0
-    skillType: 0
-    skillElement: 0
-    skillTooltip: 
-    skillPP: 0
-    skillArea: 0
-    skillSound: 
-    skillResource: 
-  - skillID: 
-    skillName: 
-    skillBaseValue: 0
-    targetFaction: 
-    skillFactor: 0
-    skillType: 0
-    skillElement: 0
-    skillTooltip: 
-    skillPP: 0
-    skillArea: 0
-    skillSound: 
-    skillResource: 
-  - skillID: 
-    skillName: 
-    skillBaseValue: 0
-    targetFaction: 
-    skillFactor: 0
-    skillType: 0
-    skillElement: 0
-    skillTooltip: 
-    skillPP: 0
-    skillArea: 0
-    skillSound: 
-    skillResource: 
+  _skillList: {fileID: 0}
 --- !u!4 &1667758254
 Transform:
   m_ObjectHideFlags: 0
@@ -2018,6 +1987,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!114 &1698860002 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8193328387993576790, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+  m_PrefabInstance: {fileID: 1322681481989524263}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5efc77692993a646be3244efa2f0ced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Monster
 --- !u!114 &1705374258 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8582689341553235347, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
@@ -2047,7 +2027,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1897255884
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2146,28 +2126,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!114 &2098975641
+--- !u!114 &2095606594 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4716965900665758989, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+  m_PrefabInstance: {fileID: 1322681481989524263}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1263433461}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5efc77692993a646be3244efa2f0ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Monster
-  unitID: 
-  unitName: 
-  maxHP: 0
-  currentHP: 0
-  speed: 0
-  attackPower: 0
-  position: 0
-  currentMark: 0
-  isDead: 0
-  dropGold: 0
+--- !u!114 &2098975654 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8155674157008426345, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+  m_PrefabInstance: {fileID: 1322681481989524263}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5efc77692993a646be3244efa2f0ced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Monster
 --- !u!1001 &812825838510998645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2265,6 +2245,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1143047415461933176, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: position
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143047415461933176, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: monsterModel
+      value: 
+      objectReference: {fileID: 2095606594}
     - target: {fileID: 1457544726631605079, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2357,6 +2345,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2116627607227170739, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3037519597631764618, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2377,6 +2369,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3244567047229493207, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3489337565958576163, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2425,10 +2421,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4548178424251969571, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: position
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548178424251969571, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: monsterModel
+      value: 
+      objectReference: {fileID: 1698860002}
     - target: {fileID: 4576829853487808540, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
       propertyPath: monsterModel
       value: 
-      objectReference: {fileID: 2098975641}
+      objectReference: {fileID: 2098975654}
+    - target: {fileID: 4716965900665758989, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: position
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5335616467864500648, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373252052247939479, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5409448526033481692, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
       propertyPath: HPSlider
       value: 
@@ -2441,6 +2457,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterBoxGroupPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 6840706787617401670, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6840706787617401670, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663941025523917830, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193328387993576790, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: position
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8884187920890486712, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
       propertyPath: HPSlider
       value: 
@@ -2448,10 +2480,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5037031133676978633, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 2098975641}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
 --- !u!1001 &3615937638367292267
 PrefabInstance:

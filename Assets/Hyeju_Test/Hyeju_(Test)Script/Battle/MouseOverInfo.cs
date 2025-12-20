@@ -6,7 +6,7 @@ public partial class MouseOverInfo : MonoBehaviour
 {
     //스킬 정보표시할 텍스트
     [SerializeField] private Text _skillInfo;
-    [SerializeField] private SkillList _skillList;
+    [SerializeField] private hSkillList _skillList;
 
     //스킬 이미지 : 스킬정보가 바뀌면 이미지도 바뀌어야 함.
     //스킬 이미지 이름 > 스킬 리스트에서 받아와야 함.

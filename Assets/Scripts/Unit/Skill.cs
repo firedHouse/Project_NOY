@@ -26,6 +26,10 @@ public class Skill
         {
             CurrentPP = Data.skillPP;
         }
+        else
+        {
+            Debug.LogError($"{skillID}가 테이블에 없음");
+        }
     }
 
     //비어있으면 false 반환

@@ -1,9 +1,9 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
-//StatePlayerTurn ÀÇ Enter => ÇÃ·¹ÀÌ¾î ÅÏ ½ÃÀÛÀÌ´Ù! ½ºÅ³ ¹öÆ° ¶ç¿ì¶ó ¿äÃ»
-//Vlew(UI)´Â  À¯Àú°¡ ¹öÆ° Å¬¸¯ÇÑ °É  Presenter¿¡ ¾Ë¸®°í
-//Presenter°¡ BattleManager¿¡°Ô À¯Àú°¡ ÀÌ°É °ñ¶ú´Ù Àü´Ş
-//BattleManager´Â µ¥ÀÌÅÍ¸¦ ¹Ş°í ÅÏ ³Ñ±â±â
+//StatePlayerTurn ì˜ Enter => í”Œë ˆì´ì–´ í„´ ì‹œì‘ì´ë‹¤! ìŠ¤í‚¬ ë²„íŠ¼ ë„ìš°ë¼ ìš”ì²­
+//Vlew(UI)ëŠ”  ìœ ì €ê°€ ë²„íŠ¼ í´ë¦­í•œ ê±¸  Presenterì— ì•Œë¦¬ê³ 
+//Presenterê°€ BattleManagerì—ê²Œ ìœ ì €ê°€ ì´ê±¸ ê³¨ëë‹¤ ì „ë‹¬
+//BattleManagerëŠ” ë°ì´í„°ë¥¼ ë°›ê³  í„´ ë„˜ê¸°ê¸°
 
 public class StatePlayerTurn : IBattleState
 {
@@ -13,33 +13,35 @@ public class StatePlayerTurn : IBattleState
     public void Enter(BattleManager bm)
 
     {
-        Debug.Log("[StatePlayerTurn] À¯Àú ÀÔ·Â ´ë±âÁß");
+        Debug.Log("[StatePlayerTurn] ìœ ì € ì…ë ¥ ëŒ€ê¸°ì¤‘");
 
         isInputDone = false;
-        //¼Â¾÷ ´Ü°è ÀÌÈÄ(ÅÏ Á¾·á ÈÄ ·çÇÁÇÏ±â ¶§¹®¿¡ ¿©±â´Ü¿¡¼­µµ Clear)
+        //ì…‹ì—… ë‹¨ê³„ ì´í›„(í„´ ì¢…ë£Œ í›„ ë£¨í”„í•˜ê¸° ë•Œë¬¸ì— ì—¬ê¸°ë‹¨ì—ì„œë„ Clear)
         bm.TempPlayerActions.Clear();
 
-        //ÀÌº¥Æ® ¹ßÇà ¿äÃ» ¸Ş¼­µå
+        //ì´ë²¤íŠ¸ ë°œí–‰ ìš”ì²­ ë©”ì„œë“œ
         bm.NotifyPlayerTurnStart();
     }
 
     public void Execute(BattleManager bm)
     {
-        //Presenter ÂÊ¿¡¼­ bm.ReceivePlayerAction()ÀÇ È£Ãâ ´ë±â
-        //È£ÃâµÇ¸é isInputDone = true; ·Î ÀüÈ¯
+        //Presenter ìª½ì—ì„œ bm.ReceivePlayerAction()ì˜ í˜¸ì¶œ ëŒ€ê¸°
+        //í˜¸ì¶œë˜ë©´ isInputDone = true; ë¡œ ì „í™˜
         if (isInputDone)
         {
-            //bm.ChangeState(new StateEnemyTurn());
+            Debug.Log("Enemy Turn ì „í™˜");
+            bm.ChangeState(new StateEnemyTurn());
         }
     }
     public void Exit(BattleManager bm)
     {
-        //ÇÁ·¹Á¨ÅÍ¿¡°Ô ÅÏ Á¾·á ¾Ë¸®±â(ÇÊ¿ä½Ã¿¡)
+        //í”„ë ˆì  í„°ì—ê²Œ í„´ ì¢…ë£Œ ì•Œë¦¬ê¸°(í•„ìš”ì‹œì—)
     }
 
-    //ÀÔ·Â ¿Ï·á(battleManager°¡ È£Ãâ)
+    //ì…ë ¥ ì™„ë£Œ(battleManagerê°€ í˜¸ì¶œ)
     public void SetInputComplete()
     {
+        Debug.Log("True");
         isInputDone = true;
     }
 }

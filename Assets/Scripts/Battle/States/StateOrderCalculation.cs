@@ -1,27 +1,29 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
-//¾çÃøÀÌ ¿¹¾àÇÑ Çàµ¿(°¢ TempActions)À» ¸ğ¾ÆµÎ°í
-//¼Óµµ ±â¹İÀ¸·Î ´©°¡ ¸ÕÀú ¶§¸±Áö Á¤ÇÏ°í ActionQueue ¿¡ ÁÙÀ» ¼¼¿ì´Â ´Ü°è(»óÅÂ)
+//ì–‘ì¸¡ì´ ì˜ˆì•½í•œ í–‰ë™(ê° TempActions)ì„ ëª¨ì•„ë‘ê³ 
+//ì†ë„ ê¸°ë°˜ìœ¼ë¡œ ëˆ„ê°€ ë¨¼ì € ë•Œë¦´ì§€ ì •í•˜ê³  ActionQueue ì— ì¤„ì„ ì„¸ìš°ëŠ” ë‹¨ê³„(ìƒíƒœ)
 
 public class StateOrderCalculation : IBattleState
 {
     public void Enter(BattleManager bm)
     {
-        //½ÇÇà Å¥ ÃÊ±âÈ­
+        //ì‹¤í–‰ í ì´ˆê¸°í™”
         bm.ActionQueue.Clear();
 
-        //¼Óµµ ÇÕ»ê(»ıÁ¸ÇÑ À¯´ÖÀÇ Speed ÇÕ)
+        Debug.Log($"í”Œ: {bm.TempPlayerActions.Count}, ì : {bm.TempEnemyActions.Count}");
+
+        //ì†ë„ í•©ì‚°(ìƒì¡´í•œ ìœ ë‹›ì˜ Speed í•©)
         int playerSpeedSum = bm.PlayerTeam.Where(u => !u.IsDead).Sum(u => u.Speed);
         int enemySpeedSum = bm.EnemyTeam.Where(u => !u.IsDead).Sum(u => u.Speed);
 
-        //¼±°øÆÇÁ¤, ¼Óµµ °°À¸¸é ÇÃ·¹ÀÌ¾î ¿ì¼±
+        //ì„ ê³µíŒì •, ì†ë„ ê°™ìœ¼ë©´ í”Œë ˆì´ì–´ ìš°ì„ 
         bool isPlayerFirst = (playerSpeedSum >= enemySpeedSum);
-        Debug.Log($"¼Óµµ Ã¼Å©: ¾Æ±º({playerSpeedSum}) vs Àû±º({enemySpeedSum}) -> ¼±°øÀº {(isPlayerFirst ? "ÇÃ·¹ÀÌ¾î" : "Àû±º")}");
+        Debug.Log($"ì†ë„ ì²´í¬: ì•„êµ°({playerSpeedSum}) vs ì êµ°({enemySpeedSum}) -> ì„ ê³µì€ {(isPlayerFirst ? "í”Œë ˆì´ì–´" : "ì êµ°")}");
 
 
-        //¼±ÈÄ°ø ÆÇÁ¤(¼±°ø ¸ÕÀú ¾×¼ÇÅ¥¿¡ µî·Ï)
+        //ì„ í›„ê³µ íŒì •(ì„ ê³µ ë¨¼ì € ì•¡ì…˜íì— ë“±ë¡)
         if (isPlayerFirst)
         {
             EnqueueTeamActions(bm, bm.TempPlayerActions);
@@ -35,7 +37,7 @@ public class StateOrderCalculation : IBattleState
 
     }
 
-    //¸®½ºÆ®¿¡ ÀÖ´Â Çàµ¿µéÀ» Å¥¿¡ ³Ö´Â ÇÔ¼ö
+    //ë¦¬ìŠ¤íŠ¸ì— ìˆëŠ” í–‰ë™ë“¤ì„ íì— ë„£ëŠ” í•¨ìˆ˜
     private void EnqueueTeamActions(BattleManager bm, List<BattleAction> actions)
     {
         foreach (var action in actions)

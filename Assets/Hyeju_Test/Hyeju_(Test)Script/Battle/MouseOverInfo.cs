@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 //view
-public class MouseOverInfo : MonoBehaviour
+public partial class MouseOverInfo : MonoBehaviour
 {
     //스킬 정보표시할 텍스트
     [SerializeField] private Text _skillInfo;
@@ -49,4 +49,27 @@ public class MouseOverInfo : MonoBehaviour
     }
 
     #endregion
+}
+
+// Jihoo 작업 부분
+// 캐릭터 행동 선택 (Turn) 부분
+public partial class MouseOverInfo : MonoBehaviour
+{
+    [SerializeField] private Text _turnInfo;
+    public Skill skill;
+
+    public void UpdateTurnInfo(int order)
+    {
+        _turnInfo.text = $"({order + 1}번 캐릭터) 행동 선택";
+    }
+
+    public void UpdateTurnChanged()
+    {
+        _turnInfo.text = "행동 선택 완료";
+    }
+
+    public void InitEventTrigger()
+    {
+
+    }
 }

@@ -1,25 +1,26 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
-//½ÇÁ¦ °ÔÀÓ ¿ÀºêÁ§Æ®°¡ ¾Æ´Ñ ½ºÅ³ °´Ã¼ »À´ë
-//ÃßÈÄ Ä¿¸ÇµåÆĞÅÏÀ¸·Î ´Ù º¯°æÇÒ ¼öµµ
+//ì‹¤ì œ ê²Œì„ ì˜¤ë¸Œì íŠ¸ê°€ ì•„ë‹Œ ìŠ¤í‚¬ ê°ì²´ ë¼ˆëŒ€
+//ì¶”í›„ ì»¤ë§¨ë“œíŒ¨í„´ìœ¼ë¡œ ë‹¤ ë³€ê²½í•  ìˆ˜ë„
 [System.Serializable]
 public class Skill
 {
-    //TableManager¿¡¼­ °¡Á®¿Â ¿øº» µ¥ÀÌÅÍ
+    //TableManagerì—ì„œ ê°€ì ¸ì˜¨ ì›ë³¸ ë°ì´í„°
     public SkillData Data { get; private set; }
 
-    //ÇöÀç ³²Àº PP (·±Å¸ÀÓ ½ÃÁ¡¿¡¼­ º¯µ¿)
+    //í˜„ì¬ ë‚¨ì€ PP (ëŸ°íƒ€ì„ ì‹œì ì—ì„œ ë³€ë™)
     public int CurrentPP { get; private set; }
 
-    //»ı¼ºÀÚ: µ¥ÀÌÅÍ Å×ÀÌºíÀÇ Á¤º¸¸¦ ¹Ş¾Æ ÃÊ±âÈ­
+    //ìƒì„±ì: ë°ì´í„° í…Œì´ë¸”ì˜ ì •ë³´ë¥¼ ë°›ì•„ ì´ˆê¸°í™”
     public Skill(string skillID)
     {
         if (string.IsNullOrEmpty(skillID) || skillID == "None")
         {
+            Debug.Log($"[Skill] ");
             Data = null;
             return;
         }
-        Data = TableManager.Instance.SkillTable.Get("skillID");
+        Data = TableManager.Instance.SkillTable.Get(skillID);
 
         if (Data != null)
         {
@@ -27,16 +28,16 @@ public class Skill
         }
     }
 
-    //ºñ¾îÀÖÀ¸¸é false ¹İÈ¯
+    //ë¹„ì–´ìˆìœ¼ë©´ false ë°˜í™˜
     public bool IsValid()
     {
         return Data != null;
     }
 
-    //½ºÅ³ »ç¿ë ½Ãµµ
+    //ìŠ¤í‚¬ ì‚¬ìš© ì‹œë„
     public bool TryUse()
     {
-        //PP Â÷°¨ ¼º°ø ½Ã true ¹İÈ¯
+        //PP ì°¨ê° ì„±ê³µ ì‹œ true ë°˜í™˜
         if (CurrentPP > 0)
         {
             CurrentPP--;
@@ -45,7 +46,7 @@ public class Skill
         return false;
     }
 
-    //½ºÅ³ µ¥¹ÌÁö °è»ê½Ä
+    //ìŠ¤í‚¬ ë°ë¯¸ì§€ ê³„ì‚°ì‹
     public float CalculateValue(float userStat)
     {
         if (Data == null)
@@ -55,7 +56,7 @@ public class Skill
         return Data.skillBaseValue + (userStat * Data.skillFactor);
     }
 
-    //PP È¸º¹ (¾ÆÀÌÅÛ »ç¿ë µî)
+    //PP íšŒë³µ (ì•„ì´í…œ ì‚¬ìš© ë“±)
     public void RestorePP(int amount)
     {
         if (Data == null)

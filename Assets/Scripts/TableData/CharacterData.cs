@@ -4,8 +4,6 @@
 public class CharacterData : ITableData
 {
     public string characterID;
-    public string characterName;
-    public string characterCodeName;
     public bool unlock;
     public float attackLevel1;
     public float HPLevel1;
@@ -15,10 +13,12 @@ public class CharacterData : ITableData
     public string ownedSkill03;
     public int level;
     public int maxLevel;
-    public int position;
+    public string position;
+    public string characterName;
+    public string characterCodeName;
+    public string characterInfo;
+    public string characterSkin;
     public string desc;
-    public string characterResource;
-    public string characterSound;
 
     public string PrimaryID => characterID.ToString();
 }

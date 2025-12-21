@@ -4,13 +4,14 @@
 public class ItemData : ITableData
 {
     public string itemID;
-    public string itemName;
-    public int itemcost;
+    public int itemCost;
     public int stateType;
     public int value;
-    public string desc;
-    public string itemResource;
+    public string itemName;
+    public string itemTextUI;
+    public string itemImage;
     public string itemSound;
+    public string desc;
 
     public string PrimaryID => itemID.ToString();
 }

@@ -1,4 +1,4 @@
-//Global Definitions (테이블 Ver 0106 반영)
+//Global Definitions (테이블 Ver 0202 반영)
 
 public enum ElementType
 {

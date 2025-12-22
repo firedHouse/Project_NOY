@@ -26,7 +26,7 @@ public class MonsterInfoView : MonoBehaviour
     }
 
     //탱딜힐
-    public void UpdateCalss(MonsterClass role)
+    public void UpdateCalss(CharacterPosition role)
     {
         classText.text = role.ToString();
         Debug.Log($"{role.ToString()}");

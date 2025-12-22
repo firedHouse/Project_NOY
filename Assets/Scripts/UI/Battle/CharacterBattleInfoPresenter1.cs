@@ -19,8 +19,6 @@ partial class CharacterBattleInfoPresenter
         Debug.Log($"[CharacterPosPresenter] : 사망자 발생{unit}");
         //사망 캐릭터 리스트에서 제거
         BattleManager.Instance.OnUnitDead(unit);
-        //포지션 업데이트
-        characterView.UpdatePosition(unit.Position);
 
         //UI 비활성화
         characterMoveView.Inactive(unit.Position);

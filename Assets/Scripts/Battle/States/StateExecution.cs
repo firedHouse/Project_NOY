@@ -14,7 +14,7 @@ public class StateExecution : IBattleState
     {
         isExecutionFinished = false;
 
-        skillProcesser = Object.FindObjectOfType<SkillProcesser>();
+        skillProcesser = Object.FindFirstObjectByType<SkillProcesser>();
         //행동처리 코루틴 시작
         bm.StartCoroutine(ProcessActionQueue(bm));
     }
@@ -92,6 +92,9 @@ public class StateExecution : IBattleState
             //약간 딜레이(다음공격대기)
             yield return new WaitForSeconds(0.5f);
         }
+
+        bm.ChangeState(new StateOverload());
+
         //큐 비면 실행종료 true
         isExecutionFinished = true;
     }

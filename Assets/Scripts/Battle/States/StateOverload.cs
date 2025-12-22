@@ -4,46 +4,79 @@ using UnityEngine;
 
 public class StateOverload : IBattleState
 {
-    private const int Duration = 3;
-    private int remainTurn = 0;
-    private bool isActive = false;
-
-    public void Activate()
-    {
-        if(isActive)
-        {
-            return;
-        }
-        isActive = true;
-        remainTurn = Duration;
-        Debug.Log("과부하 진행");
-    }
-
-
+    
     public void Enter(BattleManager battleManager)
-    {
-
-    }
+    { }
 
     public void Execute(BattleManager battleManager)
     {
-        if(isActive)
+        ApplyOverload(battleManager);
+
+        ResetTurnFlags(battleManager);
+
+        if(CheckWinLoss(battleManager))
         {
-            ReactionDamageProcesser.Overload(battleManager.EnemyTeam);
-
-            remainTurn--;
-            Debug.Log($"과부하 {remainTurn}턴 남음");
-
-            if(remainTurn <= 0)
-            {
-                isActive = false;
-                Debug.Log("과부하 종료");
-            }
+            return;
         }
 
-        battleManager.ChangeState(new StateOrderCalculation());
+        battleManager.ChangeState(new StatePlayerTurn());
     }
 
     public void Exit(BattleManager battleManager)
     { }
+
+    private void ApplyOverload(BattleManager bm)
+    {
+        bool hasOverload = false;
+
+        foreach(var unit in bm.EnemyTeam)
+        {
+            var elemental = unit.GetComponent<ElementalManager>();
+            if(elemental != null && elemental.IsOverloadActive)
+            {
+                hasOverload = true;
+                break;
+            }
+        }
+
+        if(!hasOverload)
+        { return; }
+
+        ReactionDamageProcesser.ApplyOverload(bm.EnemyTeam);
+            
+        foreach(var unit in bm.EnemyTeam)
+        {
+            unit.GetComponent<ElementalManager>()?.ConsumeOverload();
+        }
+
+    }
+
+    private void ResetTurnFlags(BattleManager bm)
+    {
+        foreach(var unit in bm.PlayerTeam)
+        {
+            unit.GetComponent<ElementalManager>()?.ResetTurn();
+        }
+        foreach(var unit in bm.EnemyTeam)
+        {
+            unit.GetComponent<ElementalManager>()?.ResetTurn();
+        }
+    }
+    //승패조건체크
+    private bool CheckWinLoss(BattleManager bm)
+    {
+        //적 전멸 -> 승리
+        if (bm.EnemyTeam.Count == 0)
+        {
+            bm.ChangeState(new StateEnd(true));
+            return true;
+        }
+        //아군 전멸 -> 패배
+        if (bm.PlayerTeam.Count == 0)
+        {
+            bm.ChangeState(new StateEnd(false));
+            return true;
+        }
+        return false;
+    }
 }

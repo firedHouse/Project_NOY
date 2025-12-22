@@ -48,6 +48,7 @@ public class SkillListPresenter : MonoBehaviour
 
         //UI 텍스트 갱신 (누구 턴인지 표시)
         mouseOverInfo.UpdateTurnInfo(currentActorIndex);
+        skillList.SetSkillSlotAvailable(true);
 
         //skillList UI에 현재 캐릭터 정보를 넘겨서, 버튼 아이콘 등을 갱신
         //기존 로직 활용
@@ -61,6 +62,9 @@ public class SkillListPresenter : MonoBehaviour
     //SkillSlot 스크립트에서 버튼 클릭 시, 이 함수를 호출하며 자신의 Skill 정보를 넘겨줘야 함
     public void OnSkillButtonClicked(Skill selectedSkill)
     {
+        // 한번 클릭하면 버튼 비활성화
+        skillList.SetSkillSlotAvailable(false);
+
         //현재 행동하는 캐릭터
         Character actingCharacter = playerTeam[currentActorIndex];
 

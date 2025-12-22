@@ -95,6 +95,7 @@ public class SkillListPresenter : MonoBehaviour
     private void EndSkillSelection()
     {
         Debug.Log("아군 3명의 스킬 선택이 모두 완료되었습니다.");
+        mouseOverInfo.UpdateTurnChanged();
         BattleManager.Instance.OnPlayerInputFinished();
     }
 }

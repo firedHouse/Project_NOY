@@ -18,6 +18,10 @@ public class CharacterBattleInfoView : MonoBehaviour
     [SerializeField] private Text characterPowerText;
     [Header("캐릭터 HP 바")]
     [SerializeField] private Slider HPSlider;
+    [Header("캐릭터 표식 상태")]
+    //추후에 이미지로 변경
+    [SerializeField] private Text mark1;
+    [SerializeField] private Image mark2;
     
     private List<Skill> characterskills;
 
@@ -27,11 +31,17 @@ public class CharacterBattleInfoView : MonoBehaviour
         characterNameText.text = text;
     }
 
-    // 속성 표시 변경 데이터인데 속성이 데이터 테이블에 없어서 지금은 사용 안함
-    public void UpdateElement(string text)
+    // 고유속성
+    public void UpdateClass(string text)
     {
         characterElementText.text = text;
     }
+
+    //표식
+    //public void UpdateElementMark(string text)
+    //{
+    //    mark1.text = text;
+    //}
 
     public void SetMaxHP(float maxHP)
     {
@@ -54,10 +64,8 @@ public class CharacterBattleInfoView : MonoBehaviour
     //    characterPositionText.text = role.ToString();
     //}
 
-    //public void UpdateElementMark(ElementType elementType)
-    //{
 
-    //}
+
 
     public void UpdateSpeed(int speed)
     {

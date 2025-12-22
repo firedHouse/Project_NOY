@@ -16,7 +16,6 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
 
     private void Awake()
     {
-
         //Debug.Log("[CharacterBattleInfoPresenter] Awake");
         BattleManager.Instance.OnBattleSetted += Initialize;
         BattleManager.Instance.OnBattleSetted += DeathCharacter;
@@ -38,7 +37,13 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         characterView.UpdateCharacterName(characterModel.UnitName);
         characterView.UpdateSpeed(characterModel.Speed);
         //characterView.UpdatePosition(characterModel.CharacterClass);
-        characterView.UpdateElement(characterModel.CurrentMark.ToString());
+
+        //고유속성
+        //elementUI로 변경해야 함
+        characterView.UpdateClass(characterModel.CurrentMark.ToString());
+
+        //표식
+        //characterView.UpdateElementMark(characterModel.CurrentMark.ToString());
     }
 
     private void HandleHpChanged(BattleUnit character, float hpChangedAmount)

@@ -31,9 +31,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3489337565958576163}
-  - {fileID: 3528241185745938460}
   - {fileID: 14741250085300295}
+  - {fileID: 3528241185745938460}
+  - {fileID: 3489337565958576163}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -223,6 +223,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8595145638539365658, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
+      propertyPath: classText
+      value: 
+      objectReference: {fileID: 5293749089545675906}
     - target: {fileID: 8772183650163303183, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: m_Name
       value: MonsterBoxRoarPanel
@@ -241,6 +245,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 880086121327655653, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
   m_PrefabInstance: {fileID: 865516572441924258}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5293749089545675906 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5005119881112696352, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
+  m_PrefabInstance: {fileID: 865516572441924258}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!114 &8884187920890486712 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8595145638539365658, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class CharacterBattleInfoView : MonoBehaviour
 {
     [SerializeField] private Text characterNameText;
-    //[SerializeField] private Text characterElementText;
+    [SerializeField] private Text characterElementText;
     [SerializeField] private Text characterPositionText;
     [SerializeField] private Image characterIllurstration;
     [SerializeField] private Text characterSpeedText;
@@ -21,10 +21,10 @@ public class CharacterBattleInfoView : MonoBehaviour
     }
 
     // 속성 표시 변경 데이터인데 속성이 데이터 테이블에 없어서 지금은 사용 안함
-    //public void UpdateElement()
-    //{
-    //    //elementText.text = 
-    //}
+    public void UpdateElement(string text)
+    {
+        characterElementText.text = text;
+    }
 
     public void SetMaxHP(float maxHP)
     {
@@ -42,9 +42,9 @@ public class CharacterBattleInfoView : MonoBehaviour
     // 각 유닛 객체의 포지션을 변경? <- 이미 구현되어 있을 것 같은데
     // 갱신된 포지션에 따라 패널에 다시 불러오기 realTargets로 불러오기?
 
-    public void UpdatePosition(UnitPosition position)
+    public void UpdatePosition(CharacterPosition role)
     {
-        characterPositionText.text = position.ToString();
+        characterPositionText.text = role.ToString();
     }
 
     //public void UpdateElementMark(ElementType elementType)

@@ -1,18 +1,21 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class CharacterBattleInfoPresenter : MonoBehaviour
+public partial class CharacterBattleInfoPresenter : MonoBehaviour
 {
     [SerializeField] private Character characterModel;
     [SerializeField] private CharacterBattleInfoView characterView;
+    [SerializeField] private CharacterPositionView characterMoveView;
     //private CharacterData characterData;
-    [SerializeField] private UnitPosition position;
+    [SerializeField] private CharacterPosition position;
 
     private void Awake()
     {
 
         //Debug.Log("[CharacterBattleInfoPresenter] Awake");
         BattleManager.Instance.OnBattleSetted += Initialize;
+        BattleManager.Instance.OnBattleSetted += DeathCharacter;
     }
 
     //뷰 초기 설정
@@ -21,7 +24,7 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
         Debug.Log("[CharacterBattleInfoPresenter] 초기화");
         characterModel = BattleManager.Instance.PlayerTeam[(int)position];
         characterModel.OnDeath += HandleDeath;
-        characterModel.OnDeath += HandlePositionChanged;
+        //characterModel.OnDeath += HandlePositionChanged;
         characterModel.OnHpChanged += HandleHpChanged;
         //characterModel.OnMarkChanged += HandleMarkChanged;
 
@@ -30,7 +33,8 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
         characterView.SetSkillList(characterModel.Skills);
         characterView.UpdateCharacterName(characterModel.UnitName);
         characterView.UpdateSpeed(characterModel.Speed);
-        characterView.UpdatePosition(characterModel.Position);
+        characterView.UpdatePosition(characterModel.CharacterClass);
+        characterView.UpdateElement(characterModel.CurrentMark.ToString());
     }
 
     private void HandleHpChanged(BattleUnit character, float hpChangedAmount)
@@ -48,9 +52,10 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
         BattleManager.Instance.OnUnitDead(unit);
     }
 
-    private void HandlePositionChanged(BattleUnit unit)
-    {
-        characterView.UpdatePosition(position);
-    }
+    //private void HandlePositionChanged(BattleUnit unit)
+    //{
+    //    characterView.UpdatePosition(position);
+    //}
+
 }
 

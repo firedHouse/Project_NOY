@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 820736727}
   - component: {fileID: 820736726}
   m_Layer: 5
-  m_Name: UITestCanvas
+  m_Name: ShillingUITestCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

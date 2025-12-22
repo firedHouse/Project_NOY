@@ -1,0 +1,9 @@
+스킬 ID,스킬 기본 수치,시전 진영,스킬 계수,스킬 타입 ,지속 턴,스킬 원소 속성 ,스킬 PP,스킬 공격위치,스킬 이름 스트링키,스킬 툴팁 스트링키,스킬 사운드,스킬 아이콘,스킬 스프라이트,주석
+skillID,skillBaseValue,targetFaction,skillFactor,skillType,buffTurn,skillElement,skillPP,skillArea,skillName,skillTooltip,skillSound,skillIcon,skillSprite,desc
+string,int,boolean,float,enum,int,enum,int,enum,string,string,string,string,string,string
+30001,50,1,0.1,0,0,2,999,6,skill_name_30001,skill_desc_30001,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/Image/이미지명.png,불속성 공격 스킬 테이블
+30002,50,1,0.3,0,0,1,999,6,skill_name_30002,skill_desc_30002,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/Image/이미지명.png,물속성 공격 스킬 테이블
+30003,50,1,0.2,0,0,0,999,6,skill_name_30003,skill_desc_30003,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/Image/이미지명.png,번개속성 공격 스킬 테이블
+40001,5,0,0.01,0,0,3,999,5,skill_name_40001,skill_desc_40001,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/Image/이미지명.png,기본공격1 스킬 테이블
+40002,5,0,0.01,0,0,3,999,3,skill_name_40002,skill_desc_40002,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/Image/이미지명.png,기본공격2 스킬 테이블
+40003,5,0,0.01,0,0,3,999,1,skill_name_40003,skill_desc_40003,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/Image/이미지명.png,기본공격3 스킬 테이블

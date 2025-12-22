@@ -1,23 +1,59 @@
 using UnityEngine;
 
-public class ElementalManager
+public class ElementalManager : MonoBehaviour
 {
-    public BattleUnit Unit { get; }
-    public bool isReactedThisTurn { get; private set; }
+    // 현재 상태
 
-    public ElementalManager(BattleUnit unit)
+    public ElementType currnentMark { get; private set; } = ElementType.None;
+
+    public bool IsReactedThisTurn { get; private set; } = false;
+
+    public int overloadRemainTurn { get; private set; } = 0;
+
+    public bool IsOverloadActive => overloadRemainTurn > 0;
+
+    //원소 표식
+
+    public void SetMark(ElementType element)
     {
-        Unit = unit;
-        isReactedThisTurn = false;
+        currnentMark = element;
     }
+
+    public void ClearMark()
+    {
+        currnentMark = ElementType.None;
+    }
+
+    //원소 반응
 
     public void MarkReacted()
     {
-        isReactedThisTurn = true;
+        IsReactedThisTurn = true;
     }
-
+    
     public void ResetTurn()
     {
-        isReactedThisTurn = false;
+        IsReactedThisTurn = false;
+    }
+
+    //과부하
+
+    public void ActivateOverload(int duration)
+    {
+        if(IsOverloadActive)
+            return;
+
+        overloadRemainTurn = duration;
+        Debug.Log($"과부하 활성화 {duration}");
+    }
+
+    public void ConsumeOverloadTurn()
+    {
+        overloadRemainTurn--;
+
+        if (overloadRemainTurn == 0)
+        {
+            Debug.Log("과부하 종료");   
+        }
     }
 }

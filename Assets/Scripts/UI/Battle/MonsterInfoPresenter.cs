@@ -2,8 +2,13 @@
 
 partial class MonsterInfoPresenter : MonoBehaviour
 {
+    [Header("모델, 런타임 중 자동 추가")]
     [SerializeField] private Monster monsterModel;
+
+    [Header("몬스터 CharacterBox Panel, 전중후열에 맞게 각각 추가")]
     [SerializeField] private MonsterInfoView monsterView;
+
+    [Header("MonsterBoxGroupPanel 추가")]
     [SerializeField] private MonsterPositionView monsterMoveView;
 
     //private MonsterData monsterData;
@@ -45,7 +50,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
 
         monsterView.UpdatePosition(monsterModel.Position);
         monsterView.UpdateElement(monsterModel.CurrentMark.ToString());
-        monsterView.UpdateCalss(monsterModel.Role);
+        //monsterView.UpdateCalss(monsterModel.Role);
     }
 
     private void HandleHpChanged(BattleUnit monster, float hpChangedAmount)

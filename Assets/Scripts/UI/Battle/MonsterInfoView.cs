@@ -3,11 +3,17 @@ using UnityEngine.UI;
 
 public class MonsterInfoView : MonoBehaviour
 {
+    [Header("몬스터 이름")]
     [SerializeField] private Text monsterNameText;
+    [Header("몬스터 속성")]
     [SerializeField] private Text elementText;
+    [Header("몬스터 클래스")]
     [SerializeField] private Text classText;
+    [Header("몬스터 스피드")]
     [SerializeField] private Text monsterSpeedText;
+    [Header("몬스터 공격력")]
     [SerializeField] private Text monsterPowerText;
+    [Header("몬스터 HP 바")]
     [SerializeField] private Slider HPSlider;
 
     public void UpdateMonsterName(string text)
@@ -26,11 +32,11 @@ public class MonsterInfoView : MonoBehaviour
     }
 
     //탱딜힐
-    public void UpdateCalss(CharacterPosition role)
-    {
-        classText.text = role.ToString();
-        Debug.Log($"{role.ToString()}");
-    }
+    //public void UpdateCalss(CharacterPosition role)
+    //{
+    //    classText.text = role.ToString();
+    //    Debug.Log($"{role.ToString()}");
+    //}
 
     public void SetMaxHP(float maxHP)
     {

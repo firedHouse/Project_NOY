@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
  class CharacterPositionView : MonoBehaviour
 {
-    //화면에 표시될 박스
+    [Header("CharacterBoxFrontPanel : Front-Middle-Roar 순으로 추가")] 
     [SerializeField] private GameObject[] _characterBox = new GameObject[3];
 
     //사망 캐릭터 박스 비활성화

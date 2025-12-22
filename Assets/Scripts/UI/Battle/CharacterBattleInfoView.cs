@@ -4,12 +4,19 @@ using UnityEngine.UI;
 
 public class CharacterBattleInfoView : MonoBehaviour
 {
+    [Header("캐릭터 이름")]
     [SerializeField] private Text characterNameText;
+    [Header("캐릭터 속성")]
     [SerializeField] private Text characterElementText;
+    [Header("캐릭터 클래스")]
     [SerializeField] private Text characterPositionText;
+    [Header("캐릭터 이미지")]
     [SerializeField] private Image characterIllurstration;
+    [Header("캐릭터 스피드")]
     [SerializeField] private Text characterSpeedText;
+    [Header("캐릭터 공격력")]
     [SerializeField] private Text characterPowerText;
+    [Header("캐릭터 HP 바")]
     [SerializeField] private Slider HPSlider;
     
     private List<Skill> characterskills;
@@ -42,10 +49,10 @@ public class CharacterBattleInfoView : MonoBehaviour
     // 각 유닛 객체의 포지션을 변경? <- 이미 구현되어 있을 것 같은데
     // 갱신된 포지션에 따라 패널에 다시 불러오기 realTargets로 불러오기?
 
-    public void UpdatePosition(CharacterPosition role)
-    {
-        characterPositionText.text = role.ToString();
-    }
+    //public void UpdatePosition(CharacterPosition role)
+    //{
+    //    characterPositionText.text = role.ToString();
+    //}
 
     //public void UpdateElementMark(ElementType elementType)
     //{

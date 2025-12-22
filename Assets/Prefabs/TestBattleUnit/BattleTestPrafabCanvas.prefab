@@ -518,6 +518,10 @@ PrefabInstance:
       propertyPath: position
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1800608432963598329, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
+      propertyPath: characterMoveView
+      value: 
+      objectReference: {fileID: 3418323682638853292}
     - target: {fileID: 2628477370230318201, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
       propertyPath: m_Name
       value: CharacterBoxGroupPanel
@@ -534,6 +538,10 @@ PrefabInstance:
       propertyPath: infoModel
       value: 
       objectReference: {fileID: 7601274232093067465}
+    - target: {fileID: 2994540839183742710, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
+      propertyPath: characterMoveView
+      value: 
+      objectReference: {fileID: 3418323682638853292}
     - target: {fileID: 3563658941939359259, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -686,6 +694,10 @@ PrefabInstance:
       propertyPath: position
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7056363621563775234, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
+      propertyPath: characterMoveView
+      value: 
+      objectReference: {fileID: 3418323682638853292}
     - target: {fileID: 8352510574390360233, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

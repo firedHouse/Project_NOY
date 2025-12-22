@@ -7,7 +7,8 @@ using UnityEngine.UIElements;
 
  partial class MonsterPositionView : MonoBehaviour
 {
-    //화면에 표시될 박스
+    [Header("MonsterBoxFrontPanel : Front-Middle-Roar 순으로 추가")]
+
     [SerializeField] private GameObject[] _monsterBox = new GameObject[3];
 
     //사망 캐릭터 박스 비활성화

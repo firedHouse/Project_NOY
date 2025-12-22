@@ -4,11 +4,15 @@ using UnityEngine;
 
 public partial class CharacterBattleInfoPresenter : MonoBehaviour
 {
+    [Header("모델, 런타임 중 자동 추가됨.")]
     [SerializeField] private Character characterModel;
+    [Header("캐릭터 CharacterBox Panel, 전중후열에 맞게 각각 추가")]
     [SerializeField] private CharacterBattleInfoView characterView;
+    [Header("CharacterBoxGroupPanel 추가")]
     [SerializeField] private CharacterPositionView characterMoveView;
     //private CharacterData characterData;
-    [SerializeField] private CharacterPosition position;
+    [Header("전중후열 값")]
+    [SerializeField] private UnitPosition position;
 
     private void Awake()
     {
@@ -33,7 +37,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         characterView.SetSkillList(characterModel.Skills);
         characterView.UpdateCharacterName(characterModel.UnitName);
         characterView.UpdateSpeed(characterModel.Speed);
-        characterView.UpdatePosition(characterModel.CharacterClass);
+        //characterView.UpdatePosition(characterModel.CharacterClass);
         characterView.UpdateElement(characterModel.CurrentMark.ToString());
     }
 
@@ -52,10 +56,10 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         BattleManager.Instance.OnUnitDead(unit);
     }
 
-    //private void HandlePositionChanged(BattleUnit unit)
-    //{
-    //    characterView.UpdatePosition(position);
-    //}
+    private void HandlePositionChanged(BattleUnit unit)
+    {
+        //characterView.UpdatePosition(position);
+    }
 
 }
 

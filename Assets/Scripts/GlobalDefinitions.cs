@@ -50,6 +50,9 @@ public enum SkillType
 {
     Attack = 0,
     Heal = 1,
-    Buff = 2,
-    Debuff = 3
+    Barrier = 2,
+    AttackBuff = 3,
+    SpeedBuff = 4,
+    AttackDebuff = 5,
+    SpeedDebuff = 6
 }

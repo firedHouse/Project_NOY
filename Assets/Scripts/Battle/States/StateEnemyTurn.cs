@@ -1,25 +1,25 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
-//Àû ¸ó½ºÅÍµéÀÌ ½ºÅ³À» °áÁ¤ÇÏ°í Çàµ¿À» ¿¹¾àÇÏ´Â ´Ü°è
-public class StateEnemyTurn : MonoBehaviour
+//ì  ëª¬ìŠ¤í„°ë“¤ì´ ìŠ¤í‚¬ì„ ê²°ì •í•˜ê³  í–‰ë™ì„ ì˜ˆì•½í•˜ëŠ” ë‹¨ê³„
+public class StateEnemyTurn : IBattleState
 {
-    private bool isAIDone = false; // AI ¿¬»ê ¿Ï·á ¿©ºÎ
+    private bool isAIDone = false; // AI ì—°ì‚° ì™„ë£Œ ì—¬ë¶€
 
     public void Enter(BattleManager bm)
     {
-        Debug.Log(">> [State] EnemyTurn: Àû±ºÀÌ Çàµ¿À» °è»ê ÁßÀÔ´Ï´Ù...");
+        Debug.Log(">> [State] EnemyTurn: ì êµ°ì´ í–‰ë™ì„ ê³„ì‚° ì¤‘ì…ë‹ˆë‹¤...");
         isAIDone = false;
         bm.TempEnemyActions.Clear();
 
-        //AI ·ÎÁ÷ ½ÃÀÛ (¿¬ÃâÀ» À§ÇØ ÄÚ·çÆ¾ »ç¿ë)
+        //AI ë¡œì§ ì‹œì‘ (ì—°ì¶œì„ ìœ„í•´ ì½”ë£¨í‹´ ì‚¬ìš©)
         bm.StartCoroutine(ProcessAI(bm));
     }
 
     public void Execute(BattleManager bm)
     {
-        //AI°¡ °áÁ¤À» ´Ù ¸¶ÃÆÀ¸¸é ¼ø¼­ °è»ê ´Ü°è(»óÅÂ)·Î ÀÌµ¿
+        //AIê°€ ê²°ì •ì„ ë‹¤ ë§ˆì³¤ìœ¼ë©´ ìˆœì„œ ê³„ì‚° ë‹¨ê³„(ìƒíƒœ)ë¡œ ì´ë™
         if (isAIDone)
         {
             bm.ChangeState(new StateOrderCalculation());
@@ -31,11 +31,11 @@ public class StateEnemyTurn : MonoBehaviour
 
     }
 
-    //AI ÇÁ·Î¼¼½º ÄÚ·çÆ¾ 
+    //AI í”„ë¡œì„¸ìŠ¤ ì½”ë£¨í‹´ 
 
     private IEnumerator ProcessAI(BattleManager bm)
     {
-        //AI°¡ »ı°¢ÇÏ´Â Ã´ (0.5ÃÊ µô·¹ÀÌ), ¿¬ÃâÀ» ³ÖÀ» ¼öµµ ÀÖÀ½
+        //AIê°€ ìƒê°í•˜ëŠ” ì²™ (0.5ì´ˆ ë”œë ˆì´), ì—°ì¶œì„ ë„£ì„ ìˆ˜ë„ ìˆìŒ
         yield return new WaitForSeconds(0.5f); 
 
 
@@ -46,31 +46,31 @@ public class StateEnemyTurn : MonoBehaviour
                 continue;
             }
 
-            //¸ó½ºÅÍ ½ºÅ©¸³Æ® ³»ºÎÀÇ AI ·ÎÁ÷ ½ÇÇà -> »ç¿ëÇÒ ½ºÅ³ ¹İÈ¯¹ŞÀ½
+            //ëª¬ìŠ¤í„° ìŠ¤í¬ë¦½íŠ¸ ë‚´ë¶€ì˜ AI ë¡œì§ ì‹¤í–‰ -> ì‚¬ìš©í•  ìŠ¤í‚¬ ë°˜í™˜ë°›ìŒ
             Skill skill = monster.ExecuteTurn();
 
             if (skill != null)
             {
-                //°ø°İ ´ë»ó ÆÀ(¾Æ±º) °¡Á®¿À±â
+                //ê³µê²© ëŒ€ìƒ íŒ€(ì•„êµ°) ê°€ì ¸ì˜¤ê¸°
                 List<BattleUnit> playerTeam = bm.GetOpponentTeam(monster);
 
-                //GetTargetsBySkill·Î Å¸°Ù ¸®½ºÆ® ¹İÈ¯ÇÏ¿© °ËÁõ(¸ÂÀ» ¾Ö°¡ ÀÖ´Â Áö Ã¼Å©)
+                //GetTargetsBySkillë¡œ íƒ€ê²Ÿ ë¦¬ìŠ¤íŠ¸ ë°˜í™˜í•˜ì—¬ ê²€ì¦(ë§ì„ ì• ê°€ ìˆëŠ” ì§€ ì²´í¬)
                 List<BattleUnit> potentialTargets = bm.GetTargetsBySkill(playerTeam, skill.Data);
 
                 if (potentialTargets.Count > 0)
                 {
-                    //Å¸°ÙÀÌ Á¸ÀçÇÏ¹Ç·Î Çàµ¿ ¿¹¾à
+                    //íƒ€ê²Ÿì´ ì¡´ì¬í•˜ë¯€ë¡œ í–‰ë™ ì˜ˆì•½
                     bm.TempEnemyActions.Add(new BattleAction(monster, skill, potentialTargets[0]));
                 }
                 else
                 {
-                    Debug.Log($" {monster.UnitName} °¡ {skill.Data.skillName}À» ¾²·Á ÇßÀ¸³ª ´ë»óÀÌ ¾ø¾î Ãë¼Ò.");
-                    //ÃÊ±â ¼³Á¤ ÀÌÈÄ¿£ ¹Ù²î°Å³ª ´ë±âÇÒ ¼öµµ ÀÖ°í
+                    Debug.Log($" {monster.UnitName} ê°€ {skill.Data.skillName}ì„ ì“°ë ¤ í–ˆìœ¼ë‚˜ ëŒ€ìƒì´ ì—†ì–´ ì·¨ì†Œ.");
+                    //ì´ˆê¸° ì„¤ì • ì´í›„ì—” ë°”ë€Œê±°ë‚˜ ëŒ€ê¸°í•  ìˆ˜ë„ ìˆê³ 
                 }
 
             }
         }
-        //¿¬»ê Á¾·á
+        //ì—°ì‚° ì¢…ë£Œ
         isAIDone = true; 
     }
 }

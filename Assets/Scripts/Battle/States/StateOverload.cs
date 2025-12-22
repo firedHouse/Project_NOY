@@ -29,9 +29,10 @@ public class StateOverload : IBattleState
     {
         if(isActive)
         {
-            ReactionDamageProcesser.ApplyOverloadDot(battleManager.EnemyTeam);
+            ReactionDamageProcesser.Overload(battleManager.EnemyTeam);
 
             remainTurn--;
+            Debug.Log($"과부하 {remainTurn}턴 남음");
 
             if(remainTurn <= 0)
             {

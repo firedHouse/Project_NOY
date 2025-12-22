@@ -4,24 +4,39 @@ public class ElementalManager : MonoBehaviour
 {
     // 현재 상태
 
-    public ElementType currnentMark { get; private set; } = ElementType.None;
+    public bool IsReactedThisTurn { get; private set; }
 
-    public bool IsReactedThisTurn { get; private set; } = false;
+    public ElementType elementType => ElementLayerUtil.LayerToElement(gameObject.layer);
 
-    public int overloadRemainTurn { get; private set; } = 0;
+    public int overloadRemainTurn { get; private set; }
 
     public bool IsOverloadActive => overloadRemainTurn > 0;
 
-    //원소 표식
+    //원소 레이어
 
-    public void SetMark(ElementType element)
+    public ElementType CurrentElement
     {
-        currnentMark = element;
+        get => ElementLayerUtil.LayerToElement(gameObject.layer);
     }
 
-    public void ClearMark()
+    public void SetElement(ElementType element)
     {
-        currnentMark = ElementType.None;
+        int layer = ElementLayerUtil.ElementToLayer(element);
+
+        if(layer < 0)
+        {
+            Debug.Log($"{element} 레이어 없음");
+            return;
+        }
+
+        gameObject.layer = layer;
+        Debug.Log($"{element} 부여");
+    }
+
+    public void ClearElement()
+    {
+        gameObject.layer = LayerMask.NameToLayer("None");
+        Debug.Log("원소 초기화");
     }
 
     //원소 반응

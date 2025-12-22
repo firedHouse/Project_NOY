@@ -1,0 +1,45 @@
+텍스트 고유 ID,한국어 텍스트,영어 텍스트,일본어 텍스트,주석
+string_ID,kr,en,jp,desc
+String,String,String,String,string
+character_type_30001,,,,
+character_type_30002,,,,
+character_type_30003,,,,
+character_type_30004,,,,
+character_name_30001,,,,
+character_name_30002,,,,
+character_name_30003,,,,
+character_name_30004,,,,
+character_code_30001,,,,
+character_code_30002,,,,
+character_code_30003,,,,
+character_code_30004,,,,
+character_desc_30001,,,,
+character_desc_30002,,,,
+character_desc_30003,,,,
+character_desc_30004,,,,
+skill_desc_30001,전방에 화염을 날려 피해를 줍니다.,Shoots a fireball forward to deal damage.,前方に火の玉を飛ばしてダメージを与えます。,스킬 툴팁 설명
+skill_desc_30002,전방에 파도를 불러 피해를 줍니다.,,,스킬 툴팁 설명
+skill_desc_30003,전방에 번개를 날려 피해를 줍니다.,,,스킬 툴팁 설명
+monster_name_20001,슬라임,Slime,スライム,몬스터 이름
+monster_name_20002,고블린,,,몬스터 이름
+monster_name_20003,허수아비,,,몬스터 이름
+skill_name_30001,,,,
+skill_name_30002,,,,
+skill_name_30003,,,,
+skill_name_40001,,,,
+skill_name_40002,,,,
+skill_name_40003,,,,
+skill_desc_40001,,,,
+skill_desc_40002,,,,
+skill_desc_40003,,,,
+elemental_name_60001,증발,,,
+elemental_name_60002,감전,,,
+elemental_name_60003,과부하,,,
+grade_desc_40001,,,,
+grade_desc_40002,,,,
+grade_desc_40003,,,,
+grade_desc_40004,,,,
+grade_desc_40005,,,,
+grade_desc_40006,,,,
+grade_desc_40007,,,,
+grade_desc_40008,,,,

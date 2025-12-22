@@ -1,11 +1,11 @@
-업그레이드 ID,캐릭터 ID,공격력 상승량1,체력 상승량1,이미지 변경,실링 요구량1,학년 상승 설명
-gradeID,characterID,attackUP,hpUP,changeImg,needShilling1,desc
-string,string,int,int,string,int,string
-grade_id_10001,character_id_10001,10,30,character_resources_10001,700,
-grade_id_10101,character_id_10001,10,30,character_grade3_10001,1000,
-grade_id_10002,character_id_10002,10,30,character_resources_10002,700,
-grade_id_10102,character_id_10002,10,30,character_grade3_10002,1000,
-grade_id_10003,character_id_10003,10,30,character_resources_10003,700,
-grade_id_10103,character_id_10003,10,30,character_grade3_10003,1000,
-grade_id_10004,character_id_10004,10,30,character_resources_10004,700,
-grade_id_10104,character_id_10004,10,30,character_grade3_10004,1000,
+학년 ID,캐릭터 ID,공격력 상승량,체력 상승량,실링 요구량, 텍스트 스트링키,스킨 변경,주석
+gradeID,characterID,attackUP,hpUP,needShilling1,gradeText,changeSkin,desc
+string,string,int,int,int,string,string,string
+50001,10001,10,30,700,grade_desc_40001,,1학년 스킨
+50002,10001,10,30,1000,grade_desc_40002,40002,3학년 스킨
+50003,10002,10,30,700,grade_desc_40003,,1학년 스킨
+50004,10002,10,30,1000,grade_desc_40004,40004,3학년 스킨
+50005,10003,10,30,700,grade_desc_40005,,1학년 스킨
+50006,10003,10,30,1000,grade_desc_40006,40006,3학년 스킨
+50007,10004,10,30,700,grade_desc_40007,,1학년 스킨
+50008,10004,10,30,1000,grade_desc_40008,40008,3학년 스킨

@@ -6,13 +6,14 @@ public class ElementalReactionData : ITableData
     public string elementalReactionID;
     public int elementA;
     public int elementB;
-    public string elementalReactionName;
     public int attackType;
     public float damage;
     public int duration;
-    public string desc;
+    public string elementalReactionText;
+    public string elementalReactionName;
+    public string effectSprite;
     public string effectSound;
-    public string effectResource;
+    public string desc;
 
     public string PrimaryID => elementalReactionID.ToString();
 }

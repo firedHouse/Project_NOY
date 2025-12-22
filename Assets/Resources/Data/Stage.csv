@@ -1,5 +1,5 @@
-스테이지 ID,몬스터 ID01,몬스터 ID02,몬스터 ID03,몬스터 소환 확률,몬스터 소환 확률,몬스터 소환 확률,보스 소환
-stageID,monsterID01,monsterID02,monsterID03,value01,value02,value03,bossID
-string,string,string,string,float,float,float,string
-stage_id_10001,monster_id_10001,monster_id_10002,monster_id_10003,15,35,50,monster_id_10003
-stage_id_10002,monster_id_10001,monster_id_10002,monster_id_10003,15,35,50,monster_id_10002
+스테이지 ID,몬스터 그룹,보스 소환,배경 이미지,배경음악,주석
+stageID,groupID,bossID,image,sound,desc
+string,string,string,string,string,string
+90001,100001,20003,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,사막지역
+90002,100002,20002,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,정글지역

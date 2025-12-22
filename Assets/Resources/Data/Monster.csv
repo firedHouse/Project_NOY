@@ -1,6 +1,6 @@
-몬스터 ID,원소 표식,몬스터 스킬 ID 1,몬스터 스킬 ID 2,몬스터 스킬 ID 3,몬스터 이름,몬스터 체력,몬스터 공격력,몬스터 속력,몬스터 드랍 골드,몬스터 드랍 실링,몬스터 사운드,몬스터 스프라이트,몬스터 역할군
-monsterID,elementType,monsterSkill01,monsterSkill02,monsterSkill03,monsterName,monsterHP,monsterAttack,monsterSpeed,monsterDropGold,monsterDropShilling,monsterSound,monsterResource,monsterClass
-string,enum,string,string,string,string,float,float,int,int,int,string,string,enum
-monster_id_10001,3,skill_monster_20001,skill_monster_10011,skill_monster_10021,슬라임,800,10,2,15,15,monster_sound_10001,monster_resource_10001,0
-monster_id_10002,3,skill_monster_20002,skill_monster_10012,skill_monster_10022,고블린,800,15,8,20,25,monster_sound_10002,monster_resource_10002,1
-monster_id_10003,3,skill_monster_20003,skill_monster_10013,skill_monster_10023,허수아비,800,0,0,1,1,monster_sound_10003,monster_resource_10003,2
+몬스터 ID,원소 표식,몬스터 스킬 ID 1,몬스터 스킬 ID 2,몬스터 스킬 ID 3,몬스터 체력,몬스터 공격력,몬스터 속력,몬스터 드랍 골드,몬스터 드랍 실링,몬스터 역할군,몬스터 이름 스트링키,몬스터 사운드,몬스터 스프라이트,주석
+monsterID,elementType,monsterSkill01,monsterSkill02,monsterSkill03,monsterHP,monsterAttack,monsterSpeed,monsterDropGold,monsterDropShilling,monsterClass,monsterName,monsterSound,monsterSprite,desc
+string,enum,string,string,string,float,float,int,int,int,enum,string,string,string,string
+20001,3,40001,40002,40003,800,10,2,15,15,1,monster_name_20001,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,슬라임 몬스터 테이블
+20002,3,40001,40002,40003,800,15,8,20,25,1,monster_name_20002,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,고블린 몬스터 테이블
+20003,3,40001,40002,40003,800,0,0,1,1,0,monster_name_20003,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,허수아비 몬스터 테이블

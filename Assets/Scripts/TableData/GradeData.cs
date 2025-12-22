@@ -7,8 +7,9 @@ public class GradeData : ITableData
     public string characterID;
     public int attackUP;
     public int hpUP;
-    public string changeImg;
     public int needShilling1;
+    public string gradeText;
+    public string changeSkin;
     public string desc;
 
     public string PrimaryID => gradeID.ToString();

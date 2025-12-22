@@ -1,0 +1,11 @@
+스킨 ID,캐릭터ID,전신이미지,얼굴이미지,스프라이트,주석
+skinID,characterID,imageFull,imageFace,skinSprite,desc
+string,string,string,string,string,string
+40001,10001,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,조민기1학년
+40002,10001,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,조민기3학년
+40003,10002,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,황수민1학년
+40004,10002,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,황수민3학년
+40005,10003,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,김현지1학년
+40006,10003,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,김현지3학년
+40007,10004,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,유지윤1학년
+40008,10004,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,유지윤3학년

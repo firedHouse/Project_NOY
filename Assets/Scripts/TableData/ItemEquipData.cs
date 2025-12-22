@@ -7,9 +7,10 @@ public class ItemEquipData : ITableData
     public string itemEquipName;
     public int stateType;
     public float value;
+    public string itemEquipTextUI;
+    public string itemEquipImage;
+    public string itemEquipSound;
     public string desc;
-    public string ItemEquipResource;
-    public string ItemEquipSound;
 
     public string PrimaryID => itemEquipID.ToString();
 }

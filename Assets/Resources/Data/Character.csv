@@ -1,7 +1,7 @@
 캐릭터 ID,해금 여부,공격력,체력,스피드,보유스킬01,보유스킬02,보유스킬03,성장 단계,최대 성장 단계 ,역할군 스트링키,캐릭터 이름 스트링키,캐릭터 별명 스트링키,캐릭터 설명 스트링키,스킨 ID,주석
 characterID,unlock,attackLevel1,HPLevel1,speed,ownedSkill01,ownedSkill02,ownedSkill03,level,maxLevel,position,characterName,characterCodeName,characterInfo,characterSkin,desc
-string,bool,float,float,int,string,string,string,int,enum,string,string,string,string,string,string
-10001,0,100,100,20,30001,30002,30003,0,2,character_type_10001,character_name_10001,character_code_10001,character_desc_10001,40001,조민기 캐릭터 테이블
-10002,0,200,100,20,30001,30002,30003,0,2,character_type_10002,character_name_10002,character_code_10002,character_desc_10002,40003,황수민 캐릭터 테이블
-10003,0,150,100,10,30001,30002,30003,0,2,character_type_10003,character_name_10003,character_code_10003,character_desc_10003,40005,김현지 캐릭터 테이블
-10004,1,100,100,40,30001,30002,30003,0,2,character_type_10004,character_name_10004,character_code_10004,character_desc_10004,40007,유지윤 캐릭터 테이블
+string,bool,float,float,int,string,string,string,int,enum,enum,string,string,string,string,string
+10001,0,100,100,20,30001,30002,30003,0,2,0,character_name_10001,character_code_10001,character_desc_10001,40001,조민기 캐릭터 테이블
+10002,0,200,100,20,30001,30002,30003,0,2,1,character_name_10002,character_code_10002,character_desc_10002,40003,황수민 캐릭터 테이블
+10003,0,150,100,10,30001,30002,30003,0,2,2,character_name_10003,character_code_10003,character_desc_10003,40005,김현지 캐릭터 테이블
+10004,1,100,100,40,30001,30002,30003,0,2,2,character_name_10004,character_code_10004,character_desc_10004,40007,유지윤 캐릭터 테이블

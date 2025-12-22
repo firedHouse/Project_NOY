@@ -872,6 +872,22 @@ PrefabInstance:
       propertyPath: _skillList
       value: 
       objectReference: {fileID: 242948056}
+    - target: {fileID: 5389002483736352096, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389002483736352096, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389002483736352096, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389002483736352096, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 6767646459910431330, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1115,6 +1131,22 @@ PrefabInstance:
     - target: {fileID: 8575598724523649665, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
       propertyPath: m_Name
       value: TestBattleStarter
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962047032088930594, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
+      propertyPath: targetStageID
+      value: 90001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962047032088930594, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
+      propertyPath: 'testPlayerIDs.Array.data[0]'
+      value: 10001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962047032088930594, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
+      propertyPath: 'testPlayerIDs.Array.data[1]'
+      value: 10002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962047032088930594, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
+      propertyPath: 'testPlayerIDs.Array.data[2]'
+      value: 10003
       objectReference: {fileID: 0}
     - target: {fileID: 8962047032088930594, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
       propertyPath: 'enemySpawnPoints.Array.data[0]'

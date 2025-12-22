@@ -13,11 +13,11 @@ public class TestBattleStarter : MonoBehaviour
 {
     [Header("Test Settings")]
     [Tooltip("테스트할 스테이지 ID")]
-    [SerializeField] private string targetStageID = "stage_id_10001";
+    [SerializeField] private string targetStageID = "90001";
 
     //테스트용 아군 ID 목록 (테스트하고 싶은 캐릭터 ID 입력)
     [Tooltip("테스트할 아군 캐릭터 ID 3개")]
-    [SerializeField] private string[] testPlayerIDs = { "character_id_10001", "character_id_10002", "character_id_10003" };
+    [SerializeField] private string[] testPlayerIDs = { "10001", "10002", "10003" };
 
     [Header("Spawn Points")]
     [Tooltip("아군 소환 위치 (0:전열, 1:중열, 2:후열)")]
@@ -54,12 +54,16 @@ public class TestBattleStarter : MonoBehaviour
         int maxAttempts = 100; // 무한루프 방지용 안전장치
         int currentAttempts = 0;
 
+        //12.22 스테이지 연결된 몬스터 그룹 아이디 가져오도록 리팩토링
+        string targetGroupID = stageData.groupID;
+
         //총 3마리 뽑기
         while (spawnedCount<3 && currentAttempts<maxAttempts)
         {
             currentAttempts++;
             //확률 기반 몬스터 뽑기
-            string drawnMonsterID = GetRandomMonsterID(stageData);
+            //12.22 그룹아이디 기반 확률 뽑기 진행
+            string drawnMonsterID = GetRandomMonsterID(targetGroupID);
             MonsterData mData = TableManager.Instance.MonsterTable.Get(drawnMonsterID);
 
             if (mData == null)
@@ -100,7 +104,9 @@ public class TestBattleStarter : MonoBehaviour
                 Monster monster = go.GetComponent<Monster>();
 
                 //몬스터 초기화(ID, 위치, 보스여부)
-                monster.InitializeMonster(drawnMonsterID, (UnitPosition)targetSlotIndex, false);
+                //12.22 변경(스테이지 데이터의 보스ID와 일치할 경우 true)
+                bool isBoss = (drawnMonsterID == stageData.bossID);
+                monster.InitializeMonster(drawnMonsterID, (UnitPosition)targetSlotIndex, isBoss);
 
                 // 슬롯 점유
                 enemySlots[targetSlotIndex] = monster;
@@ -158,23 +164,38 @@ public class TestBattleStarter : MonoBehaviour
     }
 
     //확률 가중치 뽑기 로직
-    private string GetRandomMonsterID(StageData data)
+    //12.22 변경=>  몬스터 그룹 테이블의 가중치를 기준으로 구현
+    private string GetRandomMonsterID(string groupID)
     {
-        //3개 몬스터의 가중치 합 30 30 45  == > 105 30/105
-        float totalWeight = data.value01 + data.value02 + data.value03;
-        float randomPoint = Random.Range(0, totalWeight);
 
-        if (randomPoint <= data.value01)
+        //TableBase의 dataMap.Values를 통해 전체 데이터를 순회하며 해당 groupID를 가진 항목만 필터링
+        //변수명은 그룹후보들? 정도로
+        var groupCandidates = TableManager.Instance.MonsterGroupTable.dataMap.Values
+                    .Where(data => data.groupID == groupID)
+                    .ToList();
+
+        //3개 몬스터의 가중치 합 30 30 45  == > 105 30/105
+        if (groupCandidates.Count == 0)
         {
-            return data.monsterID01;
+            Debug.LogError($"스타터 => 몬스터그룹테이블에서 그룹아이디 '{groupID}'를 찾지 못함");
+            return null;
         }
-        else if (randomPoint <= data.value01 + data.value02)
+
+        //가중치 합 계산
+        float totalRate = groupCandidates.Sum(data => data.spawnRate);
+        float randomPoint = Random.Range(0, totalRate);
+
+        //뽑기
+        float currentRate = 0;
+        foreach (var data in groupCandidates)
         {
-            return data.monsterID02;
+            currentRate += data.spawnRate;
+            if (randomPoint <= currentRate)
+            {
+                return data.monsterID;
+            }
         }
-        else
-        {
-            return data.monsterID03;
-        }
+        return null;
+
     }
 }

@@ -1,5 +1,5 @@
 학년 ID,캐릭터 ID,공격력 상승량,체력 상승량,실링 요구량, 텍스트 스트링키,스킨 변경,주석
-gradeID,characterID,attackUP,hpUP,needShilling1,desc,changeSkin,desc
+gradeID,characterID,attackUP,hpUP,needShilling1,gradeText,changeSkin,desc
 string,string,int,int,int,string,string,string
 50001,10001,10,30,700,grade_desc_40001,,1학년 스킨
 50002,10001,10,30,1000,grade_desc_40002,40002,3학년 스킨

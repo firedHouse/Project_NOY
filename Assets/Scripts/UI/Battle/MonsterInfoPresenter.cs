@@ -11,10 +11,9 @@ public class MonsterInfoPresenter : MonoBehaviour
     // 테스트용 필드
     private float HpChangeValue = 50;
 
-    private void Start()
+    private void Awake()
     {
-        //monsterModel.DataLoaded += OnDataLoaded;
-        //Initialize();
+        //Debug.Log("[MonsterInfoPresenter] Awake");
         BattleManager.Instance.OnBattleSetted += Initialize;
     }
 
@@ -24,13 +23,18 @@ public class MonsterInfoPresenter : MonoBehaviour
         {
             monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
         }
-        //monsterModel.InitializeMonster(monId, position, false);
         Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
         ViewInit();
     }
 
     void ViewInit()
     {
+        if(BattleManager.Instance.EnemyTeam != null)
+        {
+            monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
+        }
+        //Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
+
         monsterModel.OnHpChanged += HandleHpChanged;
         monsterView.UpdateMonsterName(monsterModel.UnitName);
         //monsterView.UpdateElement(monsterModel.elementType);
@@ -44,8 +48,17 @@ public class MonsterInfoPresenter : MonoBehaviour
         monsterView.UpdateHPBar(hpChangedAmount);
     }
 
-    private void HandleMarkChanged(BattleUnit monster, ElementType elementType)
-    {
+    //private void HandleMarkChanged(BattleUnit monster, ElementType elementType)
+    //{
+    //}
 
+    private void HandleDeath(BattleUnit unit)
+    {
+        BattleManager.Instance.OnUnitDead(unit);
+    }
+
+    private void HandlePositionChanged(BattleUnit uni)
+    {
+        monsterView.UpdatePosition(position);
     }
 }

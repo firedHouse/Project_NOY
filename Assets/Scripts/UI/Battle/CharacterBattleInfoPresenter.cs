@@ -10,31 +10,33 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
 
     //Hyeju
     //[SerializeField] private CharacterPosition deathMove;
-    private void Start()
+    private void Awake()
     {
+
+        //Debug.Log("[CharacterBattleInfoPresenter] Awake");
         BattleManager.Instance.OnBattleSetted += Initialize;
 
         //hyeju
         //infoModel.Death += UpdatePosition;
         //BattleManager.Instance.OnPlayerTurnStart += // 플레이어턴이 되면 실행할 이벤트들 (ex. 스킬 출력)
-
-        //Debug.Log("[CharacterBattleInfoPresenter] 초기화");
-        //Initialize();
     }
 
     //뷰 초기 설정
     public void Initialize()
     {
+        Debug.Log("[CharacterBattleInfoPresenter] 초기화");
         characterModel = BattleManager.Instance.PlayerTeam[(int)position];
-        // infoModel.OnDeath += // 사망 메서드;
+        characterModel.OnDeath += HandleDeath;
+        characterModel.OnDeath += HandlePositionChanged;
         characterModel.OnHpChanged += HandleHpChanged;
-        characterModel.OnMarkChanged += HandleMarkChanged;
+        //characterModel.OnMarkChanged += HandleMarkChanged;
 
 
-        characterView.UpdateCharacterName(characterModel.UnitName);
         characterView.SetMaxHP(characterModel.MaxHP);
+        characterView.SetSkillList(characterModel.Skills);
+        characterView.UpdateCharacterName(characterModel.UnitName);
         characterView.UpdateSpeed(characterModel.Speed);
-        //characterView.UpdatePosition(characterModel.Position);
+        characterView.UpdatePosition(characterModel.Position);
     }
 
     private void HandleHpChanged(BattleUnit character, float hpChangedAmount)
@@ -42,11 +44,20 @@ public class CharacterBattleInfoPresenter : MonoBehaviour
         characterView.UpdateHPBar(hpChangedAmount);
     }
 
-    private void HandleMarkChanged(BattleUnit character, ElementType elementType)
+    // 속성 표시 변경 데이터인데 속성이 데이터 테이블에 없어서 지금은 사용 안함
+    //private void HandleMarkChanged(BattleUnit character, ElementType elementType)
+    //{
+    //}
+
+    private void HandleDeath(BattleUnit unit)
     {
-        //infoView.
+        BattleManager.Instance.OnUnitDead(unit);
     }
 
+    private void HandlePositionChanged(BattleUnit unit)
+    {
+        characterView.UpdatePosition(position);
+    }
 
     //Hyeju :
     // Queue<CharacterData> aliveList = new Queue<CharacterData>();

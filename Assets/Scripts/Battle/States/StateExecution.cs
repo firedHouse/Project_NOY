@@ -50,6 +50,13 @@ public class StateExecution : IBattleState
                 continue;
             }
 
+            //스킬 유효성 체크 1
+            if (action.Skill == null || action.Skill.Data == null)
+            {
+                Debug.LogWarning($"익스큐션 {action.User.UnitName}의 스킬 정보가 없어서 패스.");
+                continue;
+            }
+
             //상대 식별 GetOpponentTeam
             List<BattleUnit> targetTeam = bm.GetOpponentTeam(action.User);
 
@@ -70,17 +77,18 @@ public class StateExecution : IBattleState
             string targetNames = string.Join(", ", realTargets.ConvertAll(t => t.UnitName));
             Debug.Log($"[커맨드 실행] {action.User.UnitName} >> {action.Skill.Data.skillName} (대상: {targetNames})");
 
-            float damage = action.Skill.CalculateValue(action.Skill.CalculateValue(action.User.AttackPower));
+            float damage = action.Skill.CalculateValue(action.User.AttackPower);
 
+            foreach (BattleUnit target in realTargets)
+            {
+                target.TakeDamage(damage);
+            }
 
             //약간 딜레이(다음공격대기)
             yield return new WaitForSeconds(0.5f);
-
-            //큐 비면 실행종료 true
-            isExecutionFinished = true;
         }
-
-
+        //큐 비면 실행종료 true
+        isExecutionFinished = true;
     }
 
     //승패조건체크

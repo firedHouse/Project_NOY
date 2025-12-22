@@ -59,12 +59,13 @@ public class BattleManager : Singleton<BattleManager>
         PlayerTeam = players;
         EnemyTeam = enemies;
 
-        // Jihoo
-        // 각 프레젠터 초기화하도록 이벤트로 알림 (아군/적군 공용)
-        BattleSetted();
-
         //Setup 상태 진입
         ChangeState(new StateSetup());
+
+        // Jihoo
+        // 각 프레젠터 초기화하도록 이벤트로 알림 (아군/적군 공용)
+        Debug.Log("[BattleManager] 프레젠터 초기화 이벤트"); // 지우기
+        BattleSetted();
     }
 
     //SkillArea에 따른 타겟 리스트 반환
@@ -124,6 +125,7 @@ public class BattleManager : Singleton<BattleManager>
     {
         if (deadUnit is Character player)
         {
+            Debug.Log("아군 사망");
             if (PlayerTeam.Contains(player))
             {
                 PlayerTeam.Remove(player);
@@ -140,25 +142,6 @@ public class BattleManager : Singleton<BattleManager>
         deadUnit.gameObject.SetActive(false);
     }
 
-
-    //그냥 EnemyTurn의 AI 로직에 GetTargetsBySkill을 사용하여 타겟 추적하도록 작업 이관.
-
-    ////AI가 스킬 사용 가능 여부를 판단 시, 해당 area에 적이 있는지 체크
-    //public bool HasTargetInArea(List<BattleUnit> targetTeam, SkillArea area)
-    //{
-    //    int count = targetTeam.Count;
-    //    switch (area)
-    //    {
-    //        case SkillArea.Front: return count > 0;
-    //        case SkillArea.Mid: return count > 1;
-    //        case SkillArea.Back: return count > 2;
-    //        case SkillArea.FrontMid: return count > 0; //전열만 있어도 사용 가능
-    //        case SkillArea.MidBack: return count > 1;  //중열만 있어도 사용 가능
-    //        case SkillArea.FrontBack: return count > 0;
-    //        case SkillArea.All: return count > 0;
-    //    }
-    //    return false;
-    //}
 
     //상대팀 지정(layer처리안하려고 이렇게)
     public List<BattleUnit> GetOpponentTeam(BattleUnit user)
@@ -180,21 +163,37 @@ public class BattleManager : Singleton<BattleManager>
         TempPlayerActions.Add(newAction);
 
         Debug.Log($"[UI 연동 체크] {user.UnitName}의 커맨드 입력 완료");
+    }
 
-        if (currentState is StatePlayerTurn playerTurn)
+    public void OnPlayerInputFinished()
+    {
+        Debug.Log("[BattleManager] 모든 아군 입력 완료 신호 수신. 턴을 진행합니다.");
+
+        // 현재 상태가 '플레이어 턴'인지 확인하고 턴을 넘김
+        if (currentState is StatePlayerTurn playerTurnState)
         {
-            playerTurn.SetInputComplete();
+            Debug.Log("호출");
+            playerTurnState.SetInputComplete();
+        }
+        else
+        {
+            Debug.LogWarning("[Error] 현재 상태가 StatePlayerTurn이 아닙니다.");
         }
     }
+
     public void NotifyPlayerTurnStart()
     {
         OnPlayerTurnStart?.Invoke(PlayerTeam);
     }
 
+
     // Jihoo
     // 각 프레젠터 초기화하도록 이벤트로 알림 (아군/적군 공용)
     public void BattleSetted()
     {
+        Debug.Log("[BattleManger] 이벤트 실행");
+
         OnBattleSetted?.Invoke();
     }
+
 }

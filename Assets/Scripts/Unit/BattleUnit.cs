@@ -68,6 +68,7 @@ public abstract class BattleUnit : MonoBehaviour
         skills.Clear();
         foreach (var id in skillIDs)
         {
+            Debug.Log($"[Battleunit] {id} ");
             Skill newSkill = new Skill(id);
             //IsValid()가 true일 때만 리스트에 추가
             if (newSkill.IsValid())

@@ -386,8 +386,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBattleInfoView
   characterNameText: {fileID: 5089569390978521581}
-  elementText: {fileID: 8286519927564040532}
-  positionText: {fileID: 8343404767832518688}
+  characterElementText: {fileID: 8286519927564040532}
+  characterPositionText: {fileID: 8343404767832518688}
   characterIllurstration: {fileID: 1500460977427851602}
   characterSpeedText: {fileID: 8636457942724961219}
   characterPowerText: {fileID: 8933048560357571884}

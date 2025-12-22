@@ -5,7 +5,7 @@ using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-public class CharacterPositionView : MonoBehaviour
+ class CharacterPositionView
 {
     //화면에 표시될 박스
     [SerializeField] private GameObject[] _characterBox = new GameObject[3];
@@ -41,35 +41,6 @@ public class CharacterPositionView : MonoBehaviour
                     Debug.Log($"[CharacterPositionView] : 후열 비활성화");
                 }
                     break;
-        }
-
-        CharacterPosSet(unit);
-    }
-
-    public void CharacterPosSet(BattleUnit unit)
-    {
-        switch (currentPosition)
-        {
-            case UnitPosition.Front:
-                {
-                    unit.transform.position = _pos[0].transform.position;
-                    Debug.Log($"[CharacterPositionView] : 전열 재배치");
-                }
-                break;
-
-            case UnitPosition.Mid:
-                {
-                    unit.transform.position = _pos[1].transform.position;
-                    Debug.Log($"[CharacterPositionView] : 중열 재배치");
-                }
-                break;
-
-            case UnitPosition.Back:
-                {
-                    unit.transform.position = _pos[2].transform.position;
-                    Debug.Log($"[CharacterPositionView] : 후열 재배치");
-                }
-                break;
         }
     }
 }

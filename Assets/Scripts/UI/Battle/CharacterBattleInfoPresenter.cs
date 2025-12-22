@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-partial class CharacterBattleInfoPresenter : MonoBehaviour
+public partial class CharacterBattleInfoPresenter : MonoBehaviour
 {
     [SerializeField] private Character characterModel;
     [SerializeField] private CharacterBattleInfoView characterView;
@@ -13,6 +13,7 @@ partial class CharacterBattleInfoPresenter : MonoBehaviour
 
         //Debug.Log("[CharacterBattleInfoPresenter] Awake");
         BattleManager.Instance.OnBattleSetted += Initialize;
+        BattleManager.Instance.OnBattleSetted += DeathCharacter;
     }
 
     //뷰 초기 설정

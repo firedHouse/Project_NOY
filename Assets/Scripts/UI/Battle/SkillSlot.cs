@@ -21,4 +21,9 @@ public class SkillSlot : MonoBehaviour
             button.onClick.AddListener(() => onClickCallback(mySkill));
         }
     }
+
+    public void ChangeButtonAvailable(bool isAvailable)
+    {
+        button.interactable = isAvailable;
+    }
 }

@@ -18,7 +18,7 @@ public class hSkillList : MonoBehaviour
     private void Awake()
     {
         skillUI = new Skill[3];
-
+        SetSkillSlotAvailable(false);
         //_battleUnit.DataLoaded += SkillDataLoad;
     }
     //가져와야 하는 스킬 : 현재 턴 캐릭터의 스킬, 
@@ -36,6 +36,15 @@ public class hSkillList : MonoBehaviour
                 slots[i].Setup(skillUI[i], onSkillClicked);
             }
 
+        }
+    }
+
+    // 스킬 버튼 활성화 여부 변경
+    public void SetSkillSlotAvailable(bool isAvailable)
+    {
+        foreach(SkillSlot slot in slots)
+        {
+            slot.ChangeButtonAvailable(isAvailable);
         }
     }
 }

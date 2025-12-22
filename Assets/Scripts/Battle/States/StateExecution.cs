@@ -8,10 +8,13 @@ public class StateExecution : IBattleState
 {
     //실행완료했는지?
     private bool isExecutionFinished = false;
+    private SkillProcesser skillProcesser;
 
     public void Enter(BattleManager bm)
     {
         isExecutionFinished = false;
+
+        skillProcesser = Object.FindObjectOfType<SkillProcesser>();
         //행동처리 코루틴 시작
         bm.StartCoroutine(ProcessActionQueue(bm));
     }
@@ -78,10 +81,12 @@ public class StateExecution : IBattleState
             Debug.Log($"[커맨드 실행] {action.User.UnitName} >> {action.Skill.Data.skillName} (대상: {targetNames})");
 
             float damage = action.Skill.CalculateValue(action.User.AttackPower);
-
+            List<BattleUnit> opponentTeam = bm.GetOpponentTeam(action.User);
             foreach (BattleUnit target in realTargets)
             {
                 target.TakeDamage(damage);
+
+                skillProcesser.ApplyElement(action.User, target, action.Skill, opponentTeam.ToArray());
             }
 
             //약간 딜레이(다음공격대기)

@@ -1117,6 +1117,22 @@ PrefabInstance:
       value: TestBattleStarter
       objectReference: {fileID: 0}
     - target: {fileID: 8962047032088930594, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
+      propertyPath: targetStageID
+      value: 90001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962047032088930594, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
+      propertyPath: 'testPlayerIDs.Array.data[0]'
+      value: 10001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962047032088930594, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
+      propertyPath: 'testPlayerIDs.Array.data[1]'
+      value: 10002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962047032088930594, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
+      propertyPath: 'testPlayerIDs.Array.data[2]'
+      value: 10003
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962047032088930594, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
       propertyPath: 'enemySpawnPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 1028993864}

@@ -8,8 +8,9 @@ public class GradeData : ITableData
     public int attackUP;
     public int hpUP;
     public int needShilling1;
-    public string desc;
+    public string gradeText;
     public string changeSkin;
+    public string desc;
 
     public string PrimaryID => gradeID.ToString();
 }

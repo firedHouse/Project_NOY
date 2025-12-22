@@ -13,7 +13,7 @@ public class CharacterData : ITableData
     public string ownedSkill03;
     public int level;
     public int maxLevel;
-    public string position;
+    public int position;
     public string characterName;
     public string characterCodeName;
     public string characterInfo;

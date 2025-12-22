@@ -7,6 +7,9 @@ public static class ReactionDamageProcesser
     //증발 데미지
     public static void ApplyVaporize(BattleUnit target)
     {
+        if(target == null || target.IsDead)
+        {  return; }
+
         target.TakeDamage(target.MaxHP * 0.1f);
         Debug.Log("증발 데미지");
     }
@@ -22,13 +25,13 @@ public static class ReactionDamageProcesser
         }
     }
 
-    public static void Overload(IEnumerable<BattleUnit> enemyTeam)
+    public static void ApplyOverload(IEnumerable<BattleUnit> enemyTeam)
     {
         foreach(var enemy in enemyTeam)
         {
             if (!enemy.IsDead)
             enemy.TakeDamage(enemy.MaxHP * 0.04f);
-            Debug.Log("과부하 즉시 데미지");
+            Debug.Log("과부하 데미지");
         }
     }
 }

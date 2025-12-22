@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class CharacterBattleInfoView : MonoBehaviour
 {
     [SerializeField] private Text characterNameText;
-    //[SerializeField] private Text characterElementText;
+    [SerializeField] private Text characterElementText;
     [SerializeField] private Text characterPositionText;
     [SerializeField] private Image characterIllurstration;
     [SerializeField] private Text characterSpeedText;
@@ -21,10 +21,10 @@ public class CharacterBattleInfoView : MonoBehaviour
     }
 
     // 속성 표시 변경 데이터인데 속성이 데이터 테이블에 없어서 지금은 사용 안함
-    //public void UpdateElement()
-    //{
-    //    //elementText.text = 
-    //}
+    public void UpdateElement(string text)
+    {
+        characterElementText.text = text;
+    }
 
     public void SetMaxHP(float maxHP)
     {

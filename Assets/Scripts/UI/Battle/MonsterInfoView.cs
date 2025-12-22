@@ -1,11 +1,11 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using UnityEngine.UI;
 
 public class MonsterInfoView : MonoBehaviour
 {
     [SerializeField] private Text monsterNameText;
     [SerializeField] private Text elementText;
-    [SerializeField] private Text posistionText;
+    [SerializeField] private Text classText;
     [SerializeField] private Text monsterSpeedText;
     [SerializeField] private Text monsterPowerText;
     [SerializeField] private Slider HPSlider;
@@ -15,21 +15,28 @@ public class MonsterInfoView : MonoBehaviour
         monsterNameText.text = text;
     }
 
-    public void UpdateElement(int type)
+    public void UpdateElement(string text)
     {
-        elementText.text = type.ToString();
+        elementText.text = text;
     }
 
+    //position : Ï†ÑÏó¥Ï§ëÏó¥ÌõÑÏó¥
     public void UpdatePosition(UnitPosition position)
     {
-        posistionText.text = position.ToString();
+    }
+
+    //ÌÉ±ÎîúÌûê
+    public void UpdateCalss(MonsterClass role)
+    {
+        classText.text = role.ToString();
+        Debug.Log($"{role.ToString()}");
     }
 
     public void SetMaxHP(float maxHP)
     {
         HPSlider.maxValue = maxHP;
         HPSlider.value = maxHP;
-        Debug.Log($"[MonsterInfoView] √÷¥Î Hp º≥¡§ øœ∑·({HPSlider.maxValue})");
+        Debug.Log($"[MonsterInfoView] ÏµúÎåÄ Hp ÏÑ§Ï†ï ÏôÑÎ£å({HPSlider.maxValue})");
     }
 
     public void UpdateHPBar(float currentHP)
@@ -39,11 +46,11 @@ public class MonsterInfoView : MonoBehaviour
 
     public void UpdateSpeed(int monsterSpeed)
     {
-        monsterSpeedText.text = "Ω∫««µÂ : " + monsterSpeed.ToString();
+        monsterSpeedText.text = "Ïä§ÌîºÎìú : " + monsterSpeed.ToString();
     }
 
     public void UpdatePower(float monsterPower)
     {
-        monsterPowerText.text = "∞¯∞›∑¬ : " + monsterPower.ToString();
+        monsterPowerText.text = "Í≥µÍ≤©Î†• : " + monsterPower.ToString();
     }
 }

@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
-public class MonsterInfoPresenter : MonoBehaviour
+partial class MonsterInfoPresenter : MonoBehaviour
 {
     [SerializeField] private Monster monsterModel;
     [SerializeField] private MonsterInfoView monsterView;
+    [SerializeField] private MonsterPositionView monsterMoveView;
+
     //private MonsterData monsterData;
     [SerializeField] private UnitPosition position;
 
@@ -35,11 +37,15 @@ public class MonsterInfoPresenter : MonoBehaviour
         //Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
 
         monsterModel.OnHpChanged += HandleHpChanged;
-        monsterView.UpdateMonsterName(monsterModel.UnitName);
-        //monsterView.UpdateElement(monsterModel.elementType);
-        monsterView.UpdateSpeed(monsterModel.Speed);
         //monsterView.UpdatePower(monsterModel.Monster.monsterAttack);
+
         monsterView.SetMaxHP(monsterModel.MaxHP);
+        monsterView.UpdateMonsterName(monsterModel.UnitName);
+        monsterView.UpdateSpeed(monsterModel.Speed);
+
+        monsterView.UpdatePosition(monsterModel.Position);
+        monsterView.UpdateElement(monsterModel.CurrentMark.ToString());
+        monsterView.UpdateCalss(monsterModel.Role);
     }
 
     private void HandleHpChanged(BattleUnit monster, float hpChangedAmount)
@@ -60,4 +66,5 @@ public class MonsterInfoPresenter : MonoBehaviour
     {
         monsterView.UpdatePosition(position);
     }
+
 }

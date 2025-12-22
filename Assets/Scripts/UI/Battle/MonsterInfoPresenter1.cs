@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.TextCore.Text;
-using static UnityEditor.PlayerSettings;
+﻿using UnityEngine;
 
-partial class CharacterBattleInfoPresenter
+partial class MonsterInfoPresenter
 {
-    //체력 닳았을때 체크
-
     public void DeathCharacter()
     {
-        characterModel.OnDeath += PosReset;
+        monsterModel.OnDeath += PosReset;
     }
 
     public void PosReset(BattleUnit unit)
@@ -20,12 +14,10 @@ partial class CharacterBattleInfoPresenter
         //사망 캐릭터 리스트에서 제거
         BattleManager.Instance.OnUnitDead(unit);
         //포지션 업데이트
-        characterView.UpdatePosition(unit.Position);
+        monsterView.UpdatePosition(unit.Position);
 
         //UI 비활성화
-        characterMoveView.Inactive(unit.Position);
+        monsterMoveView.MonsterInactive(unit.Position);
         //캐릭터 위치 재설정
     }
 }
-
-

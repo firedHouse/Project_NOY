@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public partial class CharacterBattleInfoPresenter : MonoBehaviour
 {
     [SerializeField] private Character characterModel;
     [SerializeField] private CharacterBattleInfoView characterView;
+    [SerializeField] private CharacterPositionView characterMoveView;
     //private CharacterData characterData;
     [SerializeField] private UnitPosition position;
 
@@ -13,6 +15,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
 
         //Debug.Log("[CharacterBattleInfoPresenter] Awake");
         BattleManager.Instance.OnBattleSetted += Initialize;
+        BattleManager.Instance.OnBattleSetted += DeathCharacter;
     }
 
     //뷰 초기 설정
@@ -31,6 +34,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         characterView.UpdateCharacterName(characterModel.UnitName);
         characterView.UpdateSpeed(characterModel.Speed);
         characterView.UpdatePosition(characterModel.Position);
+        characterView.UpdateElement(characterModel.CurrentMark.ToString());
     }
 
     private void HandleHpChanged(BattleUnit character, float hpChangedAmount)
@@ -52,5 +56,6 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
     {
         characterView.UpdatePosition(position);
     }
+
 }
 

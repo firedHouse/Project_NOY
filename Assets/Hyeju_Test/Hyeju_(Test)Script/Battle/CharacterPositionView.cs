@@ -14,45 +14,27 @@ public class CharacterPositionView : MonoBehaviour
     bool[] isEnpty = new bool[3];
 
     //사망 캐릭터 박스 비활성화
-    public void Inactive()
+    public void Inactive(int i)
     {
+        //사망 캐릭터 번호와 같은 번호의 박스 비활성화
+        int posNum = i;
         //칸 비활성화
-        if (_characterBox[2].activeSelf == true)
+        if (posNum == 2)
         {
             _characterBox[2].SetActive(false);
             Debug.Log($"[CharacterPositionView] : 후열 비활성화");
             return;
         }
-        if (_characterBox[1].activeSelf == true)
+        if (posNum == 1)
         {
             _characterBox[1].SetActive(false);
             Debug.Log($"[CharacterPositionView] : 중열 비활성화");
             return;
         }
-        if (_characterBox[0].activeSelf == true)
+        if (posNum == 0)
         {
             _characterBox[0].SetActive(false);
             Debug.Log($"[CharacterPositionView] : 전열 비활성화");
         }
-    }
-
-    public void IsEnpty(Character deathChar)
-    {
-        isEnpty[(int)deathChar.Position - 1] = true;
-        Debug.Log($"[CharacterPositionView] : 포지션 이넘값{(int)deathChar.Position - 1}");
-    }
-
-    //3번 칸부터 데이터 작성
-    //[2] = 왼쪽칸
-    //[1] = 중앙
-    //[0] = 오른쪽칸
-
-    //캐릭터 이동 누가?
-    // 1. 오브젝트가 이동
-    // 2. UI 이미지가 이동
-
-    //체력 닳을때 체크 (캐릭터 체력 구독, 실행해야 함.)
-    public void ReSetPosition(Character character, GameObject[] pos)
-    {
     }
 }

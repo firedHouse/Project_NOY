@@ -1,5 +1,4 @@
-﻿using UnityEditor.U2D.Animation;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MonsterInfoPresenter : MonoBehaviour
 {

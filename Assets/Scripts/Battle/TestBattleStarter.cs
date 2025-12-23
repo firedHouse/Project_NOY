@@ -17,7 +17,7 @@ public class TestBattleStarter : MonoBehaviour
 
     //테스트용 아군 ID 목록 (테스트하고 싶은 캐릭터 ID 입력)
     [Tooltip("테스트할 아군 캐릭터 ID 3개")]
-    [SerializeField] private string[] testPlayerIDs = { "10001", "10002", "10003" };
+    [SerializeField] private string[] testPlayerIDs = { "10001", "10004", "10007" };
 
     [Header("Spawn Points")]
     [Tooltip("아군 소환 위치 (0:전열, 1:중열, 2:후열)")]
@@ -154,6 +154,10 @@ public class TestBattleStarter : MonoBehaviour
 
         if (finalEnemies.Count > 0 && finalPlayers.Count > 0)
         {
+            //12.22 추가 => 배틀스타터가 가지고 있는 포지션 리스트를 배틀매니저에게 전달
+            BattleManager.Instance.PlayerSpawnPoints = new List<Transform>(playerSpawnPoints);
+            BattleManager.Instance.EnemySpawnPoints = new List<Transform>(enemySpawnPoints);
+
             BattleManager.Instance.StartBattle(finalPlayers, finalEnemies);
         }
         else
@@ -165,37 +169,42 @@ public class TestBattleStarter : MonoBehaviour
 
     //확률 가중치 뽑기 로직
     //12.22 변경=>  몬스터 그룹 테이블의 가중치를 기준으로 구현
+    //12.23 로직 수정(테이블 데이터 가로형 변경에 따른 데이터 불러오기 방식 수정)
     private string GetRandomMonsterID(string groupID)
     {
+        //그룹 데이터 가져오기 (groupID = PrimaryID 으로 변경되었으므로 바로 Get)
+        MonsterGroupData groupData = TableManager.Instance.MonsterGroupTable.Get(groupID);
 
-        //TableBase의 dataMap.Values를 통해 전체 데이터를 순회하며 해당 groupID를 가진 항목만 필터링
-        //변수명은 그룹후보들? 정도로
-        var groupCandidates = TableManager.Instance.MonsterGroupTable.dataMap.Values
-                    .Where(data => data.groupID == groupID)
-                    .ToList();
-
-        //3개 몬스터의 가중치 합 30 30 45  == > 105 30/105
-        if (groupCandidates.Count == 0)
+        if (groupData == null)
         {
-            Debug.LogError($"스타터 => 몬스터그룹테이블에서 그룹아이디 '{groupID}'를 찾지 못함");
+            Debug.LogError($"MonsterGroupTable에서 '{groupID}'를 찾을 수 없읆...");
+            return null;
+        }
+
+        //유효한 몬스터/확률 리스트로 변환 (확장메서드)
+        var candidates = groupData.GetSpawnList();
+
+        if (candidates.Count == 0)
+        {
+            Debug.LogWarning($"그룹 {groupID}에 소환 가능한 몬스터가 없읆...");
             return null;
         }
 
         //가중치 합 계산
-        float totalRate = groupCandidates.Sum(data => data.spawnRate);
+        float totalRate = candidates.Sum(x => x.rate);
         float randomPoint = Random.Range(0, totalRate);
 
-        //뽑기
+        //뽑기 진행
         float currentRate = 0;
-        foreach (var data in groupCandidates)
+        foreach (var item in candidates)
         {
-            currentRate += data.spawnRate;
+            currentRate += item.rate;
             if (randomPoint <= currentRate)
             {
-                return data.monsterID;
+                return item.id;
             }
         }
-        return null;
-
+        //오차 발생 시 마지막 항목 반환
+        return candidates.Last().id;
     }
 }

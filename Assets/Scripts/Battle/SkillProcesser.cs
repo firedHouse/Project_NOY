@@ -5,6 +5,20 @@ public class SkillProcesser : MonoBehaviour
 
     //과부하는 3턴 고정
     private const int overloadDuration = 3;
+    public static SkillProcesser Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
     //스킬 적용 메서드
     public void ApplyElement(BattleUnit caster, BattleUnit target, Skill skill, BattleUnit[] enemyTeam)

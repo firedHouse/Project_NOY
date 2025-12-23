@@ -56,3 +56,10 @@ public enum SkillType
     AttackDebuff = 5,
     SpeedDebuff = 6
 }
+
+public enum UseItemType
+{
+    HPUp = 0,
+    PPUp = 1,
+    // Revive = 2
+}

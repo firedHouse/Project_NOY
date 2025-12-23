@@ -14,4 +14,5 @@ public class ItemData : ITableData
     public string desc;
 
     public string PrimaryID => itemID.ToString();
+    public UseItemType useItemType => (UseItemType)stateType;
 }

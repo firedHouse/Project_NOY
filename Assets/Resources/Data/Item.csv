@@ -1,6 +1,8 @@
 소비 아이템 ID,소비 아이템 가격,상승 종류,상승 수치,소비 아이템 이름 스트링키,소비아이템 설명,아이템 이미지,아이템 사용 사운드,주석
 itemID,itemCost,stateType,value,itemName,itemTextUI,itemImage,itemSound,desc
 string,int,enum,int,string,string,string,string,string
-70001,50,0,20,item_name_70001,item_desc_70001,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,소형회복약
-70002,80,0,50,item_name_70002,item_desc_70002,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,중형회복약
-70003,100,1,10,item_name_70003,item_desc_70003,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,PP회복약
+70001,50,0,150,소형회복약,item_desc_70001,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,소형회복약
+70002,100,0,300,중형회복약,item_desc_70002,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,중형회복약
+70003,100,1,10,PP회복약,item_desc_70003,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,PP회복약
+70004,300,1,20,중형PP회복약,item_desc_70004,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,중형PP회복약
+70005,1000,0,500,부활의조각,item_desc_70005,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,부활의조각

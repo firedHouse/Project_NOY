@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
-//¾×¼Ç Å¥ Çàµ¿À» ¼ø¼­´ë·Î ÇÏ³ª¾¿ ²¨³»¼­ ½ÇÁ¦·Î ¶§¸®°í, Á×À¸¸é ÀÚ¸®¸¦ ´ç±â´Â(Shift) ·ÎÁ÷ÀÌ ¼ö
+//ï¿½×¼ï¿½ Å¥ ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(Shift) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 public class StateExecution : IBattleState
 {
-    //½ÇÇà¿Ï·áÇß´ÂÁö?
+    //ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ß´ï¿½ï¿½ï¿½?
     private bool isExecutionFinished = false;
     private SkillProcesser skillProcesser;
 
@@ -15,21 +16,21 @@ public class StateExecution : IBattleState
         isExecutionFinished = false;
 
         skillProcesser = Object.FindFirstObjectByType<SkillProcesser>();
-        //Çàµ¿Ã³¸® ÄÚ·çÆ¾ ½ÃÀÛ
+        //ï¿½àµ¿Ã³ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½ï¿½ï¿½
         bm.StartCoroutine(ProcessActionQueue(bm));
     }
 
     public void Execute(BattleManager bm)
     {
-        //¸ðµç Çàµ¿ÀÌ ³¡³ª¸é
+        //ï¿½ï¿½ï¿½ ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (isExecutionFinished)
         {
-            //½ÂÆÐ Ã¼Å©(ÇÑ ÂÊ Àü¸ê)
+            //ï¿½ï¿½ï¿½ï¿½ Ã¼Å©(ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
             if (CheckWinLoss(bm))
             {
                 return;
             }
-            //½ÂÆÐ ¾È ³µÀ¸¸é ´ÙÀ½ ÇÃ·¹ÀÌ¾î ¼±ÅÃ ÅÏ ½ÃÀÛ
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             bm.ChangeState(new StatePlayerTurn());
         }
     }
@@ -41,74 +42,110 @@ public class StateExecution : IBattleState
 
     private IEnumerator ProcessActionQueue(BattleManager bm)
     {
-        //¾×¼ÇÅ¥ ´Ù ºüÁú ¶§±îÁö ¹Ýº¹
+        //ï¿½×¼ï¿½Å¥ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½
         while (bm.ActionQueue.Count > 0)
         {
-            //Å¥¿¡¼­ Çàµ¿ ²¨³»°í
+            //Å¥ï¿½ï¿½ï¿½ï¿½ ï¿½àµ¿ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             BattleAction action = bm.ActionQueue.Dequeue();
-            
-            //°ø°ÝÀÚ »ýÁ¸È®ÀÎ
+
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È®ï¿½ï¿½
             if (action.User == null || action.User.IsDead)
             {
                 continue;
             }
 
-            //½ºÅ³ À¯È¿¼º Ã¼Å© 1
+            //ï¿½ï¿½Å³ ï¿½ï¿½È¿ï¿½ï¿½ Ã¼Å© 1
             if (action.Skill == null || action.Skill.Data == null)
             {
-                Debug.LogWarning($"ÀÍ½ºÅ¥¼Ç {action.User.UnitName}ÀÇ ½ºÅ³ Á¤º¸°¡ ¾ø¾î¼­ ÆÐ½º.");
+                Debug.LogWarning($"ï¿½Í½ï¿½Å¥ï¿½ï¿½ {action.User.UnitName}ï¿½ï¿½ ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î¼­ ï¿½Ð½ï¿½.");
                 continue;
             }
 
-            //»ó´ë ½Äº° GetOpponentTeam
+            //ï¿½ï¿½ï¿½ ï¿½Äºï¿½ GetOpponentTeam
             List<BattleUnit> targetTeam = bm.GetOpponentTeam(action.User);
 
-            //ÇöÀç ³²Àº ´ë¿­¿¡ ¸ÂÃç ½ÇÁ¦·Î ¶§¸± Å¸°Ù °¡Á®¿À±â(»ç¸Á µî)
-            //-> ÀÌÀü °ø°ÝÀ¸·Î À¯´ÖÀÌ Á×¾î ´ç°ÜÁ³À¸¸é ¹Ù²ï À§Ä¡ÀÇ À¯´ÖÀÌ Å¸°ÙÀÌ µÊ.
+            //12.23 ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ ï¿½ï¿½Å³ï¿½Ì¸ï¿½ ï¿½Æ±ï¿½ Å¸ï¿½ÙµÇµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+            SkillType sType = (SkillType)action.Skill.Data.skillType;
+            if (sType == SkillType.Heal || sType == SkillType.SpeedBuff ||
+               sType == SkillType.AttackBuff || sType == SkillType.SpeedBuff)
+            {
+                if (action.User is Monster)
+                {
+                    targetTeam = bm.EnemyTeam.Cast<BattleUnit>().ToList();
+                }
+                else
+                {
+                    targetTeam = bm.PlayerTeam.Cast<BattleUnit>().ToList();
+                }
+            }
+
+
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ë¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ ï¿½ï¿½)
+            //-> ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
             List<BattleUnit> realTargets = bm.GetTargetsBySkill(targetTeam, action.Skill.Data);
 
-            //ºó ¹üÀ§¸é ¹Ì½ºÃ³¸®
+            //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì½ï¿½Ã³ï¿½ï¿½
             if (realTargets.Count == 0)
             {
-                Debug.Log($"{action.User.UnitName}ÀÇ °ø°Ý ºø³ª°¨! (´ë»ó ¾øÀ½)");
-                //ÃßÈÄ Miss UI µî ¿¬°á
+                Debug.Log($"{action.User.UnitName}ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! (ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)");
+                //ï¿½ï¿½ï¿½ï¿½ Miss UI ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 continue;
             }
 
-            //°ø°Ý ¿¬Ãâ, Áö±ÝÀº ·Î±×¸¸ Ãâ·Â
-            //ÀÎ°ÔÀÓ ·Î±× Ãâ·Â¿ë ¸®½ºÆ® ÄÁ¹öÆ® -> ¹®ÀÚ¿­·Î º¯È¯
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½
+            //ï¿½Î°ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Æ® -> ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
             string targetNames = string.Join(", ", realTargets.ConvertAll(t => t.UnitName));
-            Debug.Log($"[Ä¿¸Çµå ½ÇÇà] {action.User.UnitName} >> {action.Skill.Data.skillName} (´ë»ó: {targetNames})");
+            Debug.Log($"[Ä¿ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½] {action.User.UnitName} >> {action.Skill.Data.skillName} (ï¿½ï¿½ï¿½: {targetNames})");
 
-            float damage = action.Skill.CalculateValue(action.User.AttackPower);
-            List<BattleUnit> opponentTeam = bm.GetOpponentTeam(action.User);
+            //12.23 damage => calculatedValue ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+            float calculatedValue = action.Skill.CalculateValue(action.User.AttackPower);
+
+            //ï¿½ï¿½ Å¸ï¿½Ôºï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             foreach (BattleUnit target in realTargets)
             {
-                target.TakeDamage(damage);
+                switch (sType)
+                {
+                    case SkillType.Attack:
+                        target.TakeDamage(calculatedValue);
+                        break;
 
-                skillProcesser.ApplyElement(action.User, target, action.Skill, opponentTeam.ToArray());
+                    case SkillType.Heal:
+                        target.Heal(calculatedValue);
+                        break;
+
+                    case SkillType.Barrier:
+                        target.AddShield(calculatedValue);
+                        break;
+
+                    case SkillType.AttackBuff:
+                    case SkillType.SpeedBuff:
+                    case SkillType.AttackDebuff:
+                    case SkillType.SpeedDebuff:
+                        target.ApplyBuff(sType, calculatedValue);
+                        break;
+                }
             }
 
-            //¾à°£ µô·¹ÀÌ(´ÙÀ½°ø°Ý´ë±â)
-            yield return new WaitForSeconds(0.5f);
+            //ï¿½à°£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½)
+            yield return new WaitForSeconds(1.0f);
         }
 
         bm.ChangeState(new StateOverload());
 
-        //Å¥ ºñ¸é ½ÇÇàÁ¾·á true
+        //Å¥ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ true
         isExecutionFinished = true;
     }
 
-    //½ÂÆÐÁ¶°ÇÃ¼Å©
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼Å©
     private bool CheckWinLoss(BattleManager bm)
     {
-        //Àû Àü¸ê -> ½Â¸®
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -> ï¿½Â¸ï¿½
         if (bm.EnemyTeam.Count == 0)
         {
             bm.ChangeState(new StateEnd(true));
             return true;
         }
-        //¾Æ±º Àü¸ê -> ÆÐ¹è
+        //ï¿½Æ±ï¿½ ï¿½ï¿½ï¿½ï¿½ -> ï¿½Ð¹ï¿½
         if (bm.PlayerTeam.Count == 0)
         {
             bm.ChangeState(new StateEnd(false));

@@ -8,6 +8,7 @@ public class CharacterData : ITableData
     public float attackLevel1;
     public float HPLevel1;
     public int speed;
+    public int elementUI;
     public string ownedSkill01;
     public string ownedSkill02;
     public string ownedSkill03;
@@ -16,6 +17,7 @@ public class CharacterData : ITableData
     public int position;
     public string characterName;
     public string characterCodeName;
+    public string characterDialogue;
     public string characterInfo;
     public string characterSkin;
     public string desc;

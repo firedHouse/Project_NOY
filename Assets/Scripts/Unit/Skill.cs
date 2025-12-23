@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 //실제 게임 오브젝트가 아닌 스킬 객체 뼈대
-//추후 커맨드패턴으로 다 변경할 수도
 [System.Serializable]
 public class Skill
 {
@@ -51,13 +50,14 @@ public class Skill
     }
 
     //스킬 데미지 계산식
-    public float CalculateValue(float userStat)
+    public float CalculateValue(float userAttackPower)
     {
         if (Data == null)
         {
             return 0f;
         }
-        return Data.skillBaseValue + (userStat * Data.skillFactor);
+        float finalValue = Data.skillBaseValue + (userAttackPower * Data.skillFactor);
+        return finalValue;
     }
 
     //PP 회복 (아이템 사용 등)

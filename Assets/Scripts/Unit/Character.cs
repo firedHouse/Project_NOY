@@ -37,6 +37,7 @@ public class Character : BattleUnit
         };
         LoadSkills(skillIDs);
     }
+
     //스킬 사용 함수 (인덱스: 0, 1, 2)
     public void UseSkill(int skillIndex, BattleUnit target)
     {
@@ -56,6 +57,7 @@ public class Character : BattleUnit
         else
         {
             Debug.Log("PP 부족!");
+
         }
     }
 

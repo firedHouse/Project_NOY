@@ -16,7 +16,7 @@ public class SkillData : ITableData
     public string skillTooltip;
     public string skillSound;
     public string skillIcon;
-    public string skillSprite;
+    public string skillEffect;
     public string desc;
 
     public string PrimaryID => skillID.ToString();

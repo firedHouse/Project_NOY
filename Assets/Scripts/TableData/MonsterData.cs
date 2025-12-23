@@ -5,6 +5,7 @@ public class MonsterData : ITableData
 {
     public string monsterID;
     public int elementType;
+    public int elementUI;
     public string monsterSkill01;
     public string monsterSkill02;
     public string monsterSkill03;

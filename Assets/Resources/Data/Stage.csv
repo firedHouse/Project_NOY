@@ -1,5 +1,6 @@
-스테이지 ID,몬스터 그룹,보스 소환,배경 이미지,배경음악,주석
+스테이지 ID,몬스터 소환그룹,보스 소환,배경 이미지,배경음악,주석
 stageID,groupID,bossID,image,sound,desc
 string,string,string,string,string,string
-90001,100001,20003,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,사막지역
-90002,100002,20002,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,정글지역
+90001,100001,20901,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,침식지역
+90002,100002,20902,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,유적지역
+90002,100003,20903,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,공장지역

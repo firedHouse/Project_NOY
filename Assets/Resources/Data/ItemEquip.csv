@@ -1,11 +1,7 @@
 유물 아이템 ID,유물 아이템 이름,상승 종류 ,상승 수치 ,아이템 설명,아이템 이미지,아이템 사용 사운드,주석
 itemEquipID,itemEquipName,stateType,value,itemEquipTextUI,itemEquipImage,itemEquipSound,desc
 string,string,enum,float,string,string,string,string
-80001,equip_id_80001,0,0.5,equip_textui_80001,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,여신의눈물
-80002,equip_id_80002,0,0.1,equip_textui_80002,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,커피
-80003,equip_id_80003,1,0.15,equip_textui_80003,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,워터 스니커즈
-80004,equip_id_80004,2,0.3,equip_textui_80004,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,솔라리스 코어
-80005,equip_id_80005,120,0.2,equip_textui_80005,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,오버드라이브
-80006,equip_id_80006,0,1,equip_textui_80006,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,나이름뭐지
-80007,equip_id_80007,1,1,equip_textui_80007,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,난뭘까
-80008,equip_id_80008,2,1,equip_textui_80008,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,안녕하세요
+80001,여신의눈물,0,0.6,equip_textui_80001,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,여신의눈물
+80002,커피,0,0.6,equip_textui_80002,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,커피
+80003,워터 스니커즈,1,0.6,equip_textui_80003,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,워터 스니커즈
+80004,솔라리스 코어,120,0.5,equip_textui_80004,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,솔라리스 코어

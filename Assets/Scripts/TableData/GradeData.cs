@@ -8,7 +8,7 @@ public class GradeData : ITableData
     public int attackUP;
     public int hpUP;
     public int needShilling1;
-    public string gradeText;
+    public string gradeInfo;
     public string changeSkin;
     public string desc;
 

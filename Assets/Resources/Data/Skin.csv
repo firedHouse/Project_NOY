@@ -1,11 +1,21 @@
 스킨 ID,캐릭터ID,전신이미지,얼굴이미지,스프라이트,주석
 skinID,characterID,imageFull,imageFace,skinSprite,desc
 string,string,string,string,string,string
-40001,10001,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,조민기1학년
-40002,10001,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,조민기3학년
-40003,10002,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,황수민1학년
-40004,10002,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,황수민3학년
-40005,10003,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,김현지1학년
-40006,10003,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,김현지3학년
-40007,10004,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,유지윤1학년
-40008,10004,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,유지윤3학년
+40001,10001,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,블레이즈 1학년
+40002,10001,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,블레이즈 3학년
+40003,10002,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,마린 1학년
+40004,10002,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,마린 3학년
+40005,10003,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,라이더 1학년
+40006,10003,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,라이더 3학년
+40007,10004,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,셰프 1학년
+40008,10004,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,셰프 3학년
+40009,10005,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,닥터 린 1학년
+40010,10005,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,닥터 린 3학년
+40011,10006,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,테이저 1학년
+40012,10006,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,테이저 3학년
+40013,10007,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,아리아 1학년
+40014,10007,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,아리아 3학년
+40015,10008,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,레이니 1학년
+40016,10008,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,레이니 3학년
+40017,10009,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,코드 1학년
+40018,10009,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,코드 3학년

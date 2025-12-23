@@ -22,6 +22,11 @@ public class BattleManager : Singleton<BattleManager>
     public List<BattleAction> TempPlayerActions { get; private set; } = new List<BattleAction>();
     public List<BattleAction> TempEnemyActions { get; private set; } = new List<BattleAction>();
 
+    //12.22
+    //위치 정보 저장용 변수 추가(TestBattleStarter 에서 가져옴)
+    public List<Transform> PlayerSpawnPoints;
+    public List<Transform> EnemySpawnPoints;
+
 
     //프레젠터 이벤트
     public event Action<List<Character>> OnPlayerTurnStart;
@@ -58,6 +63,20 @@ public class BattleManager : Singleton<BattleManager>
     {
         PlayerTeam = players;
         EnemyTeam = enemies;
+
+        //12.22 시프트 기능 구현을 위한 사망 이벤트 연결
+        foreach (var player in PlayerTeam)
+        {
+            //중복 연결 방지를 위해 뺐다가 다시 연결
+            player.OnDeath -= OnUnitDead;
+            player.OnDeath += OnUnitDead;
+        }
+
+        foreach (var enemy in EnemyTeam)
+        {
+            enemy.OnDeath -= OnUnitDead;
+            enemy.OnDeath += OnUnitDead;
+        }
 
         //Setup 상태 진입
         ChangeState(new StateSetup());
@@ -123,23 +142,47 @@ public class BattleManager : Singleton<BattleManager>
     //리스트에서 제거하면 끝
     public void OnUnitDead(BattleUnit deadUnit)
     {
-        if (deadUnit is Character player)
+        bool isPlayer = deadUnit is Character;
+
+        if (isPlayer)
         {
-            Debug.Log("아군 사망");
-            if (PlayerTeam.Contains(player))
+            if (PlayerTeam.Contains((Character)deadUnit))
             {
-                PlayerTeam.Remove(player);
-                Debug.Log($"아군 {player.UnitName}");
+                PlayerTeam.Remove((Character)deadUnit);
+                Debug.Log($"아군 {deadUnit.UnitName} 사망");
+                //당기기
+                UpdateTeamPositions(PlayerTeam, PlayerSpawnPoints);
             }
         }
-        else if (deadUnit is Monster enemy)
+        else
         {
-            if (EnemyTeam.Contains(enemy))
+            if (EnemyTeam.Contains((Monster)deadUnit))
             {
-                EnemyTeam.Remove(enemy);
+                EnemyTeam.Remove((Monster)deadUnit);
+                Debug.Log($"몬스터 {deadUnit.UnitName} 사망");
+                //당기기
+                UpdateTeamPositions(EnemyTeam, EnemySpawnPoints);
             }
         }
-        deadUnit.gameObject.SetActive(false);
+    }
+
+    //리스트 순서대로 전열 중열 후열 재부여
+    private void UpdateTeamPositions<T>(List<T> team, List<Transform> spawnPoints) where T : BattleUnit
+    {
+        for (int i = 0; i < team.Count; i++)
+        {
+            UnitPosition newPos = UnitPosition.Front;
+            if (i == 1)
+            {
+                newPos = UnitPosition.Mid;
+            }
+            else if (i == 2)
+            {
+                newPos = UnitPosition.Back;
+            }
+            //실제 유닛 내부 변수 변경
+            team[i].MovePosition(newPos, spawnPoints[i].position);
+        }
     }
 
 

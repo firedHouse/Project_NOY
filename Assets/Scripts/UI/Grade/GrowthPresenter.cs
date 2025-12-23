@@ -2,7 +2,9 @@
 
 public class GrowthPresenter : MonoBehaviour
 {
-    [SerializeField] private GrowthView view;
+    [SerializeField] private GrowthView growthView;
+    [SerializeField] private GrowthSkillView skillView;
+    [SerializeField] private GrowthCharacterInfoView infoView;
     //[SerializeField] private Character model;
     [SerializeField] private CharacterData model;
 
@@ -14,6 +16,7 @@ public class GrowthPresenter : MonoBehaviour
     //업그레이드 성공 여부 > 모델에서 가져가면 되지 않을까/ 레벨 1회 상승 후 false
     private bool isUpgrade = false;
     public bool IsUpgrade { get { return isUpgrade; } private set { isUpgrade = value; } }
+    public CharacterData Model { get { return model; } private set { model = value; } }
 
     //성장 버튼 클릭 활성화 조건 : 캐릭터 해금
     //버튼 클릭 시 : 실링 확인
@@ -27,35 +30,58 @@ public class GrowthPresenter : MonoBehaviour
 
     //최고 학년 > 성장버튼 클릭 비활성화
 
+
     private void Start()
     {
-        //testModel, 출력대상 : 클릭한 캐릭터
+        //testModel, 출력대상 : 클릭한 캐릭터(대상 바뀔때마다 실행되어야 함. 이벤트 사용)
         model = TableManager.Instance.CharacterTable.Get("10001");
         //성장이벤트 구독 
-        //별갱신 : model.성장시 발동 이벤트 += view.GradeSet(grade)
-        //비용갱신 : model.성장시 발동 이벤트 += view.UpgradeCost(grade)
-        //캐릭터해금 : model.해금시 발동 이벤트 += view.CanClick()
+        //별갱신 : model.성장시 발동 이벤트 += view.GradeSet
+        //별갱신 : model.성장시 발동 이벤트 += skillView.CharacterSkill
+        //비용갱신 : model.성장시 발동 이벤트 += view.UpgradeCost
+        //캐릭터해금 : model.해금시 발동 이벤트 += CanClick
 
         Init();
     }
+
+    //레벨에 따라 변경되어야 할 사항
+    ////// CharacterData >> Character로 변경되어야 함. ///////
+    public void UpdateCharacterInfo(CharacterData model)
+    {
+        //비용 갱신
+        growthView.UpgradeCost(model.level);
+        //일러스트 갱신
+        growthView.CharacterIllust(model.level);
+        //캐릭터 목록 아이콘 갱신
+        //스킬 아이콘 갱신
+        skillView.CharacterSkill(model);
+        //캐릭터 한마디, 상세 설명 텍스트 갱신
+        infoView.CharacterName(model.characterName, model.characterCodeName);
+    }
+
+
+    //초기 값
     private void Init()
     {
         //임시 속성값
         //모델에서 고유속성 불러오기
-        view.CharacterElement(model.elementUI);
-        //패널 기본값 = false
-        view.OnNotEnoughShilling(false);
-        //버튼클릭 비활성화 // 테스트 임시 활성화
-        view.ButtonActive(true);
-        //별 이미지 세팅(0:노란별 / 1,2:회색별)
-        view.GradeSet(model.level);
-        //일러스트
-        view.CharacterIllust(model.level);
+        infoView.CharacterElement(model.elementUI);
         //이름, 코드네임
-        view.CharacterName(model.characterName , model.characterCodeName);
+        infoView.CharacterName(model.characterName , model.characterCodeName);
+        //별 이미지 세팅(0:노란별 / 1,2:회색별)
+        infoView.GradeSet(model.level);
+
+        //패널 기본값 = false
+        growthView.OnNotEnoughShilling(false);
+        //버튼클릭 비활성화 // 테스트 임시 활성화
+        growthView.ButtonActive(true);
+        //일러스트
+        growthView.CharacterIllust(model.level);
         Debug.Log($"[GrowthPresenter] : {model.characterName}");
         //한마디, 상세정보
-        view.CharacterInfo(model.characterInfo, model.characterDialogue);
+        growthView.CharacterInfo(model.characterInfo, model.characterDialogue);
+
+        skillView.CharacterSkill(model);
     }
 
 
@@ -72,7 +98,7 @@ public class GrowthPresenter : MonoBehaviour
     {
         if(IsUnlock == true)
         {
-            view.ButtonActive(true);
+            growthView.ButtonActive(true);
         }
     }
 
@@ -81,7 +107,7 @@ public class GrowthPresenter : MonoBehaviour
     {
         if(currentShilling < upgradeCost)
         {
-            view.OnNotEnoughShilling(true);
+            growthView.OnNotEnoughShilling(true);
             return true;
         }
         return false;
@@ -92,7 +118,7 @@ public class GrowthPresenter : MonoBehaviour
     {
         if (model.level == 3)
         {
-            view.ButtonActive(false);
+            growthView.ButtonActive(false);
         }
     }
 }

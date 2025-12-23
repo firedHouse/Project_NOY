@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 //버프/디버프 지속시간 감소와 과부하 처리할 상태
@@ -35,8 +36,12 @@ public class StateTurnEnd : IBattleState
     private IEnumerator ProcessTurnEnd(BattleManager bm)
     {
         Debug.Log("턴 정산 시작");
+
+        //12.23 반복도중 유닛 사망시 리스트 바뀌며 생기는 문제 해결용
+        var playerList = new List<Character>(bm.PlayerTeam);
+        var enemyList = new List<Monster>(bm.EnemyTeam);
         //아군
-        foreach (var unit in bm.PlayerTeam)
+        foreach (var unit in playerList)
         {
             if (!unit.IsDead)
             {
@@ -44,7 +49,7 @@ public class StateTurnEnd : IBattleState
             }
         }
         //적군
-        foreach (var unit in bm.EnemyTeam)
+        foreach (var unit in enemyList)
         {
             if (!unit.IsDead)
             {

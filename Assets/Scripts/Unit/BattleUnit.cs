@@ -20,8 +20,20 @@ public abstract class BattleUnit : MonoBehaviour
     [SerializeField] protected ElementType currentMark = ElementType.None; // 기본 무속성
     [SerializeField] protected bool isDead = false;
 
-    //[변경] 유닛이 보유한 스킬 리스트 (최대 3개)
+
+    //이거 이관작업 해야 할 거 같은데
+    //일단 보류
     protected List<Skill> skills = new List<Skill>();
+
+    //전투 중 변동되는 스탯(버프/디버프 값)
+    //스테이지 진행마다 증가하는 스탯은 나중에 반영
+    protected float currentAttackPower;
+    protected int currentSpeed;
+
+    //방어막
+    protected float shieldValue = 0f;
+
+
 
     //프로퍼티
     public string UnitName => unitName;
@@ -32,7 +44,12 @@ public abstract class BattleUnit : MonoBehaviour
     public bool IsDead => isDead;
     public ElementType CurrentMark => currentMark;
     public List<Skill> Skills => skills;
-    public float AttackPower => attackPower;
+    public float AttackPower => currentAttackPower; //12.22 외부에서 현재 공격력을 적용하도록 프로퍼티 수정
+    public float BaseAttackPower => attackPower; //기존 공격력
+
+
+    //12.23 방어막 UI 갱신용
+    public event Action<BattleUnit, float> OnShieldChanged;
 
     //UI 갱신 및 전투 로직 연결용
     //UI 갱신 및 전투 로직 연결용
@@ -56,8 +73,14 @@ public abstract class BattleUnit : MonoBehaviour
         currentHP = hp;
         speed = spd;
         attackPower = atk;
-        position = pos;
 
+        //12.23 현재 스탯 반영
+        //초기화 시 스탯도 초기화
+        currentAttackPower = atk;
+        currentSpeed = spd;
+        shieldValue = 0f;
+
+        position = pos;
         isDead = false;
         currentMark = ElementType.None;
     }
@@ -79,6 +102,7 @@ public abstract class BattleUnit : MonoBehaviour
     }
 
     //데미지 처리 로직 
+    //12.23 방어막 소진 이후 체력 소진으로 변경
     public virtual void TakeDamage(float damage)
     {
         if (isDead)
@@ -86,15 +110,81 @@ public abstract class BattleUnit : MonoBehaviour
             return;
         }
 
-        currentHP = Mathf.Max(0, currentHP - damage);
+        float remainingDamage = damage;
 
-        //UI 갱신 알림
-        OnHpChanged?.Invoke(this, currentHP);
+        if (shieldValue > 0f)
+        {
+            if (shieldValue >= remainingDamage)
+            {
+                shieldValue -= remainingDamage;
+                remainingDamage = 0f;
+            }
+            else
+            {
+                remainingDamage -= shieldValue;
+                shieldValue = 0f;
+            }
+        }
+        //남은 데미지로 체력 차감
+        if (remainingDamage > 0)
+        {
+            currentHP = Mathf.Max(0, currentHP - remainingDamage);
+            OnHpChanged?.Invoke(this, currentHP);
+        }
 
         //사망 판정 
         if (currentHP <= 0)
         {
             Die();
+        }
+    }
+
+    public void Heal(float amount)
+    {
+        if (isDead)
+        {
+            return;
+        }
+        currentHP = Mathf.Min(MaxHP, currentHP + amount);
+        OnHpChanged?.Invoke(this, currentHP);
+        Debug.Log($"{unitName} {amount}만큼 회복");
+    }
+
+    public void AddShield(float amount)
+    {
+        if (isDead)
+        {
+            return;
+        }
+        shieldValue += amount;
+        OnShieldChanged?.Invoke(this, shieldValue);
+        Debug.Log($"{unitName} 방어막 부여 {amount}");
+    }
+
+    //버프/디버프 적용
+    public void ApplyBuff(SkillType type, float value)
+    {
+        if (isDead)
+        {
+            return;
+        }
+        //타입 지정
+        switch (type)
+        {
+            case SkillType.AttackBuff:
+                currentAttackPower += value;
+                Debug.Log($"{unitName} 공격력 증가: +{value}");
+                break;
+            case SkillType.SpeedBuff:
+                currentSpeed += (int)value; // 속도는 int
+                break;
+            case SkillType.AttackDebuff:
+                currentAttackPower = Mathf.Max(0, currentAttackPower - value);
+                Debug.Log($" {unitName} 공격력 감소: -{value}");
+                break;
+            case SkillType.SpeedDebuff:
+                currentSpeed = Mathf.Max(0, currentSpeed - (int)value);
+                break;
         }
     }
 
@@ -123,12 +213,15 @@ public abstract class BattleUnit : MonoBehaviour
         OnMarkChanged?.Invoke(this, ElementType.None);
     }
 
-    //위치 변경 (빈자리 채울 때 사용) 
-    //리팩토링 후순위(FieldManager제작 후)
-    public void MovePosition(UnitPosition newPosition)
+    //위치 변경 (사망, 영입, 방출, 부활 시 사용) 
+    //12.22 추가
+    public void MovePosition(UnitPosition newPosition, Vector3 targetWorldPos)
     {
         position = newPosition;
         //이동 애니메이션?(미정)
+        //일단 순간이동
+        transform.position = targetWorldPos;
+        Debug.Log($"MOVE: {unitName} => {newPosition} 위치로 이동");
     }
 
     protected virtual void Die()

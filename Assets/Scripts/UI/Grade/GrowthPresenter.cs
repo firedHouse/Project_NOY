@@ -23,6 +23,7 @@ public class GrowthPresenter : MonoBehaviour
     //성장 후 업데이트 사항
     //학년 증가 : 모델에서 할 일
     //다음 성장 필요 실링 출력
+    //일러스트 변경
 
     //최고 학년 > 성장버튼 클릭 비활성화
 
@@ -41,19 +42,29 @@ public class GrowthPresenter : MonoBehaviour
     {
         //임시 속성값
         //모델에서 고유속성 불러오기
-        view.CharacterElement(0);
-        //버튼클릭 비활성화
-        view.ButtonActive(false);
+        view.CharacterElement(model.elementUI);
+        //패널 기본값 = false
+        view.OnNotEnoughShilling(false);
+        //버튼클릭 비활성화 // 테스트 임시 활성화
+        view.ButtonActive(true);
         //별 이미지 세팅(0:노란별 / 1,2:회색별)
-        view.GradeSet(1);
-        view.CharacterInfo(model.characterName, model.characterCodeName);
-        view.CharacterInfo(model.characterInfo);
+        view.GradeSet(model.level);
+        //일러스트
+        view.CharacterIllust(model.level);
+        //이름, 코드네임
+        view.CharacterName(model.characterName , model.characterCodeName);
+        Debug.Log($"[GrowthPresenter] : {model.characterName}");
+        //한마디, 상세정보
+        view.CharacterInfo(model.characterInfo, model.characterDialogue);
     }
 
 
     public void SuccessUpgrade()
     {
+        //업그레이드 전달
         isUpgrade = true;
+        //레벨 체크 - 버튼 활성/비활성
+        MaxLevel();
     }
 
     //캐릭터가 해금 상태이면, 버튼 활성화
@@ -79,9 +90,9 @@ public class GrowthPresenter : MonoBehaviour
     //최고 학년 체크
     public void MaxLevel()
     {
-        //if(model.Level == 3)
-        //{
-        //    view.ButtonActive(false);
-        //}
+        if (model.level == 3)
+        {
+            view.ButtonActive(false);
+        }
     }
 }

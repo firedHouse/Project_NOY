@@ -8,11 +8,11 @@ public class GrowthView : MonoBehaviour
 
     [Header("일러스트출력")]
     [SerializeField] private Image illust;
-    [SerializeField] private Sprite[] illustImage = new Sprite[3];
+    //[SerializeField] private Sprite[] illustImage = new Sprite[3];
 
     [Header("스킬출력")]
     [SerializeField] private Image[] skill = new Image[3];
-    [SerializeField] private Sprite[] skillImage = new Sprite[3];
+    //[SerializeField] private Sprite[] skillImage = new Sprite[3];
 
     [Header("실링부족텍스트")]
     [SerializeField] private GameObject notEnoughShilingPanel;
@@ -25,12 +25,12 @@ public class GrowthView : MonoBehaviour
 
     [Header("별 출력 배열/리소스")]
     [SerializeField] private Image[] starImage = new Image[3];
-    [SerializeField] private Sprite yellowStar;
-    [SerializeField] private Sprite grayStar;
+    //[SerializeField] private Sprite yellowStar;
+    //[SerializeField] private Sprite grayStar;
 
     [Header("고유속성 출력 배열/리소스(물/불/번개/무속)")]
     [SerializeField] private Image elementImage;
-    [SerializeField] private Sprite[] elementImageResources = new Sprite[4];
+    //[SerializeField] private Sprite[] elementImageResources = new Sprite[4];
 
     [Header("캐릭터 이름/코드네임/캐릭터 설명")]
     [SerializeField] private Text charName;
@@ -100,7 +100,7 @@ public class GrowthView : MonoBehaviour
     //0불 /1물 / 2번개 / 3무속성
     public void CharacterElement(int element)
     {
-        elementImage.sprite = elementImageResources[element];
+        //elementImage.sprite = elementImageResources[element];
     }
 
     //이름, 코드네임
@@ -122,7 +122,7 @@ public class GrowthView : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            skill[i].sprite = skillImage[i];
+            //skill[i].sprite = skillImage[i];
         }
 
         //for (int i = 0; i < 3; i++)
@@ -134,7 +134,7 @@ public class GrowthView : MonoBehaviour
     //학년별 스킬 갱신
     public void CharacterIllust(int grade)
     {
-        illust.sprite = illustImage[grade];
+        //illust.sprite = illustImage[grade];
     }
 
     //비용 업데이트
@@ -165,26 +165,26 @@ public class GrowthView : MonoBehaviour
     //별 이미지 갱신
     public void GradeSet(int grade)
     {
-        if(yellowStar == null || grayStar ==null)
-        {
-            Debug.Log("[GrowthView] 별 이미지 정보 없음");
-            return;
-        }
-        if (grade > 3)
-        {
-            Debug.Log("[GrowthView] 등급 최대치 넘어감");
-            return;
-        }
+        //if(yellowStar == null || grayStar ==null)
+        //{
+        //    Debug.Log("[GrowthView] 별 이미지 정보 없음");
+        //    return;
+        //}
+        //if (grade > 3)
+        //{
+        //    Debug.Log("[GrowthView] 등급 최대치 넘어감");
+        //    return;
+        //}
 
         //등급만큼 노란별
         for (int i = 0; i < grade; i++)
         {
-            starImage[i].sprite = yellowStar;
+            //starImage[i].sprite = yellowStar;
         }
         //
         for (int i = grade; i < 3; i++)
         {
-            starImage[i].sprite = grayStar;
+            //starImage[i].sprite = grayStar;
         }
     }
 }

@@ -23,6 +23,13 @@ public enum UnitPosition
     Back = 2        // ÈÄ¿­
 }
 
+public enum CharacterPosition
+{
+    Tanker = 0,
+    Dealer = 1,
+    Healer = 2
+}
+
 public enum UnitType
 {
     Character,

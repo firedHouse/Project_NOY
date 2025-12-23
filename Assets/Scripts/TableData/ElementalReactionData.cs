@@ -9,9 +9,8 @@ public class ElementalReactionData : ITableData
     public int attackType;
     public float damage;
     public int duration;
-    public string elementalReactionText;
     public string elementalReactionName;
-    public string effectSprite;
+    public string elementEffect;
     public string effectSound;
     public string desc;
 

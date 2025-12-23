@@ -7,9 +7,6 @@ public class Monster : BattleUnit
     [Header("Drop Info")]
     [SerializeField] private int dropGold; //드롭골드 체크용(임시)
 
-    //몬스터 역할군 딜 힐 탱, 나중에 AI 로직에서 사용
-    public MonsterClass Role { get; private set; }
-
     //보스 체크용
     public bool IsBoss { get; private set; }
 

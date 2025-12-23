@@ -1,9 +1,84 @@
 스킬 ID,스킬 기본 수치,시전 진영,스킬 계수,스킬 타입 ,지속 턴,스킬 원소 속성 ,스킬 PP,스킬 공격위치,스킬 이름 스트링키,스킬 툴팁 스트링키,스킬 사운드,스킬 아이콘,스킬 스프라이트,주석
-skillID,skillBaseValue,targetFaction,skillFactor,skillType,buffTurn,skillElement,skillPP,skillArea,skillName,skillTooltip,skillSound,skillIcon,skillSprite,desc
+skillID,skillBaseValue,targetFaction,skillFactor,skillType,buffTurn,skillElement,skillPP,skillArea,skillName,skillTooltip,skillSound,skillIcon,skillEffect,desc
 string,int,boolean,float,enum,int,enum,int,enum,string,string,string,string,string,string
-30001,50,1,0.1,0,0,2,999,6,skill_name_30001,skill_desc_30001,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/Image/이미지명.png,불속성 공격 스킬 테이블
-30002,50,1,0.3,0,0,1,999,6,skill_name_30002,skill_desc_30002,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/Image/이미지명.png,물속성 공격 스킬 테이블
-30003,50,1,0.2,0,0,0,999,6,skill_name_30003,skill_desc_30003,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/Image/이미지명.png,번개속성 공격 스킬 테이블
-40001,5,0,0.01,0,0,3,999,5,skill_name_40001,skill_desc_40001,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/Image/이미지명.png,기본공격1 스킬 테이블
-40002,5,0,0.01,0,0,3,999,3,skill_name_40002,skill_desc_40002,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/Image/이미지명.png,기본공격2 스킬 테이블
-40003,5,0,0.01,0,0,3,999,1,skill_name_40003,skill_desc_40003,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/Image/이미지명.png,기본공격3 스킬 테이블
+30001,50,1,1.1,0,0,2,15,0,화염 가시,skill_desc_30001,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,화염 가시
+30002,50,1,1,0,0,1,15,1,산성 점막,skill_desc_30002,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,산성 점막
+30003,50,1,0.9,0,0,0,15,2,마비 전격,skill_desc_30003,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,마비 전격
+30004,50,0,0.4,1,0,3,10,0,생체 재생,skill_desc_30004,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,생체 재생
+30005,50,1,0.7,0,0,1,10,6,독기 확산,skill_desc_30005,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,독기 확산
+30006,50,1,0,6,2,1,10,0,끈적한 늪,skill_desc_30006,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,끈적한 늪
+30007,50,1,1.4,0,0,1,8,0,산성 폭발,skill_desc_30007,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,산성 폭발
+30008,50,0,0,4,3,3,10,6,신속 포자,skill_desc_30008,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,신속 포자
+30009,50,0,0.4,2,2,3,12,0,점막 보호,skill_desc_30009,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,점막 보호
+30010,50,1,1.2,0,0,3,20,1,습격 발톱,skill_desc_30010,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,습격 발톱
+30011,50,1,1.3,0,0,0,10,0,플라즈마 탄,skill_desc_30011,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,플라즈마 탄
+30012,50,1,2.5,0,0,2,5,0,자폭 명령,skill_desc_30012,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,자폭 명령
+30013,50,1,0,5,2,3,10,1,신경 차단,skill_desc_30013,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,신경 차단
+30014,50,1,1.4,0,0,0,12,0,에메랄드 섬광,skill_desc_30014,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,에메랄드 섬광
+30015,50,1,1.1,0,0,2,15,1,용암 흐름,skill_desc_30015,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,용암 흐름
+30016,50,1,1,0,0,1,15,2,절대영도 안개,skill_desc_30016,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,절대영도 안개
+30017,50,0,0.6,2,3,3,8,6,위상 방벽,skill_desc_30017,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,위상 방벽
+30018,50,0,0,3,2,0,10,1,과부하 충전,skill_desc_30018,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,과부하 충전
+30019,50,1,0,6,3,2,10,3,엔진 과열,skill_desc_30019,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,엔진 과열
+30020,50,1,1.6,0,0,1,10,4,수압 커터,skill_desc_30020,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,수압 커터
+30021,50,1,0.9,0,0,0,20,6,테슬라 쇼크,skill_desc_30021,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,테슬라 쇼크
+30022,50,0,0.4,1,0,3,12,1,시스템 수리,skill_desc_30022,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,시스템 수리
+30023,50,1,0,5,2,3,10,6,중력 붕괴,skill_desc_30023,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,중력 붕괴
+30024,50,1,1.5,0,0,2,10,0,버닝 해머,skill_desc_30024,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,버닝 해머
+30025,50,1,1.1,0,0,0,15,1,일렉트릭 넷,skill_desc_30025,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,일렉트릭 넷
+30026,50,1,1.3,0,0,1,12,3,빙하 화살,skill_desc_30026,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,빙하 화살
+30027,50,0,0,4,4,3,10,0,고대 가속,skill_desc_30027,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,고대 가속
+30028,50,1,1.2,0,0,3,20,0,금속 베기,skill_desc_30028,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,금속 베기
+30029,50,1,1.3,0,0,2,12,0,체인소 슬래시,skill_desc_30029,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,체인소 슬래시
+30030,50,1,1.1,0,0,1,15,1,오일 스프레이,skill_desc_30030,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,오일 스프레이
+30031,50,1,1.2,0,0,0,12,2,쇼크 코일,skill_desc_30031,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,쇼크 코일
+30032,50,1,1.9,0,0,2,5,4,벙커 버스터,skill_desc_30032,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,벙커 버스터
+30033,50,1,1.4,0,0,1,10,0,고압 증기 포,skill_desc_30033,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,고압 증기 포
+30034,50,1,1,0,0,0,15,3,섬광 쇼크,skill_desc_30034,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,섬광 쇼크
+30035,50,0,0.6,1,0,2,8,0,긴급 용접,skill_desc_30035,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,긴급 용접
+30036,50,0,0.4,2,3,0,10,1,자기장 장막,skill_desc_30036,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,자기장 장막
+30037,50,1,0.8,0,0,2,12,6,화염 방사,skill_desc_30037,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,화염 방사
+30038,50,0,0,4,2,3,10,1,엔진 가열,skill_desc_30038,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,엔진 가열
+30039,50,1,1.3,0,0,1,10,5,극저온 분사,skill_desc_30039,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,극저온 분사
+30040,50,1,0,6,3,0,10,0,전압 과부하,skill_desc_30040,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,전압 과부하
+30041,50,1,1.6,0,0,3,10,0,유압 펀치,skill_desc_30041,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,유압 펀치
+30042,50,1,1.5,0,0,0,8,2,볼트 소용돌이,skill_desc_30042,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,볼트 소용돌이
+30043,50,1,0,5,2,2,10,6,용광로 열기,skill_desc_30043,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,용광로 열기
+30044,50,1,1.4,0,0,1,12,3,워터 캐논,skill_desc_30044,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,워터 캐논
+30045,50,1,2.5,0,0,2,3,6,둠스데이,skill_desc_30045,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,둠스데이
+30201,30,1,0.8,0,0,2,999,0,skill_name_30046,전열에 낮은 데미지를 입힙니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,전열에 낮은 데미지를 입힙니다.
+30202,0,0,0,3,5,3,999,6,skill_name_30047,내부 코어를 가열하여 보스의 공격력을 대폭 상승시킵니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,내부 코어를 가열하여 보스의 공격력을 대폭 상승시킵니다.
+30203,0,0,0,3,5,3,999,6,skill_name_30048,엔진 오버드라이브를 가동하여 공격력을 중첩 상승시킵니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,엔진 오버드라이브를 가동하여 공격력을 중첩 상승시킵니다.
+30204,0,1,0,5,3,1,999,6,skill_name_30049,전체 적에게 공격력 디버프를 부여합니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,전체 적에게 공격력 디버프를 부여합니다.
+30205,0,0,0,3,9,3,999,6,skill_name_30050,자신의 기운을 강화하여 다음에 부여할 디버프 수치를 높입니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,자신의 기운을 강화하여 다음에 부여할 디버프 수치를 높입니다.
+30206,150,1,0,0,0,3,999,6,skill_name_30051,계수 없이 고정된 강력한 데미지를 적 전체에 입힙니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,계수 없이 고정된 강력한 데미지를 적 전체에 입힙니다.
+30207,50,0,0.2,2,2,3,999,6,skill_name_30052,낮은 계수의 보호막을 자신에게 전개합니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,낮은 계수의 보호막을 자신에게 전개합니다.
+30208,0,0,2,1,0,0,999,6,skill_name_30053,높은 계수로 자신의 손상된 체력을 모두 회복합니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,높은 계수로 자신의 손상된 체력을 모두 회복합니다.
+30209,250,1,0,0,0,0,999,1,skill_name_30054,전중열에 계수 없는 매우 높은 고정 데미지를 입힙니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,전중열에 계수 없는 매우 높은 고정 데미지를 입힙니다.
+11001,50,1,1.1,0,0,2,25,0,크러시 스윙,불타는 배트로 전열을 강하게 타격합니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,크러시 스윙
+11002,60,0,0,2,2,3,10,0,근성 베리어,자신의 깡으로 전열에 보호막을 생성합니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,근성 베리어
+11003,70,1,1.5,0,0,2,8,1,홈런 익스플로전,전중열을 한꺼번에 날려버리는 강력한 일격.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,홈런 익스플로전
+11041,40,1,1,0,0,2,20,0,웍 파이어,뜨겁게 달궈진 웍으로 전열을 공격합니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,웍 파이어
+11042,0,0,0,3,3,3,15,6,특제 보양식,아군 전체의 공격력을 크게 상승시킵니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,특제 보양식
+11043,30,1,0.5,6,2,2,12,6,끓는 기름,적 전체에 기름을 뿌려 속도를 낮춥니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,끓는 기름
+11071,40,1,0.9,0,0,2,20,0,샤우팅 비트,고주파 음파로 전열 적에게 화상을 입힙니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,샤우팅 비트
+11072,50,1,1.2,0,0,2,10,6,오버드라이브,화려한 무대 연출과 함께 적 전체를 폭격합니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,오버드라이브
+11073,0,0,0,3,2,3,5,6,피날레 버프,자신의 열정을 불태워 아군 전체 공업을 부여합니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,피날레 버프
+11021,55,1,1.2,0,0,1,20,0,앵커 크래시,거대한 물의 닻으로 전열을 내리찍습니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,앵커 크래시
+11022,0,0,0,4,3,3,15,0,레스큐 무브,전열 아군에게 신속한 이동 속도를 부여합니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,레스큐 무브
+11023,40,1,1,6,2,1,12,6,빙결 연계,차가운 수류로 적 전체의 속도를 낮춥니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,빙결 연계
+11051,30,1,0.8,0,0,1,25,0,진정제 투여,차가운 진정 액체로 전열을 찌릅니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,진정제 투여
+11052,60,0,0.5,1,0,3,15,0,응급 처치,전열 아군의 체력을 즉시 회복시킵니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,응급 처치
+11053,40,0,0.3,1,2,1,10,6,리커버리 미스트,아군 전체에 치유의 안개를 뿌려 지속 회복합니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,리커버리 미스트
+11081,35,1,0.7,0,0,1,25,0,빗방울 튕기기,우산 끝에서 물방울을 튕겨 전열을 공격합니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,빗방울 튕기기
+11082,40,0,0.2,1,0,3,15,6,맑음 뒤 비,아군 전체에 비를 내려 소량 회복하고 정화합니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,맑음 뒤 비
+11083,0,1,0,5,3,1,8,6,집중 호우,적 전체에 폭우를 내려 공격력을 약화시킵니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,집중 호우
+11031,45,1,1.3,0,0,0,20,0,볼트 돌진,바이크의 가속으로 전열을 들이받습니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,볼트 돌진
+11032,40,1,1.1,0,0,0,15,1,일렉트릭 체인,전중열에 전기가 흐르는 체인을 휘두릅니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,일렉트릭 체인
+11033,0,1,0,6,2,0,10,6,번개 표식,적 전체에 전류를 흘려 속도를 크게 낮춥니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,번개 표식
+11061,30,1,1,0,0,0,20,0,전격 제압,테이저 건으로 전열의 적을 감전시킵니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,전격 제압
+11062,30,1,0.4,5,2,0,15,2,마비 탄환,중열의 적을 마비시켜 공격력을 깎습니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,마비 탄환
+11063,50,1,1.2,0,0,0,10,3,택티컬 버스트,중후열을 향해 전기탄을 난사합니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,택티컬 버스트
+11091,45,1,1.1,0,0,0,20,0,레이저 비트,드론을 조종하여 전열에 레이저를 쏩니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,레이저 비트
+11092,0,0,0,3,3,3,12,6,타겟 락온,적의 약점을 분석해 아군 전체 공업을 부여합니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,타겟 락온
+11093,50,1,1.3,0,0,0,10,4,시스템 멜트,후열의 기계 장치를 해킹해 폭발시킵니다.,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,Resources/prefeb/효과명.prefab,시스템 멜트

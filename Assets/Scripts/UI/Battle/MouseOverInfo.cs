@@ -8,11 +8,10 @@ public partial class MouseOverInfo : MonoBehaviour
     [SerializeField] private Text _skillInfo;
     [SerializeField] private Text _skillName;
     [SerializeField] private hSkillList _skillList;
-
+    
     //스킬 이미지 : 스킬정보가 바뀌면 이미지도 바뀌어야 함.
     //스킬 이미지 이름 > 스킬 리스트에서 받아와야 함.
     private Image _ImageInfo;
-
 
     #region 마우스오버
     //1번스킬 출력
@@ -65,18 +64,16 @@ public partial class MouseOverInfo : MonoBehaviour
     [SerializeField] private Text _turnInfo;
     public Skill skill;
 
+
     public void UpdateTurnInfo(int order)
     {
+        Debug.Log($"[MouseOverInfo] ({order + 1}번 캐릭터) 행동 선택");
         _turnInfo.text = $"({order + 1}번 캐릭터) 행동 선택";
     }
 
     public void UpdateTurnChanged()
     {
+        Debug.Log("[MouseOverInfo] 행동선택완료");
         _turnInfo.text = "행동 선택 완료";
-    }
-
-    public void InitEventTrigger()
-    {
-
     }
 }

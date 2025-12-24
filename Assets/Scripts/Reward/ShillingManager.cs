@@ -11,7 +11,7 @@ public class ShillingManager : Singleton<ShillingManager>
         base.Awake();
         LoadShilling();
     }
-
+    //실링 저장 및 불러오기 메서드
     private void LoadShilling()
     {
         outGameShilling = PlayerPrefs.GetInt("OutGameShilling", 0);
@@ -33,7 +33,7 @@ public class ShillingManager : Singleton<ShillingManager>
         SaveShilling();
         Debug.Log($"실링 획득: +{plusShilling}. 현재 실링: {outGameShilling}");
     }
-
+    //실링 소모 메서드
     public void SpendShilling(int cost)
     {
         if (outGameShilling < cost)

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 
 // 캐릭터 데이터 목록 가져오는 매니저
-public class CharacterDataManager : Singleton<CharacterDataManager>
+public class LobbyManager : Singleton<LobbyManager>
 {
     // 모든 캐릭터 데이터 가져오기 
     [SerializeField] private string[] characterDataIDs = { "10001", "10002", "10003", "10004", "10005", "10006", "10007", "10008", "10009" };
@@ -12,7 +12,7 @@ public class CharacterDataManager : Singleton<CharacterDataManager>
     [Header("[리스트 내부 요소 연결]" +
         "\nElement 갯수는 캐릭터수만큼, " +
         "\n씬 내부에 있는 CharacterSelectButton을 순서대로 넣어주세요")]
-    [SerializeField] public List<CharacterListModel> CharacterListModels; //{ get; private set; } //= new List<CharacterListModel>();
+    [SerializeField] public List<CharacterListModel> CharacterListModels; 
 
     public void SetCharacterDataList()
     {
@@ -40,4 +40,6 @@ public class CharacterDataManager : Singleton<CharacterDataManager>
     {
         listModel.Initialize(id);
     }
+
+    // 선택 캐릭터의 id를 리스트로 반환 > 배틀씬에 전달
 }

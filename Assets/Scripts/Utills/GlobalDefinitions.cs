@@ -1,11 +1,11 @@
-//Global Definitions (Å×ÀÌºí Ver 0202 ¹İ¿µ)
+//Global Definitions (í…Œì´ë¸” Ver 0202 ë°˜ì˜)
 
 public enum ElementType
 {
-    Fire = 1 << 0,       // ºÒ
-    Water = 1 << 1,      // ¹°
-    Electric = 1 << 2,   // Àü±â
-    None = 0        // ¹«¼Ó¼º
+    Fire = 1 << 0,       // ë¶ˆ
+    Water = 1 << 1,      // ë¬¼
+    Electric = 1 << 2,   // ì „ê¸°
+    None = 0        // ë¬´ì†ì„±
 }
 
 public enum ElementReaction
@@ -18,9 +18,9 @@ public enum ElementReaction
 
 public enum UnitPosition
 {
-    Front = 0,      // Àü¿­
-    Mid = 1,        // Áß¿­
-    Back = 2        // ÈÄ¿­
+    Front = 0,      // ì „ì—´
+    Mid = 1,        // ì¤‘ì—´
+    Back = 2        // í›„ì—´
 }
 
 public enum CharacterPosition
@@ -43,7 +43,7 @@ public enum MonsterClass
     Healer = 2
 }
 
-public enum SkillArea //SkillTable ÂüÁ¶ ÂüÁ¶
+public enum SkillArea //SkillTable ì°¸ì¡° ì°¸ì¡°
 {
     Front = 0,
     FrontMid = 1,
@@ -69,4 +69,12 @@ public enum UsableItemType
     HPPotion = 0,
     PPPotion = 1,
     Revive = 2
+}
+
+public enum RelicStateType
+{
+    HPBuff = 0,
+    SpeedBuff = 1,
+    AttackBuff = 2,
+    AllStatBuff = 3
 }

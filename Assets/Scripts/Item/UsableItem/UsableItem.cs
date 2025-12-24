@@ -9,28 +9,28 @@ public class UsableItem : MonoBehaviour
         itemData = data;
     }
 
-    //¾ÆÀÌÅÛ »ç¿ë -> HP : BattleUnit ÇÊ¿ä / PP : Skill ÇÊ¿ä
-    //ÀÌ°Í¸¸ °¡Á®°¡¼­ »ç¿ëÇÏ¸é µÊ.
+    //ì•„ì´í…œ ì‚¬ìš© -> HP : BattleUnit í•„ìš” / PP : Skill í•„ìš”
+    //ì´ê²ƒë§Œ ê°€ì ¸ê°€ì„œ ì‚¬ìš©í•˜ë©´ ë¨.
     public bool Use(BattleUnit unit, Skill skill)
     {
         if (itemData == null)
         {             
-            Debug.LogError("¾ÆÀÌÅÛ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
+            Debug.LogError("ì•„ì´í…œ ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
             return false;
         }
         
         if(!TryApplyUsableItem(unit, skill))
         {
-            Debug.LogWarning($"[{itemData.itemName}] ¾ÆÀÌÅÛÀ» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogWarning($"[{itemData.itemName}] ì•„ì´í…œì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return false;
         }
 
-        Debug.Log($"{itemData.itemName} »ç¿ë ¼º°ø");
+        Debug.Log($"{itemData.itemName} ì‚¬ìš© ì„±ê³µ");
         return true;
 
     }
 
-    //¾ÆÀÌÅÛ È¿°ú Àû¿ë
+    //ì•„ì´í…œ íš¨ê³¼ ì ìš©
     private bool TryApplyUsableItem(BattleUnit unit, Skill skill)
     {
         switch(itemData.useItemType)
@@ -38,32 +38,32 @@ public class UsableItem : MonoBehaviour
             case UsableItemType.HPPotion:
                 if(unit == null || unit.IsDead)
                 {
-                    Debug.LogError("HP È¸º¹ ¾ÆÀÌÅÛ »ç¿ë ½Ã À¯´ÖÀÌ ÇÊ¿äÇÕ´Ï´Ù.");
+                    Debug.LogError("HP íšŒë³µ ì•„ì´í…œ ì‚¬ìš© ì‹œ ìœ ë‹›ì´ í•„ìš”í•©ë‹ˆë‹¤.");
                     return false;
                 }
                 unit.Heal(itemData.value);
-                Debug.Log($"[{itemData.itemName}] »ç¿ë: {unit.UnitName}ÀÇ HP°¡ {itemData.value}¸¸Å­ È¸º¹µÇ¾ú½À´Ï´Ù.");
+                Debug.Log($"[{itemData.itemName}] ì‚¬ìš©: {unit.UnitName}ì˜ HPê°€ {itemData.value}ë§Œí¼ íšŒë³µë˜ì—ˆìŠµë‹ˆë‹¤.");
                 return true;
             case UsableItemType.PPPotion:
                 if(skill == null || !skill.IsValid())
                 {
-                    Debug.LogError("PP È¸º¹ ¾ÆÀÌÅÛ »ç¿ë ½Ã ½ºÅ³ÀÌ ÇÊ¿äÇÕ´Ï´Ù.");
+                    Debug.LogError("PP íšŒë³µ ì•„ì´í…œ ì‚¬ìš© ì‹œ ìŠ¤í‚¬ì´ í•„ìš”í•©ë‹ˆë‹¤.");
                     return false;
                 }
                 skill.RestorePP(itemData.value);
-                Debug.Log($"[{itemData.itemName}] »ç¿ë: ½ºÅ³ÀÇ PP°¡ {itemData.value}¸¸Å­ È¸º¹µÇ¾ú½À´Ï´Ù.");
+                Debug.Log($"[{itemData.itemName}] ì‚¬ìš©: ìŠ¤í‚¬ì˜ PPê°€ {itemData.value}ë§Œí¼ íšŒë³µë˜ì—ˆìŠµë‹ˆë‹¤.");
                 return true;
             case UsableItemType.Revive:
                 if(unit == null || !unit.IsDead)
                 {
-                    Debug.LogError("ºÎÈ° ¾ÆÀÌÅÛ »ç¿ë ½Ã Á×Àº À¯´ÖÀÌ ÇÊ¿äÇÕ´Ï´Ù.");
+                    Debug.LogError("ë¶€í™œ ì•„ì´í…œ ì‚¬ìš© ì‹œ ì£½ì€ ìœ ë‹›ì´ í•„ìš”í•©ë‹ˆë‹¤.");
                     return false;
                 }
-                // unit.Revive(itemData.value); -> ¹èÆ²À¯´Ö¿¡ ºÎÈ° ¸Ş¼­µå Ãß°¡ ÇÊ¿ä
-                Debug.Log($"[{itemData.itemName}] »ç¿ë: {unit.UnitName}ÀÌ(°¡) ºÎÈ°ÇÏ¿© HP°¡ {itemData.value}¸¸Å­ È¸º¹µÇ¾ú½À´Ï´Ù.");
+                // unit.Revive(itemData.value); -> ë°°í‹€ìœ ë‹›ì— ë¶€í™œ ë©”ì„œë“œ ì¶”ê°€ í•„ìš”
+                Debug.Log($"[{itemData.itemName}] ì‚¬ìš©: {unit.UnitName}ì´(ê°€) ë¶€í™œí•˜ì—¬ HPê°€ {itemData.value}ë§Œí¼ íšŒë³µë˜ì—ˆìŠµë‹ˆë‹¤.");
                 return true;
             default:
-                Debug.LogError("¾Ë ¼ö ¾ø´Â ¾ÆÀÌÅÛ Å¸ÀÔÀÔ´Ï´Ù.");
+                Debug.LogError("ì•Œ ìˆ˜ ì—†ëŠ” ì•„ì´í…œ íƒ€ì…ì…ë‹ˆë‹¤.");
                 return false;
         }
     }

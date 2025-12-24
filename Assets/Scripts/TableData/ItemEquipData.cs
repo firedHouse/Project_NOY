@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 [Serializable]
 public class ItemEquipData : ITableData
@@ -13,4 +13,5 @@ public class ItemEquipData : ITableData
     public string desc;
 
     public string PrimaryID => itemEquipID.ToString();
+    public RelicStateType RelicStateType => (RelicStateType)stateType;
 }

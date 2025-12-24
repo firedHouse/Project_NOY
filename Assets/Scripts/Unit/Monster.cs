@@ -1,29 +1,30 @@
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
-//Àû À¯´Ö »À´ë ½ºÅ©¸³Æ®
+//ì  ìœ ë‹› ë¼ˆëŒ€ ìŠ¤í¬ë¦½íŠ¸
 public class Monster : BattleUnit
 {
-    [Header("Drop Info")]
-    [SerializeField] private int dropGold; //µå·Ó°ñµå Ã¼Å©¿ë(ÀÓ½Ã)
-
-    //º¸½º Ã¼Å©¿ë
+    private int dropGold; //ë“œë¡­ê³¨ë“œ
+    private int dropShilling; //ë“œë¡­ì‹¤ë§
+    //ë³´ìŠ¤ ì²´í¬ìš©
     public bool IsBoss { get; private set; }
 
     public void InitializeMonster(string monID, UnitPosition pos, bool isBossUnit)
     {
-        //µ¥ÀÌÅÍ Å×ÀÌºí ºÒ·¯¿À±â
+        //ë°ì´í„° í…Œì´ë¸” ë¶ˆëŸ¬ì˜¤ê¸°
         MonsterData data = TableManager.Instance.MonsterTable.Get(monID);
 
         if (data == null)
         {
-            Debug.LogError($"¸ó½ºÅÍ µ¥ÀÌÅÍ¸¦ Ã£Áö ¸øÇß½À´Ï´Ù: {monID}");
+            Debug.LogError($"ëª¬ìŠ¤í„° ë°ì´í„°ë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤: {monID}");
             return;
         }
 
-        //º¸½º, µå·Ó°ñµå
+        //ë³´ìŠ¤, ë“œë¡­ê³¨ë“œ
         IsBoss = isBossUnit;
         dropGold = data.monsterDropGold;
+        dropShilling = data.monsterDropShilling;
 
         InitializeBase(
             monID,
@@ -34,9 +35,9 @@ public class Monster : BattleUnit
             pos
             );
 
-        //¸®¼Ò½º ·Îµå data.monsterResource µî
+        //ë¦¬ì†ŒìŠ¤ ë¡œë“œ data.monsterResource ë“±
 
-        //½ºÅ³ ·Îµå
+        //ìŠ¤í‚¬ ë¡œë“œ
         List<string> skillIDs = new List<string>
         {
             data.monsterSkill01,
@@ -46,9 +47,9 @@ public class Monster : BattleUnit
         LoadSkills(skillIDs);
     }
 
-    //AI Çàµ¿ ·ÎÁ÷
-    //12.22 °íµµÈ­ ÁøÇà(±âÈ¹¼­ º¯°æ»çÇ× ¹İ¿µ)
-    //BattleManager°¡ ¸Ş¼­µå »ç¿ë
+    //AI í–‰ë™ ë¡œì§
+    //12.22 ê³ ë„í™” ì§„í–‰(ê¸°íšì„œ ë³€ê²½ì‚¬í•­ ë°˜ì˜)
+    //BattleManagerê°€ ë©”ì„œë“œ ì‚¬ìš©
     public Skill ExecuteTurn()
     {
         if (skills.Count == 0)
@@ -56,7 +57,7 @@ public class Monster : BattleUnit
             return null;
         }
 
-        //»ç¿ë°¡´ÉÇÑ(PP³²Àº)½ºÅ³ Ã¼Å©
+        //ì‚¬ìš©ê°€ëŠ¥í•œ(PPë‚¨ì€)ìŠ¤í‚¬ ì²´í¬
         List<Skill> validSkills = new List<Skill>();
         for (int i = 0; i < skills.Count; i++)
         {
@@ -68,16 +69,16 @@ public class Monster : BattleUnit
 
         if (validSkills.Count == 0)
         {
-            return null; //¹ß¹öµÕÄ¡±â ±¸Çö À§Ä¡
+            return null; //ë°œë²„ë‘¥ì¹˜ê¸° êµ¬í˜„ ìœ„ì¹˜
         }
         Skill selectedSkill = null;
 
-        //Á¶°Ç1 30% È®·ü·Î Ç¥½Ä°¨Áö ½Ã ¿ø¼Ò¹İÀÀ ½ºÅ³ »ç¿ë
+        //ì¡°ê±´1 30% í™•ë¥ ë¡œ í‘œì‹ê°ì§€ ì‹œ ì›ì†Œë°˜ì‘ ìŠ¤í‚¬ ì‚¬ìš©
         if (CheckOpponentHasMark())
         {
             if (Random.Range(0, 100) < 30)
             {
-                //°ø°İÅ¸ÀÔ ½ºÅ³¸¸ ¸ğÀ¸±â
+                //ê³µê²©íƒ€ì… ìŠ¤í‚¬ë§Œ ëª¨ìœ¼ê¸°
                 List<Skill> attackSkills = new List<Skill>();
                 foreach (var skill in validSkills)
                 {
@@ -89,17 +90,17 @@ public class Monster : BattleUnit
                 if (attackSkills.Count > 0)
                 {
                     selectedSkill = attackSkills[Random.Range(0, attackSkills.Count)];
-                    Debug.Log($"¸ó½ºÅÍ°¡ {unitName}ÀÇ Ç¥½ÄÀ» °¨ÁöÇÏ¿© °ø°İ ½ºÅ³({selectedSkill.Data.skillName}) ¼±ÅÃ");
+                    Debug.Log($"ëª¬ìŠ¤í„°ê°€ {unitName}ì˜ í‘œì‹ì„ ê°ì§€í•˜ì—¬ ê³µê²© ìŠ¤í‚¬({selectedSkill.Data.skillName}) ì„ íƒ");
                     return selectedSkill;
                 }
             }
 
-            //Á¶°Ç2 20% È®·ü·Î HP 1 ÀÌ»ó ÇÏ¶ô ½Ã ¹öÇÁ½ºÅ³ »ç¿ë
+            //ì¡°ê±´2 20% í™•ë¥ ë¡œ HP 1 ì´ìƒ í•˜ë½ ì‹œ ë²„í”„ìŠ¤í‚¬ ì‚¬ìš©
             if (currentHP < maxHP)
             {
                 if (Random.Range(0, 100) < 20)
                 {
-                    //¹öÇÁ °è¿­ ½ºÅ³¸¸ ¸ğÀ¸±â
+                    //ë²„í”„ ê³„ì—´ ìŠ¤í‚¬ë§Œ ëª¨ìœ¼ê¸°
                     List<Skill> buffSkills = new List<Skill>();
                     foreach (var skill in validSkills)
                     {
@@ -120,26 +121,26 @@ public class Monster : BattleUnit
                 }
             }
 
-            //Á¶°Ç3 ¾Æ±º Ã¼·ÂÀÌ Ç®ÀÌ¸é Èú ½ºÅ³ Á¦¿Ü
+            //ì¡°ê±´3 ì•„êµ° ì²´ë ¥ì´ í’€ì´ë©´ í ìŠ¤í‚¬ ì œì™¸
             if (IsTeamFullHP())
             {
                 List<Skill> nonHealSkills = new List<Skill>();
                 foreach (var skill in validSkills)
                 {
-                    //ÈúÀÌ ¾Æ´Ñ ½ºÅ³ ¸ğ¾ÆµÎ±â
+                    //íì´ ì•„ë‹Œ ìŠ¤í‚¬ ëª¨ì•„ë‘ê¸°
                     if ((SkillType)skill.Data.skillType != SkillType.Heal)
                     {
                         nonHealSkills.Add(skill);
                     }
                 }
-                //Èú •û°í ³²Àº °Ô ÀÖÀ¸¸é ¸®½ºÆ® ±³Ã¼
+                //í ëº´ê³  ë‚¨ì€ ê²Œ ìˆìœ¼ë©´ ë¦¬ìŠ¤íŠ¸ êµì²´
                 if (nonHealSkills.Count > 0)
                 {
                     validSkills = nonHealSkills;
                 }
             }
         }
-        //¸ğµç Á¶°ÇÀ» °ÅÄ¡°í ±âº» Çàµ¿ ÁøÇà
+        //ëª¨ë“  ì¡°ê±´ì„ ê±°ì¹˜ê³  ê¸°ë³¸ í–‰ë™ ì§„í–‰
         selectedSkill = validSkills[Random.Range(0, validSkills.Count)];
 
         if (selectedSkill.TryUse())
@@ -150,7 +151,7 @@ public class Monster : BattleUnit
     }
 
     //12.22
-    //¾Æ±º¿¡°Ô Ç¥½ÄÀÌ ´Ş·Á ÀÖ´ÂÁö È®ÀÎÇÏ´Â ¸Ş¼­µå
+    //ì•„êµ°ì—ê²Œ í‘œì‹ì´ ë‹¬ë ¤ ìˆëŠ”ì§€ í™•ì¸í•˜ëŠ” ë©”ì„œë“œ
     private bool CheckOpponentHasMark()
     {
         if (BattleManager.Instance == null)
@@ -169,7 +170,7 @@ public class Monster : BattleUnit
         return false;
     }
 
-    //¸ó½ºÅÍ ÆÀ Àü¿øÀÌ Ç®ÇÇÀÎÁö È®ÀÎ
+    //ëª¬ìŠ¤í„° íŒ€ ì „ì›ì´ í’€í”¼ì¸ì§€ í™•ì¸
     private bool IsTeamFullHP()
     {
         if (BattleManager.Instance == null)
@@ -180,7 +181,7 @@ public class Monster : BattleUnit
         var myTeam = BattleManager.Instance.EnemyTeam;
         for (int i = 0; i < myTeam.Count; i++)
         {
-            //ÇÑ ¸íÀÌ¶óµµ ´ÙÃÆÀ¸¸é false
+            //í•œ ëª…ì´ë¼ë„ ë‹¤ì³¤ìœ¼ë©´ false
             if (myTeam[i].CurrentHP < myTeam[i].MaxHP)
             {
                 return false;
@@ -189,11 +190,13 @@ public class Monster : BattleUnit
         return true;
     }
 
-    //¿À¹ö¶óÀÌµå Die °ñµå Ã³¸®
+    //ì˜¤ë²„ë¼ì´ë“œ Die ê³¨ë“œ ì²˜ë¦¬
     protected override void Die()
     {
-        //Ã³Ä¡ ½Ã °ñµå, ½Ç¸µ È¹µæ
-        //ResourceManager.Instnce.AddGold(dropGold)? Á¤µµ
         base.Die();
+
+        //ì²˜ì¹˜ ì‹œ ê³¨ë“œ, ì‹¤ë§ íšë“
+        EconomyManager.Instance.AddGold(dropGold);
+        EconomyManager.Instance.AddShilling(dropShilling);
     }
 }

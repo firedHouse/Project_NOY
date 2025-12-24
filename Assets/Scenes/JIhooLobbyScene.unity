@@ -693,6 +693,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterListPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 6351460788838162421, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6545344106218441906, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -896,7 +900,7 @@ GameObject:
   - component: {fileID: 760563216}
   - component: {fileID: 760563215}
   m_Layer: 0
-  m_Name: CharacterDataManager
+  m_Name: LobbyManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -924,6 +928,10 @@ MonoBehaviour:
   - 10007
   - 10008
   - 10009
+  selectedCharacterIDs:
+  - 
+  - 
+  - 
   CharacterListModels:
   - {fileID: 611040648}
   - {fileID: 1693966917}
@@ -1721,6 +1729,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1163528370452510013, guid: 3e698041f6932f846b2d258ea70d75e9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1172195687754107229, guid: 3e698041f6932f846b2d258ea70d75e9, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1900,6 +1912,10 @@ PrefabInstance:
     - target: {fileID: 4776396174756640285, guid: 3e698041f6932f846b2d258ea70d75e9, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174520531183191347, guid: 3e698041f6932f846b2d258ea70d75e9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5337034945801099587, guid: 3e698041f6932f846b2d258ea70d75e9, type: 3}
       propertyPath: m_IsActive

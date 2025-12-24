@@ -440,16 +440,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 6172557063887174949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68f450ce7139730499a17c0dc032298f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f7666d0440a84f44b0f773ffebc1e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrowthCharacterInfoView
-  elementImage: {fileID: 6582973509445690664}
-  charName: {fileID: 9195785957618752581}
-  codeName: {fileID: 4312928434594044711}
+  presenter: {fileID: 0}
+  elementImage: {fileID: 0}
+  charName: {fileID: 0}
+  codeName: {fileID: 0}
   starImage:
-  - {fileID: 7330524233364529779}
-  - {fileID: 7613366579274441535}
-  - {fileID: 2195703920064639099}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  illust: {fileID: 0}
+  notEnoughShilingPanel: {fileID: 0}
+  notEnoughShilingText: {fileID: 0}
+  OKPanel: {fileID: 0}
+  upgradeButton: {fileID: 0}
+  upgradeCostText: {fileID: 0}
+  lineText: {fileID: 0}
+  infoText: {fileID: 0}
 --- !u!1 &6641164840918774123
 GameObject:
   m_ObjectHideFlags: 0

@@ -51,9 +51,9 @@ public class GrowthView : MonoBehaviour
     #endregion
    
     //성장버튼 클릭 액션
-    public void OnClickUpgradeButton()
+    public void OnClickUpgradeButton(CharacterListModel model)
     {
-        presenter.IsCanUpgrade();
+        presenter.IsCanUpgrade(model);
     }
 
     //확인 버튼 클릭 액션
@@ -66,6 +66,12 @@ public class GrowthView : MonoBehaviour
     //이름, 코드네임
     public void CharacterName(CharacterListModel model)
     {
+        if (charName == null || codeName == null)
+        {
+            Debug.Log("[GrowthView] 이름, 코드네임 오보젝트가 없습니다.");
+            return;
+        }
+
         charName.text = model.CharacterName;
         codeName.text = model.CharacterCodeName;
         Debug.Log($"이름 : {model.CharacterName}");
@@ -76,13 +82,26 @@ public class GrowthView : MonoBehaviour
     //0불 /1물 / 2번개 / 3무속성
     public void CharacterElement(CharacterListModel model)
     {
+        if (elementImage == null)
+        {
+            Debug.Log("[GrowthView] 속성(테스트버전-텍스트)오브젝트가 없습니다.");
+            return;
+        }
+
         elementImage.text = $"{model.Element}";
-        Debug.Log($"속성 : {model.Element}");
+        Debug.Log($"[GrowthView] 속성 : {model.Element}");
     }
 
     //별 이미지 갱신
     public void GradeSet(CharacterListModel model)
     {
+        if (starImage[0] == null)
+        {
+            Debug.Log("[GrowthView] 별 이미지(테스트버전-텍스트)오보젝트가 없습니다.");
+            return;
+        }
+        Debug.Log($"{starImage}");
+
         //if(yellowStar == null || grayStar ==null)
         //{
         //    Debug.Log("[GrowthView] 별 이미지 정보 없음");
@@ -112,15 +131,21 @@ public class GrowthView : MonoBehaviour
     //세부설정
     public void CharacterInfo(CharacterListModel model)
     {
+        if (lineText == null || infoText == null)
+        {
+            Debug.Log("[GrowthView] 한마디, 설명 오보젝트가 없습니다.");
+            return;
+        }
         lineText.text = model.CharacterDialogue;
         infoText.text = model.CharacterInfo;
-        Debug.Log($"한마디 : {model.CharacterDialogue}");
-        Debug.Log($"설명 : {model.CharacterInfo}");
+        Debug.Log($"[GrowthView]한마디 : {model.CharacterDialogue}");
+        Debug.Log($"[GrowthView]설명 : {model.CharacterInfo}");
     }
 
     //학년별 일러스트
     public void CharacterIllust(CharacterListModel model)
     {
+
         Debug.Log("[GrowthView] : 일러스트 변경");
         //illust.sprite = illustImage[grade];
     }
@@ -141,12 +166,22 @@ public class GrowthView : MonoBehaviour
     //버튼 활성/비활성
     public void ButtonActive(bool canClick)
     {
+        if (upgradeButton == null)
+        {
+            Debug.Log("[GrowthView] 성장버튼 오보젝트가 없습니다.");
+            return;
+        }
         upgradeButton.interactable = canClick;
     }
 
     //실링 부족 경고창
     public void OnNotEnoughShilling(bool isTrue)
     {
+        if (upgradeButton == null)
+        {
+            Debug.Log("[GrowthView] 실링부족 오보젝트가 없습니다.");
+            return;
+        }
         notEnoughShilingPanel.SetActive(isTrue);
     }
 

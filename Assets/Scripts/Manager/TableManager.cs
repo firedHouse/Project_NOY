@@ -15,7 +15,6 @@ public class TableManager : Singleton<TableManager>
     public TableBase<StageData> StageTable = new TableBase<StageData>();
     public TableBase<MonsterGroupData> MonsterGroupTable = new TableBase<MonsterGroupData>();
     public TableBase<SkinData> SkinTable = new TableBase<SkinData>();
-    public TableBase<StringData> StringTable = new TableBase<StringData>();
 
 
     //TableManager.Instance.MonsterTable.Get(id);

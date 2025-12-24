@@ -219,6 +219,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5926045203619183926, guid: ad156f1d3f33a314eb4ca30a0ecaca3c, type: 3}
   m_PrefabInstance: {fileID: 5388306462162781156}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &948165539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 948165541}
+  - component: {fileID: 948165540}
+  m_Layer: 0
+  m_Name: SkillProcesser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &948165540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948165539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb08ce7ef9372fe48827eb750176fff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillProcesser
+--- !u!4 &948165541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948165539}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &951515156 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8653691778533640101, guid: ad156f1d3f33a314eb4ca30a0ecaca3c, type: 3}
@@ -1103,3 +1147,4 @@ SceneRoots:
   - {fileID: 8927810688973903363}
   - {fileID: 419307027}
   - {fileID: 4111442481768125230}
+  - {fileID: 948165541}

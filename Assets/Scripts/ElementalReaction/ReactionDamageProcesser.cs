@@ -1,37 +1,43 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public static class ReactionDamageProcesser
 {
-
-    //Áõ¹ß µ¥¹ÌÁö
+    //ì¦ë°œ ë°ë¯¸ì§€
     public static void ApplyVaporize(BattleUnit target)
     {
-        if(target == null || target.IsDead)
-        {  return; }
-
-        target.TakeDamage(target.MaxHP * 0.1f);
-        Debug.Log("Áõ¹ß µ¥¹ÌÁö");
+        if (target == null || target.IsDead)
+        { 
+            return; 
+        }
+        float dmg = target.MaxHP * 0.1f;
+        target.TakeDamage(dmg);
+        Debug.Log($"ì¦ë°œ: {target.UnitName} ì—ê²Œ {dmg} ë°ë¯¸ì§€ ");
     }
- 
+
     public static void ApplyElectroShock(IEnumerable<BattleUnit> enemyTeam)
     {
         foreach (var enemy in enemyTeam)
         {
             if (!enemy.IsDead)
-            enemy.TakeDamage(enemy.MaxHP * 0.07f);
-            Debug.Log("°¨Àü µ¥¹ÌÁö");
-
+            {
+                float dmg = enemy.MaxHP * 0.07f;
+                enemy.TakeDamage(dmg);
+                Debug.Log($"ê°ì „: {enemyTeam} ì—ê²Œ {dmg}ì˜ ê´‘ì—­ ë°ë¯¸ì§€");
+            }
         }
     }
 
-    public static void ApplyOverload(IEnumerable<BattleUnit> enemyTeam)
+    //12.23 ê³¼ë¶€í•˜ ê´‘ì—­ -> ë‹¨ì¼ë¡œ ë³€ê²½
+    public static void ApplyOverload(BattleUnit target)
     {
-        foreach(var enemy in enemyTeam)
+        if (target == null || target.IsDead)
         {
-            if (!enemy.IsDead)
-            enemy.TakeDamage(enemy.MaxHP * 0.04f);
-            Debug.Log("°úºÎÇÏ µ¥¹ÌÁö");
+            return;
         }
+        //ë§¤ í„´
+        float dmg = target.MaxHP * 0.04f;
+        target.TakeDamage(dmg);
+        Debug.Log($"ê³¼ë¶€í•˜: {target.UnitName} ì—ê²Œ {dmg} ë°ë¯¸ì§€");
     }
 }

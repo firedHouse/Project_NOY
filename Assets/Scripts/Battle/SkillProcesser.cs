@@ -54,7 +54,7 @@ public class SkillProcesser : MonoBehaviour
                 ReactionDamageProcesser.ApplyElectroShock(enemyTeam);
                 break;
             case ElementReaction.Overload:
-                Debug.Log("과부하");
+                Debug.Log("과부하 타이머 시작");
                 elemental.ActiveOverload(overloadDuration);
             break;
         }

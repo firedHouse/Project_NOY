@@ -18,17 +18,11 @@ public partial class CharacterListModel : MonoBehaviour
 
     #region Property 
     public string GradeID => gradeID;
-    public string GradeCharacterID => gradeCharacterID;
-    public int AttackUP => attackUP;
-    public int HpUP => hpUP;
     public int NeedShilling => needShilling;
-    public string GradeInfo => gradeInfo;
-    public string ChangeSkin => changeSkin;
-    public string Desc => desc;
     #endregion
 
     public event Action<CharacterListModel> OnUpgrade;
-    public event Action OnUnlock;
+    public event Action<bool> OnUnlock;
 
     private Dictionary<string, (int, int)> gradeData = new Dictionary<string, (int, int)>();
 

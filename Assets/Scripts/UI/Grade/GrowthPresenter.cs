@@ -75,12 +75,12 @@ public partial class CharacterListPresenter : MonoBehaviour
     }
 
     //보유 실링 체크 : 구매 여부 체크
-    public void IsCanUpgrade()
+    public void IsCanUpgrade(CharacterListModel model)
     {
         if (currentShilling < model.NeedShilling)
         {
             //업그레이드 정보 전달
-            model.SuccessUpgrade();
+            model.SuccessUpgrade(model);
             return;
         }
         //실링부족 > 패널 띄움

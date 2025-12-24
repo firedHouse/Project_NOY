@@ -16,19 +16,18 @@ public partial class CharacterListPresenter : MonoBehaviour
 
     private void Start()
     {
-        if(CharacterDataManager.Instance == null)
+        if(LobbyManager.Instance == null)
         {
             Debug.Log("데이터 매니저 없음");
         }
         else
         {
-            Debug.Log("데이터 매니저 있음");
-            CharacterDataManager.Instance.SetCharacterDataList();
-            characters = CharacterDataManager.Instance.CharacterListModels;
+            LobbyManager.Instance.SetCharacterDataList();
+            characters = LobbyManager.Instance.CharacterListModels;
         }
 
+        LoadCharacterList();
         //characterSlots = GetComponentsInChildren<CharacterSlot>;
-        GetCharacterList();
 
         Init();
         model.OnUnlock += CanClick;
@@ -37,18 +36,18 @@ public partial class CharacterListPresenter : MonoBehaviour
 
     // 캐릭터 리스트 가져오기
     // 캐릭터 수에 따라 캐릭터 슬롯 생성 후 각 슬롯에 캐릭터 정보 띄우기
-    private void GetCharacterList()
+    private void LoadCharacterList()
     {
-        //foreach(CharacterListModel character in characters)
         for (int i = 0; i < characters.Count; i++)
         {
-            //CharacterSlot.Instantiate(characterSlot, GameObject.Find("LobbyCanvas").transform);
+
             //Debug.Log($"[CharacterListPresenter] {characters[i].CharacterName} 불러오기 성공");
             characterSlots[i].UpdateCharacterSlot(characters[i].CharacterID);
         }
     }
 
     // 캐릭터 해금
+    // to-do : 현재 상세 정보 ui에서 표시하고 있는 캐릭터 데이터의 unlock을 변경
     private void UnlockCharacter()
     {
         //characterListModel.Unlock();

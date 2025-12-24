@@ -42,6 +42,7 @@ public partial class CharacterListModel : MonoBehaviour
     public void Initialize(string id)
     {
         CharacterData characterData = TableManager.Instance.CharacterTable.Get(id);
+        Debug.Log($"[CharacterListModel] {characterData.unlock}");
 
         if(characterData is not null)
         {

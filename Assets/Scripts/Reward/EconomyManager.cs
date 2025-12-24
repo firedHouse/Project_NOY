@@ -1,42 +1,70 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class EconomyManager : Singleton<EconomyManager>
-{   //ÀÎ°ÔÀÓ ÀçÈ­ÀÎ °ñµå °ü¸® ¸Å´ÏÀú
-    private int currentGold = 0;
+{   //ì¸ê²Œì„ í™”í ê´€ë¦¬ ë§¤ë‹ˆì €
+    private int runGold = 0;
+    private int runShilling = 0;
 
-    public int CurrentGold => currentGold; // ÀĞ±â Àü¿ë ÇöÀç º¸À¯ °ñµå¾ç
+    public int RunGold => runGold; // ì½ê¸° ì „ìš© í˜„ì¬ ë³´ìœ  ê³¨ë“œì–‘
+    public int RunShilling => runShilling; // í˜„ì¬ ê²Œì„ì—ì„œ ì–»ì€ ì‹¤ë§ ì–‘
+
+    public event Action<int> OnGoldChanged; // ê³¨ë“œ ë³€ê²½ ì‹œ ì´ë²¤íŠ¸
 
     protected override void Awake()
     {
         base.Awake();
-        // Ãß°¡ ÃÊ±âÈ­ ÄÚµå°¡ ÇÊ¿äÇÏ¸é ¿©±â¿¡ ÀÛ¼º
+        ResetEconomy();
     }
-    //°ñµå È¹µæ ¸Å¼­µå
+    //ìŠ¤í…Œì´ì§€ ì‹œì‘ ì‹œ ì¬í™” ì´ˆê¸°í™”
+    public void ResetEconomy()
+    {
+        runGold = 0;
+        runShilling = 0;
+        OnGoldChanged?.Invoke(runGold);
+    }
+
+    //ì¬í™” íšë“ ë§¤ì„œë“œ
     public void AddGold(int plusGold)
     {
         if (plusGold <= 0)
         { return; }
 
-        currentGold += plusGold;
-        Debug.Log($"°ñµå È¹µæ: +{plusGold}. ÇöÀç °ñµå: {currentGold}");
+        runGold += plusGold;
+        OnGoldChanged?.Invoke(runGold);
+        Debug.Log($"ê³¨ë“œ íšë“: +{plusGold}. í˜„ì¬ ê³¨ë“œ: {runGold}");
     }
-    //°ñµå »ç¿ë °¡´É ¿©ºÎ È®ÀÎ
-    public bool CanSpendGold(int cost)
+    public void AddShilling(int plusShilling)
     {
-        return currentGold >= cost || cost >= 0;
+        if (plusShilling <= 0)
+        { return; }
+        runShilling += plusShilling;
+        Debug.Log($"ì‹¤ë§ íšë“: +{plusShilling}. í˜„ì¬ ì‹¤ë§: {runShilling}");
     }
+
+    //ì¸ê²Œì„ ê³¨ë“œ ì‚¬ìš© ë©”ì„œë“œ
     public bool SpendGold(int cost)
     {
-        if(!CanSpendGold(cost))
+        if(runGold < cost)
         {
-            Debug.Log("º¸À¯ÇÑ °ñµå°¡ ºÎÁ·ÇÕ´Ï´Ù!");
+            Debug.Log("ë³´ìœ í•œ ê³¨ë“œê°€ ë¶€ì¡±í•©ë‹ˆë‹¤!");
             return false;
         }
         
-        currentGold -= cost;
-        Debug.Log($"°ñµå »ç¿ë: -{cost}. ÇöÀç °ñµå: {currentGold}");
+        runGold -= cost;
+        OnGoldChanged?.Invoke(runGold);
+        Debug.Log($"ê³¨ë“œ ì‚¬ìš©: -{cost}. í˜„ì¬ ê³¨ë“œ: {runGold}");
         return true;
+    }
+
+    //ìŠ¤í…Œì´ì§€ ì¢…ë£Œ ì‹œ ì‹¤ë§ì„ ì•„ì›ƒê²Œì„ìœ¼ë¡œ ì „ì†¡í•˜ê¸° ì „ UIì— í‘œì‹œ ë° ì¸ê²Œì„ì—ì„œ ì–»ì€ Shillingì„ ë°›ê¸°
+    public int ResultShilling()
+    {
+        int result = runShilling;
+        runShilling = 0;
+        Debug.Log($"ìŠ¤í…Œì´ì§€ ì¢…ë£Œ: íšë“í•œ ì‹¤ë§ {result} ë°˜í™˜");
+        return result;
     }
    
 }

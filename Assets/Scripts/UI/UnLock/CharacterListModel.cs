@@ -27,7 +27,7 @@ public partial class CharacterListModel : MonoBehaviour
 
     #region Property 
     public string CharacterID => characterID;
-    public bool IsUnlocked => isUnlocked;
+    public bool IsUnlocked { get => isUnlocked; private set => isUnlocked = value; }
     public int Level => level; 
     public int Position => position;
     public int Element => element;
@@ -36,6 +36,7 @@ public partial class CharacterListModel : MonoBehaviour
     public string CharacterDialogue => characterDialogue; 
     public string CharacterInfo => characterInfo; 
     public string CharacterSkin => characterSkin;
+
     #endregion
 
     // 초기화
@@ -71,6 +72,16 @@ public partial class CharacterListModel : MonoBehaviour
     // 해금 처리 
     public void Unlock()
     {
-        isUnlocked = true;
+        if (!isUnlocked)
+        {
+            Debug.Log($"[CharacterListModel] {isUnlocked} > 해금");
+            isUnlocked = true;
+        }
+        else
+        {
+            Debug.Log($"[CharacterListModel] {isUnlocked} > 이미 해금됨!");
+        }
     }
+
+
 }

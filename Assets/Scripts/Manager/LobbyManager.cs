@@ -28,6 +28,9 @@ public class LobbyManager : Singleton<LobbyManager>
 
     public void SetCharacterDataList()
     {
+        // 모든 데이터 가져와서 Convert에 넣어주는 식으로 개선
+        //TableManager.Instance.CharacterTable.GetAll();
+
         for(int i = 0; i < characterDataIDs.Length; i++)
         //foreach(string id in characterDataIDs)
         {

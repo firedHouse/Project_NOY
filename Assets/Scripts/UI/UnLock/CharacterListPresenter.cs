@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 // 캐릭터 목록에서 캐릭터 정보 출력에 전체적으로 사용할 프레젠터
+// 혜주님이 작성하신 CharacterListPresenter는 GrowthPresenter 클래스에 존재
 public partial class CharacterListPresenter : MonoBehaviour
 {
     [Header("UI Components")]
@@ -13,6 +16,7 @@ public partial class CharacterListPresenter : MonoBehaviour
     [SerializeField] private List<CharacterSlot> characterSlots;
     
     private List<CharacterListModel> characters;
+    private Button unlockButton;
 
     private void Start()
     {
@@ -24,11 +28,15 @@ public partial class CharacterListPresenter : MonoBehaviour
         {
             LobbyManager.Instance.SetCharacterDataList();
             characters = LobbyManager.Instance.CharacterListModels;
+            unlockButton = (GameObject.Find("CharacterUnlockButton")).GetComponent<Button>();
         }
 
         LoadCharacterList();
         //characterSlots = GetComponentsInChildren<CharacterSlot>;
 
+        // 초기 설정으로 첫 슬롯 캐릭터 지정해주기
+        ShowDetailView(characterSlots[0].gameObject.GetComponent<CharacterListModel>());
+        // Hyeju
         Init();
         model.OnUnlock += CanClick;
         model.OnUpgrade += UpdateCharacterInfo;
@@ -43,19 +51,77 @@ public partial class CharacterListPresenter : MonoBehaviour
 
             //Debug.Log($"[CharacterListPresenter] {characters[i].CharacterName} 불러오기 성공");
             characterSlots[i].UpdateCharacterSlot(characters[i].CharacterID);
+            // 슬롯 클릭 이벤트 설정
+            characterSlots[i].SetButtonEvent(characters[i], OnSlotClicked);
+            // 슬롯 클릭시 잠금 UI 변경 메서드
+            growthView.ChangeLockedUIActivation(characters[i].IsUnlocked);
+        }
+        // 잠금 해제 시 UI 변경 메서드 
+        SetButtonEvent(model, OnUnlockButtonClicked);
+
+    }
+
+    private void ShowDetailView(CharacterListModel character)
+    {
+        if (character != null)
+        {
+            model = character;
+            //UpdateCharacterInfo(model);
+            UpdateMainInfo(model);
+            // 잠금 ui 변경
+            Debug.Log($"[CharacterListPresenter] {model.CharacterName} 해금 여부 : {model.IsUnlocked}");
+            growthView.ChangeLockedUIActivation(model.IsUnlocked);
+        }
+        else
+        {
+            Debug.Log("[CharacterListPresenter] 슬롯에서 캐릭터를 받아올 수 없습니다");
         }
     }
 
-    // 캐릭터 해금
-    // to-do : 현재 상세 정보 ui에서 표시하고 있는 캐릭터 데이터의 unlock을 변경
-    private void UnlockCharacter()
+    // 클릭한 캐릭터 슬롯에 해당하는 상세 정보 띄워주기
+    // 클릭한 슬롯을 model에 넣어줌
+    // 각 캐릭터 슬롯에서 호출
+    public void OnSlotClicked(CharacterListModel character)
     {
-        //characterListModel.Unlock();
-        // 뷰에서 해금에 따라 UI 갱신
-        // 해금 버튼 비활성화, 해금 아이콘 비활성화
-        // 성장 버튼 선택 가능하도록 변경
-        //characterListView.
+        Debug.Log("[CharacterListPresenter] 슬롯 클릭");
+        ShowDetailView(character);
     }
 
-    // 클릭한 캐릭터 슬롯에 해당하는 상세 정보 띄워주기
+    // 해금 버튼 클릭시 캐릭터 상태 변경
+    // 파라미터 변경 필요?
+    public void OnUnlockButtonClicked(CharacterListModel character)
+    {
+        Debug.Log("[CharacterListPresenter] 해금 클릭");
+        Debug.Log($"[CharacterListPresenter] {character}");
+        if(character != null)
+        {
+            model = character;
+            model.Unlock();
+            Debug.Log($"[CharacterListPresenter] {model.CharacterName} 해금 여부 : {model.IsUnlocked}");
+            growthView.ChangeLockedUIActivation(model.IsUnlocked);
+        }
+        else
+        {
+            Debug.Log($"[CharacterListPresenter] 해금 상태 변경 실패");
+        }
+    }
+
+    /// <summary>
+    /// 이름, 해금 여부?, 코드네임, 속성, 대사, 인포, 업데이트
+    /// </summary>
+    public void UpdateMainInfo(CharacterListModel character)
+    {
+        Debug.Log($"[CharacterListPresenter] 기본 정보 업데이트");
+        growthView.CharacterName(character);
+        growthView.CharacterInfo(character);
+        //growthView.CharacterElement(character);
+    }
+
+    // 클릭하면 해금되도록 버튼 이벤트 설정
+    public void SetButtonEvent(CharacterListModel character, UnityAction<CharacterListModel> onClickCallBack)
+    {
+        model = character;
+        Debug.Log("해금 버튼 설정");
+        unlockButton.onClick.AddListener(() => onClickCallBack(model));
+    }
 }

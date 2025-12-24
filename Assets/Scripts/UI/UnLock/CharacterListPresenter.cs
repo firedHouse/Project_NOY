@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 // 캐릭터 목록에서 캐릭터 정보 출력에 전체적으로 사용할 프레젠터
-public class CharacterListPresenter : MonoBehaviour
+public partial class CharacterListPresenter : MonoBehaviour
 {
     [Header("UI Components")]
     [SerializeField] private CharacterListView characterListView;
@@ -29,6 +29,10 @@ public class CharacterListPresenter : MonoBehaviour
 
         //characterSlots = GetComponentsInChildren<CharacterSlot>;
         GetCharacterList();
+
+        Init();
+        model.OnUnlock += CanClick;
+        model.OnUpgrade += UpdateCharacterInfo;
     }
 
     // 캐릭터 리스트 가져오기

@@ -49,7 +49,13 @@ partial class MonsterInfoPresenter : MonoBehaviour
         monsterView.UpdateSpeed(monsterModel.Speed);
 
         monsterView.UpdatePosition(monsterModel.Position);
+
+        //표식
         monsterView.UpdateElement(monsterModel.CurrentMark.ToString());
+
+        //고유속성
+        //ElementUI 사용
+        //monsterView.UpdateElementClass(monsterModel.ElementUI.ToString());
         //monsterView.UpdateCalss(monsterModel.Role);
     }
 

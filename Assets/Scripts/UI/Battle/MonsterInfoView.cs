@@ -21,10 +21,19 @@ public class MonsterInfoView : MonoBehaviour
         monsterNameText.text = text;
     }
 
+    //표식
     public void UpdateElement(string text)
     {
         elementText.text = text;
     }
+
+    //고유속성
+    //public void UpdateElementClass(string text)
+    //{
+    //    elementText.text = text;
+    //}
+
+
 
     //position : 전열중열후열
     public void UpdatePosition(UnitPosition position)

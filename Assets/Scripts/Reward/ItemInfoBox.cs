@@ -1,11 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemInfo : MonoBehaviour
 {
     [SerializeField] private Text _itemInfoText;
     [SerializeField] private GameObject _ItemUsecharacterChoicePanel;
-    [SerializeField] private GoldModelScript _goldModelScript;
+    //[SerializeField] private GoldModelScript _goldModelScript;
 
 
     public void OnPointOver()
@@ -22,7 +22,7 @@ public class ItemInfo : MonoBehaviour
     {
         // 아이템 구매
         // 골드 감소(아이템 가격만큼)
-        _goldModelScript.SpendGold(1000);
+        //_goldModelScript.SpendGold(1000);
 
         // 사용할 캐릭터 팝업 출력
         _ItemUsecharacterChoicePanel.SetActive(true);

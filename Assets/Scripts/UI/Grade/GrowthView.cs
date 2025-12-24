@@ -1,10 +1,23 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GrowthView : MonoBehaviour
 {
     [Header("GrowthPresenter")]
-    [SerializeField] private GrowthPresenter presenter;
+    [SerializeField] private CharacterListPresenter presenter;
+
+    [Header("고유속성 출력 배열/리소스(물/불/번개/무속)")]
+    [SerializeField] private Text elementImage;
+    //[SerializeField] private Sprite[] elementImageResources = new Sprite[4];
+
+    [Header("캐릭터 이름/코드네임")]
+    [SerializeField] private Text charName;
+    [SerializeField] private Text codeName;
+
+    [Header("별 출력 배열/리소스")]
+    [SerializeField] private Text[] starImage = new Text[3];
+    //[SerializeField] private Sprite yellowStar;
+    //[SerializeField] private Sprite grayStar;
 
     [Header("일러스트출력")]
     [SerializeField] private Image illust;
@@ -40,52 +53,84 @@ public class GrowthView : MonoBehaviour
     //성장버튼 클릭 액션
     public void OnClickUpgradeButton()
     {
-        //실링이 충분함
-        if(presenter.IsCanUpgrade() == true)
-        {
-            //업그레이드 정보 전달
-            presenter.SuccessUpgrade();
-
-        }
-        //실링이 부족함
-        else if(presenter.IsCanUpgrade() == false)
-        {
-            //실링부족 > 패널 띄움
-            OnNotEnoughShilling(true);
-        }
-
-        
+        presenter.IsCanUpgrade();
     }
 
-
     //확인 버튼 클릭 액션
-    public void OnOKButton()
+    public void OnOKButton(bool buttonActive)
     {
         //패널 닫기
-        OnNotEnoughShilling(false);
+        OnNotEnoughShilling(buttonActive);
+    }
+
+    //이름, 코드네임
+    public void CharacterName(CharacterListModel model)
+    {
+        charName.text = model.CharacterName;
+        codeName.text = model.CharacterCodeName;
+        Debug.Log($"이름 : {model.CharacterName}");
+        Debug.Log($"코드네임 : {model.CharacterCodeName}");
+    }
+
+    //고유속성 출력 : ElementUI elementUI
+    //0불 /1물 / 2번개 / 3무속성
+    public void CharacterElement(CharacterListModel model)
+    {
+        elementImage.text = $"{model.Element}";
+        Debug.Log($"속성 : {model.Element}");
+    }
+
+    //별 이미지 갱신
+    public void GradeSet(CharacterListModel model)
+    {
+        //if(yellowStar == null || grayStar ==null)
+        //{
+        //    Debug.Log("[GrowthView] 별 이미지 정보 없음");
+        //    return;
+        //}
+        //if (grade > 3)
+        //{
+        //    Debug.Log("[GrowthView] 등급 최대치 넘어감");
+        //    return;
+        //}
+
+        //등급만큼 노란별
+        for (int i = 0; i < model.Level; i++)
+        {
+            starImage[i].text = $"★";
+            //starImage[i].sprite = yellowStar;
+        }
+
+        for (int i = model.Level; i < 3; i++)
+        {
+            starImage[i].text = $"☆";
+            //starImage[i].sprite = grayStar;
+        }
     }
 
 
     //세부설정
-    public void CharacterInfo(string info, string line)
+    public void CharacterInfo(CharacterListModel model)
     {
-        lineText.text = line;
-        infoText.text = info;
+        lineText.text = model.CharacterDialogue;
+        infoText.text = model.CharacterInfo;
+        Debug.Log($"한마디 : {model.CharacterDialogue}");
+        Debug.Log($"설명 : {model.CharacterInfo}");
     }
 
     //학년별 일러스트
-    public void CharacterIllust(int grade)
+    public void CharacterIllust(CharacterListModel model)
     {
         Debug.Log("[GrowthView] : 일러스트 변경");
         //illust.sprite = illustImage[grade];
     }
 
     //비용 업데이트
-    public void UpgradeCost(int grade)
+    public void UpgradeCost(CharacterListModel model)
     {
         if(upgradeButton.interactable == true)
         {
-            upgradeCostText.text = $"{grade * 1000}";
+            upgradeCostText.text = $"{model.NeedShilling}";
         }
         else
         {

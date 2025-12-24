@@ -5,7 +5,7 @@ using UnityEngine;
 // 필요한 정보: 아이디, 해금 여부, 이름, 코드네임, 포지션, 속성, 레벨(학년), 대사, 세부 설정, 스킨, 
 // 팀구성 팝업만 사용할 정보 : 스킬(팀구성), 
 //[Serializable]
-public class CharacterListModel : MonoBehaviour
+public partial class CharacterListModel : MonoBehaviour
 {
 
     #region Field

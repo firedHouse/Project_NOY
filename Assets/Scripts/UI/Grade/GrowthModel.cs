@@ -8,13 +8,7 @@ public partial class CharacterListModel : MonoBehaviour
 
     #region Field
     private string gradeID;
-    private string gradeCharacterID;
-    private int attackUP;
-    private int hpUP;
     private int needShilling;
-    private string gradeInfo;
-    private string changeSkin;
-    private string desc;
 
     //업그레이드 성공 여부 > 레벨 1회 상승 후 false
     //처음부터 true인 애들도 있음
@@ -49,16 +43,33 @@ public partial class CharacterListModel : MonoBehaviour
         // 딕셔너리 10001 캐릭터는 50001, 50002의 의 레벨업 정보를 가지고 있다. 정도의 내용
     }
 
-    public void SuccessUpgrade()
+    public void SuccessUpgrade(CharacterListModel model)
     {
+        //2레벨
+        if(model.level == 1)
+        {
+            int gradeID = gradeData[model.characterID].Item1;
+        }
+        //3레벨
+        else if (model.level == 2)
+        {
+            int gradeID = gradeData[model.characterID].Item2;
+        }
+
+        GradeData plusStat = TableManager.Instance.GradeTable.Get($"{gradeID}");
+
         //업그레이드 전달
         isUpgrade = true;
         //레벨 체크 - 버튼 활성/비활성
         level++;
+        attackLevel1 += plusStat.attackUP;
+        HPLevel1 += plusStat.hpUP;
+        needShilling = plusStat.needShilling1;
 
+        //3레벨 달성 시 버튼 비활성화
         if (level == 3)
         {
-           
+            presenter.CanClick(false);
         }
     }
 }

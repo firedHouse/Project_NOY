@@ -19,6 +19,9 @@ public class GrowthSkillView : MonoBehaviour
     //[SerializeField] private Sprite yellowStar;
     //[SerializeField] private Sprite grayStar;
 
+    [Header("일러스트출력")]
+    [SerializeField] private Image illust;
+
     [Header("스킬출력")]
     [SerializeField] private Text[] skill = new Text[3];
     //[SerializeField] private Sprite[] skillImage = new Sprite[3];
@@ -72,8 +75,14 @@ public class GrowthSkillView : MonoBehaviour
         }
     }
 
+    //학년별 일러스트
+    public void CharacterIllust(CharacterListModel model)
+    {
+        Debug.Log("[GrowthView] : 일러스트 변경");
+        //illust.sprite = illustImage[grade];
+    }
 
-    //학년별 스킬 갱신
+    //스킬
     public void CharacterSkill(CharacterListModel model)
     {
         //for (int i = 0; i < 3; i++)

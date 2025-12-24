@@ -30,13 +30,13 @@ public partial class CharacterListPresenter : MonoBehaviour
     //}
 
     //레벨에 따라 변경되어야 할 사항
-    ////// CharacterData >> Character로 변경되어야 함. ///////
     public void UpdateCharacterInfo(CharacterListModel model)
     {
         //비용 갱신
         growthView.UpgradeCost(model);
         //일러스트 갱신
         growthView.CharacterIllust(model);
+        skillView.CharacterIllust(model);
         //별 갱신
         growthView.GradeSet(model);
         skillView.GradeSet(model);
@@ -68,14 +68,10 @@ public partial class CharacterListPresenter : MonoBehaviour
     }
 
 
-
     //캐릭터가 해금 상태이면, 버튼 활성화
-    public void CanClick()
+    public void CanClick(bool active)
     {
-        if (model.IsUnlocked == true)
-        {
-            growthView.ButtonActive(true);
-        }
+        growthView.ButtonActive(active);
     }
 
     //보유 실링 체크 : 구매 여부 체크

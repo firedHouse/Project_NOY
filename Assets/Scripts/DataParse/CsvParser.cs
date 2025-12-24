@@ -4,73 +4,73 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-//CSV ÆÄÀÏÀ» ÀĞ¾î¼­ C# °´Ã¼·Î Âï¾î³»±â
+//CSV íŒŒì¼ì„ ì½ì–´ì„œ C# ê°ì²´ë¡œ ì°ì–´ë‚´ê¸°
 public static class CsvParser
 {
-    //Parse<T> ¸Ş¼­µå
-    //¾î¶² µ¥ÀÌÅÍ Å¸ÀÔÀÌµç Ã³¸®, where new T()·Î ¸¸µé ¼ö ÀÖ´Â Å¬·¡½º¸¸
+    //Parse<T> ë©”ì„œë“œ
+    //ì–´ë–¤ ë°ì´í„° íƒ€ì…ì´ë“  ì²˜ë¦¬, where new T()ë¡œ ë§Œë“¤ ìˆ˜ ìˆëŠ” í´ë˜ìŠ¤ë§Œ
     public static List<T> Parse<T>(string csvFileName) where T : new()
     {
         List<T> list = new List<T>();
 
-        //Resources¿¡¼­ ÆÄÀÏ ÀĞ¾î¿À±â
+        //Resourcesì—ì„œ íŒŒì¼ ì½ì–´ì˜¤ê¸°
         TextAsset csvData = Resources.Load<TextAsset>(csvFileName);
 
 
         if (csvData == null)
         {
-            Debug.LogError($"[CsvParser] ÆÄÀÏ ¾ø´Ù: {csvFileName}");
+            Debug.LogError($"[CsvParser] íŒŒì¼ ì—†ë‹¤: {csvFileName}");
             return list;
         }
 
-        //ÁÙ¹Ù²Ş Ã³¸®
+        //ì¤„ë°”ê¿ˆ ì²˜ë¦¬
         string[] lines = csvData.text.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
 
-        //Çì´õ°¡ 3ÁÙÀÌ´Ï±î 4ÁÙÀº ³Ñ°Ü¾ß µ¥ÀÌÅÍ°¡ Á¸Àç
+        //í—¤ë”ê°€ 3ì¤„ì´ë‹ˆê¹Œ 4ì¤„ì€ ë„˜ê²¨ì•¼ ë°ì´í„°ê°€ ì¡´ì¬
         if (lines.Length < 4)
         {
             return list;
         }
 
-        //Csv 2¹øÂ° ÁÙ = º¯¼ö¸í = Header = ÄÃ·³¸í
+        //Csv 2ë²ˆì§¸ ì¤„ = ë³€ìˆ˜ëª… = Header = ì»¬ëŸ¼ëª…
         string[] headers = SplitCsvLine(lines[1]);
 
-        //Ä³½Ì ÇØµÎ±â
+        //ìºì‹± í•´ë‘ê¸°
         FieldInfo[] fieldCache = new FieldInfo[headers.Length];
         Type type = typeof(T);
 
         for (int i = 0; i < headers.Length; i++)
         {
-            //Trim()µµ ¿©±â¼­ ¹Ì¸® ¼öÇàÇÏ¿© GC ½ºÆÄÀÌÅ© ¹æÁö
+            //Trim()ë„ ì—¬ê¸°ì„œ ë¯¸ë¦¬ ìˆ˜í–‰í•˜ì—¬ GC ìŠ¤íŒŒì´í¬ ë°©ì§€
             string fieldName = headers[i].Trim();
-            //µü ÇÑ ¹ø¸¸ Ã£±â
+            //ë”± í•œ ë²ˆë§Œ ì°¾ê¸°
             fieldCache[i] = type.GetField(fieldName, BindingFlags.Public | BindingFlags.Instance);
         }
 
-        //4¹øÂ° ÁÙ(Index 3)ºÎÅÍ ½ÇÁ¦ µ¥ÀÌÅÍ
+        //4ë²ˆì§¸ ì¤„(Index 3)ë¶€í„° ì‹¤ì œ ë°ì´í„°
         for (int i = 3; i < lines.Length; i++)
         {
-            //½°Ç¥ ÀÚ¸£±â
+            //ì‰¼í‘œ ìë¥´ê¸°
             string[] values = SplitCsvLine(lines[i]);
             if (values.Length == 0)
             {
                 continue;
             }
 
-            //ºó ²®µ¥±â °´Ã¼ »ı¼º(ex. new MonsterData()) 
+            //ë¹ˆ ê»ë°ê¸° ê°ì²´ ìƒì„±(ex. new MonsterData()) 
             T entry = new T();
 
-            //°ª Ã¤¿ö³Ö±â
+            //ê°’ ì±„ì›Œë„£ê¸°
             for (int j = 0; j < headers.Length; j++)
             {
                 if (j >= values.Length)
                 {
                     break;
                 }
-                //Ä³½ÌµÈ º¯¼ö ¾²±â
+                //ìºì‹±ëœ ë³€ìˆ˜ ì“°ê¸°
                 FieldInfo field = fieldCache[j];
 
-                //Çì´õ¿Í ÀÏÄ¡ÇÏ´Â º¯¼ö°¡ ÀÖ°í, °ªµµ ÀÖ´Ù¸é
+                //í—¤ë”ì™€ ì¼ì¹˜í•˜ëŠ” ë³€ìˆ˜ê°€ ìˆê³ , ê°’ë„ ìˆë‹¤ë©´
                 if (field != null)
                 {
                     string value = values[j].Replace("\"\"\"", "").Replace("\"", "").Trim();
@@ -82,25 +82,25 @@ public static class CsvParser
                     }
                     catch (Exception e)
                     {
-                        Debug.LogError($"[CsvParser] ÆÄ½Ì ¿¡·¯ÆÄÆ® ÆÄÀÏ:{csvFileName}, ÁÙ:{i + 1}, ÄÃ·³:{headers[j]}, °ª:{value}\n¿¡·¯:{e}");
+                        Debug.LogError($"[CsvParser] íŒŒì‹± ì—ëŸ¬íŒŒíŠ¸ íŒŒì¼:{csvFileName}, ì¤„:{i + 1}, ì»¬ëŸ¼:{headers[j]}, ê°’:{value}\nì—ëŸ¬:{e}");
                     }
                 }
             }
-            //°´Ã¼¸¦ ¸®½ºÆ®¿¡ Ãß°¡
+            //ê°ì²´ë¥¼ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
             list.Add(entry);
         }
         return list;
     }
 
-    //CSV ½°Ç¥ ºĞ¸® (µû¿ÈÇ¥ ³»ºÎ ½°Ç¥ ¹«½Ã)
+    //CSV ì‰¼í‘œ ë¶„ë¦¬ (ë”°ì˜´í‘œ ë‚´ë¶€ ì‰¼í‘œ ë¬´ì‹œ)
     private static string[] SplitCsvLine(string line)
     {
         return Regex.Split(line, ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
     }
 
-    //Å¸ÀÔ º¯È¯±â
-    //ÀÎÀÚ°ª value´Â string, typeÀº ¸ñÇ¥ Å¸ÀÔ
-    //Ãâ·ÂÀº int bool µî ¸ğµç Å¸ÀÔÀÌ µÉ ¼ö ÀÖ´Â object
+    //íƒ€ì… ë³€í™˜ê¸°
+    //ì¸ìê°’ valueëŠ” string, typeì€ ëª©í‘œ íƒ€ì…
+    //ì¶œë ¥ì€ int bool ë“± ëª¨ë“  íƒ€ì…ì´ ë  ìˆ˜ ìˆëŠ” object
     private static object ConvertValue(string value, Type type)
     {
         if (type == typeof(int))
@@ -111,11 +111,13 @@ public static class CsvParser
         {
             return float.TryParse(value, out float f) ? f : 0f;
         }
-        if (type == typeof(bool)) //±âÈ¹¼­ »ó¿£ t, f
+        if (type == typeof(bool)) //ê¸°íšì„œ ìƒì—” t, f > (Jihoo) ë°ì´í„° í…Œì´ë¸”ì—ì„œ 0, 1ë¡œ ì €ì¥ëœ ê²ƒìœ¼ë¡œ í™•ì¸
         {
-            return value.ToLower() == "t" || value.ToLower() == "true";
+            // Jihoo
+            // ë°ì´í„° í…Œì´ë¸” í˜•ì‹ì— ë”°ë¼ "t"ë¥¼ "1"ë¡œ ë³€ê²½
+            return value == "1";
         }
-        if (type.IsEnum) //Fire¸é Type.Fire, ¼ıÀÚ¸¦ Àû¾îµµ Type Áß 0¹øÀ¸·Î º¯È¯.
+        if (type.IsEnum) //Fireë©´ Type.Fire, ìˆ«ìë¥¼ ì ì–´ë„ Type ì¤‘ 0ë²ˆìœ¼ë¡œ ë³€í™˜.
         {
             return Enum.Parse(type, value);
         }

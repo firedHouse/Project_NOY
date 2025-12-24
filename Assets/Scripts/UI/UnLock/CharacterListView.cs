@@ -6,8 +6,6 @@
 
 public class CharacterListView : MonoBehaviour
 {
-    // 각 캐릭터를 넣어줄 슬롯
-    [SerializeField] private CharacterSlot characterSlot;
 
     // 캐릭터 리스트 
 }

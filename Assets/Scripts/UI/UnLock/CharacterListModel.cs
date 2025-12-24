@@ -1,22 +1,24 @@
-﻿using UnityEngine;
+using System;
+using UnityEngine;
 
 // 캐릭터 슬롯과 상세 정보 UI에 사용할 모델
 // 필요한 정보: 아이디, 해금 여부, 이름, 코드네임, 포지션, 속성, 레벨(학년), 대사, 세부 설정, 스킨, 
 // 팀구성 팝업만 사용할 정보 : 스킬(팀구성), 
-public class CharacterListModel : MonoBehaviour
+//[Serializable]
+public partial class CharacterListModel : MonoBehaviour
 {
 
     #region Field
-    private string characterID;
-    private bool isUnlocked;
-    private int level;
-    private int position;
-    private int element;
-    private string characterName;
-    private string characterCodeName;
-    private string characterDialogue;
-    private string characterInfo;
-    private string characterSkin;
+    [SerializeField] private string characterID;
+    [SerializeField] private bool isUnlocked;
+    [SerializeField] private int level;
+    [SerializeField] private int position;
+    [SerializeField] private int element;
+    [SerializeField] private string characterName;
+    [SerializeField] private string characterCodeName;
+    [SerializeField] private string characterDialogue;
+    [SerializeField] private string characterInfo;
+    [SerializeField] private string characterSkin;
 
     private string ownedSkill02;
     private string ownedSkill01;
@@ -40,17 +42,25 @@ public class CharacterListModel : MonoBehaviour
     public void Initialize(string id)
     {
         CharacterData characterData = TableManager.Instance.CharacterTable.Get(id);
+        Debug.Log($"[CharacterListModel] {characterData.unlock}");
 
-        characterID = characterData.characterID;
-        isUnlocked = characterData.unlock;
-        level = characterData.level;
-        position = characterData.position;
-        element = characterData.elementUI;
-        characterName = characterData.characterName;
-        characterCodeName = characterData.characterCodeName;
-        characterDialogue = characterData.characterDialogue;
-        characterInfo = characterData.characterInfo;
-        characterSkin = characterData.characterSkin;
+        if(characterData is not null)
+        {
+            characterID = characterData.characterID;
+            isUnlocked = characterData.unlock;
+            level = characterData.level;
+            position = characterData.position;
+            element = characterData.elementUI;
+            characterName = characterData.characterName;
+            characterCodeName = characterData.characterCodeName;
+            characterDialogue = characterData.characterDialogue;
+            characterInfo = characterData.characterInfo;
+            characterSkin = characterData.characterSkin;
+        }
+        else
+        {
+            Debug.Log("캐릭터 데이터 불러오기 실패");
+        }
 
         // 스킬 로드 (BattelUnit.LoadSkills 메서드 사용 예정)> 팀 구성에서 이 클래스 사용하게 되면 추가
     }

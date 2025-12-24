@@ -30,8 +30,9 @@ public class StateExecution : IBattleState
             {
                 return;
             }
-            //결과 안 나왔으면 다시 플레이어턴 시작
-            bm.ChangeState(new StatePlayerTurn());
+            //결과 안 나왔으면 
+            //12.23 턴 종료 정산 단계로 이동
+            bm.ChangeState(new StateTurnEnd());
         }
     }
 
@@ -61,24 +62,26 @@ public class StateExecution : IBattleState
                 continue;
             }
 
-            //상대 식별 GetOpponentTeam
-            List<BattleUnit> targetTeam = bm.GetOpponentTeam(action.User);
+            //12.23 CSV 기준 0아군 1적군 
+            bool isTargetEnemy = (action.Skill.Data.targetFaction == "1");
 
-            //12.23 힐/버프 스킬이면 아군 타겟되도록 수정하는 로직 추가
-            SkillType sType = (SkillType)action.Skill.Data.skillType;
-            if (sType == SkillType.Heal || sType == SkillType.SpeedBuff ||
-               sType == SkillType.AttackBuff || sType == SkillType.SpeedBuff)
+            List<BattleUnit> targetTeam;
+            //상대 식별 GetOpponentTeam
+            if (isTargetEnemy)
+            {
+                targetTeam= bm.GetOpponentTeam(action.User);
+            }
+            else
             {
                 if (action.User is Monster)
                 {
-                    targetTeam = bm.EnemyTeam.Cast<BattleUnit>().ToList();
+                    targetTeam = bm.EnemyTeam.Cast<BattleUnit>().ToList();//적 타겟
                 }
                 else
                 {
-                    targetTeam = bm.PlayerTeam.Cast<BattleUnit>().ToList();
+                    targetTeam = bm.PlayerTeam.Cast<BattleUnit>().ToList();//아군 타겟
                 }
             }
-
 
             //현재 남은 대열에 맞춰 실제로 때릴 타겟 가져오기(사망 등)
             //-> 이전 공격으로 유닛이 당겨졌으면 바뀐 위치의 유닛이 타겟이 됨.
@@ -99,6 +102,7 @@ public class StateExecution : IBattleState
 
             //12.23 damage => calculatedValue 계산식 통합
             float calculatedValue = action.Skill.CalculateValue(action.User.AttackPower);
+            SkillType sType = (SkillType)action.Skill.Data.skillType;
 
             //타입별 효과 연결
             foreach (BattleUnit target in realTargets)
@@ -107,7 +111,14 @@ public class StateExecution : IBattleState
                 {
                     case SkillType.Attack:
                         target.TakeDamage(calculatedValue);
-                        break;
+                        //12.23 원소반응 추가
+                        if (skillProcesser != null)
+                        {
+                            //타겟 팀 전체를 배열로 변환해서 전달
+                            BattleUnit[] targetTeamArray = targetTeam.ToArray();
+                            skillProcesser.ApplyElement(action.User, target, action.Skill, targetTeamArray);
+                        }
+                            break;
 
                     case SkillType.Heal:
                         target.Heal(calculatedValue);
@@ -121,17 +132,14 @@ public class StateExecution : IBattleState
                     case SkillType.SpeedBuff:
                     case SkillType.AttackDebuff:
                     case SkillType.SpeedDebuff:
-                        target.ApplyBuff(sType, calculatedValue);
+                        //버프 지속시간 적용(buffTrun)
+                        target.ApplyBuff(sType, calculatedValue, action.Skill.Data.buffTurn);
                         break;
                 }
             }
-
             //다음 공격 대기
             yield return new WaitForSeconds(1.0f);
         }
-
-        bm.ChangeState(new StateOverload());
-
         //큐 비면 실행종료 변수 true
         isExecutionFinished = true;
     }

@@ -1,32 +1,32 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
 
-//È®·ü ±â¹İ ¼ÒÈ¯°ú ¿ªÇÒ±ºº° »ı¼º À§Ä¡ ±ÔÄ¢À» ÁØ¼öÇÏ°í ±¸ÇöÇÑ ½ºÅ©¸³Æ®
+//í™•ë¥  ê¸°ë°˜ ì†Œí™˜ê³¼ ì—­í• êµ°ë³„ ìƒì„± ìœ„ì¹˜ ê·œì¹™ì„ ì¤€ìˆ˜í•˜ê³  êµ¬í˜„í•œ ìŠ¤í¬ë¦½íŠ¸
 
-//1 µ¥ÀÌÅÍ ·Îµå ¹× ÁØºñ
-//2 Àû±º ¼ÒÈ¯ ·ÎÁ÷. »Ì±â -> ¿ªÇÒ±º °Ë»ç ¹× ¹èÄ¡ -> »ı¼º
-//3 ¾Æ±º ¼ÒÈ¯ ·ÎÁ÷. Test¿ë testPlayerIDs¹è¿­ ¼øÈ¸ÇØ¼­ ¹èÄ¡(Ä³¸¯ÅÍ ¼±ÅÃÃ¢ ¾øÀ½) ==> ´Ü Àü¿­ Ä³¸¯ÅÍ µÎ¸íÀ» ÀÔ·ÂÇÏ¸é ºÒ°¡ÇÏµµ·Ï
-//4 ¸í´Ü È®Á¤ -> List º¯È¯(¸µÅ¥) -> BattleManager È£Ãâ
+//1 ë°ì´í„° ë¡œë“œ ë° ì¤€ë¹„
+//2 ì êµ° ì†Œí™˜ ë¡œì§. ë½‘ê¸° -> ì—­í• êµ° ê²€ì‚¬ ë° ë°°ì¹˜ -> ìƒì„±
+//3 ì•„êµ° ì†Œí™˜ ë¡œì§. Testìš© testPlayerIDsë°°ì—´ ìˆœíšŒí•´ì„œ ë°°ì¹˜(ìºë¦­í„° ì„ íƒì°½ ì—†ìŒ) ==> ë‹¨ ì „ì—´ ìºë¦­í„° ë‘ëª…ì„ ì…ë ¥í•˜ë©´ ë¶ˆê°€í•˜ë„ë¡
+//4 ëª…ë‹¨ í™•ì • -> List ë³€í™˜(ë§í) -> BattleManager í˜¸ì¶œ
 public class TestBattleStarter : MonoBehaviour
 {
     [Header("Test Settings")]
-    [Tooltip("Å×½ºÆ®ÇÒ ½ºÅ×ÀÌÁö ID")]
+    [Tooltip("í…ŒìŠ¤íŠ¸í•  ìŠ¤í…Œì´ì§€ ID")]
     [SerializeField] private string targetStageID = "90001";
 
-    //Å×½ºÆ®¿ë ¾Æ±º ID ¸ñ·Ï (Å×½ºÆ®ÇÏ°í ½ÍÀº Ä³¸¯ÅÍ ID ÀÔ·Â)
-    [Tooltip("Å×½ºÆ®ÇÒ ¾Æ±º Ä³¸¯ÅÍ ID 3°³")]
+    //í…ŒìŠ¤íŠ¸ìš© ì•„êµ° ID ëª©ë¡ (í…ŒìŠ¤íŠ¸í•˜ê³  ì‹¶ì€ ìºë¦­í„° ID ì…ë ¥)
+    [Tooltip("í…ŒìŠ¤íŠ¸í•  ì•„êµ° ìºë¦­í„° ID 3ê°œ")]
     [SerializeField] private string[] testPlayerIDs = { "10001", "10004", "10007" };
 
     [Header("Spawn Points")]
-    [Tooltip("¾Æ±º ¼ÒÈ¯ À§Ä¡ (0:Àü¿­, 1:Áß¿­, 2:ÈÄ¿­)")]
+    [Tooltip("ì•„êµ° ì†Œí™˜ ìœ„ì¹˜ (0:ì „ì—´, 1:ì¤‘ì—´, 2:í›„ì—´)")]
     [SerializeField] private Transform[] playerSpawnPoints;
 
-    [Tooltip("Àû±º ¼ÒÈ¯ À§Ä¡ (0:Àü¿­, 1:Áß¿­, 2:ÈÄ¿­)")]
+    [Tooltip("ì êµ° ì†Œí™˜ ìœ„ì¹˜ (0:ì „ì—´, 1:ì¤‘ì—´, 2:í›„ì—´)")]
     [SerializeField] private Transform[] enemySpawnPoints;
 
-    //Ä³¸¯ÅÍ »À´ë
+    //ìºë¦­í„° ë¼ˆëŒ€
     [Header("Prefabs")]
     [SerializeField] private GameObject monsterPrefab;
     [SerializeField] private GameObject characterPrefab;
@@ -38,31 +38,31 @@ public class TestBattleStarter : MonoBehaviour
 
     public void SetupAndStartBattle()
     {
-        //µ¥ÀÌÅÍ ·Îµå
+        //ë°ì´í„° ë¡œë“œ
         StageData stageData = TableManager.Instance.StageTable.Get(targetStageID);
         if (stageData == null)
         {
-            Debug.LogError($"[Starter] ½ºÅ×ÀÌÁö µ¥ÀÌÅÍ¸¦ Ã£À» ¼ö ¾øÀ½: {targetStageID}");
+            Debug.LogError($"[Starter] ìŠ¤í…Œì´ì§€ ë°ì´í„°ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŒ: {targetStageID}");
             return;
         }
 
-        //¸ó½ºÅÍ ¼ÒÈ¯
-        //½½·Ô°ü¸®
+        //ëª¬ìŠ¤í„° ì†Œí™˜
+        //ìŠ¬ë¡¯ê´€ë¦¬
         Monster[] enemySlots = new Monster[3];
 
         int spawnedCount = 0;
-        int maxAttempts = 100; // ¹«ÇÑ·çÇÁ ¹æÁö¿ë ¾ÈÀüÀåÄ¡
+        int maxAttempts = 100; // ë¬´í•œë£¨í”„ ë°©ì§€ìš© ì•ˆì „ì¥ì¹˜
         int currentAttempts = 0;
 
-        //12.22 ½ºÅ×ÀÌÁö ¿¬°áµÈ ¸ó½ºÅÍ ±×·ì ¾ÆÀÌµğ °¡Á®¿Àµµ·Ï ¸®ÆÑÅä¸µ
+        //12.22 ìŠ¤í…Œì´ì§€ ì—°ê²°ëœ ëª¬ìŠ¤í„° ê·¸ë£¹ ì•„ì´ë”” ê°€ì ¸ì˜¤ë„ë¡ ë¦¬íŒ©í† ë§
         string targetGroupID = stageData.groupID;
 
-        //ÃÑ 3¸¶¸® »Ì±â
+        //ì´ 3ë§ˆë¦¬ ë½‘ê¸°
         while (spawnedCount<3 && currentAttempts<maxAttempts)
         {
             currentAttempts++;
-            //È®·ü ±â¹İ ¸ó½ºÅÍ »Ì±â
-            //12.22 ±×·ì¾ÆÀÌµğ ±â¹İ È®·ü »Ì±â ÁøÇà
+            //í™•ë¥  ê¸°ë°˜ ëª¬ìŠ¤í„° ë½‘ê¸°
+            //12.22 ê·¸ë£¹ì•„ì´ë”” ê¸°ë°˜ í™•ë¥  ë½‘ê¸° ì§„í–‰
             string drawnMonsterID = GetRandomMonsterID(targetGroupID);
             MonsterData mData = TableManager.Instance.MonsterTable.Get(drawnMonsterID);
 
@@ -72,7 +72,7 @@ public class TestBattleStarter : MonoBehaviour
             }
 
             int targetSlotIndex = -1;
-            if ((MonsterClass)mData.monsterClass == MonsterClass.Tanker) //ÅÊÄ¿ Ã¼Å©
+            if ((MonsterClass)mData.monsterClass == MonsterClass.Tanker) //íƒ±ì»¤ ì²´í¬
             {
                 if (enemySlots[0] == null)
                 {
@@ -80,10 +80,10 @@ public class TestBattleStarter : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log($"[Spawn] ({mData.monsterName})°¡ »ÌÇûÀ¸³ª Àü¿­ÀÌ ÀÌ¹Ì Â÷ÀÖ¾î ¹«½Ã");
+                    Debug.Log($"[Spawn] ({mData.monsterName})ê°€ ë½‘í˜”ìœ¼ë‚˜ ì „ì—´ì´ ì´ë¯¸ ì°¨ìˆì–´ ë¬´ì‹œ");
                 }
             }
-            else //µô·¯ Èú·¯ Ã³ºĞ
+            else //ë”œëŸ¬ íëŸ¬ ì²˜ë¶„
             {
                 if (enemySlots[1] == null)
                 {
@@ -95,7 +95,7 @@ public class TestBattleStarter : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log($"[Spawn] µô·¯/Èú·¯({mData.monsterName})°¡ »ÌÇûÀ¸³ª Áß/ÈÄ¿­ÀÌ ¸ğµÎ Â÷ÀÖ¾î ¹«½Ã");
+                    Debug.Log($"[Spawn] ë”œëŸ¬/íëŸ¬({mData.monsterName})ê°€ ë½‘í˜”ìœ¼ë‚˜ ì¤‘/í›„ì—´ì´ ëª¨ë‘ ì°¨ìˆì–´ ë¬´ì‹œ");
                 }
             }
             if (targetSlotIndex != -1)
@@ -103,18 +103,18 @@ public class TestBattleStarter : MonoBehaviour
                 GameObject go = Instantiate(monsterPrefab, enemySpawnPoints[targetSlotIndex].position, Quaternion.identity);
                 Monster monster = go.GetComponent<Monster>();
 
-                //¸ó½ºÅÍ ÃÊ±âÈ­(ID, À§Ä¡, º¸½º¿©ºÎ)
-                //12.22 º¯°æ(½ºÅ×ÀÌÁö µ¥ÀÌÅÍÀÇ º¸½ºID¿Í ÀÏÄ¡ÇÒ °æ¿ì true)
+                //ëª¬ìŠ¤í„° ì´ˆê¸°í™”(ID, ìœ„ì¹˜, ë³´ìŠ¤ì—¬ë¶€)
+                //12.22 ë³€ê²½(ìŠ¤í…Œì´ì§€ ë°ì´í„°ì˜ ë³´ìŠ¤IDì™€ ì¼ì¹˜í•  ê²½ìš° true)
                 bool isBoss = (drawnMonsterID == stageData.bossID);
                 monster.InitializeMonster(drawnMonsterID, (UnitPosition)targetSlotIndex, isBoss);
 
-                // ½½·Ô Á¡À¯
+                // ìŠ¬ë¡¯ ì ìœ 
                 enemySlots[targetSlotIndex] = monster;
-                Debug.Log($"[Enemy Spawn] {targetSlotIndex}¿­({mData.monsterClass}): {mData.monsterName} ¼ÒÈ¯ ¿Ï·á");
-                spawnedCount++; //Ä«¿îÆ® Áõ°¡
+                Debug.Log($"[Enemy Spawn] {targetSlotIndex}ì—´({mData.monsterClass}): {mData.monsterName} ì†Œí™˜ ì™„ë£Œ");
+                spawnedCount++; //ì¹´ìš´íŠ¸ ì¦ê°€
             }
         }
-        //¾Æ±º ¼ÒÈ¯(Position ÄÃ·³ ±ÔÄ¢ Àû¿ë)
+        //ì•„êµ° ì†Œí™˜(Position ì»¬ëŸ¼ ê·œì¹™ ì ìš©)
         Character[] playerSlots = new Character[3];
 
         foreach (string charID in testPlayerIDs)
@@ -129,10 +129,10 @@ public class TestBattleStarter : MonoBehaviour
                 continue;
             }
 
-            //µ¥ÀÌÅÍÀÇ Æ÷Áö¼Ç °ª °¡Á®¿À±â (0, 1, 2)
+            //ë°ì´í„°ì˜ í¬ì§€ì…˜ ê°’ ê°€ì ¸ì˜¤ê¸° (0, 1, 2)
             int posIndex = (int)cData.position;
 
-            //ÇØ´ç ÀÚ¸®°¡ ºñ¾îÀÖÀ» ¶§¸¸ ¹èÄ¡
+            //í•´ë‹¹ ìë¦¬ê°€ ë¹„ì–´ìˆì„ ë•Œë§Œ ë°°ì¹˜
             if (posIndex >= 0 && posIndex < 3 && playerSlots[posIndex] == null)
             {
                 GameObject go = Instantiate(characterPrefab, playerSpawnPoints[posIndex].position, Quaternion.identity);
@@ -141,20 +141,20 @@ public class TestBattleStarter : MonoBehaviour
                 character.InitializeCharacter(charID, (UnitPosition)posIndex);
                 playerSlots[posIndex] = character;
 
-                Debug.Log($"[Player Spawn] {posIndex}¿­: {cData.characterName} ¼ÒÈ¯ ¿Ï·á");
+                Debug.Log($"[Player Spawn] {posIndex}ì—´: {cData.characterName} ì†Œí™˜ ì™„ë£Œ");
             }
             else
             {
-                Debug.LogWarning($"[Player Spawn] {cData.characterName}ÀÇ ÀÚ¸®({cData.position})°¡ À¯È¿ÇÏÁö ¾ÊÀ½");
+                Debug.LogWarning($"[Player Spawn] {cData.characterName}ì˜ ìë¦¬({cData.position})ê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ");
             }
         }
-        //BattleManager¿¡ ¸í´Ü Àü´Ş, nullÀº Á¦¿Ü
+        //BattleManagerì— ëª…ë‹¨ ì „ë‹¬, nullì€ ì œì™¸
         List<Monster> finalEnemies = enemySlots.Where(m => m != null).ToList();
         List<Character> finalPlayers = playerSlots.Where(m => m != null).ToList();
 
         if (finalEnemies.Count > 0 && finalPlayers.Count > 0)
         {
-            //12.22 Ãß°¡ => ¹èÆ²½ºÅ¸ÅÍ°¡ °¡Áö°í ÀÖ´Â Æ÷Áö¼Ç ¸®½ºÆ®¸¦ ¹èÆ²¸Å´ÏÀú¿¡°Ô Àü´Ş
+            //12.22 ì¶”ê°€ => ë°°í‹€ìŠ¤íƒ€í„°ê°€ ê°€ì§€ê³  ìˆëŠ” í¬ì§€ì…˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ë°°í‹€ë§¤ë‹ˆì €ì—ê²Œ ì „ë‹¬
             BattleManager.Instance.PlayerSpawnPoints = new List<Transform>(playerSpawnPoints);
             BattleManager.Instance.EnemySpawnPoints = new List<Transform>(enemySpawnPoints);
 
@@ -162,39 +162,39 @@ public class TestBattleStarter : MonoBehaviour
         }
         else
         {
-            Debug.LogError("ÀüÅõ ½ÃÀÛÇÒ À¯´Ö ºÎÁ·");
+            Debug.LogError("ì „íˆ¬ ì‹œì‘í•  ìœ ë‹› ë¶€ì¡±");
         }
 
     }
 
-    //È®·ü °¡ÁßÄ¡ »Ì±â ·ÎÁ÷
-    //12.22 º¯°æ=>  ¸ó½ºÅÍ ±×·ì Å×ÀÌºíÀÇ °¡ÁßÄ¡¸¦ ±âÁØÀ¸·Î ±¸Çö
-    //12.23 ·ÎÁ÷ ¼öÁ¤(Å×ÀÌºí µ¥ÀÌÅÍ °¡·ÎÇü º¯°æ¿¡ µû¸¥ µ¥ÀÌÅÍ ºÒ·¯¿À±â ¹æ½Ä ¼öÁ¤)
+    //í™•ë¥  ê°€ì¤‘ì¹˜ ë½‘ê¸° ë¡œì§
+    //12.22 ë³€ê²½=>  ëª¬ìŠ¤í„° ê·¸ë£¹ í…Œì´ë¸”ì˜ ê°€ì¤‘ì¹˜ë¥¼ ê¸°ì¤€ìœ¼ë¡œ êµ¬í˜„
+    //12.23 ë¡œì§ ìˆ˜ì •(í…Œì´ë¸” ë°ì´í„° ê°€ë¡œí˜• ë³€ê²½ì— ë”°ë¥¸ ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸° ë°©ì‹ ìˆ˜ì •)
     private string GetRandomMonsterID(string groupID)
     {
-        //±×·ì µ¥ÀÌÅÍ °¡Á®¿À±â (groupID = PrimaryID À¸·Î º¯°æµÇ¾úÀ¸¹Ç·Î ¹Ù·Î Get)
+        //ê·¸ë£¹ ë°ì´í„° ê°€ì ¸ì˜¤ê¸° (groupID = PrimaryID ìœ¼ë¡œ ë³€ê²½ë˜ì—ˆìœ¼ë¯€ë¡œ ë°”ë¡œ Get)
         MonsterGroupData groupData = TableManager.Instance.MonsterGroupTable.Get(groupID);
 
         if (groupData == null)
         {
-            Debug.LogError($"MonsterGroupTable¿¡¼­ '{groupID}'¸¦ Ã£À» ¼ö ¾øŸ¼...");
+            Debug.LogError($"MonsterGroupTableì—ì„œ '{groupID}'ë¥¼ ì°¾ì„ ìˆ˜ ì—†ì†...");
             return null;
         }
 
-        //À¯È¿ÇÑ ¸ó½ºÅÍ/È®·ü ¸®½ºÆ®·Î º¯È¯ (È®Àå¸Ş¼­µå)
+        //ìœ íš¨í•œ ëª¬ìŠ¤í„°/í™•ë¥  ë¦¬ìŠ¤íŠ¸ë¡œ ë³€í™˜ (í™•ì¥ë©”ì„œë“œ)
         var candidates = groupData.GetSpawnList();
 
         if (candidates.Count == 0)
         {
-            Debug.LogWarning($"±×·ì {groupID}¿¡ ¼ÒÈ¯ °¡´ÉÇÑ ¸ó½ºÅÍ°¡ ¾øŸ¼...");
+            Debug.LogWarning($"ê·¸ë£¹ {groupID}ì— ì†Œí™˜ ê°€ëŠ¥í•œ ëª¬ìŠ¤í„°ê°€ ì—†ì†...");
             return null;
         }
 
-        //°¡ÁßÄ¡ ÇÕ °è»ê
+        //ê°€ì¤‘ì¹˜ í•© ê³„ì‚°
         float totalRate = candidates.Sum(x => x.rate);
         float randomPoint = Random.Range(0, totalRate);
 
-        //»Ì±â ÁøÇà
+        //ë½‘ê¸° ì§„í–‰
         float currentRate = 0;
         foreach (var item in candidates)
         {
@@ -204,7 +204,7 @@ public class TestBattleStarter : MonoBehaviour
                 return item.id;
             }
         }
-        //¿ÀÂ÷ ¹ß»ı ½Ã ¸¶Áö¸· Ç×¸ñ ¹İÈ¯
+        //ì˜¤ì°¨ ë°œìƒ ì‹œ ë§ˆì§€ë§‰ í•­ëª© ë°˜í™˜
         return candidates.Last().id;
     }
 }

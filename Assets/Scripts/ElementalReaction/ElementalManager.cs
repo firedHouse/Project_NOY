@@ -69,4 +69,19 @@ public class ElementalManager : MonoBehaviour
         }
         
     }
+
+    //12.23 턴 종료시에 호출하고 과부하턴 줄이기
+    public void DecreaseOverloadTurn()
+    {
+        if (overloadReamainTurn > 0)
+        {
+            overloadReamainTurn--;
+            if (overloadReamainTurn <= 0)
+            {
+                Debug.Log("과부하 끝!");
+                overloadReamainTurn = 0;
+            }
+        }
+        ResetTurn();
+    }
 }

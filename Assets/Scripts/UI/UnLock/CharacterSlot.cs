@@ -1,15 +1,34 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 // 각 캐릭터마다 리스트에 표시해줄 View
 // 캐릭터 unlock 속성이 unlock이면 검은 실루엣 이미지로 처리
+[RequireComponent(typeof(Button))]
 public class CharacterSlot : MonoBehaviour
 {
     //[SerializeField] private CharacterListPresenter characterListPresenter;
     [Header("캐릭터 슬롯 프리팹")]
     [SerializeField] private Button button;
-
+    [SerializeField] private CharacterListModel model;
     private string id;
+
+    private bool isClickable = true;
+
+    // 슬롯 클릭시 변경
+    public void SetButtonEvent(CharacterListModel model, UnityAction<CharacterListModel> onClickCallBack)
+    {
+        this.model = model;
+        button = this.GetComponent<Button>();
+        button.onClick.AddListener(() => onClickCallBack(this.model));
+    }
+
+    public void UpdateButtonAvailable(bool isAvailable)
+    {
+        button.interactable = isAvailable;
+    }
+
+
 
     // 캐릭터 데이터 받아와서 띄우기
     // 초기화 하면서 필요한 데이터 모두 업데이트하기

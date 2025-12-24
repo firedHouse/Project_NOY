@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GrowthView : MonoBehaviour
+public partial class GrowthView : MonoBehaviour
 {
     [Header("GrowthPresenter")]
     [SerializeField] private CharacterListPresenter presenter;

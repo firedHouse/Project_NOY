@@ -9,7 +9,9 @@ public class CharacterDataManager : Singleton<CharacterDataManager>
     // 모든 캐릭터 데이터 가져오기 
     [SerializeField] private string[] characterDataIDs = { "10001", "10002", "10003", "10004", "10005", "10006", "10007", "10008", "10009" };
 
-    // 
+    [Header("[리스트 내부 요소 연결]" +
+        "\nElement 갯수는 캐릭터수만큼, " +
+        "\n씬 내부에 있는 CharacterSelectButton을 순서대로 넣어주세요")]
     [SerializeField] public List<CharacterListModel> CharacterListModels; //{ get; private set; } //= new List<CharacterListModel>();
 
     public void SetCharacterDataList()

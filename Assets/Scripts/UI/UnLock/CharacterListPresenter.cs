@@ -6,11 +6,13 @@ public class CharacterListPresenter : MonoBehaviour
 {
     [Header("UI Components")]
     [SerializeField] private CharacterListView characterListView;
-    //[SerializeField] private CharacterSlot characterSlot;
-    //[SerializeField] private CharacterListModel characterListModel;
-
+    
+    [Header("[리스트 내부 요소 연결]" +
+    "\nElement 갯수는 캐릭터수만큼, " +
+    "\n씬 내부에 있는 CharacterSelectButton을 순서대로 넣어주세요")]
+    [SerializeField] private List<CharacterSlot> characterSlots;
+    
     private List<CharacterListModel> characters;
-    [SerializeField] private List<CharacterSlot> characterSlots; // = new List<CharacterSlot>();
 
     private void Start()
     {

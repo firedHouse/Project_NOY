@@ -20,6 +20,14 @@ public partial class CharacterListModel : MonoBehaviour
     [SerializeField] private string characterInfo;
     [SerializeField] private string characterSkin;
 
+    #region GrowthModel에서 사용할 부분 
+    [SerializeField] private float attackLevel;
+    [SerializeField] private float hpLevel;
+    #endregion
+
+    public float attackLevel1;
+    public float HPLevel1;
+
     private string ownedSkill02;
     private string ownedSkill01;
     private string ownedSkill03;
@@ -36,6 +44,11 @@ public partial class CharacterListModel : MonoBehaviour
     public string CharacterDialogue => characterDialogue; 
     public string CharacterInfo => characterInfo; 
     public string CharacterSkin => characterSkin;
+
+    #region GrowthModel에서 사용할 부분 
+    public float AttackLevel { get => attackLevel; set => attackLevel = value; }
+    public float HpLevel { get => hpLevel; set => hpLevel = value; }
+    #endregion
 
     #endregion
 
@@ -57,7 +70,9 @@ public partial class CharacterListModel : MonoBehaviour
             characterDialogue = characterData.characterDialogue;
             characterInfo = characterData.characterInfo;
             characterSkin = characterData.characterSkin;
-        }
+            attackLevel = characterData.attackLevel1;
+            hpLevel = characterData.HPLevel1;
+}
         else
         {
             Debug.Log("캐릭터 데이터 불러오기 실패");

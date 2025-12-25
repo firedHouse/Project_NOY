@@ -1,38 +1,37 @@
-몬스터 ID,원소 표식,원소 표시 ui,몬스터 스킬 ID 1,몬스터 스킬 ID 2,몬스터 스킬 ID 3,몬스터 체력,몬스터 공격력,몬스터 속력,몬스터 드랍 골드,몬스터 드랍 실링,몬스터 역할군,몬스터 이름 스트링키,몬스터 사운드,몬스터 스프라이트,주석
+몬스터 ID,원소 표식,초기 속성 표시 ui,몬스터 스킬 ID 1,몬스터 스킬 ID 2,몬스터 스킬 ID 3,몬스터 체력,몬스터 공격력,몬스터 속력,몬스터 드랍 골드,몬스터 드랍 실링,몬스터 역할군,몬스터 이름 스트링키,몬스터 사운드,몬스터 스프라이트,주석
 monsterID,elementType,elementUI,monsterSkill01,monsterSkill02,monsterSkill03,monsterHP,monsterAttack,monsterSpeed,monsterDropGold,monsterDropShilling,monsterClass,monsterName,monsterSound,monsterSprite,desc
 string,enum,enum,string,string,string,float,float,int,int,int,enum,string,string,string,string
-20001,3,3,30017,30014,30001,1800,42,5,30,30,0,스웜 러너,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,스웜 러너
-20002,3,3,30017,30015,30009,2800,38,3,35,35,1,본 크러셔,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,본 크러셔
-20003,3,3,30017,30101,30019,1750,50,6,32,32,0,섀도우 리퍼,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,섀도우 리퍼
-20004,3,3,30011,30015,30005,3200,32,1,40,40,1,가디언 코쿤,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,가디언 코쿤
-20005,2,2,30001,30011,30020,1700,52,4,32,32,0,이그니스 스피터,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,이그니스 스피터
-20006,1,1,30011,30002,30009,1900,45,4,32,32,0,아쿠아 스피터,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,아쿠아 스피터
-20007,0,0,30019,30003,30001,1650,52,5,32,32,0,볼트 스피터,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,볼트 스피터
-20008,2,2,30020,30001,30014,2100,48,4,40,40,0,파이어 인펙터,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,파이어 인펙터
-20009,1,1,30011,30006,30002,2200,44,3,40,40,0,아이스 인펙터,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,아이스 인펙터
-20010,0,0,30019,30003,30101,2050,49,5,40,40,0,썬더 인펙터,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,썬더 인펙터
-20011,3,3,30038,30024,30030,2100,45,6,30,30,1,모노리스 가디언,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,모노리스 가디언
-20012,3,3,30032,30034,30029,1500,40,8,30,30,0,스캐러브 드론,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,스캐러브 드론
-20013,3,3,30038,30022,30027,1850,60,7,40,40,0,위상 암살자,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,위상 암살자
-20014,3,3,30038,30024,30029,3500,35,2,45,45,1,툼 가드,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,툼 가드
-20015,2,2,30031,30028,30025,1750,55,6,32,32,0,서멀 오브,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,서멀 오브
-20016,1,1,30023,30033,30029,1950,50,5,32,32,0,프로스트 오브,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,프로스트 오브
-20017,0,0,30021,30028,30034,1600,58,7,32,32,0,플라즈마 오브,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,플라즈마 오브
-20018,2,2,30031,30025,30026,2400,52,5,40,40,1,레드 센티널,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,레드 센티널
-20019,1,1,30023,30033,30024,2600,48,4,40,40,0,블루 센티널,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,블루 센티널
-20020,0,0,30021,30032,30028,2150,56,6,40,40,1,옐로 센티널,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,옐로 센티널
-20021,3,3,30055,30042,30052,2800,55,3,30,30,0,스크랩 봇,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,스크랩 봇
-20022,3,3,30041,30051,30058,3200,65,4,40,40,0,체인소 스위퍼,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,체인소 스위퍼
-20023,3,3,30046,30048,30056,2200,40,5,30,30,0,리페어 드론,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,리페어 드론
-20024,3,3,30055,30044,30060,5500,80,1,60,60,0,헤비 탱크,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,헤비 탱크
-20025,2,2,30046,30051,30048,3800,52,0,35,35,1,파이어 터렛,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,파이어 터렛
-20026,1,1,30046,30053,30059,4000,48,0,35,35,1,아이스 터렛,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,아이스 터렛
-20027,0,0,30059,30047,30054,3700,56,0,35,35,1,쇼크 터렛,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,쇼크 터렛
-20028,2,2,30041,30036,30058,3200,68,3,45,45,0,버닝 워커,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,버닝 워커
-20029,1,1,30046,30053,30049,3500,60,2,45,45,0,프리즈 워커,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,프리즈 워커
-20030,0,0,30059,30057,30043,3000,72,4,45,45,0,볼트 워커,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,볼트 워커
-20901,2,2,30201,30202,30203,12000,40,20,1000,1000,2,콜로서스 오버로드,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,콜로서스 오버로드
-20902,1,1,30204,30205,30206,15000,30,20,1000,1000,2,하이브 마더,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,하이브 마더
-20903,0,0,30209,30207,30208,8000,60,20,1000,1000,2,파라오 엑스 마키나,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,파라오 엑스 마키나
-20101,3,3,30010,30010,30010,10000,10,10,500,500,1,보이드 글리치,Resources/Sound/사운드명.mp3,Resources/Image/이미지명.png,보이드 글리치
-null,3,3,0,0,0,0,0,0,0,0,0,0,0,0,널
+20001,3,3,30017,30014,30001,1800,42,5,30,30,0,스웜 러너,Resources/Sound/20001.mp3,Resources/Image/20001.png,스웜 러너
+20002,3,3,30017,30015,30009,2800,38,3,35,35,1,본 크러셔,Resources/Sound/20002.mp3,Resources/Image/20002.png,본 크러셔
+20003,3,3,30017,30101,30019,1750,50,6,32,32,0,섀도우 리퍼,Resources/Sound/20003.mp3,Resources/Image/20003.png,섀도우 리퍼
+20004,3,3,30011,30015,30005,3200,32,1,40,40,1,가디언 코쿤,Resources/Sound/20004.mp3,Resources/Image/20004.png,가디언 코쿤
+20005,2,2,30001,30011,30020,1700,52,4,32,32,0,이그니스 스피터,Resources/Sound/20005.mp3,Resources/Image/20005.png,이그니스 스피터
+20006,1,1,30011,30002,30009,1900,45,4,32,32,0,아쿠아 스피터,Resources/Sound/20006.mp3,Resources/Image/20006.png,아쿠아 스피터
+20007,0,0,30019,30003,30001,1650,52,5,32,32,0,볼트 스피터,Resources/Sound/20007.mp3,Resources/Image/20007.png,볼트 스피터
+20008,2,2,30020,30001,30014,2100,48,4,40,40,0,파이어 인펙터,Resources/Sound/20008.mp3,Resources/Image/20008.png,파이어 인펙터
+20009,1,1,30011,30006,30002,2200,44,3,40,40,0,아이스 인펙터,Resources/Sound/20009.mp3,Resources/Image/20009.png,아이스 인펙터
+20010,0,0,30019,30003,30101,2050,49,5,40,40,0,썬더 인펙터,Resources/Sound/20010.mp3,Resources/Image/20010.png,썬더 인펙터
+20011,3,3,30038,30024,30030,2100,45,6,30,30,1,모노리스 가디언,Resources/Sound/20011.mp3,Resources/Image/20011.png,모노리스 가디언
+20012,3,3,30032,30034,30029,1500,40,8,30,30,0,스캐러브 드론,Resources/Sound/20012.mp3,Resources/Image/20012.png,스캐러브 드론
+20013,3,3,30038,30022,30027,1850,60,7,40,40,0,위상 암살자,Resources/Sound/20013.mp3,Resources/Image/20013.png,위상 암살자
+20014,3,3,30038,30024,30029,3500,35,2,45,45,1,툼 가드,Resources/Sound/20014.mp3,Resources/Image/20014.png,툼 가드
+20015,2,2,30031,30028,30025,1750,55,6,32,32,0,서멀 오브,Resources/Sound/20015.mp3,Resources/Image/20015.png,서멀 오브
+20016,1,1,30023,30033,30029,1950,50,5,32,32,0,프로스트 오브,Resources/Sound/20016.mp3,Resources/Image/20016.png,프로스트 오브
+20017,0,0,30021,30028,30034,1600,58,7,32,32,0,플라즈마 오브,Resources/Sound/20017.mp3,Resources/Image/20017.png,플라즈마 오브
+20018,2,2,30031,30025,30026,2400,52,5,40,40,1,레드 센티널,Resources/Sound/20018.mp3,Resources/Image/20018.png,레드 센티널
+20019,1,1,30023,30033,30024,2600,48,4,40,40,0,블루 센티널,Resources/Sound/20019.mp3,Resources/Image/20019.png,블루 센티널
+20020,0,0,30021,30032,30028,2150,56,6,40,40,1,옐로 센티널,Resources/Sound/20020.mp3,Resources/Image/20020.png,옐로 센티널
+20021,3,3,30055,30042,30052,2800,55,3,30,30,0,스크랩 봇,Resources/Sound/20021.mp3,Resources/Image/20021.png,스크랩 봇
+20022,3,3,30041,30051,30058,3200,65,4,40,40,0,체인소 스위퍼,Resources/Sound/20022.mp3,Resources/Image/20022.png,체인소 스위퍼
+20023,3,3,30046,30048,30056,2200,40,5,30,30,0,리페어 드론,Resources/Sound/20023.mp3,Resources/Image/20023.png,리페어 드론
+20024,3,3,30055,30044,30060,5500,80,1,60,60,0,헤비 탱크,Resources/Sound/20024.mp3,Resources/Image/20024.png,헤비 탱크
+20025,2,2,30046,30051,30048,3800,52,0,35,35,1,파이어 터렛,Resources/Sound/20025.mp3,Resources/Image/20025.png,파이어 터렛
+20026,1,1,30046,30053,30059,4000,48,0,35,35,1,아이스 터렛,Resources/Sound/20026.mp3,Resources/Image/20026.png,아이스 터렛
+20027,0,0,30059,30047,30054,3700,56,0,35,35,1,쇼크 터렛,Resources/Sound/20027.mp3,Resources/Image/20027.png,쇼크 터렛
+20028,2,2,30041,30036,30058,3200,68,3,45,45,0,버닝 워커,Resources/Sound/20028.mp3,Resources/Image/20028.png,버닝 워커
+20029,1,1,30046,30053,30049,3500,60,2,45,45,0,프리즈 워커,Resources/Sound/20029.mp3,Resources/Image/20029.png,프리즈 워커
+20030,0,0,30059,30057,30043,3000,72,4,45,45,0,볼트 워커,Resources/Sound/20030.mp3,Resources/Image/20030.png,볼트 워커
+20901,2,2,30201,30202,30203,8000,40,20,1000,1000,2,콜로서스 오버로드,Resources/Sound/20901.mp3,Resources/Image/20901.png,콜로서스 오버로드
+20902,1,1,30204,30205,30206,8000,30,20,1000,1000,2,하이브 마더,Resources/Sound/20902.mp3,Resources/Image/20902.png,하이브 마더
+20903,0,0,30209,30207,30208,8000,60,20,1000,1000,2,파라오 엑스 마키나,Resources/Sound/20903.mp3,Resources/Image/20903.png,파라오 엑스 마키나
+20101,3,3,30010,30010,30010,10000,10,10,500,500,1,보이드 글리치,Resources/Sound/20101.mp3,Resources/Image/20101.png,보이드 글리치

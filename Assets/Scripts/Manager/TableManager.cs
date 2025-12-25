@@ -17,9 +17,6 @@ public class TableManager : Singleton<TableManager>
     public TableBase<SkinData> SkinTable = new TableBase<SkinData>();
 
 
-    //TableManager.Instance.MonsterTable.Get(id);
-
-
     protected override void Awake()
     {
         base.Awake();

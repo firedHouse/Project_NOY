@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Android.Gradle.Manifest;
 using UnityEngine;
@@ -45,6 +46,16 @@ public class Monster : BattleUnit
             data.monsterSkill03
         };
         LoadSkills(skillIDs);
+    }
+
+    //스테이지 전환 간 몬스터 스펙 상승 로직
+    public void ApplyBuffMultiplier(float multiplier)
+    {
+        //체력, 공격력 증가
+        maxHP *= multiplier;
+        currentHP = maxHP;
+        attackPower *= multiplier;
+        speed = Mathf.RoundToInt(speed * multiplier);
     }
 
     //AI 행동 로직

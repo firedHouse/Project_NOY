@@ -3,4 +3,4 @@ stageID,groupID,bossID,image,sound,desc
 string,string,string,string,string,string
 90001,100001,20901,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,침식지역
 90002,100002,20902,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,유적지역
-90002,100003,20903,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,공장지역
+90003,100003,20903,Resources/Image/이미지명.png,Resources/Sound/사운드명.mp3,공장지역

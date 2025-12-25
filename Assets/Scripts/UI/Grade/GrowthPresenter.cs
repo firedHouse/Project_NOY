@@ -2,6 +2,7 @@ using UnityEngine;
 
 public partial class CharacterListPresenter : MonoBehaviour
 {
+    [Header("화면에 표시될 캐릭터 데이터 모델")]
     [SerializeField] private CharacterListModel model;
     [SerializeField] private GrowthView growthView;
     [SerializeField] private GrowthSkillView skillView;

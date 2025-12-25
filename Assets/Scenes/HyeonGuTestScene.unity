@@ -130,6 +130,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
+--- !u!114 &388897551 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3239000558986018166, guid: 61c5a0e8769968e4b8dde8d211d23fa7, type: 3}
+  m_PrefabInstance: {fileID: 2068492327635071731}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f49c3fa3d16f1b4ba512d45966f2aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleManager
 --- !u!1 &419307024
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,50 +295,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3423897619820695160, guid: c56666f7afdb7374eac3e203950c61b0, type: 3}
   m_PrefabInstance: {fileID: 8927810688973903363}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1232475198
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1232475200}
-  - component: {fileID: 1232475199}
-  m_Layer: 0
-  m_Name: TestScripts
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1232475199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1232475198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 665cb0abfe4cbab44bfd16d9aebd1bdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestScripts
---- !u!4 &1232475200
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1232475198}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1339305081 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4868465882022351119, guid: c56666f7afdb7374eac3e203950c61b0, type: 3}
@@ -492,6 +459,53 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &1925002357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1925002359}
+  - component: {fileID: 1925002358}
+  m_Layer: 0
+  m_Name: StageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1925002358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925002357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1903e30f874a0354e91394fae9e7ca34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageManager
+  CurrentStage: 1
+  CurrentRound: 1
+  battleManager: {fileID: 388897551}
+--- !u!4 &1925002359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925002357}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2068492327635071731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1183,12 +1197,12 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1669819243}
-  - {fileID: 1232475200}
-  - {fileID: 2081563957871918432}
-  - {fileID: 2068492327635071731}
-  - {fileID: 5849062878445460970}
   - {fileID: 5388306462162781156}
   - {fileID: 8927810688973903363}
   - {fileID: 419307027}
   - {fileID: 4111442481768125230}
   - {fileID: 948165541}
+  - {fileID: 1925002359}
+  - {fileID: 2068492327635071731}
+  - {fileID: 2081563957871918432}
+  - {fileID: 5849062878445460970}

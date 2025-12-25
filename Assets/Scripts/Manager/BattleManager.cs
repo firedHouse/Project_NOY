@@ -1,13 +1,41 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 //상태를 관리하고 필요한 데이터(유닛 리스트) 를 제공하는 매니저
 //TestBattleStarter에서 받아옴 
+//12.24 상속 제거 -> MonoBehaviour로 변경 (씬 전환 시 파괴되도록)
 
-public class BattleManager : Singleton<BattleManager>
+public class BattleManager : MonoBehaviour
 {
+    public static BattleManager Instance;
+
+    private void Awake()
+    {
+        //싱글톤 초기화
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            //이미 있으면 중복 생성된 것이므로 파괴
+            if (Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            return;
+        }
+        if (EnemyTeam == null)
+        {
+            EnemyTeam = new List<Monster>();
+        }
+        if (PlayerTeam == null)
+        {
+            PlayerTeam = new List<Character>();
+        }
+    }
     //현재 실행중인 상태
     private IBattleState currentState;
 
@@ -26,6 +54,12 @@ public class BattleManager : Singleton<BattleManager>
     //위치 정보 저장용 변수 추가(TestBattleStarter 에서 가져옴)
     public List<Transform> PlayerSpawnPoints;
     public List<Transform> EnemySpawnPoints;
+
+    //12.24
+    //TestBattleStarter에서 이관된 캐릭터 뼈대
+    [Header("Prefabs")]
+    [SerializeField] private GameObject monsterPrefab;
+    [SerializeField] private GameObject characterPrefab;
 
 
     //프레젠터 이벤트
@@ -239,4 +273,117 @@ public class BattleManager : Singleton<BattleManager>
         OnBattleSetted?.Invoke();
     }
 
+    public void SetupBattle(List<MonsterData> monsters, bool isBossRound, float multiplier = 1.0f)
+    {
+        //아군 소환(PlayerSpawnPoints 사용) 
+        SpawnPlayerTeam();
+
+        //적군 소환(여기로 로직 이동) 
+        SpawnEnemyTeam(monsters, isBossRound, multiplier);
+
+        StartBattle(PlayerTeam, EnemyTeam);
+    }
+    //적 배치 및 소환
+    private void SpawnEnemyTeam(List<MonsterData> monsters, bool isBoss, float multiplier)
+    {
+        EnemyTeam.Clear();
+        Monster[] slots = new Monster[3]; // 0:전열, 1:중열, 2:후열
+
+        foreach (var data in monsters)
+        {
+            int targetIndex = -1;
+
+            //역할군에 따른 자리 배치 로직 (TestBattleStarter에서 가져옴)
+            if ((MonsterClass)data.monsterClass == MonsterClass.Tanker)
+            {
+                if (slots[0] == null)
+                {
+                    targetIndex = 0; // 전열
+                }
+            }
+            else //딜러, 힐러
+            {
+                if (slots[1] == null)
+                {
+                    targetIndex = 1; // 중열
+                }
+                else if (slots[2] == null)
+                {
+                    targetIndex = 2; // 후열
+                }
+            }
+
+            //실제 소환
+            if (targetIndex != -1)
+            {
+                GameObject go = Instantiate(monsterPrefab, EnemySpawnPoints[targetIndex].position, Quaternion.identity);
+                Monster monster = go.GetComponent<Monster>();
+
+                //몬스터 초기화
+                monster.InitializeMonster(data.monsterID, (UnitPosition)targetIndex, isBoss);
+
+                //12.25 유닛 능력치 강화(소환 시에 강화, 데이터 원본 유지)
+                if (multiplier > 1.0f)
+                {
+                    monster.ApplyBuffMultiplier(multiplier);
+
+                }
+                slots[targetIndex] = monster;
+                EnemyTeam.Add(monster);
+            }
+        }
+        // UI나 내부 데이터 갱신
+        UpdateTeamPositions(EnemyTeam, EnemySpawnPoints);
+    }
+    public void SpawnPlayerTeam()
+    {
+        Debug.Log("[BattleManager] 아군 소환 시작");
+
+        //플레이어 팀 리스트 초기화
+        PlayerTeam.Clear();
+        string[] teamData = TempLobbyManager.Instance.GetSelectedCharacterIDs();
+        //뭐시깽이 매니저.Instance.메서드 혹은 변수명, 데이터 형식 필요함
+
+        if (teamData == null)
+        {
+            Debug.LogError("팀 정보를 불러오지 못했습니다");
+            return;
+        }
+
+        //슬롯(0,1,2) 순회하며 소환
+        for (int i = 0; i < 3; i++)
+        {
+            string charID = teamData[i];
+
+            //ID가 없으면 빈 자리이므로 패스
+            if (string.IsNullOrEmpty(charID))
+            {
+                continue;
+            }
+
+            //테이블에서 캐릭터 데이터 로드
+            CharacterData cData = TableManager.Instance.CharacterTable.Get(charID);
+            if (cData == null)
+            {
+                Debug.LogError($"캐릭터 데이터를 찾을 수 없음: {charID}");
+                continue;
+            }
+
+
+            if (i < PlayerSpawnPoints.Count)
+            {
+                GameObject go = Instantiate(characterPrefab, PlayerSpawnPoints[i].position, Quaternion.identity);
+                Character character = go.GetComponent<Character>();
+
+                //매니저 연결 및 데이터 주입
+                character.InitializeCharacter(charID, (UnitPosition)i);
+
+                //관리 리스트에 추가
+                PlayerTeam.Add(character);
+
+                Debug.Log($"[Spawn] {cData.characterName} 소환 완료");
+            }
+        }
+        UpdateTeamPositions(PlayerTeam, PlayerSpawnPoints);
+    }
 }

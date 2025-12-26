@@ -40,7 +40,7 @@ public partial class CharacterListModel : CharacterModelBase
             Debug.Log($"[CharacterListModel] 필요한 실링 : ");
             // to-do : 실링 빼가는 처리 추가
             isUnlocked = true;
-            OnUnlock.Invoke(this);
+            // OnUnlock.Invoke(this);
         }
         else
         {

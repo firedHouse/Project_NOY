@@ -70,6 +70,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
 
 
     //캐릭터가 해금 상태이면, 버튼 활성화
+    // jihoo : 잠금 상태일 때 버튼이 비활성화 되도록 변경
     public void CanClick(CharacterListModel model)
     {
         growthView.ButtonActive(model.IsUnlocked);
@@ -77,6 +78,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
 
     public void GrowthButton(bool active)
     {
+        Debug.Log($"[CharacterListPresenter] 성장 버튼 활성화 여부 {active}");
         growthView.ButtonActive(active);
     }
 

@@ -177,7 +177,9 @@ public partial class GrowthView : MonoBehaviour
             Debug.Log("[GrowthView] 성장버튼 오브젝트가 없습니다.");
             return;
         }
-        upgradeButton.interactable = canClick;
+
+        upgradeButton.gameObject.SetActive(canClick);
+        Debug.Log($"[GrowthView] 성장버튼 활성화 여부 {canClick}");
     }
 
     //실링 부족 경고창

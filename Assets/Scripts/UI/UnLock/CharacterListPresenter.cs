@@ -85,6 +85,10 @@ public partial class CharacterListPresenter : CharacterPresenterBase
             growthView.ChangeUnlockUIActivation(model.IsUnlocked);
             // 성장 버튼 활성화
             growthView.ButtonActive(model.IsUnlocked);
+            Debug.Log($"[CharacterListPresenter] 해금시 성장 버튼 변경 설정");
+            GrowthButton(model.IsUnlocked);
+            // CanClick(model);
+            // model.OnUnlock += CanClick;
         }
         else
         {
@@ -129,6 +133,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
             model.Unlock();
             Debug.Log($"[CharacterListPresenter] {model.CharacterName} 해금 여부 : {model.IsUnlocked}");
             growthView.ChangeUnlockUIActivation(model.IsUnlocked);
+            GrowthButton(model.IsUnlocked);
         }
         else
         {

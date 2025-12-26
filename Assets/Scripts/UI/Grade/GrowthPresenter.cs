@@ -1,16 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class CharacterListPresenter : MonoBehaviour
+public partial class CharacterListPresenter : CharacterPresenterBase
 {
-    [Header("화면에 표시될 캐릭터 데이터 모델")]
-    [SerializeField] private CharacterListModel model;
-    [SerializeField] private GrowthView growthView;
-    [SerializeField] private GrowthSkillView skillView;
-    public Dictionary<int, (int, int)> gradeData = new Dictionary<int, (int, int)>();
-
-
-    public CharacterListModel Model { get { return model; } }
+    [SerializeField] protected GrowthView growthView;
 
     //임시 변수 : 캐릭터 해금 상태에서 가져와야 함.
     private float currentShilling = 0;
@@ -36,7 +29,7 @@ public partial class CharacterListPresenter : MonoBehaviour
     
 
     //레벨에 따라 변경되어야 할 사항
-    public void UpdateCharacterInfo()
+    public override void UpdateCharacterInfo()
     {
         //비용 갱신
         growthView.UpgradeCost(model);
@@ -50,7 +43,7 @@ public partial class CharacterListPresenter : MonoBehaviour
 
 
     //초기 값
-    private void Init()
+    protected override void Init()
     {
         //딕셔너리 정보 저장
         GetGradeData();

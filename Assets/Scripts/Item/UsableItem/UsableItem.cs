@@ -59,7 +59,8 @@ public class UsableItem : MonoBehaviour
                     Debug.LogError("부활 아이템 사용 시 죽은 유닛이 필요합니다.");
                     return false;
                 }
-                // unit.Revive(itemData.value); -> 배틀유닛에 부활 메서드 추가 필요
+                unit.gameObject.SetActive(true);
+                unit.Heal(itemData.value);
                 Debug.Log($"[{itemData.itemName}] 사용: {unit.UnitName}이(가) 부활하여 HP가 {itemData.value}만큼 회복되었습니다.");
                 return true;
             default:

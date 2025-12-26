@@ -134,11 +134,15 @@ public partial class GrowthView : MonoBehaviour
     {
         if (lineText == null || infoText == null)
         {
-            Debug.Log("[GrowthView] 한마디, 설명 오보젝트가 없습니다.");
+            Debug.Log("[GrowthView] 한마디, 설명 오브젝트가 없습니다.");
             return;
         }
         lineText.text = model.CharacterDialogue;
-        infoText.text = model.CharacterInfo;
+        infoText.text = "";
+        if (model.IsUnlocked == true)
+        { 
+            infoText.text = model.CharacterInfo;
+        }
         Debug.Log($"[GrowthView] 한마디 : {model.CharacterDialogue}");
         Debug.Log($"[GrowthView] 설명 : {model.CharacterInfo}");
     }
@@ -154,9 +158,10 @@ public partial class GrowthView : MonoBehaviour
     //비용 업데이트
     public void UpgradeCost(CharacterListModel model)
     {
-        if(upgradeButton.interactable == true)
+        if(model.Level < 2)
         {
             upgradeCostText.text = $"{model.NeedShilling}";
+            Debug.Log($"[GrowthView] : 성장 비용({model.NeedShilling}) 변경");
         }
         else
         {
@@ -169,7 +174,7 @@ public partial class GrowthView : MonoBehaviour
     {
         if (upgradeButton == null)
         {
-            Debug.Log("[GrowthView] 성장버튼 오보젝트가 없습니다.");
+            Debug.Log("[GrowthView] 성장버튼 오브젝트가 없습니다.");
             return;
         }
         upgradeButton.interactable = canClick;
@@ -185,5 +190,4 @@ public partial class GrowthView : MonoBehaviour
         }
         notEnoughShilingPanel.SetActive(isTrue);
     }
-
 }

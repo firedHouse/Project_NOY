@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections.Generic;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 // 캐릭터 목록에서 캐릭터 정보 출력에 전체적으로 사용할 프레젠터
@@ -54,8 +55,9 @@ public partial class CharacterListPresenter : MonoBehaviour
         // ShowDetailView(characterSlots[0].gameObject.GetComponent<CharacterListModel>());
 
         // Hyeju
-        // Init();
+        // Init(characterSlots[0].gameObject.GetComponent<CharacterListModel>());
         // model.OnUnlock += CanClick;
+        // model.OnUnlock += growthView.CharacterInfo;
         // model.OnUpgrade += UpdateCharacterInfo;
     }
 

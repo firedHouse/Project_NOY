@@ -7,13 +7,11 @@ public partial class CharacterListPresenter : MonoBehaviour
     [SerializeField] private CharacterListModel model;
     [SerializeField] private GrowthView growthView;
     [SerializeField] private GrowthSkillView skillView;
+    [SerializeField] private ShillingModel shillingModel;
     public Dictionary<int, (int, int)> gradeData = new Dictionary<int, (int, int)>();
 
 
     public CharacterListModel Model { get { return model; } }
-
-    //임시 변수 : 캐릭터 해금 상태에서 가져와야 함.
-    private float currentShilling = 0;
 
     //성장 버튼 클릭 활성화 조건 : 캐릭터 해금
     //버튼 클릭 시 : 실링 확인
@@ -46,16 +44,18 @@ public partial class CharacterListPresenter : MonoBehaviour
         //별 갱신
         growthView.GradeSet(model);
         skillView.GradeSet(model);
+        //버튼갱신
+        CanClick(model);
     }
 
 
     //초기 값
-    private void Init()
+    public void Init(CharacterListModel model)
     {
+        Debug.Log("[GrowthPresenter] Init");
         //딕셔너리 정보 저장
-        GetGradeData();
-        //실링 금액업데이트
-        growthView.UpgradeCost(model);
+        //GetGradeData();
+        
         //모델에서 고유속성 불러오기
         growthView.CharacterElement(model);
         skillView.CharacterElement(model);
@@ -68,27 +68,40 @@ public partial class CharacterListPresenter : MonoBehaviour
         //패널 기본값 = false
         growthView.OnNotEnoughShilling(false);
         //버튼클릭 비활성화 // 테스트 임시 활성화
-        growthView.ButtonActive(true);
+        growthView.ButtonActive(model.IsUnlocked);
+        CanClick(model);
         //일러스트
         growthView.CharacterIllust(model);
         //한마디, 상세정보
         growthView.CharacterInfo(model);
         //스킬
         skillView.CharacterSkill(model);
+        model.SetNeedShilling();
+        //실링 금액업데이트
+        growthView.UpgradeCost(model);
     }
 
 
     //캐릭터가 해금 상태이면, 버튼 활성화
-    public void CanClick(bool active)
+    public void CanClick(CharacterListModel model)
+    {
+        growthView.ButtonActive(model.IsUnlocked);
+    }
+
+    public void GrowthButton(bool active)
     {
         growthView.ButtonActive(active);
     }
 
+
+
     //보유 실링 체크 : 구매 여부 체크
     public void IsCanUpgrade()
     {
-        if (currentShilling >= model.NeedShilling)
+        if (shillingModel.CurrentShilling >= model.NeedShilling)
         {
+            //실링 차감 매서드 호출, 비용만큼 차감
+            shillingModel.Decrease(model.NeedShilling);
             //업그레이드 정보 전달
             model.SuccessUpgrade();
             Debug.Log($"[CharacterListPresenter] 업그레이드 정보전달");

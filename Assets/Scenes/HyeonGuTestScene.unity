@@ -130,6 +130,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
+--- !u!1 &188720633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 188720635}
+  - component: {fileID: 188720634}
+  m_Layer: 0
+  m_Name: EconomyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &188720634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188720633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61cde9164c4f934b881a6bdda32b822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
+--- !u!4 &188720635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188720633}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &388897551 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3239000558986018166, guid: 61c5a0e8769968e4b8dde8d211d23fa7, type: 3}
@@ -488,8 +532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1903e30f874a0354e91394fae9e7ca34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
-  CurrentStage: 1
-  CurrentRound: 1
+  CurrentStage: 2
+  CurrentRound: 5
   battleManager: {fileID: 388897551}
 --- !u!4 &1925002359
 Transform:
@@ -1107,6 +1151,18 @@ PrefabInstance:
       value: 10007
       objectReference: {fileID: 0}
     - target: {fileID: 8962047032088930594, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
+      propertyPath: 'testMonsterIDs.Array.data[0]'
+      value: 20901
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962047032088930594, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
+      propertyPath: 'testMonsterIDs.Array.data[1]'
+      value: null
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962047032088930594, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
+      propertyPath: 'testMonsterIDs.Array.data[2]'
+      value: null
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962047032088930594, guid: cd735ad3857dd1b41a84eb3f2ff423a4, type: 3}
       propertyPath: 'enemySpawnPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 1028993864}
@@ -1206,3 +1262,4 @@ SceneRoots:
   - {fileID: 2068492327635071731}
   - {fileID: 2081563957871918432}
   - {fileID: 5849062878445460970}
+  - {fileID: 188720635}

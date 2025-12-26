@@ -88,15 +88,15 @@ public partial class CharacterListModel : MonoBehaviour
 
         Debug.Log($"[GrowthView] --- 업그레이드 전 ---");
         Debug.Log($"[GrowthView] --- 레벨 : {level} ---");
-        Debug.Log($"[GrowthView] --- 공격력 : {attackLevel1} ---");
-        Debug.Log($"[GrowthView] --- HP : {HPLevel1} ---");
+        Debug.Log($"[GrowthView] --- 공격력 : {attackLevel} ---");
+        Debug.Log($"[GrowthView] --- HP : {hpLevel} ---");
         Debug.Log($"[GrowthView] --- 소모실링 : {needShilling} ---");
 
         level++;
 
-        attackLevel1 += plusStat.attackUP;
+        attackLevel += plusStat.attackUP;
 
-        HPLevel1 += plusStat.hpUP;
+        hpLevel += plusStat.hpUP;
 
         plusStat = TableManager.Instance.GradeTable.Get($"{++gradeIDNum}");
         needShilling = plusStat.needShilling1;
@@ -104,8 +104,8 @@ public partial class CharacterListModel : MonoBehaviour
 
         Debug.Log($"[GrowthView] --- 업그레이드 목록---");
         Debug.Log($"[GrowthView] --- 레벨 : {level} ---");
-        Debug.Log($"[GrowthView] --- 공격력 : {attackLevel1} ---");
-        Debug.Log($"[GrowthView] --- HP : {HPLevel1} ---");
+        Debug.Log($"[GrowthView] --- 공격력 : {attackLevel} ---");
+        Debug.Log($"[GrowthView] --- HP : {hpLevel} ---");
         Debug.Log($"[GrowthView] --- 소모실링 : {needShilling} ---");
         Debug.Log($"[GrowthView] --- 업그레이드 완료 ---");
 

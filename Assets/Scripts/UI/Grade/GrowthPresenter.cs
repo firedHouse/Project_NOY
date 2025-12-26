@@ -34,7 +34,7 @@ public partial class CharacterListPresenter : MonoBehaviour
     
 
     //레벨에 따라 변경되어야 할 사항
-    public void UpdateCharacterInfo()
+    public void UpdateCharacterInfo(CharacterListModel model)
     {
         //비용 갱신
         growthView.UpgradeCost(model);

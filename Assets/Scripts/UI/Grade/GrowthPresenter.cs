@@ -4,6 +4,7 @@ using UnityEngine;
 public partial class CharacterListPresenter : CharacterPresenterBase
 {
     [SerializeField] protected GrowthView growthView;
+    [SerializeField] private ShillingModel shillingModel;
 
     //성장 버튼 클릭 활성화 조건 : 캐릭터 해금
     //버튼 클릭 시 : 실링 확인
@@ -32,10 +33,8 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         growthView.UpgradeCost(model);
         //일러스트 갱신
         growthView.CharacterIllust(model);
-        skillView.CharacterIllust(model);
         //별 갱신
         growthView.GradeSet(model);
-        skillView.GradeSet(model);
         //버튼갱신
         CanClick(model);
     }
@@ -50,13 +49,10 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         
         //모델에서 고유속성 불러오기
         growthView.CharacterElement(model);
-        skillView.CharacterElement(model);
         //이름, 코드네임
         growthView.CharacterName(model);
-        skillView.CharacterName(model);
         //별 이미지 세팅(0:노란별 / 1,2:회색별)
         growthView.GradeSet(model);
-        skillView.GradeSet(model);
         //패널 기본값 = false
         growthView.OnNotEnoughShilling(false);
         //버튼클릭 비활성화 // 테스트 임시 활성화
@@ -67,7 +63,6 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         //한마디, 상세정보
         growthView.CharacterInfo(model);
         //스킬
-        skillView.CharacterSkill(model);
         model.SetNeedShilling();
         //실링 금액업데이트
         growthView.UpgradeCost(model);
@@ -104,21 +99,23 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         Debug.Log($"[CharacterListPresenter] 패널 띄움");
     }
 
-    public void GetGradeData()
-    {
-        if (gradeData.Count == 0)
-        {
-            int gradeIDNum = 50001;
-            int characterIDNum = 10001;
-            for (int i = 0; i < 9; i++)
-            {
-                gradeData.Add(characterIDNum, (gradeIDNum, gradeIDNum + 1));
-                Debug.Log($"[CharacterListModel] 아이디 입력 체크 : {gradeData[characterIDNum].Item1}");
-                gradeIDNum += 2;
-                characterIDNum += 1;
-            }
-            // 딕셔너리 10001 캐릭터는 50001, 50002의 의 레벨업 정보를 가지고 있다. 정도의 내용
-        }
-    }
+    // CharacterModelBase로 이동
+    // 혜주님 확인 후에 삭제해주세요
+    // public void GetGradeData()
+    // {
+    //     if (gradeData.Count == 0)
+    //     {
+    //         int gradeIDNum = 50001;
+    //         int characterIDNum = 10001;
+    //         for (int i = 0; i < 9; i++)
+    //         {
+    //             gradeData.Add(characterIDNum, (gradeIDNum, gradeIDNum + 1));
+    //             Debug.Log($"[CharacterListModel] 아이디 입력 체크 : {gradeData[characterIDNum].Item1}");
+    //             gradeIDNum += 2;
+    //             characterIDNum += 1;
+    //         }
+    //         // 딕셔너리 10001 캐릭터는 50001, 50002의 의 레벨업 정보를 가지고 있다. 정도의 내용
+    //     }
+    // }
 
 }

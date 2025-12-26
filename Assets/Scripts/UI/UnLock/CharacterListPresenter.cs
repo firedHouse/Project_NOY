@@ -74,7 +74,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         if (character != null)
         {
             model = character;
-            UpdateCharacterInfo();
+            UpdateCharacterInfo(character);
             UpdateMainInfo(model);
             // 잠금 ui 변경
             Debug.Log($"[CharacterListPresenter] {model.CharacterName} 해금 여부 : {model.IsUnlocked}");

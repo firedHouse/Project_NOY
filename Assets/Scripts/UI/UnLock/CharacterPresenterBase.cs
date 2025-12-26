@@ -16,7 +16,7 @@ public abstract class CharacterPresenterBase : MonoBehaviour
     [SerializeField]
     protected CharacterListModel model;
 
-    public Dictionary<int, (int, int)> gradeData = new Dictionary<int, (int, int)>();
+    // public Dictionary<int, (int, int)> gradeData = new Dictionary<int, (int, int)>();
     public CharacterListModel Model { get { return model; } }
 
     protected abstract void Start();
@@ -30,8 +30,8 @@ public abstract class CharacterPresenterBase : MonoBehaviour
     public abstract void UpdateMainInfo(CharacterListModel character);
 
     public abstract void SetButtonEvent(CharacterListModel character, UnityAction<CharacterListModel> onClickCallBack);
-    public abstract void UpdateCharacterInfo();
-    protected abstract void Init();
+    public abstract void UpdateCharacterInfo(CharacterListModel model);
+    public abstract void Init(CharacterListModel model);
 
     /// <summary>
     /// 슬롯 오브젝트 받아와 리스트화하고 각 슬롯에 캐릭터 데이터 추가

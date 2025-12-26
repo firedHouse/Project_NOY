@@ -57,13 +57,6 @@ public class LobbyManager : Singleton<LobbyManager>
         Debug.Log($"[LobbyManager] 캐릭터 데이터 목록 생성완료");
     }
 
-    // 캐릭터 데이터를 데이터 리스트 모델로 변경
-    private void ConvertToDataModel(string id, CharacterListModel listModel)
-    {
-        CharacterData characterData = TableManager.Instance.CharacterTable.Get(id);
-        listModel.Initialize(id, characterData);
-    }
-
     // 데이터를 가져와 직접 모델 데이터로 변환
     private CharacterListModel cvtToDM(CharacterData data)
     {

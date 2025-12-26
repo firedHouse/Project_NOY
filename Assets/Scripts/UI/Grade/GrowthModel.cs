@@ -3,31 +3,19 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public partial class CharacterListModel : MonoBehaviour
+public partial class CharacterListModel : CharacterModelBase
 {
     [SerializeField] private CharacterListPresenter presenter;
 
     #region Field
-    private string gradeID;
+
     private int needShilling;
-    private int gradeIDNum;
     private GradeData plusStat;
 
     //업그레이드 성공 여부 > 레벨 1회 상승 후 false
     //처음부터 true인 애들도 있음
     private bool isUpgrade = false;
 
-    private void Start()
-    {
-        if (GameObject.Find("CharacterListPanel") is not null)
-        {
-            presenter = GameObject.Find("CharacterListPanel").GetComponent<CharacterListPresenter>();
-        }
-        else if(GameObject.Find("TeamOrganizationPanel") is not null)
-        {
-            presenter = GameObject.Find("TeamOrganizationPanel").GetComponent<CharacterListPresenter>();
-        }
-    }
     #endregion
 
     #region Property 
@@ -45,12 +33,12 @@ public partial class CharacterListModel : MonoBehaviour
             Debug.Log("[CharacterListModel] 프레젠터 비었음");
             return;
         }
-        if (presenter.gradeData == null)
+        if (gradeData == null)
         {
             Debug.Log("[CharacterListModel] 딕셔너리 비었음");
             return;
         }
-        if (presenter.gradeData.Count == 0)
+        if (gradeData.Count == 0)
         {
             Debug.Log("[CharacterListModel] 딕셔너리 데이터 비었음");
             return;
@@ -59,13 +47,13 @@ public partial class CharacterListModel : MonoBehaviour
         //1레벨 > 2레벨
         if (level == 0)
         {
-            gradeIDNum = presenter.gradeData[int.Parse(characterID)].Item1;
+            gradeIDNum = gradeData[int.Parse(characterID)].Item1;
             Debug.Log($"[CharacterListModel] ID 번호 {gradeIDNum}");
         }
         //2레벨 > 3레벨
         else if (level == 1)
         {
-            gradeIDNum = presenter.gradeData[int.Parse(characterID)].Item2;
+            gradeIDNum = gradeData[int.Parse(characterID)].Item2;
             Debug.Log($"[CharacterListModel] ID 번호 {gradeIDNum}");
         }
 

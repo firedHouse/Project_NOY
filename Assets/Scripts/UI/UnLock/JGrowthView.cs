@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,6 +44,14 @@ public partial class GrowthView : MonoBehaviour
         unlockShillingText.text = shillingForUnlock.ToString();
         // 우측 패널 활성화 변경
         SetDetailView(true);
+    }
+
+    private void Start()
+    {
+        if (GameObject.Find("CharacterListPanel") is not null)
+        {
+            presenter = GameObject.Find("CharacterListPanel").GetComponent<CharacterListPresenter>();
+        }
     }
 
     public void SetDetailView(bool isActive)

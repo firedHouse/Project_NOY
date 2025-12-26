@@ -51,7 +51,7 @@ public class MemberPresenter : CharacterPresenterBase
         if (character != null)
         {
             model = character;
-            UpdateCharacterInfo();
+            UpdateCharacterInfo(character);
             UpdateMainInfo(model);
         }
         else
@@ -76,12 +76,12 @@ public class MemberPresenter : CharacterPresenterBase
         throw new NotImplementedException();
     }
 
-    public override void UpdateCharacterInfo()
+    public override void UpdateCharacterInfo(CharacterListModel character)
     {
         skillView.CharacterIllust(model);
     }
 
-    protected override void Init()
+    public override void Init(CharacterListModel character)
     {
         throw new NotImplementedException();
     }

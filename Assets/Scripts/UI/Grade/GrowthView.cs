@@ -51,9 +51,10 @@ public partial class GrowthView : MonoBehaviour
     #endregion
    
     //성장버튼 클릭 액션
-    public void OnClickUpgradeButton(CharacterListModel model)
+    public void OnClickUpgradeButton()
     {
-        presenter.IsCanUpgrade(model);
+        Debug.Log("[GrowthView] 성장 버튼 클릭됨");
+        presenter.IsCanUpgrade();
     }
 
     //확인 버튼 클릭 액션
@@ -74,8 +75,8 @@ public partial class GrowthView : MonoBehaviour
 
         charName.text = model.CharacterName;
         codeName.text = model.CharacterCodeName;
-        Debug.Log($"이름 : {model.CharacterName}");
-        Debug.Log($"코드네임 : {model.CharacterCodeName}");
+        Debug.Log($"[GrowthView] 이름 : {model.CharacterName}");
+        Debug.Log($"[GrowthView] 코드네임 : {model.CharacterCodeName}");
     }
 
     //고유속성 출력 : ElementUI elementUI
@@ -138,8 +139,8 @@ public partial class GrowthView : MonoBehaviour
         }
         lineText.text = model.CharacterDialogue;
         infoText.text = model.CharacterInfo;
-        Debug.Log($"[GrowthView]한마디 : {model.CharacterDialogue}");
-        Debug.Log($"[GrowthView]설명 : {model.CharacterInfo}");
+        Debug.Log($"[GrowthView] 한마디 : {model.CharacterDialogue}");
+        Debug.Log($"[GrowthView] 설명 : {model.CharacterInfo}");
     }
 
     //학년별 일러스트
@@ -177,7 +178,7 @@ public partial class GrowthView : MonoBehaviour
     //실링 부족 경고창
     public void OnNotEnoughShilling(bool isTrue)
     {
-        if (upgradeButton == null)
+        if (notEnoughShilingPanel == null)
         {
             Debug.Log("[GrowthView] 실링부족 오보젝트가 없습니다.");
             return;

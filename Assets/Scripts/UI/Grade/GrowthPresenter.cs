@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public partial class CharacterListPresenter : MonoBehaviour
@@ -6,6 +7,10 @@ public partial class CharacterListPresenter : MonoBehaviour
     [SerializeField] private CharacterListModel model;
     [SerializeField] private GrowthView growthView;
     [SerializeField] private GrowthSkillView skillView;
+    public Dictionary<int, (int, int)> gradeData = new Dictionary<int, (int, int)>();
+
+
+    public CharacterListModel Model { get { return model; } }
 
     //임시 변수 : 캐릭터 해금 상태에서 가져와야 함.
     private float currentShilling = 5000;
@@ -28,10 +33,10 @@ public partial class CharacterListPresenter : MonoBehaviour
     //    Init();
     //    model.OnUnlock += CanClick;
     //    model.OnUpgrade += UpdateCharacterInfo;
-    //}
+    
 
     //레벨에 따라 변경되어야 할 사항
-    public void UpdateCharacterInfo(CharacterListModel model)
+    public void UpdateCharacterInfo()
     {
         //비용 갱신
         growthView.UpgradeCost(model);
@@ -47,6 +52,8 @@ public partial class CharacterListPresenter : MonoBehaviour
     //초기 값
     private void Init()
     {
+        //딕셔너리 정보 저장
+        GetGradeData();
         //모델에서 고유속성 불러오기
         growthView.CharacterElement(model);
         skillView.CharacterElement(model);
@@ -76,17 +83,35 @@ public partial class CharacterListPresenter : MonoBehaviour
     }
 
     //보유 실링 체크 : 구매 여부 체크
-    public void IsCanUpgrade(CharacterListModel model)
+    public void IsCanUpgrade()
     {
-        if (currentShilling < model.NeedShilling)
+        if (currentShilling >= model.NeedShilling)
         {
             //업그레이드 정보 전달
-            model.SuccessUpgrade(model);
+            model.SuccessUpgrade();
+            Debug.Log($"[CharacterListPresenter] 업그레이드 정보전달");
             return;
         }
         //실링부족 > 패널 띄움
         growthView.OnNotEnoughShilling(true);
-        return;
+        Debug.Log($"[CharacterListPresenter] 패널 띄움");
+    }
+
+    public void GetGradeData()
+    {
+        if (gradeData.Count == 0)
+        {
+            int gradeIDNum = 50001;
+            int characterIDNum = 10001;
+            for (int i = 0; i < 9; i++)
+            {
+                gradeData.Add(characterIDNum, (gradeIDNum, gradeIDNum + 1));
+                Debug.Log($"[CharacterListModel] 아이디 입력 체크 : {gradeData[characterIDNum].Item1}");
+                gradeIDNum += 2;
+                characterIDNum += 1;
+            }
+            // 딕셔너리 10001 캐릭터는 50001, 50002의 의 레벨업 정보를 가지고 있다. 정도의 내용
+        }
     }
 
 }

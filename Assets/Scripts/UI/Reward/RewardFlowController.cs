@@ -9,7 +9,7 @@ public class RewardFlowController : MonoBehaviour
     private object currentItem;
     private bool isLocked = false;
 
-    //유료 아이템을 선택한 경우 골드 차감 후 타겟 선택 오픈
+    //유료 아이템을 선택한 경우 골드 차감 후 타겟 선택 오픈 -> 골드 차감 타이밍 조금 미뤄야함.
     public void OnPaidItemSelected(ItemData item)
     {
         if (isLocked)
@@ -17,7 +17,7 @@ public class RewardFlowController : MonoBehaviour
 
         isLocked = true;
 
-        if (!EconomyManager.Instance.SpendGold(item.itemCost))
+        if (!EconomyManager.Instance.SpendGold(item.itemCost)) // 현재 SpendGold가 바로 골드 차감이라 수정 필요
         {
             isLocked = false;
             Debug.Log("골드 부족"); // UI로 띄워야 함

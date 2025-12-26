@@ -43,7 +43,7 @@ public class EconomyManager : Singleton<EconomyManager>
         Debug.Log($"실링 획득: +{plusShilling}. 현재 실링: {runShilling}");
     }
 
-    //인게임 골드 사용 메서드
+    //인게임 골드 사용 메서드 -> 바로 골드 차감이 되는 방식이기에 수정 필요함
     public bool SpendGold(int cost)
     {
         if(runGold < cost)

@@ -19,7 +19,14 @@ public partial class CharacterListModel : MonoBehaviour
 
     private void Start()
     {
-        presenter = GameObject.Find("CharacterListPanel").GetComponent<CharacterListPresenter>();
+        if (GameObject.Find("CharacterListPanel") is not null)
+        {
+            presenter = GameObject.Find("CharacterListPanel").GetComponent<CharacterListPresenter>();
+        }
+        else if(GameObject.Find("TeamOrganizationPanel") is not null)
+        {
+            presenter = GameObject.Find("TeamOrganizationPanel").GetComponent<CharacterListPresenter>();
+        }
     }
     #endregion
 

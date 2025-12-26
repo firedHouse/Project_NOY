@@ -22,6 +22,8 @@ public partial class GrowthView : MonoBehaviour
 
     public AlertPopUpView Popup { get => popup; set => popup = value; }
 
+    public GameObject UnlockButton => unlockButton;
+
     private void Awake()
     {
         // 널참조 오류나면 주석처리하고 인스펙터에서 연결하기

@@ -19,7 +19,10 @@ public partial class CharacterListPresenter : CharacterPresenterBase
 
     protected override void Start()
     {
+        growthView = gameObject.GetComponent<GrowthView>();
         SetSlotUI();
+        unlockButton = growthView.UnlockButton.GetComponent<Button>();
+        Debug.Log("슬롯 설정 완료");
         // if (EconomyManager.Instance != null)
         // {
         //     EconomyManager.Instance.AddShilling(1000);
@@ -31,6 +34,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         // }
 
         LoadCharacterList();
+        Debug.Log("캐릭터 로딩");
         
         // 초기 설정으로 왼쪽 패널만 보여주기
         growthView.SetDetailView(false);

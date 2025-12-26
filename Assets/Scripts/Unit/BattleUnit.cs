@@ -47,6 +47,8 @@ public abstract class BattleUnit : MonoBehaviour
     public float AttackPower => currentAttackPower; //12.22 외부에서 현재 공격력을 적용하도록 프로퍼티 수정
     public float BaseAttackPower => attackPower; //기존 공격력
 
+    public string UnitID => unitID; //12.26 hSkillList에서 
+
 
     //12.23 방어막 UI 갱신용
     public event Action<BattleUnit, float> OnShieldChanged; //쉴드 변경 시

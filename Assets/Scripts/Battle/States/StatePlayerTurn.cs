@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using Unity.VisualScripting;
+using UnityEngine;
 
 //StatePlayerTurn 의 Enter => 플레이어 턴 시작이다! 스킬 버튼 띄우라 요청
 //Vlew(UI)는  유저가 버튼 클릭한 걸  Presenter에 알리고
@@ -21,6 +22,9 @@ public class StatePlayerTurn : IBattleState
 
         //이벤트 발행 요청 메서드
         bm.NotifyPlayerTurnStart();
+
+        //12.26 선공 전투로그 추가
+        BattleLogManager.Instance.AddLog("<b>턴 시작!</b>");
     }
 
     public void Execute(BattleManager bm)

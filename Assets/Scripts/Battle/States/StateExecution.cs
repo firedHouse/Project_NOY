@@ -132,13 +132,35 @@ public class StateExecution : IBattleState
                     case SkillType.SpeedBuff:
                     case SkillType.AttackDebuff:
                     case SkillType.SpeedDebuff:
-                        //버프 지속시간 적용(buffTrun)
                         target.ApplyBuff(sType, calculatedValue, action.Skill.Data.buffTurn);
                         break;
                 }
             }
+            //12.26 전투로그 중 선공팀 공격 턴 종료구현
+            //행동 유닛의 아군적군여부 판별
+            bool isCurrentUserPlayer = bm.PlayerTeam.Contains(action.User);
+
+            if (bm.ActionQueue.Count > 0)
+            {
+                //다음행동자 남았는지 체크 Peek
+                BattleAction nextAction = bm.ActionQueue.Peek();
+
+                //유효성 체크
+                if (nextAction.User != null)
+                {
+                    bool isNextUser = bm.PlayerTeam.Contains(nextAction.User);
+
+                    //현재 팀과 다음 팀이 다르면? -> 선공팀 공격이 끝난 거
+                    if (isCurrentUserPlayer != isNextUser)
+                    {
+                        //대사 출력, 참이면 아군
+                        string teamName = isCurrentUserPlayer ? "아군" : "적군";
+                        BattleLogManager.Instance.AddLog($"{teamName} 공격 턴 종료");
+                    }
+                }
+            }
             //다음 공격 대기
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.2f);
         }
         //큐 비면 실행종료 변수 true
         isExecutionFinished = true;

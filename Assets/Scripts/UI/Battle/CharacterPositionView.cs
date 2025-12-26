@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
@@ -12,30 +12,29 @@ using UnityEngine.UIElements;
 
     //사망 캐릭터 박스 비활성화
 
-    public void Inactive(UnitPosition unit)
+    public void Inactive(int basePosNum)
     {
-        //사망 캐릭터 번호와 같은 번호의 박스 비활성화
 
-        switch (unit)
+        switch (basePosNum)
         {
-            case UnitPosition.Front:
+            case 0:
                 {
                     _characterBox[0].SetActive(false);
-                    Debug.Log($"[CharacterPositionView] : 전열 비활성화");
+                    Debug.Log($"[CharacterPositionView] : {1}번 박스 비활성화");
                 }
                 break;
 
-            case UnitPosition.Mid:
+            case 1:
                 {
                     _characterBox[1].SetActive(false);
-                    Debug.Log($"[CharacterPositionView] : 중열 비활성화");
+                    Debug.Log($"[CharacterPositionView] : {2}번 박스 비활성화");
                 }
                 break;
 
-            case UnitPosition.Back:
+            case 2:
                 {
                     _characterBox[2].SetActive(false);
-                    Debug.Log($"[CharacterPositionView] : 후열 비활성화");
+                    Debug.Log($"[CharacterPositionView] : {3}번 박스 비활성화");
                 }
                     break;
         }

@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSlot
   button: {fileID: 8131209179114598850}
+  slotModel: {fileID: 0}
 --- !u!114 &4846261037130195285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,3 +148,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c6a00798bc942c45a30c58f81d48d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterListModel
+  characterID: 
+  isUnlocked: 0
+  level: 0
+  position: 0
+  element: 0
+  characterName: 
+  characterCodeName: 
+  characterDialogue: 
+  characterInfo: 
+  characterSkin: 
+  attackLevel: 0
+  hpLevel: 0
+  unlockShilling: 2000

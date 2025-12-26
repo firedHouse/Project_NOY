@@ -23,10 +23,9 @@ public partial class CharacterListModel : MonoBehaviour
     #region GrowthModel에서 사용할 부분 
     [SerializeField] private float attackLevel;
     [SerializeField] private float hpLevel;
-    #endregion
 
-    public float attackLevel1;
-    public float HPLevel1;
+    [SerializeField] private int unlockShilling = 2000;
+    #endregion
 
     private string ownedSkill02;
     private string ownedSkill01;
@@ -48,6 +47,7 @@ public partial class CharacterListModel : MonoBehaviour
     #region GrowthModel에서 사용할 부분 
     public float AttackLevel { get => attackLevel; set => attackLevel = value; }
     public float HpLevel { get => hpLevel; set => hpLevel = value; }
+    public int UnlockShilling { get => unlockShilling; private set => unlockShilling = value; }
     #endregion
 
     #endregion
@@ -72,7 +72,7 @@ public partial class CharacterListModel : MonoBehaviour
             characterSkin = characterData.characterSkin;
             attackLevel = characterData.attackLevel1;
             hpLevel = characterData.HPLevel1;
-}
+        }
         else
         {
             Debug.Log("캐릭터 데이터 불러오기 실패");
@@ -92,6 +92,8 @@ public partial class CharacterListModel : MonoBehaviour
         if (!isUnlocked)
         {
             Debug.Log($"[CharacterListModel] {isUnlocked} > 해금");
+            Debug.Log($"[CharacterListModel] 필요한 실링 : ");
+            // to-do : 실링 빼가는 처리 추가
             isUnlocked = true;
         }
         else

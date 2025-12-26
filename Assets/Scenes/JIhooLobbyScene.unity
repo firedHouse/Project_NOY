@@ -522,6 +522,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c6a00798bc942c45a30c58f81d48d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterListModel
+--- !u!1 &559685858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 559685860}
+  - component: {fileID: 559685859}
+  m_Layer: 0
+  m_Name: EconomyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &559685859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559685858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61cde9164c4f934b881a6bdda32b822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
+--- !u!4 &559685860
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559685858}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &611040648 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 716525002921088723, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
@@ -745,6 +789,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7377202140589631414, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
+      propertyPath: growthView
+      value: 
+      objectReference: {fileID: 1149895796}
     - target: {fileID: 7711004565410706956, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -876,7 +924,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6351460788838162421, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1768308547}
   m_SourcePrefab: {fileID: 100100000, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
 --- !u!114 &723796406 stripped
 MonoBehaviour:
@@ -1197,6 +1248,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &855643494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 855643496}
+  - component: {fileID: 855643495}
+  m_Layer: 0
+  m_Name: ShillingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &855643495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855643494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba29569650611b47a7a8e3845d30a80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShillingManager
+--- !u!4 &855643496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855643494}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1145524282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6351460788838162421, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
+  m_PrefabInstance: {fileID: 647881856}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1149895796 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2581304761929457164, guid: 3e698041f6932f846b2d258ea70d75e9, type: 3}
+  m_PrefabInstance: {fileID: 4511032464757609821}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f7666d0440a84f44b0f773ffebc1e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrowthCharacterInfoView
 --- !u!114 &1191735141 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8010589252411143247, guid: 3e698041f6932f846b2d258ea70d75e9, type: 3}
@@ -1401,6 +1512,40 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8318649656938644126, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
   m_PrefabInstance: {fileID: 647881856}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1768308547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145524282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f7666d0440a84f44b0f773ffebc1e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrowthView
+  presenter: {fileID: 0}
+  elementImage: {fileID: 0}
+  charName: {fileID: 0}
+  codeName: {fileID: 0}
+  starImage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  illust: {fileID: 0}
+  notEnoughShilingPanel: {fileID: 0}
+  notEnoughShilingText: {fileID: 0}
+  OKPanel: {fileID: 0}
+  upgradeButton: {fileID: 0}
+  upgradeCostText: {fileID: 0}
+  lineText: {fileID: 0}
+  infoText: {fileID: 0}
+  lockedIcon: {fileID: 0}
+  unlockButton: {fileID: 0}
+  shillingForUnlock: 0
+  unlockShillingText: {fileID: 0}
+  RightPanel: {fileID: 0}
+  popup: {fileID: 0}
 --- !u!1 &1782955214
 GameObject:
   m_ObjectHideFlags: 0
@@ -2101,3 +2246,5 @@ SceneRoots:
   - {fileID: 820736729}
   - {fileID: 760563216}
   - {fileID: 166464347}
+  - {fileID: 559685860}
+  - {fileID: 855643496}

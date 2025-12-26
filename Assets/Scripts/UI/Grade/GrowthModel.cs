@@ -90,8 +90,8 @@ public partial class CharacterListModel : MonoBehaviour
         Debug.Log($"[GrowthView] --- 소모실링 : {needShilling} ---");
 
         level++;
-        attackLevel1 += plusStat.attackUP;
-        HPLevel1 += plusStat.hpUP;
+        AttackLevel += plusStat.attackUP;
+        HpLevel += plusStat.hpUP;
         needShilling = plusStat.needShilling1;
 
         Debug.Log($"[GrowthView] --- 업그레이드 목록---");

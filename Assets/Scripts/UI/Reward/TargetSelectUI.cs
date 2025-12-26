@@ -24,6 +24,7 @@ public class TargetSelectUI : MonoBehaviour
             {
                 Confirm(unit, skill);
             });
+            return;
         }
 
         Confirm(target, null);

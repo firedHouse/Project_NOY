@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RewardFlowController
+public class RewardFlowController : MonoBehaviour
 {
     [SerializeField] private TargetSelectUI targetSelectUI;
     [SerializeField] private RewardManager rewardManager;

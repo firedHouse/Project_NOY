@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class SkillProcesser : MonoBehaviour
 {   //스킬에 원소 적용을 위한 프로세서, 데미지 관련한 메서드는 Unit 쪽에서 처리
@@ -47,14 +47,17 @@ public class SkillProcesser : MonoBehaviour
         {
             case ElementReaction.Vaporize:
                 Debug.Log("증발");
+                BattleLogManager.Instance.AddLog("증발 반응 발동");
                 ReactionDamageProcesser.ApplyVaporize(target);
                 break;
             case ElementReaction.ElectroShock:
                 Debug.Log("감전");
+                BattleLogManager.Instance.AddLog("감전 반응 발동");
                 ReactionDamageProcesser.ApplyElectroShock(enemyTeam);
                 break;
             case ElementReaction.Overload:
                 Debug.Log("과부하 타이머 시작");
+                BattleLogManager.Instance.AddLog("과부하 반응 발동");
                 elemental.ActiveOverload(overloadDuration);
             break;
         }

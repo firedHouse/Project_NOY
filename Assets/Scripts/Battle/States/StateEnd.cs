@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class StateEnd : IBattleState
 {
-    //½Â¸®¿©ºÎ
+    //ìŠ¹ë¦¬ì—¬ë¶€
     private bool isWin;
 
-    //»ı¼ºÀÚ¿¡¼­ ½ÂÆĞ¿©ºÎ ¹Ş±â
+    //ìƒì„±ìì—ì„œ ìŠ¹íŒ¨ì—¬ë¶€ ë°›ê¸°
     public StateEnd(bool win)
     {
         this.isWin = win;
@@ -15,21 +15,31 @@ public class StateEnd : IBattleState
     {
         if (isWin)
         {
-            Debug.Log("½Â¸®!");
+            Debug.Log("ë¼ìš´ë“œ ìŠ¹ë¦¬, ë³´ìƒ íŒ¨ë„ ì˜¤í”ˆ");
+            //if (bm.RewardPanelPrefab != null)
+            //{
+            //    bm.RewardPanelPrefab.SetActive(true);
+            //}
+            //else
+            //{
+            //    Debug.LogError("ë³´ìƒíŒ¨ë„ ì—°ê²°ì•ˆë˜ì–´ìˆìŒ BattleManager ì²´í¬");
+            //}
         }
         else
         {
-            Debug.Log("ÆĞ¹è!");
+            Debug.Log("íŒ¨ë°°!");
+            //resultPanel ì¶œë ¥
         }
     }
 
     public void Execute(BattleManager bm)
     {
-        //µ¹¾Æ°¡±â µîµî ¹öÆ° ÀÔ·Â ±â´Ù¸®±â?
+        //ëŒì•„ê°€ê¸° ë“±ë“± ë²„íŠ¼ ì…ë ¥ ê¸°ë‹¤ë¦¬ê¸°? X
+        //UIì—ê²Œ ìœ„ì„
     }
 
     public void Exit(BattleManager bm)
     {
-        //Á¤¸®ÀÛ¾÷
+        //ì •ë¦¬ì‘ì—…
     }
 }

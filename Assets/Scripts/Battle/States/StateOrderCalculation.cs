@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -28,11 +28,15 @@ public class StateOrderCalculation : IBattleState
         {
             EnqueueTeamActions(bm, bm.TempPlayerActions);
             EnqueueTeamActions(bm, bm.TempEnemyActions);
+            //12.26 선공 전투로그 추가
+            BattleLogManager.Instance.AddLog("아군의 선공!");
         }
         else
         {
             EnqueueTeamActions(bm, bm.TempEnemyActions);
             EnqueueTeamActions(bm, bm.TempPlayerActions);
+            //12.26 선공 전투로그 추가
+            BattleLogManager.Instance.AddLog("적군의 선공!");
         }
 
     }

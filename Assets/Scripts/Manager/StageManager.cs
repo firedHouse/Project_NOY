@@ -7,9 +7,13 @@ public class StageManager : MonoBehaviour
     //싱글톤
     public static StageManager Instance;
 
-    [Header("UI 표시용 현재 지점")]
-    public int CurrentStage = 1; // 1 ~ 3 
-    public int CurrentRound = 1; // 1 ~ 5 
+    [Header("UI 표시용 현재 진행 상황")]
+    public int CurrentStage = 1; //1 ~ 3 
+    public int CurrentRound = 1; //1 ~ 5 
+
+    //12.26 분리
+    [Header("현재 맵 정보 (디버깅/UI용)")]
+    public string CurrentMapID; //실제로 현재 플레이 중인 맵 ID
 
     [Header("배틀매니저")]
     public BattleManager battleManager; //기존 BattleManager 참조
@@ -46,6 +50,9 @@ public class StageManager : MonoBehaviour
         mapOrder.AddRange(normalStages);
         //마지막은 90003
         mapOrder.Add("90003");
+
+        //12.26 디버깅 추가
+        Debug.Log($"맵 순서 결정됨: {string.Join(" -> ", mapOrder)}");
     }
 
     //전투 시작 로직
@@ -59,13 +66,29 @@ public class StageManager : MonoBehaviour
             InitializeStageOrder();
         }
 
-        List<MonsterData> selectedMonsters = SelectMonstersForStage(CurrentStage, CurrentRound);
+        //12.26 현재 진행단계에 맞는 맵 ID 가져오기
+        int mapIndex = CurrentStage - 1;
+
+        if (mapIndex < 0 || mapIndex >= mapOrder.Count)
+        {
+            Debug.LogError($"StageManager 스테이지 인덱스 오류, CurrentStage = {CurrentStage}, 카운트는 {mapOrder.Count}");
+            return;
+        }
+
+
+        //12.26 실제 맵 ID 추출(랜덤 결과 반영하여)
+        CurrentMapID = mapOrder[mapIndex];
+        Debug.Log($"선택된 스테이지 진행도: {CurrentStage}번째 | 맵ID: {CurrentMapID} | 라운드: {CurrentRound}");
+
+        //맵ID 넘겨서 몬스터 선택
+        List<MonsterData> selectedMonsters = SelectMonstersForStage(CurrentMapID, CurrentRound);
 
         if (selectedMonsters == null || selectedMonsters.Count == 0)
         {
             Debug.LogError("[STageManager]몬스터 데이터 로드 실패");
             return;
         }
+
         //5라운드는 보스전 플래그 true
         bool isBoss = (CurrentRound == 5);
 
@@ -83,27 +106,13 @@ public class StageManager : MonoBehaviour
     }
 
     //12.24 TestBattleStarter 로직 이관, 몬스터 뽑기
-    private List<MonsterData> SelectMonstersForStage(int uiStageNum, int roundNum)
+    private List<MonsterData> SelectMonstersForStage(string mapID, int roundNum)
     {
         //반환할 결과
         List<MonsterData> result = new List<MonsterData>();
 
-        //12.25 추가
-        //UI 변수를 인덱스로 바꾸고 조회
-        int mapIndex = uiStageNum - 1;
-
-        //인덱스 범위 체크
-        if (mapIndex < 0 || mapIndex >= mapOrder.Count)
-        {
-            Debug.LogError($"맵 순서 범위를 벗어남");
-            return result;
-        }
-
-        //리스트에서 ID꺼내기
-        string searchKey = mapOrder[mapIndex]; 
-
         //데이터 받아오기
-        var stageData = TableManager.Instance.StageTable.Get(searchKey);
+        var stageData = TableManager.Instance.StageTable.Get(mapID);
         if (stageData == null)
         {
             return result;

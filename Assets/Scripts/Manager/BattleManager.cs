@@ -61,6 +61,11 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private GameObject monsterPrefab;
     [SerializeField] private GameObject characterPrefab;
 
+    //12.26 보상, 결과 패널도 연결 필요
+    [Header("보상, 결과 패널 출력용")]
+    public GameObject RewardPanelPrefab;
+    public GameObject ResultPanelPrefab;
+
 
     //프레젠터 이벤트
     public event Action<List<Character>> OnPlayerTurnStart;

@@ -532,8 +532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1903e30f874a0354e91394fae9e7ca34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
-  CurrentStage: 2
-  CurrentRound: 5
+  CurrentStage: 1
+  CurrentRound: 1
   battleManager: {fileID: 388897551}
 --- !u!4 &1925002359
 Transform:

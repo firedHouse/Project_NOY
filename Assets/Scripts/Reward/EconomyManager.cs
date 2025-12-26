@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
-using UnityEngine.Rendering;
 
+//캐릭터 선택 시, ResetEconomy() 호출 필요
 public class EconomyManager : Singleton<EconomyManager>
 {   //인게임 화폐 관리 매니저
     private int runGold = 0;

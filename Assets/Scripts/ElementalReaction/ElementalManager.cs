@@ -3,14 +3,14 @@ using UnityEngine.Rendering;
 
 public class ElementalManager : MonoBehaviour
 {
-    // ÇöÀç »óÅÂ
+    // í˜„ì¬ ìƒíƒœ
 
     public ElementType currentElement => ElementLayerUtil.LayerToElement(gameObject.layer);
 
     public bool isReactedThisTurn { get; private set; }
 
 
-    // ===== ¿ø¼Ò =====
+    // ===== ì›ì†Œ =====
     public bool CanReact()
     {
         return !isReactedThisTurn;
@@ -21,28 +21,34 @@ public class ElementalManager : MonoBehaviour
         isReactedThisTurn = true;
     }
 
-    // ÅÏ Á¾·á ½Ã È£Ãâ (Overload ¼Ò¸ğ ½ÃÁ¡°ú µ¿ÀÏ)
+    // í„´ ì¢…ë£Œ ì‹œ í˜¸ì¶œ (Overload ì†Œëª¨ ì‹œì ê³¼ ë™ì¼)
     public void ResetTurn()
     {
         isReactedThisTurn = false;
     }
 
-    //¿ø¼Ò Àû¿ë ¹× ÃÊ±âÈ­
+    //ì›ì†Œ ì ìš© ë° ì´ˆê¸°í™”
     public void SetElement(ElementType element)
     {
+        if (isReactedThisTurn)
+        {
+            Debug.Log("ì´ë¯¸ ì›ì†Œ ë°˜ì‘ì„ ì¼ìœ¼í‚¨ ìƒíƒœ, ì›ì†Œ ë¶€ì—¬ ë¶ˆê°€");
+            return;
+        }
+
         gameObject.layer = ElementLayerUtil.ElementToLayer(element);
 
-        Debug.Log($"{element} ºÎ¿©");
+        Debug.Log($"{element} ë¶€ì—¬");
     }
 
     public void ClearElement()
     {
         gameObject.layer = LayerMask.NameToLayer("None");
         
-        Debug.Log("¿ø¼Ò ÃÊ±âÈ­");
+        Debug.Log("ì›ì†Œ ì´ˆê¸°í™”");
     }
 
-    //°úºÎÇÏ
+    //ê³¼ë¶€í•˜
     public int overloadReamainTurn {  get; private set; }
     public bool IsOverloadActive => overloadReamainTurn > 0;
 
@@ -54,7 +60,7 @@ public class ElementalManager : MonoBehaviour
         }
 
         overloadReamainTurn = duration;
-        Debug.Log($"°úºÎÇÏ »óÅÂ ºÎ¿© {duration}ÅÏ");
+        Debug.Log($"ê³¼ë¶€í•˜ ìƒíƒœ ë¶€ì—¬ {duration}í„´");
     }
     public void ConsumeOverload()
     {
@@ -65,12 +71,12 @@ public class ElementalManager : MonoBehaviour
 
         if (overloadReamainTurn <= 0)
         {
-            Debug.Log("°úºÎÇÏ Á¾·á");
+            Debug.Log("ê³¼ë¶€í•˜ ì¢…ë£Œ");
         }
-        
+
     }
 
-    //12.23 ÅÏ Á¾·á½Ã¿¡ È£ÃâÇÏ°í °úºÎÇÏÅÏ ÁÙÀÌ±â
+    //12.23 í„´ ì¢…ë£Œì‹œì— í˜¸ì¶œí•˜ê³  ê³¼ë¶€í•˜í„´ ì¤„ì´ê¸°
     public void DecreaseOverloadTurn()
     {
         if (overloadReamainTurn > 0)
@@ -78,7 +84,7 @@ public class ElementalManager : MonoBehaviour
             overloadReamainTurn--;
             if (overloadReamainTurn <= 0)
             {
-                Debug.Log("°úºÎÇÏ ³¡!");
+                Debug.Log("ê³¼ë¶€í•˜ ë!");
                 overloadReamainTurn = 0;
             }
         }

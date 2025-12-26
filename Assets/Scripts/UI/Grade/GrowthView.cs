@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -50,7 +51,6 @@ public partial class GrowthView : MonoBehaviour
     }
     #endregion
    
-    //성장버튼 클릭 액션
     public void OnClickUpgradeButton()
     {
         Debug.Log("[GrowthView] 성장 버튼 클릭됨");

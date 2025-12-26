@@ -23,16 +23,8 @@ public partial class CharacterListModel : CharacterModelBase
     public int NeedShilling { get { return needShilling; } set { needShilling = value; } }
     #endregion
 
-    public event Action OnUpgrade;
-    public event Action<CharacterListModel> OnUnlock;
-
     public void GradeCheck()
     {
-        if (presenter == null)
-        {
-            Debug.Log("[CharacterListModel] 프레젠터 비었음");
-            return;
-        }
         if (gradeData == null)
         {
             Debug.Log("[CharacterListModel] 딕셔너리 비었음");
@@ -93,9 +85,8 @@ public partial class CharacterListModel : CharacterModelBase
 
         level++;
 
-        attackLevel += plusStat.attackUP;
-
-        hpLevel += plusStat.hpUP;
+        AttackLevel += plusStat.attackUP;
+        HpLevel += plusStat.hpUP;
 
         plusStat = TableManager.Instance.GradeTable.Get($"{++gradeIDNum}");
         needShilling = plusStat.needShilling1;
@@ -114,6 +105,12 @@ public partial class CharacterListModel : CharacterModelBase
             presenter.GrowthButton(false);
         }
 
-        OnUpgrade.Invoke();
+        if(presenter == null)
+        {
+            Debug.Log($"[GrowthView] 프레젠터 null, 새로 참조");
+            presenter = GameObject.Find("CharacterListPanel").GetComponent<CharacterListPresenter>();
+        }
+
+        presenter.ShillingUpdate(this);
     }
 }

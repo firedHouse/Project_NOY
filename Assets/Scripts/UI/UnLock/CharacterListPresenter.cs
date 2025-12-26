@@ -149,6 +149,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         Debug.Log($"[CharacterListPresenter] 기본 정보 업데이트");
         growthView.CharacterName(character);
         growthView.CharacterInfo(character);
+        Init(character);
         //growthView.CharacterElement(character);
     }
 

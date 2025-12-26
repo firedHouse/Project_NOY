@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public partial class CharacterListPresenter : CharacterPresenterBase
@@ -18,14 +19,6 @@ public partial class CharacterListPresenter : CharacterPresenterBase
 
     //최고 학년 > 성장버튼 클릭 비활성화
 
-
-    //private void Start()
-    //{
-    //    Init();
-    //    model.OnUnlock += CanClick;
-    //    model.OnUpgrade += UpdateCharacterInfo;
-    
-
     //레벨에 따라 변경되어야 할 사항
     public override void UpdateCharacterInfo(CharacterListModel model)
     {
@@ -44,9 +37,6 @@ public partial class CharacterListPresenter : CharacterPresenterBase
     public override void Init(CharacterListModel model)
     {
         Debug.Log("[GrowthPresenter] Init");
-        //딕셔너리 정보 저장
-        //GetGradeData();
-        
         //모델에서 고유속성 불러오기
         growthView.CharacterElement(model);
         //이름, 코드네임
@@ -62,7 +52,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         growthView.CharacterIllust(model);
         //한마디, 상세정보
         growthView.CharacterInfo(model);
-        //스킬
+        //실링값 부여
         model.SetNeedShilling();
         //실링 금액업데이트
         growthView.UpgradeCost(model);
@@ -101,23 +91,8 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         Debug.Log($"[CharacterListPresenter] 패널 띄움");
     }
 
-    // CharacterModelBase로 이동
-    // 혜주님 확인 후에 삭제해주세요
-    // public void GetGradeData()
-    // {
-    //     if (gradeData.Count == 0)
-    //     {
-    //         int gradeIDNum = 50001;
-    //         int characterIDNum = 10001;
-    //         for (int i = 0; i < 9; i++)
-    //         {
-    //             gradeData.Add(characterIDNum, (gradeIDNum, gradeIDNum + 1));
-    //             Debug.Log($"[CharacterListModel] 아이디 입력 체크 : {gradeData[characterIDNum].Item1}");
-    //             gradeIDNum += 2;
-    //             characterIDNum += 1;
-    //         }
-    //         // 딕셔너리 10001 캐릭터는 50001, 50002의 의 레벨업 정보를 가지고 있다. 정도의 내용
-    //     }
-    // }
-
+    public void ShillingUpdate(CharacterListModel model)
+    {
+        growthView.UpgradeCost(model);
+    }
 }

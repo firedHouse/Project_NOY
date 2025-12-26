@@ -53,9 +53,9 @@ public partial class CharacterListModel : MonoBehaviour
     #endregion
 
     // 초기화
-    public void Initialize(string id)
+    public void Initialize(string id, CharacterData characterData)
     {
-        CharacterData characterData = TableManager.Instance.CharacterTable.Get(id);
+        // CharacterData characterData = TableManager.Instance.CharacterTable.Get(id);
         Debug.Log($"[CharacterListModel] {characterData.unlock}");
 
         if(characterData is not null)

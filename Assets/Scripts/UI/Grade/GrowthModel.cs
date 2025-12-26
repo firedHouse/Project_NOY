@@ -17,6 +17,17 @@ public partial class CharacterListModel : MonoBehaviour
     //처음부터 true인 애들도 있음
     private bool isUpgrade = false;
 
+    private void Start()
+    {
+        if (GameObject.Find("CharacterListPanel") is not null)
+        {
+            presenter = GameObject.Find("CharacterListPanel").GetComponent<CharacterListPresenter>();
+        }
+        else if(GameObject.Find("TeamOrganizationPanel") is not null)
+        {
+            presenter = GameObject.Find("TeamOrganizationPanel").GetComponent<CharacterListPresenter>();
+        }
+    }
     #endregion
 
     #region Property 

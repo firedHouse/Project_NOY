@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 // 각 캐릭터마다 리스트에 표시해줄 View
@@ -10,17 +11,19 @@ public class CharacterSlot : MonoBehaviour
     //[SerializeField] private CharacterListPresenter characterListPresenter;
     [Header("캐릭터 슬롯 프리팹")]
     [SerializeField] private Button button;
-    [SerializeField] private CharacterListModel model;
+    [FormerlySerializedAs("model")] [SerializeField] private CharacterListModel slotModel;
     private string id;
 
     private bool isClickable = true;
+    
+    public CharacterListModel SlotModel => slotModel;
 
     // 슬롯 클릭시 변경
     public void SetButtonEvent(CharacterListModel model, UnityAction<CharacterListModel> onClickCallBack)
     {
-        this.model = model;
+        this.slotModel = model;
         button = this.GetComponent<Button>();
-        button.onClick.AddListener(() => onClickCallBack(this.model));
+        button.onClick.AddListener(() => onClickCallBack(this.slotModel));
     }
 
     public void UpdateButtonAvailable(bool isAvailable)
@@ -34,13 +37,14 @@ public class CharacterSlot : MonoBehaviour
     // 초기화 하면서 필요한 데이터 모두 업데이트하기
     // 슬롯 기준으로는 id만 알면 된다?
     // 
-    public void UpdateCharacterSlot(string charID)
+    public void UpdateCharacterSlot(CharacterListModel model)
     {
         // 캐릭터 두상 일러스트로 변경
         // 리소스 들어오기 전까지는 들어오는 데이터로 파악
         //button.image.
-        id = charID;
-        Debug.Log($"[CharacterSlot] {id} 슬롯에 로드 완료");
+        id = model.CharacterID;
+        slotModel = model;
+        Debug.Log($"[CharacterSlot] {id} 슬롯에 {model.CharacterName} 로드 완료");
     }
 
     // 해금 여부에 따라 UI 변경

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GrowthSkillView : MonoBehaviour
+public partial class GrowthSkillView : MonoBehaviour
 {
     [Header("GrowthPresenter")]
     [SerializeField] private CharacterListPresenter presenter;
@@ -20,7 +20,7 @@ public class GrowthSkillView : MonoBehaviour
     //[SerializeField] private Sprite grayStar;
 
     [Header("일러스트출력")]
-    [SerializeField] private Image illust;
+    [SerializeField] private RawImage illust;
 
     [Header("스킬출력")]
     [SerializeField] private Text[] skill = new Text[3];

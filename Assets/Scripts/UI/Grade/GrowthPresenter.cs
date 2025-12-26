@@ -13,7 +13,7 @@ public partial class CharacterListPresenter : MonoBehaviour
     public CharacterListModel Model { get { return model; } }
 
     //임시 변수 : 캐릭터 해금 상태에서 가져와야 함.
-    private float currentShilling = 5000;
+    private float currentShilling = 0;
 
     //성장 버튼 클릭 활성화 조건 : 캐릭터 해금
     //버튼 클릭 시 : 실링 확인
@@ -54,6 +54,8 @@ public partial class CharacterListPresenter : MonoBehaviour
     {
         //딕셔너리 정보 저장
         GetGradeData();
+        //실링 금액업데이트
+        growthView.UpgradeCost(model);
         //모델에서 고유속성 불러오기
         growthView.CharacterElement(model);
         skillView.CharacterElement(model);

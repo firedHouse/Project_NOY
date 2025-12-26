@@ -11,6 +11,7 @@ public partial class CharacterListModel : MonoBehaviour
     private string gradeID;
     private int needShilling;
     private int gradeIDNum;
+    private GradeData plusStat;
 
     //업그레이드 성공 여부 > 레벨 1회 상승 후 false
     //처음부터 true인 애들도 있음
@@ -24,14 +25,15 @@ public partial class CharacterListModel : MonoBehaviour
 
     #region Property 
     public string GradeID => gradeID;
-    public int NeedShilling => needShilling;
+    public int NeedShilling { get { return needShilling; } set { needShilling = value; } }
     #endregion
 
     public event Action OnUpgrade;
     public event Action<bool> OnUnlock;
 
-
-    public void SuccessUpgrade()
+    
+    
+    public void GradeCheck()
     {
         if (presenter == null)
         {
@@ -50,7 +52,7 @@ public partial class CharacterListModel : MonoBehaviour
         }
 
         //2레벨
-        if(level == 0)
+        if (level == 0)
         {
             gradeIDNum = presenter.gradeData[int.Parse(characterID)].Item1;
         }
@@ -60,8 +62,23 @@ public partial class CharacterListModel : MonoBehaviour
             gradeIDNum = presenter.gradeData[int.Parse(characterID)].Item2;
         }
 
-        GradeData plusStat = TableManager.Instance.GradeTable.Get($"{gradeIDNum}");
+        plusStat = TableManager.Instance.GradeTable.Get($"{gradeIDNum}");
 
+    }
+
+    public void SetNeedShilling()
+    {
+        GradeCheck();
+        needShilling = plusStat.needShilling1;
+        Debug.Log($"[CharacterListModel] 실링 세팅 : {needShilling}");
+    }
+
+
+    public void SuccessUpgrade()
+    {
+        //학년 체크
+        GradeCheck();
+    
         //업그레이드 전달
         isUpgrade = true;
         //레벨 체크 - 버튼 활성/비활성
@@ -77,18 +94,19 @@ public partial class CharacterListModel : MonoBehaviour
         HPLevel1 += plusStat.hpUP;
         needShilling = plusStat.needShilling1;
 
-        Debug.Log($"[GrowthView] --- 업그레이드 완료 ---");
+        Debug.Log($"[GrowthView] --- 업그레이드 목록---");
         Debug.Log($"[GrowthView] --- 레벨 : {level} ---");
         Debug.Log($"[GrowthView] --- 공격력 : {attackLevel1} ---");
         Debug.Log($"[GrowthView] --- HP : {HPLevel1} ---");
         Debug.Log($"[GrowthView] --- 소모실링 : {needShilling} ---");
-
-        OnUpgrade.Invoke();
+        Debug.Log($"[GrowthView] --- 업그레이드 완료 ---");
 
         //3레벨 달성 시 버튼 비활성화
-        if (level == 3)
+        if (level == 2)
         {
             presenter.CanClick(false);
         }
+
+        OnUpgrade.Invoke();
     }
 }

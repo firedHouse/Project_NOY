@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ public class StateEnemyTurn : IBattleState
 
     public void Enter(BattleManager bm)
     {
-        Debug.Log(">> [State] EnemyTurn: 적군이 행동을 계산 중입니다...");
+        Debug.Log("[State] EnemyTurn");
         isAIDone = false;
         bm.TempEnemyActions.Clear();
 

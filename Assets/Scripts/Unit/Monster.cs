@@ -10,7 +10,8 @@ public class Monster : BattleUnit
     private int dropShilling; //드롭실링
     //보스 체크용
     public bool IsBoss { get; private set; }
-
+    //12.26 보스용 턴 카운트
+    private int bossTurnCount = 0;
     public void InitializeMonster(string monID, UnitPosition pos, bool isBossUnit)
     {
         //데이터 테이블 불러오기
@@ -48,6 +49,14 @@ public class Monster : BattleUnit
         LoadSkills(skillIDs);
     }
 
+    //보스용 오버라이드
+    public override void InitializeBase(string id, string name, float hp, int spd, float atk, UnitPosition pos)
+    {
+        base.InitializeBase(id, name, hp, spd, atk, pos);
+        //초기화 시 턴 카운트 0으로 리셋
+        bossTurnCount = 0;
+    }
+
     //스테이지 전환 간 몬스터 스펙 상승 로직
     public void ApplyBuffMultiplier(float multiplier)
     {
@@ -68,8 +77,37 @@ public class Monster : BattleUnit
             return null;
         }
 
+        //보스일 경우 0->1->2 사용
+        if (IsBoss)
+        {
+            if (skills.Count < 3)
+            {
+                Debug.LogWarning($"보스 스킬 3개 미만");
+            }
+            else
+            {
+                //보스 스킬 0, 1, 2 순차적으로 사용
+                int skillIndex = bossTurnCount % 3;
+                Skill bossSkill = skills[skillIndex];
+
+                bossTurnCount++;
+
+                if (bossSkill.CurrentPP > 0 && bossSkill.TryUse())
+                {
+                    return bossSkill;
+                }
+                else
+                {
+                    //보스 PP부족, 0스킬 사용
+                    Debug.Log("Boss PP 부족 0번 스킬 사용");
+                    return skills[0];
+                }
+            }
+        }
+
         //사용가능한(PP남은)스킬 체크
         List<Skill> validSkills = new List<Skill>();
+
         for (int i = 0; i < skills.Count; i++)
         {
             if (skills[i].CurrentPP > 0)

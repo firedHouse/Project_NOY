@@ -78,6 +78,8 @@ public partial class CharacterListModel : MonoBehaviour
             Debug.Log("캐릭터 데이터 불러오기 실패");
         }
 
+        presenter.GetGradeData();
+        SetNeedShilling();
         // 스킬 로드 (BattelUnit.LoadSkills 메서드 사용 예정)> 팀 구성에서 이 클래스 사용하게 되면 추가
     }
 

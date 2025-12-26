@@ -14,7 +14,11 @@ public class RewardUI : MonoBehaviour
     IEnumerator Start()
     {
         yield return null;
-        Open(new List<ItemData>(), new List<object>());
+
+        var freeItems = rewardManager.CreateFreeItems();
+        var paidItems = rewardManager.CreatePaidItems(false);
+
+        Open(paidItems, freeItems);
     }
 
     public void Open(List<ItemData> PaidItem, List<object> FreeItem)
@@ -47,7 +51,6 @@ public class RewardUI : MonoBehaviour
     // 무료 아이템 슬롯에 아이템 세팅
     private void SetUpFree(List<object> items)
     {
-        rewardManager.CreateFreeItems();
         Debug.Log("무료 아이템 세팅 중");
         for (int i = 0; i < freeSlots.Length; i++)
         {

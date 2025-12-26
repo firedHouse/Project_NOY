@@ -56,8 +56,8 @@ public partial class CharacterListModel : MonoBehaviour
         isUpgrade = true;
         //레벨 체크 - 버튼 활성/비활성
         level++;
-        attackLevel1 += plusStat.attackUP;
-        HPLevel1 += plusStat.hpUP;
+        AttackLevel += plusStat.attackUP;
+        HpLevel += plusStat.hpUP;
         needShilling = plusStat.needShilling1;
 
         //3레벨 달성 시 버튼 비활성화

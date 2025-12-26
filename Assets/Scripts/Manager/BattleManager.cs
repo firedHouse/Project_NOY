@@ -342,6 +342,8 @@ public class BattleManager : MonoBehaviour
         //플레이어 팀 리스트 초기화
         PlayerTeam.Clear();
         string[] teamData = TempLobbyManager.Instance.GetSelectedCharacterIDs();
+        //string[] teamData = LobbyManager.Instance.SelectedCharacterIDs;
+
         //뭐시깽이 매니저.Instance.메서드 혹은 변수명, 데이터 형식 필요함
 
         if (teamData == null)

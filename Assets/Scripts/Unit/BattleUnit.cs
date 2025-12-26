@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static UnityEngine.Rendering.DebugUI;
 
-// 추상 클래스로 선언하여 직접 인스턴스화를 방지
+//추상 클래스로 선언하여 직접 인스턴스화를 방지
 public abstract class BattleUnit : MonoBehaviour
 {
     [Header("Base Stats")]

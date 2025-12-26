@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,6 +46,12 @@ public class StateTurnEnd : IBattleState
             if (!unit.IsDead)
             {
                 unit.OnTurnEnd(bm.PlayerTeam);
+                //12.26 원소반응 플래그 초기화
+                var elemental = unit.GetComponent<ElementalManager>();
+                if (elemental != null)
+                {
+                    elemental.ResetTurn();
+                }
             }
         }
         //적군
@@ -54,6 +60,12 @@ public class StateTurnEnd : IBattleState
             if (!unit.IsDead)
             {
                 unit.OnTurnEnd(bm.EnemyTeam);
+                //12.26 원소반응 플래그 초기화
+                var elemental = unit.GetComponent<ElementalManager>();
+                if (elemental != null)
+                {
+                    elemental.ResetTurn();
+                }
             }
         }
 

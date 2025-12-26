@@ -51,9 +51,10 @@ public partial class GrowthView : MonoBehaviour
     #endregion
    
     //성장버튼 클릭 액션
-    public void OnClickUpgradeButton(CharacterListModel model)
+    public void OnClickUpgradeButton()
     {
-        presenter.IsCanUpgrade(model);
+        Debug.Log("[GrowthView] 성장 버튼 클릭됨");
+        presenter.IsCanUpgrade();
     }
 
     //확인 버튼 클릭 액션
@@ -177,7 +178,7 @@ public partial class GrowthView : MonoBehaviour
     //실링 부족 경고창
     public void OnNotEnoughShilling(bool isTrue)
     {
-        if (upgradeButton == null)
+        if (notEnoughShilingPanel == null)
         {
             Debug.Log("[GrowthView] 실링부족 오보젝트가 없습니다.");
             return;

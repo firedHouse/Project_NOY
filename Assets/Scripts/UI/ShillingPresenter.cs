@@ -1,21 +1,16 @@
-﻿using TMPro;
+﻿using System;
 using UnityEngine;
 
 public class ShillingPresenter : MonoBehaviour
 {
     [Tooltip("실링 뷰")]
     [SerializeField] private ShillingView shillingView;
-
-    [Tooltip("실링 모델")]
-    [SerializeField] private ShillingModel shillingModel;
-
-    // test용 코드
-    private int changeAmount = 5000;
-
-    private void OnEnable()
+    
+    private void Start()
     {
-        shillingModel.ShillingChanged += OnShillingChanged;
         UpdateUI();
+
+        // ShillingChanged += UpdateUI;
     }
 
     // 실링 변경 이벤트
@@ -25,24 +20,17 @@ public class ShillingPresenter : MonoBehaviour
     }
 
     // UI 업데이트 
-    private void UpdateUI()
+    public void UpdateUI()
     {
-        shillingView.UpdateShilling(shillingModel.CurrentShilling);
-    }
-
-    // 실링 추가
-    public void IncreaseShilling(int amount)
-    {
-        // 테스트용 코드
-        shillingModel.Increase(changeAmount);
-        //shillingModel.Increase(amount);
+        Debug.Log($"[ShillingPresenter] 현재 실링 {ShillingManager.Instance.OutGameShilling}");
+        shillingView.UpdateShilling(ShillingManager.Instance.OutGameShilling);
     }
 
     // 실링 감소
-    public void DecreaseShilling(int amount)
-    {
-        // 테스트용 코드
-        shillingModel.Decrease(changeAmount);
-        //shillingModel.Decrease(amount);
-    }
+    // public void DecreaseShilling(int amount)
+    // {
+    //     // 테스트용 코드
+    //     // shillingModel.Decrease(changeAmount);
+    //     shillingModel.Decrease(amount);
+    // }
 }

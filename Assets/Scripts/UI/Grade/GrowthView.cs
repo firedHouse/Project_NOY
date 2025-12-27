@@ -178,6 +178,7 @@ public partial class GrowthView : MonoBehaviour
             return;
         }
 
+        // upgradeButton.interactable = canClick;
         upgradeButton.gameObject.SetActive(canClick);
         Debug.Log($"[GrowthView] 성장버튼 활성화 여부 {canClick}");
     }

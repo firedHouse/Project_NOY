@@ -39,7 +39,6 @@ public abstract class CharacterPresenterBase : MonoBehaviour
     protected void SetSlotUI()
     {
             characterSlots = characterList.GetComponentsInChildren<CharacterSlot>().ToList();
-            LobbyManager.Instance.SetCharacterDataList();
             characters = LobbyManager.Instance.CharacterListModels;
     }
 }

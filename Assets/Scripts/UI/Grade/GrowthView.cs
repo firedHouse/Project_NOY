@@ -7,7 +7,7 @@ public partial class GrowthView : MonoBehaviour
     [SerializeField] private CharacterListPresenter presenter;
 
     [Header("고유속성 출력 배열/리소스(물/불/번개/무속)")]
-    [SerializeField] private Text elementImage;
+    [SerializeField] private Image elementImage;
     //[SerializeField] private Sprite[] elementImageResources = new Sprite[4];
 
     [Header("캐릭터 이름/코드네임")]
@@ -15,9 +15,9 @@ public partial class GrowthView : MonoBehaviour
     [SerializeField] private Text codeName;
 
     [Header("별 출력 배열/리소스")]
-    [SerializeField] private Text[] starImage = new Text[3];
-    //[SerializeField] private Sprite yellowStar;
-    //[SerializeField] private Sprite grayStar;
+    [SerializeField] private Image[] starImage = new Image[3];
+    [SerializeField] private Sprite yellowStar;
+    [SerializeField] private Sprite grayStar;
 
     [Header("일러스트출력")]
     [SerializeField] private Image illust;
@@ -89,7 +89,7 @@ public partial class GrowthView : MonoBehaviour
             return;
         }
 
-        elementImage.text = $"{model.Element}";
+        //elementImage = $"{model.Element}";
         Debug.Log($"[GrowthView] 속성 : {model.Element}");
     }
 
@@ -103,29 +103,29 @@ public partial class GrowthView : MonoBehaviour
         }
         Debug.Log($"{starImage}");
 
-        //if(yellowStar == null || grayStar ==null)
-        //{
-        //    Debug.Log("[GrowthView] 별 이미지 정보 없음");
-        //    return;
-        //}
-        //if (grade > 3)
-        //{
-        //    Debug.Log("[GrowthView] 등급 최대치 넘어감");
-        //    return;
-        //}
-
-        //등급만큼 노란별
-        for (int i = 0; i < model.Level; i++)
+        if (yellowStar == null || grayStar == null)
         {
-            starImage[i].text = $"★";
-            //starImage[i].sprite = yellowStar;
+            Debug.Log("[GrowthView] 별 이미지 정보 없음");
+            return;
+        }
+        if (model.Level > 3)
+        {
+            Debug.Log("[GrowthView] 등급 최대치 넘어감");
+            return;
         }
 
-        for (int i = model.Level; i < 3; i++)
-        {
-            starImage[i].text = $"☆";
-            //starImage[i].sprite = grayStar;
-        }
+        ////등급만큼 노란별
+        //for (int i = 0; i < model.Level; i++)
+        //{
+        //    starImage[i].text = $"★";
+        //    //starImage[i].sprite = yellowStar;
+        //}
+
+        //for (int i = model.Level; i < 3; i++)
+        //{
+        //    starImage[i].text = $"☆";
+        //    //starImage[i].sprite = grayStar;
+        //}
     }
 
 

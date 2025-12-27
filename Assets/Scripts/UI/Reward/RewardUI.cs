@@ -11,68 +11,66 @@ public class RewardUI : MonoBehaviour
     [SerializeField] private RewardFlowController flowController;
     [SerializeField] private RewardManager rewardManager;
 
+    private void OnEnable()
+    {
+        ResetSlots();
+    }
+
     IEnumerator Start()
     {
         yield return null;
 
-        var freeItems = rewardManager.CreateFreeItems();
-        var paidItems = rewardManager.CreatePaidItems(false);
-
-        Open(paidItems, freeItems);
+        Open(false);
     }
 
-    public void Open(List<ItemData> PaidItem, List<object> FreeItem)
+    public void Open(bool hasDeadTeam)
     {
         gameObject.SetActive(true);
         Debug.Log("보상 UI 열렸음 !");
-        
-        SetUpFree(FreeItem);
-        SetUpPaid(PaidItem);
+        var freeItems = rewardManager.CreateFreeItems();
+        var paidItems = rewardManager.CreatePaidItems(hasDeadTeam);
+
+        SetUpFree(freeItems);
+        SetUpPaid(paidItems);
     }
+    private void ResetSlots()
+    {
+        foreach (var slot in paidSlots)
+            { slot.Hide(); }
+        foreach(var slot in freeSlots)
+            { slot.Hide(); }
+    }
+
     //유료 아이템 슬롯에 아이템 세팅
-    private void SetUpPaid(List<ItemData> items)
+    private void SetUpPaid(List<RunTimeItem> items)
     {
         Debug.Log("유료 아이템 세팅 중");
-        for (int i = 0; i < paidSlots.Length; i++)
+        for (int i = 0; i < paidSlots.Length && i < items.Count; i++)
         {
-            if(i >= items.Count)
-            {
-                paidSlots[i].Hide();
-                continue;
-            }
+            var item = items[i];
 
-            ItemData data = items[i];
-
-            paidSlots[i].SetItem(data, data.itemCost, data.itemName,
-                Resources.Load<Sprite>(data.itemImage), 
-                obj => flowController.OnPaidItemSelected((ItemData)obj));
+            paidSlots[i].SetItem(item, item.itemData.itemCost, item.itemData.itemName,
+                Resources.Load<Sprite>(item.itemData.itemImage), 
+                flowController.OnPaidItemSelected);
         }
     }
     // 무료 아이템 슬롯에 아이템 세팅
     private void SetUpFree(List<object> items)
     {
         Debug.Log("무료 아이템 세팅 중");
-        for (int i = 0; i < freeSlots.Length; i++)
+        for (int i = 0; i < freeSlots.Length && i < items.Count; i++)
         {
-            if (i >= items.Count)
+            if(items[i] is RunTimeItem item)
             {
-                freeSlots[i].Hide();
-                continue;
+                freeSlots[i].SetItem(item, 0, item.itemData.itemName,
+                    Resources.Load<Sprite>(item.itemData.itemImage),
+                    flowController.OnFreeItemSelected);
             }
-
-            object data = items[i];
-
-            if(data is ItemData itemData)
+            else if(items[i] is RunTimeRelic relic)
             {
-                freeSlots[i].SetItem(itemData, 0, itemData.itemName,
-                    Resources.Load<Sprite>(itemData.itemImage),
-                    obj => flowController.OnFreeItemSelected((ItemData)obj));
-            }
-            else if(data is ItemEquipData relic)
-            {
-                freeSlots[i].SetItem(relic, 0, relic.itemEquipName,
-                    Resources.Load<Sprite>(relic.itemEquipImage),
-                    obj => flowController.OnFreeItemSelected((ItemEquipData)obj));
+                freeSlots[i].SetItem(relic, 0, relic.itemData.itemEquipName,
+                    Resources.Load<Sprite>(relic.itemData.itemEquipImage),
+                    flowController.OnFreeItemSelected);
             }
         }
     }

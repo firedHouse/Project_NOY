@@ -43,19 +43,15 @@ public class EconomyManager : Singleton<EconomyManager>
         Debug.Log($"실링 획득: +{plusShilling}. 현재 실링: {runShilling}");
     }
 
-    //인게임 골드 사용 메서드 -> 바로 골드 차감이 되는 방식이기에 수정 필요함
-    public bool SpendGold(int cost)
+    public bool CanSpendGold(int cost)
     {
-        if(runGold < cost)
-        {
-            Debug.Log("보유한 골드가 부족합니다!");
-            return false;
-        }
-        
+        return runGold >= cost;
+    }
+    public void SpendGold(int cost)
+    {
         runGold -= cost;
-        OnGoldChanged?.Invoke(runGold);
-        Debug.Log($"골드 사용: -{cost}. 현재 골드: {runGold}");
-        return true;
+        OnGoldChanged.Invoke(runGold);
+        Debug.Log($"골드 사용 : -{cost}. 현재 골드 : {runGold}");
     }
 
     //스테이지 종료 시 실링을 아웃게임으로 전송하기 전 UI에 표시 및 인게임에서 얻은 Shilling을 받기

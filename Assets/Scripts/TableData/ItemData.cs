@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 [Serializable]
 public class ItemData : ITableData
@@ -14,5 +14,4 @@ public class ItemData : ITableData
     public string desc;
 
     public string PrimaryID => itemID.ToString();
-    public UsableItemType useItemType => (UsableItemType)stateType;
 }

@@ -7,15 +7,8 @@ using UnityEngine.UI;
 // 혜주님이 작성하신 CharacterListPresenter는 GrowthPresenter 클래스에 존재
 public partial class CharacterListPresenter : CharacterPresenterBase
 {
-    // [Header("[리스트 내부 요소 연결]" +
-    // "\nElement 갯수는 캐릭터수만큼, " +
-    // "\n씬 내부에 있는 CharacterSelectButton을 순서대로 넣어주세요")]
-
-    [Header("테스트용 임시 실링")]
-    public int Shilling;
-
+    [SerializeField] private ShillingPresenter shillingPresenter; 
     private Button unlockButton;
-
 
     protected override void Start()
     {
@@ -38,14 +31,6 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         
         // 초기 설정으로 왼쪽 패널만 보여주기
         growthView.SetDetailView(false);
-        // 초기 설정으로 첫 슬롯 캐릭터 지정해주기
-        // ShowDetailView(characterSlots[0].gameObject.GetComponent<CharacterListModel>());
-
-        // Hyeju
-        // Init(characterSlots[0].gameObject.GetComponent<CharacterListModel>());
-        // model.OnUnlock += CanClick;
-        // model.OnUnlock += growthView.CharacterInfo;
-        // model.OnUpgrade += UpdateCharacterInfo;
     }
 
     // 테스트용) 인게임 > 아웃게임 실링 받아오기를 여기서 처리
@@ -61,7 +46,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         for (int i = 0; i < characters.Count; i++)
         {
 
-            Debug.Log($"[CharacterListPresenter] {characters[i].CharacterName} 불러오기 성공");
+            // Debug.Log($"[CharacterListPresenter] {characters[i].CharacterName} 불러오기 성공");
             characterSlots[i].UpdateCharacterSlot(characters[i]);
             // 슬롯 클릭 이벤트 설정
             characterSlots[i].SetButtonEvent(characters[i], OnSlotClicked);
@@ -112,24 +97,20 @@ public partial class CharacterListPresenter : CharacterPresenterBase
     public void OnUnlockButtonClicked(CharacterListModel character)
     {
         Debug.Log("[CharacterListPresenter] 해금 클릭");
-        Debug.Log($"[CharacterListPresenter] {character}");
         if(character != null)
         {
+            Debug.Log($"[CharacterListPresenter] {model.CharacterName} 해금 여부 : {model.IsUnlocked}");
             model = character;
             // 보유 실링으로 해금 가능한지 확인 
-            // 실링이 부족하면 팝업 띄움
-            // 팝업 닫으면 안눌렸던 상태처럼 돌아감
-            // 실링이 부족하면 해금 활성화 안하는 게 
-            if(character.NeedShilling > Shilling)
+            // 현재 보유중인 실링이 부족하면 팝업 띄우고 리턴
+            if(character.UnlockShilling > ShillingManager.Instance.OutGameShilling)
             {
+                
+                Debug.Log($"[CharacterListPresenter] 실링 부족해서 해금 안됨!! {model.IsUnlocked}");
                 growthView.Popup.ShowPopup();
-                // 닫는 거 외에 다른 조건 설정이 필요한가?
-                if(growthView.Popup.gameObject.activeSelf == false)
-                {
-                    return;
-                }
+                return;
             }
-
+ 
             model.Unlock();
             Debug.Log($"[CharacterListPresenter] {model.CharacterName} 해금 여부 : {model.IsUnlocked}");
             growthView.ChangeUnlockUIActivation(model.IsUnlocked);
@@ -137,7 +118,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         }
         else
         {
-            Debug.Log($"[CharacterListPresenter] 해금 상태 변경 실패");
+            Debug.Log($"[CharacterListPresenter] 캐릭터가 존재하지 않아 해금 상태 변경 실패");
         }
     }
 

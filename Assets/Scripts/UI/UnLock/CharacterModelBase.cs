@@ -18,12 +18,14 @@ public class CharacterModelBase : MonoBehaviour
     [SerializeField] private string characterSkin;
     [SerializeField] protected float attackLevel;
     [SerializeField] protected float hpLevel;
+    
     private string ownedSkill02;
     private string ownedSkill01;
     private string ownedSkill03;
+    
     protected string gradeID;
     protected int gradeIDNum;
-
+    
     public Dictionary<int, (int, int)> gradeData = new Dictionary<int, (int, int)>();
 
     public string CharacterID => characterID;
@@ -38,7 +40,7 @@ public class CharacterModelBase : MonoBehaviour
     public string CharacterSkin => characterSkin;
     public float AttackLevel { get => attackLevel; set => attackLevel = value; }
     public float HpLevel { get => hpLevel; set => hpLevel = value; }
-
+    
     public void Initialize(string id, CharacterData characterData)
     {
         // CharacterData characterData = TableManager.Instance.CharacterTable.Get(id);
@@ -80,7 +82,7 @@ public class CharacterModelBase : MonoBehaviour
             for (int i = 0; i < 9; i++)
             {
                 gradeData.Add(characterIDNum, (gradeIDNum, gradeIDNum + 1));
-                Debug.Log($"[CharacterListModel] 아이디 입력 체크 : {gradeData[characterIDNum].Item1}");
+                // Debug.Log($"[CharacterListModel] 아이디 입력 체크 : {gradeData[characterIDNum].Item1}");
                 gradeIDNum += 2;
                 characterIDNum += 1;
             }

@@ -9,27 +9,15 @@ public partial class CharacterListModel : CharacterModelBase
 {
 
     #region Field
-
-    #region GrowthModel에서 사용할 부분
-
+    [Header("해금을 위한 임시 실링요구량")]
     [SerializeField] private int unlockShilling = 2000;
-    #endregion
 
     #endregion
 
     #region Property
-
-    #region GrowthModel에서 사용할 부분
-
     public int UnlockShilling { get => unlockShilling; private set => unlockShilling = value; }
+    
     #endregion
-
-    #endregion
-
-    // 초기화
-
-    // 스킬 로드 메서드
-
 
     // 해금 처리 
     public void Unlock()
@@ -40,7 +28,6 @@ public partial class CharacterListModel : CharacterModelBase
             Debug.Log($"[CharacterListModel] 필요한 실링 : ");
             // to-do : 실링 빼가는 처리 추가
             isUnlocked = true;
-            // OnUnlock.Invoke(this);
         }
         else
         {

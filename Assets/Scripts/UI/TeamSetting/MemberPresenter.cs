@@ -80,7 +80,7 @@ public class MemberPresenter : CharacterPresenterBase
         //growthView.CharacterElement(character);
     }
 
-    // 클릭하면 버튼의 슬롯 모델에 현재 프레젠터의 모델을 넣음 
+    // (in progress) 클릭하면 버튼의 슬롯 모델에 현재 프레젠터의 모델을 넣음 
     public override void SetButtonEvent(CharacterListModel character, UnityAction<CharacterListModel> onClickCallBack)
     {
         
@@ -97,7 +97,7 @@ public class MemberPresenter : CharacterPresenterBase
         throw new NotImplementedException();
     }
     
-    // 출전 버튼을 누르면 > 다른 메서드
+    // 출전 버튼을 누르면 > 다른 메서드에서 구현
     // 로비 매니저에게 아이디 리스트 전달
     public void SaveTeamList()
     {

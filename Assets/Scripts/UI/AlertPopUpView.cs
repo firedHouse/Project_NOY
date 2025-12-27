@@ -9,11 +9,11 @@ public class AlertPopUpView : MonoBehaviour
 
     [SerializeField] private GameObject button;
 
-    private void Awake()
-    {
-        popUp = this.gameObject;
-        this.gameObject.SetActive(false);
-    }
+    // private void Awake()
+    // {
+    //     popUp = this.gameObject;
+    //     this.gameObject.SetActive(false);
+    // }
 
     public void ShowPopup()
     {

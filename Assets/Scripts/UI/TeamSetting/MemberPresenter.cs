@@ -9,12 +9,19 @@ using UnityEngine.UI;
 public class MemberPresenter : CharacterPresenterBase
 {
     [SerializeField] protected GrowthSkillView skillView;
+    [SerializeField] private TeamSelectView selectView;
+
+    // private CharacterListModel[] ids = new CharacterListModel[3];
+    // 테스트용 팀 멤버 id 배열
+    private string[] ids = new string[] {"10002", "10003", "10008"};
     
     protected override void Start()
     {
         skillView = gameObject.GetComponent<GrowthSkillView>();
+        selectView = GameObject.Find("SeletedTeamPanel").GetComponent<TeamSelectView>();
         SetSlotUI();
         LoadCharacterList();
+        skillView.SetDetailView(false);
     }
 
     // 캐릭터 리스트 가져오기
@@ -39,11 +46,14 @@ public class MemberPresenter : CharacterPresenterBase
     // 클릭한 슬롯을 model에 넣어줌
     // 각 캐릭터 슬롯에서 호출
     // 잠금된 캐릭터는 캐릭터 상세 정보가 출력되지 않고 화면만? > 아예 비활성화만하기?
+    // 슬롯 클릭하면 중앙에 팀 선택 버튼들이 클릭 가능하도록 변경
     public override void OnSlotClicked(CharacterListModel character)
     {
         Debug.Log("[CharacterListPresenter] 슬롯 클릭");
         ShowDetailView(character);
-        // growthView.SetDetailView(true);
+        skillView.SetDetailView(true);
+        selectView.SetAllButtonInteractable(true);
+
     }
 
     protected override void ShowDetailView(CharacterListModel character)
@@ -67,13 +77,14 @@ public class MemberPresenter : CharacterPresenterBase
     {
         Debug.Log($"[CharacterListPresenter] 기본 정보 업데이트");
         skillView.CharacterName(character);
-        skillView.CharacterInfo(character);
         //growthView.CharacterElement(character);
     }
 
+    // 클릭하면 버튼의 슬롯 모델에 현재 프레젠터의 모델을 넣음 
     public override void SetButtonEvent(CharacterListModel character, UnityAction<CharacterListModel> onClickCallBack)
     {
-        throw new NotImplementedException();
+        
+        // Debug.
     }
 
     public override void UpdateCharacterInfo(CharacterListModel character)
@@ -84,5 +95,12 @@ public class MemberPresenter : CharacterPresenterBase
     public override void Init(CharacterListModel character)
     {
         throw new NotImplementedException();
+    }
+    
+    // 출전 버튼을 누르면 > 다른 메서드
+    // 로비 매니저에게 아이디 리스트 전달
+    public void SaveTeamList()
+    {
+        LobbyManager.Instance.SetTeam(ids);
     }
 }

@@ -71,6 +71,7 @@ public class GrowthSkillView : MonoBehaviour
             Debug.Log("[GrowthView] 별 이미지 정보 없음");
             return;
         }
+
         if (model.Level > 3)
         {
             Debug.Log("[GrowthView] 등급 최대치 넘어감");
@@ -79,17 +80,17 @@ public class GrowthSkillView : MonoBehaviour
 
         //등급만큼 노란별
 
-        //for (int i = 0; i < model.Level; i++)
-        //{
-        //    starImage[i].text = $"★";
-        //    //starImage[i].sprite = yellowStar;
-        //}
+        for (int i = 0; i < model.Level; i++)
+        {
+            //starImage[i].text = $"★";
+            starImage[i].sprite = yellowStar;
+        }
 
-        //for (int i = model.Level; i < 3; i++)
-        //{
-        //    starImage[i].text = $"☆";
-        //    //starImage[i].sprite = grayStar;
-        //}
+        for (int i = model.Level; i < 3; i++)
+        {
+            //starImage[i].text = $"☆";
+            starImage[i].sprite = grayStar;
+        }
     }
 
     //학년별 일러스트
@@ -102,6 +103,12 @@ public class GrowthSkillView : MonoBehaviour
     //스킬
     public void CharacterSkill(CharacterListModel model)
     {
+        if (skill[0] == null)
+        {
+            Debug.Log("[GrowthSkillView] 스킬 출력 오브젝트가 없습니다.");
+            return;
+        }
+
         //for (int i = 0; i < 3; i++)
         //{
         //    //skill[i].sprite = skillImage[i];

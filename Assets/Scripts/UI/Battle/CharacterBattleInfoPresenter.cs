@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 public partial class CharacterBattleInfoPresenter : MonoBehaviour
@@ -58,6 +58,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
     private void HandleDeath(BattleUnit unit)
     {
         BattleManager.Instance.OnUnitDead(unit);
+        PosReset(unit);
     }
 
     private void HandlePositionChanged(BattleUnit unit)

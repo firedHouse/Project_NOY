@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
@@ -8,6 +8,6 @@ public class TestButton : MonoBehaviour
 
     public void Test()
     {
-        _character.TakeDamage(100);
+        _character.TakeDamage(1000);
     }
 }

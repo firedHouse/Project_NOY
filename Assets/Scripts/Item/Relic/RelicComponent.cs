@@ -4,7 +4,7 @@ using UnityEngine;
 public class RelicComponent : MonoBehaviour
 {
     private BattleUnit owner;
-    private readonly List<ItemEquipData> equippedRelic = new();
+    private readonly List<RunTimeRelic> equippedRelic = new();
 
     private void Awake()
     {
@@ -17,15 +17,15 @@ public class RelicComponent : MonoBehaviour
     }
 
     //유물 장착 메서드
-    public void Equip(ItemEquipData relicData)
+    public void Equip(RunTimeRelic relic)
     {
-        if(relicData == null || owner == null)
+        if(relic == null || owner == null)
         { return; }
 
-        equippedRelic.Add(relicData);
-        RelicApplier.Apply(owner, relicData);
+        equippedRelic.Add(relic);
+        RelicApplier.Apply(owner, relic);
 
-        Debug.Log($"{owner.UnitName}에게 {relicData.itemEquipName} 장착");
+        Debug.Log($"{owner.UnitName}에게 {relic.itemData.itemEquipName} 장착");
     }
 
 

@@ -10,50 +10,59 @@ public class RewardFlowController : MonoBehaviour
     private bool isLocked = false;
 
     //유료 아이템을 선택한 경우 골드 차감 후 타겟 선택 오픈 -> 골드 차감 타이밍 조금 미뤄야함.
-    public void OnPaidItemSelected(ItemData item)
+    public void OnPaidItemSelected(object data)
     {
         if (isLocked)
         { return; }
 
-        isLocked = true;
-
-        if (!EconomyManager.Instance.SpendGold(item.itemCost)) // 현재 SpendGold가 바로 골드 차감이라 수정 필요
+        var item = (RunTimeItem)data;
+        if(!EconomyManager.Instance.CanSpendGold(item.itemData.itemCost))
         {
-            isLocked = false;
-            Debug.Log("골드 부족"); // UI로 띄워야 함
-            return; // 나중에 UI 띄우게 되면 return은 그 UI에서 처리하는 것
+            Debug.Log("골드 부족");
+            return;
         }
 
+        isLocked = true;
         currentItem = item;
         targetSelectUI.Open(item, ApplyItem);
     }
     //무료 아이템 선택 시 바로 사용할 수 있게 타겟 선택 오픈
-    public void OnFreeItemSelected(object item)
+    public void OnFreeItemSelected(object data)
     {
         if (isLocked)
         { return; }
 
         isLocked = true;
-
-        currentItem = item;
-        targetSelectUI.Open(item, ApplyItem);
+        currentItem = data;
+        targetSelectUI.Open(data, ApplyItem);
     }
     //아이템 적용
     private void ApplyItem(BattleUnit target, Skill skill)
     {
-        bool success = false;
+        bool sucess = false;
 
-        if (currentItem is ItemData item)
+        if (currentItem is RunTimeItem item)
         {
-            UsableItem usableItem = new UsableItem();
-            usableItem.Initialize(item);
-            usableItem.Use(target, skill);
+            sucess = UsableItemExcution.Use(item, target, skill);
+
+            if (sucess && item.itemData.itemCost > 0)
+            {
+                EconomyManager.Instance.SpendGold(item.itemData.itemCost);
+            }
         }
-        else if(currentItem is ItemEquipData relic)
+        else if (currentItem is RunTimeRelic relic)
         {
-            var relicComponent = target.GetComponent<RelicComponent>();
-            relicComponent.Equip(relic);
+            target.GetComponent<RelicComponent>()?.Equip(relic);
+            rewardManager.MarkRelicUsed(relic);
+            sucess = true;
         }
+
+        if(!sucess)
+        {
+            targetSelectUI.ReOpen();
+        }
+
+        isLocked = false;
     }
 
 }

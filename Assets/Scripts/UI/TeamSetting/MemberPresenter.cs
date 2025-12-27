@@ -15,6 +15,9 @@ public class MemberPresenter : CharacterPresenterBase
     // 테스트용 팀 멤버 id 배열
     // private string[] ids = new string[] {"10002", "10003", "10008"};
     private string[] ids = new string[3];
+    private CharacterListModel[] teamMembers = new CharacterListModel[3];
+
+    public CharacterListModel[] TeamMembers => teamMembers;
     
     protected override void Start()
     {
@@ -125,7 +128,17 @@ public class MemberPresenter : CharacterPresenterBase
         {
             ids[i] = selectView.Slots[i].SlotModel.CharacterID;
         }
+
+        // 슬롯에 있는 애들의 캐릭터 리스트 데이터를 가져와 배열에 저장
+        for (int i = 0; i < selectView.Slots.Length; i++)
+        {
+            teamMembers[i] = selectView.Slots[i].SlotModel;
+        }
+        
         Debug.Log($"[MemberPresenter] {ids[0]} - {ids[1]} - {ids[2]}");
+        Debug.Log($"[MemberPresenter] {teamMembers[0].CharacterName} - {teamMembers[1].CharacterName} - {teamMembers[2].CharacterName}");
+        
         LobbyManager.Instance.SetTeam(ids);
+        LobbyManager.Instance.SetTeamData(teamMembers);
     }
 }

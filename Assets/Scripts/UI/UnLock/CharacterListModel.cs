@@ -26,7 +26,8 @@ public partial class CharacterListModel : CharacterModelBase
         {
             Debug.Log($"[CharacterListModel] {isUnlocked} > 해금");
             Debug.Log($"[CharacterListModel] 필요한 실링 : ");
-            // to-do : 실링 빼가는 처리 추가
+            // 해금을 위해 실링 빼가는 처리
+            ShillingManager.Instance.SpendShilling(unlockShilling);
             isUnlocked = true;
         }
         else

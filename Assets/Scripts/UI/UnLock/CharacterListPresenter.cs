@@ -112,7 +112,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
             }
  
             model.Unlock();
-            Debug.Log($"[CharacterListPresenter] {model.CharacterName} 해금 여부 : {model.IsUnlocked}");
+            shillingPresenter.UpdateUI();
             growthView.ChangeUnlockUIActivation(model.IsUnlocked);
             GrowthButton(model.IsUnlocked);
         }

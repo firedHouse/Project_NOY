@@ -138,6 +138,18 @@ public abstract class BattleUnit : MonoBehaviour
         }
     }
 
+    public void IncreaseMaxHP(float amount)
+    {
+        if (isDead)
+        {
+            return;
+        }
+        maxHP += amount;
+        //늘어난 최대 체력만큼 현재 체력도 같이 회복
+        currentHP += amount;
+        OnHpChanged?.Invoke(this, currentHP);
+    }
+
     public void Heal(float amount)
     {
         if (isDead)

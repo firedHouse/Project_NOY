@@ -16,15 +16,6 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         SetSlotUI();
         unlockButton = growthView.UnlockButton.GetComponent<Button>();
         Debug.Log("슬롯 설정 완료");
-        // if (EconomyManager.Instance != null)
-        // {
-        //     EconomyManager.Instance.AddShilling(1000);
-        //     Shilling = EconomyManager.Instance.ResultShilling();
-        // }
-        // else
-        // {
-        //     Debug.Log($"이코노미 매니저 없음");
-        // }
 
         LoadCharacterList();
         Debug.Log("캐릭터 로딩");
@@ -32,12 +23,6 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         // 초기 설정으로 왼쪽 패널만 보여주기
         growthView.SetDetailView(false);
     }
-
-    // 테스트용) 인게임 > 아웃게임 실링 받아오기를 여기서 처리
-    // private void SetShilling()
-    // {
-    //     
-    // }
     
     // 캐릭터 리스트 가져오기
     // 캐릭터 수에 따라 캐릭터 슬롯 생성 후 각 슬롯에 캐릭터 정보 띄우기
@@ -45,7 +30,6 @@ public partial class CharacterListPresenter : CharacterPresenterBase
     {
         for (int i = 0; i < characters.Count; i++)
         {
-
             // Debug.Log($"[CharacterListPresenter] {characters[i].CharacterName} 불러오기 성공");
             characterSlots[i].UpdateCharacterSlot(characters[i]);
             // 슬롯 클릭 이벤트 설정
@@ -53,7 +37,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
             // 슬롯 클릭시 잠금 UI 변경 메서드
             growthView.ChangeUnlockUIActivation(characters[i].IsUnlocked);
         }
-        // 잠금 해제 시 UI 변경 메서드 
+        // 잠금 해제 시 UI 변경 이벤트 추가  
         SetButtonEvent(model, OnUnlockButtonClicked);
 
     }
@@ -135,7 +119,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
     }
 
     // 클릭하면 해금되도록 버튼 이벤트 설정
-    public override void SetButtonEvent(CharacterListModel character, UnityAction<CharacterListModel> onClickCallBack)
+    public void SetButtonEvent(CharacterListModel character, UnityAction<CharacterListModel> onClickCallBack)
     {
         model = character;
         Debug.Log("해금 버튼 설정");

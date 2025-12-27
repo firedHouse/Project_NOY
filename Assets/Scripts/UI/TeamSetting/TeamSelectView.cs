@@ -7,33 +7,44 @@ public class TeamSelectView : MonoBehaviour
 {
 
     // 버튼들 
-    [SerializeField] private List<GameObject> selectSlots;
-    public List<GameObject> SelectSlots => selectSlots;
-
-    private void Awake()
+    [SerializeField] private CharacterSlot[] slots;
+    public CharacterSlot[] Slots => slots;
+    
+    private void Start()
     {
-        selectSlots = gameObject.GetComponentsInChildren<GameObject>().ToList();
+        slots = gameObject.GetComponentsInChildren<CharacterSlot>().ToArray();
         // 슬롯 클릭 전까지는 비활성화
         SetAllButtonInteractable(false);
     }
 
     // 버튼 클릭 가능 여부 설정
-    public void SetButtonInteractable(Button bt, bool isInteractable)
+    public void SetButtonInteractable(CharacterSlot slot, bool isInteractable)
     {
-        bt.interactable = isInteractable;
+        slot.SlotButton.interactable = isInteractable;
     }
 
     public void SetAllButtonInteractable(bool isInteractable)
     {
-        Debug.Log($"[TeamSelectView] 모든 버튼 클릭 가능 : {isInteractable}");
-        foreach (var slot in selectSlots)
+        // 버튼 리스트에서 
+        foreach (var slot in slots)
         {
-            SetButtonInteractable(slot.GetComponent<Button>(), isInteractable);
+            SetButtonInteractable(slot, isInteractable);
         }
+        Debug.Log($"[TeamSelectView] 모든 버튼 클릭 가능 : {isInteractable}");
     }
 
-    public CharacterListModel GetSlotModel(GameObject slot)
+    // 해당 슬롯에서 캐릭터 모델을 반환
+    public CharacterListModel GetSlotModel(CharacterSlot slot)
     {
-        return slot.GetComponent<CharacterSlot>().SlotModel;
+        return slot.SlotModel;
     }
+    
+    // 캐릭터 모델을 슬롯에 넣어줌
+    // 파라미터는 버튼 아니면 게임 오브젝트
+    public void SetSlotModel(CharacterSlot slot, CharacterListModel model)
+    {
+        slot.SlotModel = model;
+    }
+        
+    // 이벤트로 버튼 내 슬롯에 모델이 변경될 때마다 모델 리스트 갱신 
 }

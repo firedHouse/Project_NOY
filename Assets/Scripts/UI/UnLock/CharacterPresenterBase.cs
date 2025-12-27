@@ -29,7 +29,6 @@ public abstract class CharacterPresenterBase : MonoBehaviour
     /// </summary>
     public abstract void UpdateMainInfo(CharacterListModel character);
 
-    public abstract void SetButtonEvent(CharacterListModel character, UnityAction<CharacterListModel> onClickCallBack);
     public abstract void UpdateCharacterInfo(CharacterListModel model);
     public abstract void Init(CharacterListModel model);
 

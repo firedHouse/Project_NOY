@@ -72,7 +72,6 @@ public class LobbyManager : Singleton<LobbyManager>
     /// </summary>
     public void SetTeam(string[] inTeamMembers)
     {
-        // something
         // selectedCharacterIDs에 차례로 추가
         for (int i = 0; i < inTeamMembers.Length; i++)
         {

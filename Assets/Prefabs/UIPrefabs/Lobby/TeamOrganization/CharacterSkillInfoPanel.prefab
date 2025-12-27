@@ -169,7 +169,6 @@ GameObject:
   - component: {fileID: 9064378055021423771}
   - component: {fileID: 8136531615099709031}
   - component: {fileID: 3004342595850645813}
-  - component: {fileID: 5478577348581342495}
   m_Layer: 5
   m_Name: CharacterSkillInfoPanel
   m_TagString: Untagged
@@ -237,25 +236,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5478577348581342495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8068228424072452964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 523c2ffec03ac5b49a9a68a8e0f1c5d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GrowthSkillView
-  presenter: {fileID: 0}
-  skill:
-  - {fileID: 7310482298245187423}
-  - {fileID: 8695901236267311485}
-  - {fileID: 2480112060230230588}
-  skillNameText: {fileID: 8102759910867321654}
-  skillInfoText: {fileID: 6157282276822159689}
 --- !u!1 &9200748023713807832
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,17 +436,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1af2d90602a9d6e4c9f6df1e12ecde10, type: 3}
---- !u!114 &2480112060230230588 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4243577508643719400, guid: 1af2d90602a9d6e4c9f6df1e12ecde10, type: 3}
-  m_PrefabInstance: {fileID: 1769659042514643668}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!224 &3036893172908392362 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3650767581195261310, guid: 1af2d90602a9d6e4c9f6df1e12ecde10, type: 3}
@@ -574,17 +543,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3650767581195261310, guid: 1af2d90602a9d6e4c9f6df1e12ecde10, type: 3}
   m_PrefabInstance: {fileID: 4776695617984145813}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8695901236267311485 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4243577508643719400, guid: 1af2d90602a9d6e4c9f6df1e12ecde10, type: 3}
-  m_PrefabInstance: {fileID: 4776695617984145813}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &6886069424334589879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -682,17 +640,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1af2d90602a9d6e4c9f6df1e12ecde10, type: 3}
---- !u!114 &7310482298245187423 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4243577508643719400, guid: 1af2d90602a9d6e4c9f6df1e12ecde10, type: 3}
-  m_PrefabInstance: {fileID: 6886069424334589879}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!224 &7870632356695218889 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3650767581195261310, guid: 1af2d90602a9d6e4c9f6df1e12ecde10, type: 3}

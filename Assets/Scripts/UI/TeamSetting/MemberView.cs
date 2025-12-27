@@ -5,30 +5,26 @@ using UnityEngine.UI;
 
 public partial class GrowthSkillView : MonoBehaviour
 {
-    [Header("한마디/정보")] [SerializeField] private Text lineText;
-    [SerializeField] private Text infoText;
 
-
-    private void Start()
+    [SerializeField] private GameObject MiddlePanel;
+    [SerializeField] private GameObject RightPanel;
+    
+    private void Awake()
     {
-        
+        MiddlePanel = GameObject.Find("MiddlePanel");
+        RightPanel = GameObject.Find("RightPanel");
     }
 
     private void SetUIComponents()
     {
         
     }
-    public void CharacterInfo(CharacterListModel model)
-    {
-        if (lineText == null || infoText == null)
-        {
-            Debug.Log("[SkillView] 한마디, 설명 오보젝트가 없습니다.");
-            return;
-        }
 
-        lineText.text = model.CharacterDialogue;
-        infoText.text = model.CharacterInfo;
-        Debug.Log($"[SkillView] 한마디 : {model.CharacterDialogue}");
-        Debug.Log($"[SkillView] 설명 : {model.CharacterInfo}");
+    public void SetDetailView(bool isActive)
+    {
+        Debug.Log($"[GrowthView] 상세 패널 활성화 여부 : {isActive}");
+        // 우측 패널 활성화 변경
+        MiddlePanel.SetActive(isActive);
+        RightPanel.SetActive(isActive);
     }
 }

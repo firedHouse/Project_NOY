@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// 캐릭터 데이터와 스킬 데이터를 함께 처리하기 위한 클래스
+/// </summary>
 public class CharacterModelBase : MonoBehaviour
 {
     [SerializeField] protected string characterID;

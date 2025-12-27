@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -50,7 +51,6 @@ public partial class GrowthView : MonoBehaviour
     }
     #endregion
    
-    //성장버튼 클릭 액션
     public void OnClickUpgradeButton()
     {
         Debug.Log("[GrowthView] 성장 버튼 클릭됨");
@@ -177,7 +177,9 @@ public partial class GrowthView : MonoBehaviour
             Debug.Log("[GrowthView] 성장버튼 오브젝트가 없습니다.");
             return;
         }
-        upgradeButton.interactable = canClick;
+
+        upgradeButton.gameObject.SetActive(canClick);
+        Debug.Log($"[GrowthView] 성장버튼 활성화 여부 {canClick}");
     }
 
     //실링 부족 경고창

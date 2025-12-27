@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public partial class CharacterListModel : MonoBehaviour
+public partial class CharacterListModel : CharacterModelBase
 {
     [SerializeField] private CharacterListPresenter presenter;
 
     #region Field
-    private string gradeID;
+
     private int needShilling;
-    private int gradeIDNum;
     private GradeData plusStat;
 
     //업그레이드 성공 여부 > 레벨 1회 상승 후 false
@@ -24,22 +23,14 @@ public partial class CharacterListModel : MonoBehaviour
     public int NeedShilling { get { return needShilling; } set { needShilling = value; } }
     #endregion
 
-    public event Action OnUpgrade;
-    public event Action<CharacterListModel> OnUnlock;
-
     public void GradeCheck()
     {
-        if (presenter == null)
-        {
-            Debug.Log("[CharacterListModel] 프레젠터 비었음");
-            return;
-        }
-        if (presenter.gradeData == null)
+        if (gradeData == null)
         {
             Debug.Log("[CharacterListModel] 딕셔너리 비었음");
             return;
         }
-        if (presenter.gradeData.Count == 0)
+        if (gradeData.Count == 0)
         {
             Debug.Log("[CharacterListModel] 딕셔너리 데이터 비었음");
             return;
@@ -48,13 +39,13 @@ public partial class CharacterListModel : MonoBehaviour
         //1레벨 > 2레벨
         if (level == 0)
         {
-            gradeIDNum = presenter.gradeData[int.Parse(characterID)].Item1;
+            gradeIDNum = gradeData[int.Parse(characterID)].Item1;
             Debug.Log($"[CharacterListModel] ID 번호 {gradeIDNum}");
         }
         //2레벨 > 3레벨
         else if (level == 1)
         {
-            gradeIDNum = presenter.gradeData[int.Parse(characterID)].Item2;
+            gradeIDNum = gradeData[int.Parse(characterID)].Item2;
             Debug.Log($"[CharacterListModel] ID 번호 {gradeIDNum}");
         }
 
@@ -94,9 +85,8 @@ public partial class CharacterListModel : MonoBehaviour
 
         level++;
 
-        attackLevel += plusStat.attackUP;
-
-        hpLevel += plusStat.hpUP;
+        AttackLevel += plusStat.attackUP;
+        HpLevel += plusStat.hpUP;
 
         plusStat = TableManager.Instance.GradeTable.Get($"{++gradeIDNum}");
         needShilling = plusStat.needShilling1;
@@ -115,6 +105,12 @@ public partial class CharacterListModel : MonoBehaviour
             presenter.GrowthButton(false);
         }
 
-        OnUpgrade.Invoke();
+        if(presenter == null)
+        {
+            Debug.Log($"[GrowthView] 프레젠터 null, 새로 참조");
+            presenter = GameObject.Find("CharacterListPanel").GetComponent<CharacterListPresenter>();
+        }
+
+        presenter.ShillingUpdate(this);
     }
 }

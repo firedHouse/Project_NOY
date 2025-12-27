@@ -1,17 +1,11 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public partial class CharacterListPresenter : MonoBehaviour
+public partial class CharacterListPresenter : CharacterPresenterBase
 {
-    [Header("화면에 표시될 캐릭터 데이터 모델")]
-    [SerializeField] private CharacterListModel model;
-    [SerializeField] private GrowthView growthView;
-    [SerializeField] private GrowthSkillView skillView;
+    [SerializeField] protected GrowthView growthView;
     [SerializeField] private ShillingModel shillingModel;
-    public Dictionary<int, (int, int)> gradeData = new Dictionary<int, (int, int)>();
-
-
-    public CharacterListModel Model { get { return model; } }
 
     //성장 버튼 클릭 활성화 조건 : 캐릭터 해금
     //버튼 클릭 시 : 실링 확인
@@ -25,46 +19,30 @@ public partial class CharacterListPresenter : MonoBehaviour
 
     //최고 학년 > 성장버튼 클릭 비활성화
 
-
-    //private void Start()
-    //{
-    //    Init();
-    //    model.OnUnlock += CanClick;
-    //    model.OnUpgrade += UpdateCharacterInfo;
-    
-
     //레벨에 따라 변경되어야 할 사항
-    public void UpdateCharacterInfo(CharacterListModel model)
+    public override void UpdateCharacterInfo(CharacterListModel model)
     {
         //비용 갱신
         growthView.UpgradeCost(model);
         //일러스트 갱신
         growthView.CharacterIllust(model);
-        skillView.CharacterIllust(model);
         //별 갱신
         growthView.GradeSet(model);
-        skillView.GradeSet(model);
         //버튼갱신
         CanClick(model);
     }
 
 
     //초기 값
-    public void Init(CharacterListModel model)
+    public override void Init(CharacterListModel model)
     {
         Debug.Log("[GrowthPresenter] Init");
-        //딕셔너리 정보 저장
-        //GetGradeData();
-        
         //모델에서 고유속성 불러오기
         growthView.CharacterElement(model);
-        skillView.CharacterElement(model);
         //이름, 코드네임
         growthView.CharacterName(model);
-        skillView.CharacterName(model);
         //별 이미지 세팅(0:노란별 / 1,2:회색별)
         growthView.GradeSet(model);
-        skillView.GradeSet(model);
         //패널 기본값 = false
         growthView.OnNotEnoughShilling(false);
         //버튼클릭 비활성화 // 테스트 임시 활성화
@@ -74,8 +52,7 @@ public partial class CharacterListPresenter : MonoBehaviour
         growthView.CharacterIllust(model);
         //한마디, 상세정보
         growthView.CharacterInfo(model);
-        //스킬
-        skillView.CharacterSkill(model);
+        //실링값 부여
         model.SetNeedShilling();
         //실링 금액업데이트
         growthView.UpgradeCost(model);
@@ -83,6 +60,7 @@ public partial class CharacterListPresenter : MonoBehaviour
 
 
     //캐릭터가 해금 상태이면, 버튼 활성화
+    // jihoo : 잠금 상태일 때 버튼이 비활성화 되도록 변경
     public void CanClick(CharacterListModel model)
     {
         growthView.ButtonActive(model.IsUnlocked);
@@ -90,6 +68,7 @@ public partial class CharacterListPresenter : MonoBehaviour
 
     public void GrowthButton(bool active)
     {
+        Debug.Log($"[CharacterListPresenter] 성장 버튼 활성화 여부 {active}");
         growthView.ButtonActive(active);
     }
 
@@ -112,21 +91,8 @@ public partial class CharacterListPresenter : MonoBehaviour
         Debug.Log($"[CharacterListPresenter] 패널 띄움");
     }
 
-    public void GetGradeData()
+    public void ShillingUpdate(CharacterListModel model)
     {
-        if (gradeData.Count == 0)
-        {
-            int gradeIDNum = 50001;
-            int characterIDNum = 10001;
-            for (int i = 0; i < 9; i++)
-            {
-                gradeData.Add(characterIDNum, (gradeIDNum, gradeIDNum + 1));
-                Debug.Log($"[CharacterListModel] 아이디 입력 체크 : {gradeData[characterIDNum].Item1}");
-                gradeIDNum += 2;
-                characterIDNum += 1;
-            }
-            // 딕셔너리 10001 캐릭터는 50001, 50002의 의 레벨업 정보를 가지고 있다. 정도의 내용
-        }
+        growthView.UpgradeCost(model);
     }
-
 }

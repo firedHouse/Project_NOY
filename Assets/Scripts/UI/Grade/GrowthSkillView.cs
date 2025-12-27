@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GrowthSkillView : MonoBehaviour
+public partial class GrowthSkillView : MonoBehaviour
 {
-    [Header("GrowthPresenter")]
-    [SerializeField] private CharacterListPresenter presenter;
+    // [Header("GrowthPresenter")]
+    // [SerializeField] private CharacterListPresenter presenter;
 
     [Header("고유속성 출력 배열/리소스(물/불/번개/무속)")]
     [SerializeField] private Text elementImage;
-    //[SerializeField] private Sprite[] elementImageResources = new Sprite[4];
+    [SerializeField] private Sprite[] elementImageResources = new Sprite[4];
 
     [Header("캐릭터 이름/코드네임")]
     [SerializeField] private Text charName;
@@ -20,7 +20,7 @@ public class GrowthSkillView : MonoBehaviour
     //[SerializeField] private Sprite grayStar;
 
     [Header("일러스트출력")]
-    [SerializeField] private Image illust;
+    [SerializeField] private RawImage illust;
 
     [Header("스킬출력")]
     [SerializeField] private Text[] skill = new Text[3];
@@ -111,7 +111,7 @@ public class GrowthSkillView : MonoBehaviour
         //    skill[i].sprite = Resources.Load<Sprite>();
         //}
     }
-
+    
     //스킬 마우스오버
     public void OnFristSkillMouseOver()
     {

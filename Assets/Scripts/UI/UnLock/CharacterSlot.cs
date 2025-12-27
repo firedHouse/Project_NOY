@@ -14,16 +14,18 @@ public class CharacterSlot : MonoBehaviour
     [SerializeField] private Button slotButton;
     [FormerlySerializedAs("model")] [SerializeField] private CharacterListModel slotModel;
     private string id;
-
+    public Text slotCharacter;
     private bool isClickable = true;
     
     public Button SlotButton => slotButton;
     public CharacterListModel SlotModel { get =>  slotModel; set => slotModel = value; }
 
+    public Text SlotCharacter { get => slotCharacter; set => slotCharacter = value; }
 
     private void Awake()
     {
         slotButton = GetComponent<Button>();
+        slotCharacter = gameObject.GetComponentInChildren<Text>();
     }
 
     // 슬롯 클릭시 변경
@@ -50,7 +52,8 @@ public class CharacterSlot : MonoBehaviour
         //button.image.
         id = model.CharacterID;
         slotModel = model;
-        Debug.Log($"[CharacterSlot] {id} 슬롯에 {model.CharacterName} 로드 완료");
+        slotCharacter.text = model.CharacterName;
+        // Debug.Log($"[CharacterSlot] {id} 슬롯에 {model.CharacterName} 로드 완료");
     }
 
     // 성장 레벨에 따라 일러스트 UI 변경

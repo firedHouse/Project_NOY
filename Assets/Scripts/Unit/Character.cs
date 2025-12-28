@@ -1,44 +1,74 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor.Overlays;
+using UnityEngine;
 
-//¾Æ±º À¯´Ö »À´ë ½ºÅ©¸³Æ®
+//ì•„êµ° ìœ ë‹› ë¼ˆëŒ€ ìŠ¤í¬ë¦½íŠ¸
 public class Character : BattleUnit
 {
-    //ÃÊ±âÈ­ ¸Ş¼­µå ÇÊ¿ä
+    //ì´ˆê¸°í™” ë©”ì„œë“œ í•„ìš”
     public void InitializeCharacter(string charID, UnitPosition pos)
     {
-        //Ä³¸¯ÅÍ µ¥ÀÌÅÍ Á¶È¸
-        CharacterData data = TableManager.Instance.CharacterTable.Get(charID);
-        Debug.Log(data);
+        //ìºë¦­í„° ê¸°ë³¸ ë°ì´í„° ì¡°íšŒ(1í•™ë…„)
+        CharacterData baseData = TableManager.Instance.CharacterTable.Get(charID);
+        Debug.Log(baseData);
 
-        if (data == null)
+        if (baseData == null)
         {
-            Debug.LogError($"Ä³¸¯ÅÍ µ¥ÀÌÅÍ¸¦ Ã£Áö ¸øÇßÀ¾´Ï´Ù {charID}");
+            Debug.LogError($"ìºë¦­í„° ë°ì´í„°ë¥¼ ì°¾ì§€ ëª»í–ˆìë‹ˆë‹¤ {charID}");
             return;
         }
-        //MVP ÀÌÈÄ¿£ ·¹º§ °è»ê ÇÊ¿ä
+
+        //12.28 ì„±ì¥ ë°˜ì˜ ë¡œì§ ì¶”ê°€
+
+        //ìœ ì €ë°ì´í„°ë§¤ë‹ˆì €ë¡œ í˜„ì¬ ì´ ìºë¦­í„°ì˜ í•™ë…„ì„ ì¡°íšŒ
+        int currentGradeLevel = UserDataManager.Instance.GetCharacterGrade(charID);
+
+        //ìµœì¢… ìŠ¤íƒ¯ ë³€ìˆ˜ (ì¼ë‹¨ 1í•™ë…„ ê¸°ë³¸ê°’ìœ¼ë¡œ ì‹œì‘)
+        float finalHP = baseData.HPLevel1;
+        float finalAtk = baseData.attackLevel1;
+        string finalSkinID = baseData.characterSkin;
+        //ì„±ì¥ì´ ë˜ì–´ìˆë‹¤ë©´
+        if (currentGradeLevel > 0)
+        {
+            //ì„±ì¥ ë°ì´í„° ê°€ì ¸ì˜¤ê¸°
+            GradeData gradeData = TableManager.Instance.GetGradeData(charID, currentGradeLevel);
+            if (gradeData != null)
+            {
+                //ê¸°ë³¸ ìŠ¤íƒ¯ì— ì„±ì¥ì¹˜ ë”í•˜ê¸°
+                finalHP += gradeData.hpUP;
+                finalAtk += gradeData.attackUP;
+                if (!string.IsNullOrEmpty(gradeData.changeSkin))
+                {
+                    finalSkinID = gradeData.changeSkin;
+                }
+                Debug.Log($"ì„±ì¥ ë°˜ì˜ ì™„ë£Œ(HP:{finalHP}, ATK:{finalAtk})");
+            }
+        }
+
+        //ì„±ì¥ ë°˜ì˜í•˜ì—¬ ìœ ë‹› ì´ˆê¸°í™”
         InitializeBase(
             charID,
-            data.characterName,
-            data.HPLevel1,
-            data.speed,
-            data.attackLevel1,
+            baseData.characterName,
+            finalHP,
+            baseData.speed,
+            finalAtk,
             pos
         );
 
-        //¸®¼Ò½º ·Îµå
+        //ë¦¬ì†ŒìŠ¤ ë¡œë“œ
+        //finalSkinID ì‚¬ìš©
 
-        //½ºÅ³ ·ÎµÎ
+        //ìŠ¤í‚¬ ë¡œë‘
         List<string> skillIDs = new List<string>()
         {
-            data.ownedSkill01, 
-            data.ownedSkill02,
-            data.ownedSkill03
+            baseData.ownedSkill01,
+            baseData.ownedSkill02,
+            baseData.ownedSkill03
         };
         LoadSkills(skillIDs);
     }
 
-    //½ºÅ³ »ç¿ë ÇÔ¼ö (ÀÎµ¦½º: 0, 1, 2)
+    //ìŠ¤í‚¬ ì‚¬ìš© í•¨ìˆ˜ (ì¸ë±ìŠ¤: 0, 1, 2)
     public void UseSkill(int skillIndex, BattleUnit target)
     {
         if (skillIndex < 0 || skillIndex >= skills.Count)
@@ -48,15 +78,15 @@ public class Character : BattleUnit
 
         Skill skill = skills[skillIndex];
 
-        //PP Ã¼Å© ¹× ¼Ò¸ğ
+        //PP ì²´í¬ ë° ì†Œëª¨
         if (skill.TryUse())
         {
-            //µ¥¹ÌÁö °è»ê ¹× Àû¿ë ·ÎÁ÷Àº BattleManager ¿¡¼­ Ã³¸® ¿¹Á¤
-            Debug.Log($"{unitName} °¡ ½ºÅ³: {skill.Data.skillName} »ç¿ë. (³²Àº PP: {skill.CurrentPP})");
+            //ë°ë¯¸ì§€ ê³„ì‚° ë° ì ìš© ë¡œì§ì€ BattleManager ì—ì„œ ì²˜ë¦¬ ì˜ˆì •
+            Debug.Log($"{unitName} ê°€ ìŠ¤í‚¬: {skill.Data.skillName} ì‚¬ìš©. (ë‚¨ì€ PP: {skill.CurrentPP})");
         }
         else
         {
-            Debug.Log("PP ºÎÁ·!");
+            Debug.Log("PP ë¶€ì¡±!");
 
         }
     }

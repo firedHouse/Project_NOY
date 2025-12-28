@@ -1,36 +1,26 @@
 ﻿using System;
 using UnityEngine;
 
+/// <summary>
+///  12/27 : 실링 매니저 추가로 인해 이후로 사용하지 않음 해당 클래스 사용하는 부분 변경 필요
+/// </summary>
 public class ShillingModel : MonoBehaviour
 {
+    private int currentShilling;
 
-    [SerializeField] private int currentShilling;
+    public int CurrentShilling => currentShilling;
+
     public event Action ShillingChanged;
 
-    public int CurrentShilling { get => currentShilling; set => currentShilling = value; }
-
-    private int minShilling = 0;
-    private int maxShilling = 999999;
-
-    public void Awake()
+    public void Start()
     {
         // 초기값, 추후 변경
-        currentShilling = 5000;
+        currentShilling = ShillingManager.Instance.OutGameShilling;
     }
-
-    public void Increase(int amount)
-    {
-        currentShilling += amount;
-        currentShilling = Mathf.Clamp(currentShilling, minShilling, maxShilling);
-
-        ShillingChanged?.Invoke();
-    }
-
+    
     public void Decrease(int amount)
     {
-        currentShilling -= amount;
-        currentShilling = Mathf.Clamp(currentShilling, minShilling, maxShilling);
-
+        ShillingManager.Instance.SpendShilling(amount);
         ShillingChanged?.Invoke();
     }
 

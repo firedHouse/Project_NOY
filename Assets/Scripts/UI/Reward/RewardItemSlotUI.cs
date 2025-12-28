@@ -27,7 +27,6 @@ public class RewardItemSlotUI : MonoBehaviour
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => onClink?.Invoke(itemData));
         Debug.Log("아이템 불러왔음 !");
-        gameObject.SetActive(true);
     }
 
 

@@ -16,6 +16,8 @@ public class LobbyManager : Singleton<LobbyManager>
     /// </summary>
     [Header("배틀씬에 전달되는 팀 플레이어 id")]
     [SerializeField] private string[] selectedCharacterIDs = new string[3];
+    [Header("배틀씬에 전달되는 팀 플레이어 CharacterListModel")]
+    [SerializeField] private CharacterListModel[] selectedCharacterDatas = new CharacterListModel[3];
     
     [SerializeField] public List<CharacterListModel> CharacterListModels;
 
@@ -25,12 +27,14 @@ public class LobbyManager : Singleton<LobbyManager>
 
     #region Property 
     public string[] SelectedCharacterIDs => selectedCharacterIDs;
-
+    public CharacterListModel[] SelectedCharacterDatas => selectedCharacterDatas; 
     #endregion
 
     private void Start()
     {
         SetCharacterDataList();
+        PlayerPrefs.SetInt("OutGameShilling", 5000);
+        Debug.Log($"[ShillingPresenter] 해금 테스트시 실링 소비를 위해 실링 값 조정");
     }
 
     public void SetCharacterDataList()
@@ -66,11 +70,10 @@ public class LobbyManager : Singleton<LobbyManager>
     }
     
     /// <summary>
-    /// (inProgress) 선택된 캐릭터의 id를 리스트로 반환하여 배틀씬에 전달
+    /// 선택된 캐릭터의 id를 배열로 반환하여 배틀씬에 전달
     /// </summary>
     public void SetTeam(string[] inTeamMembers)
     {
-        // something
         // selectedCharacterIDs에 차례로 추가
         for (int i = 0; i < inTeamMembers.Length; i++)
         {
@@ -78,6 +81,17 @@ public class LobbyManager : Singleton<LobbyManager>
             Debug.Log($"[LobbyManager] {i} {selectedCharacterIDs[i]}");
         }
     }
-    
-    
+
+    /// <summary>
+    /// 선택된 캐릭터의 캐릭터 리스트 데이터를 배열로 반환하여 배틀씬에 전달
+    /// </summary>
+    public void SetTeamData(CharacterListModel[] inTeamMembers)
+    {
+        // selectedCharacterIDs에 차례로 추가
+        for (int i = 0; i < inTeamMembers.Length; i++)
+        {
+            selectedCharacterDatas[i] = inTeamMembers[i];
+            Debug.Log($"[LobbyManager] {i} {selectedCharacterDatas[i].CharacterName}");
+        }
+    }
 }

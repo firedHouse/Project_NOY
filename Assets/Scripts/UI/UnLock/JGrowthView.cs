@@ -12,7 +12,7 @@ public partial class GrowthView : MonoBehaviour
     [Header("해금 버튼")]
     [SerializeField] private GameObject unlockButton;
 
-    [Header("해금에 필요한 실링")]
+    [Header("해금에 필요한 실링 임시")]
     [SerializeField] private int shillingForUnlock;
     [SerializeField] private Text unlockShillingText;
 

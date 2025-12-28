@@ -80,7 +80,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
         if (shillingModel.CurrentShilling >= model.NeedShilling)
         {
             //실링 차감 매서드 호출, 비용만큼 차감
-            shillingModel.Decrease(model.NeedShilling);
+            //shillingModel.Decrease(model.NeedShilling);
             //업그레이드 정보 전달
             model.SuccessUpgrade();
             Debug.Log($"[CharacterListPresenter] 업그레이드 정보전달");

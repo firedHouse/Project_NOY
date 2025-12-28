@@ -46,4 +46,20 @@ public class ShillingManager : Singleton<ShillingManager>
         Debug.Log($"실링 사용: -{cost}. 현재 실링: {outGameShilling}");
     }
 
+    //성장 시스템용 성공 여부 반환하는 결제 함수
+    public bool TrySpendShilling(int cost)
+    {
+        if (outGameShilling < cost)
+        {
+            Debug.Log($"실링 부족으로 실패, 보유: {outGameShilling}, 필요: {cost})");
+            return false;
+        }
+
+        //실링 되면 차감
+        outGameShilling -= cost;
+        SaveShilling();
+        Debug.Log($"실링 사용 성공: -{cost}. 남은 실링: {outGameShilling}");
+        return true;
+    }
+
 }

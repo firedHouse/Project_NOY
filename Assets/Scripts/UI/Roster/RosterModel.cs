@@ -17,12 +17,13 @@ public class RosterModel : MonoBehaviour
 
     //팀 아이디를 기준으로 중복 평가
     #region Field
+    [SerializeField] private string[] chracterID = new string[3];
     [SerializeField] private string[] chracterName = new string[3];
     [SerializeField] private string[] chracterIllust = new string[3];
     [SerializeField] private int[] chracterClass = new int[3];
     [SerializeField] private int[] chracterElement = new int[3];
 
-    private string[] playerTeamID;
+    private List<string> playerTeamID = new List<string>();
     //private List<string> testTeam = new List<string>();
     private List<string> newCharacterID = new List<string>();
 
@@ -32,11 +33,12 @@ public class RosterModel : MonoBehaviour
     #endregion
 
     #region Property 
+    public string[] ChracterID => chracterID;
     public string[] ChracterName => chracterName;
     public string[] ChracterIllust => chracterIllust;
     public int[] ChracterClass => chracterClass;
     public int[] ChracterElement => chracterClass;
-    public string[] PlayerTeamID => playerTeamID;
+    public List<string> PlayerTeamID => playerTeamID;
     public List<string> NewCharacterID => newCharacterID;
 
     private void Awake()
@@ -49,17 +51,22 @@ public class RosterModel : MonoBehaviour
     }
     private void Start()
     {
-        playerTeamID = LobbyManager.Instance.SelectedCharacterIDs;
+        for (int i = 0; i < 3; i++)
+        {
+            playerTeamID.Add(LobbyManager.Instance.SelectedCharacterIDs[i]);
+        }
 
-        Debug.Log($"[RosterModel] {playerTeamID.Length}");
+        Debug.Log($"[RosterModel] {playerTeamID.Count}");
         //Debug.Log($"[RosterModel] {testTeam.Count}");
         NewListSet();
     }
 
-    public void CharacterInfo(int i, string ID)
+    //전중후열순으로 기록
+    public void UpdateCharacterInfo(int i, string ID)
     {
         CharacterData characterData = TableManager.Instance.CharacterTable.Get(ID);
 
+        chracterID[i] = characterData.characterID;
         chracterName[i] = characterData.characterName;
         chracterIllust[i] = characterData.characterSkin;
         chracterClass[i] = characterData.position;
@@ -78,9 +85,9 @@ public class RosterModel : MonoBehaviour
         //    Debug.Log($"[RosterModel] {playerTeam[i].UnitName} 제거");
         //}
 
-        for (int i = 0; i < playerTeamID.Length; i++)
+        for (int i = 0; i < playerTeamID.Count; i++)
         {
-            if(allID.Contains(playerTeamID[i]))
+            if (allID.Contains(playerTeamID[i]))
             {
                 allID.Remove(playerTeamID[i]);
                 Debug.Log($"[RosterModel] {playerTeamID[i]} 제거");

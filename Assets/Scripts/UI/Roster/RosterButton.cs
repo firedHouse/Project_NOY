@@ -13,6 +13,9 @@ public class RosterButton : MonoBehaviour
     [Header("캐릭터 체인지 판넬")]
     [SerializeField] public GameObject ChangePenel;
 
+    [Header("캐릭터 영입 판넬")]
+    [SerializeField] public GameObject joinPenel;
+
     [Header("다음스테이지 텍스트")]
     [SerializeField] Text teamButtonText;
 
@@ -99,28 +102,23 @@ public class RosterButton : MonoBehaviour
     //영입 캐릭터 선택 칸 클릭
     public void OnClickCharacter(int i)
     {
-        // 0 : 1번캐 클릭, 1: 2번캐 클릭, 2 : 3번캐 클릭
+        // 0 : 전열 클릭, 1: 중열 클릭, 2 : 후열 클릭
         click = i;
         Debug.Log($"[RosterButton] {i}캐릭터 클릭");
         presenter.ClickCharacter(i);
+        //현재 팀 구성 화면
+        ChangePenel.SetActive(true);
+        joinPenel.SetActive(false);
+        //플레이어팀을 띄워줘야 함
+        presenter.PrintPlayerTeam();
     }
 
     public void OnJoinButton()
     {
-        if (presenter.joinCharacter != null)
-        {
-            ChangePenel.SetActive(true);
-            presenter.PrintPlayerTeam();
-        }
-        else
-        {
-            Debug.Log($"[RosterButton] 영입캐릭터를 선택하지 않음");
-        }
     }
 
     public void OnExportButton()
     {
-        presenter.SwitchCharacter();
 
     }
 

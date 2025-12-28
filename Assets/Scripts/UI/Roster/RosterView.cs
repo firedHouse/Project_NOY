@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class RosterView : MonoBehaviour
 {
     [Header("캐릭터 일러스트")]
-    [SerializeField] private Image[] characterIllust = new Image[3];
+    [SerializeField] private Text[] characterIllust = new Text[3];
     //[SerializeField] private Image[] characterIllust = new Image[3];
 
     [Header("캐릭터 이름")]
@@ -18,53 +18,7 @@ public class RosterView : MonoBehaviour
     [SerializeField] private Image[] characterElement = new Image[3];
     [SerializeField] private Sprite[] elementIcon = new Sprite[4];
 
-    [Header("선택 캐릭터")]
-    [SerializeField] private Image topCharacterImage;
-    [SerializeField] private Image bottomCharacterImage;
-    [SerializeField] private GameObject topCharacterObject;
-    [SerializeField] private GameObject bottomCharacterObject;
 
-    private void Start()
-    {
-        topCharacterObject.SetActive(false);
-        bottomCharacterObject.SetActive(true);
-    }
-
-    public void TopImageActive(bool isActive)
-    {
-        topCharacterObject.SetActive(isActive);
-    }
-
-    public void BottomImageActive(bool isActive)
-    {
-        bottomCharacterObject.SetActive(isActive);
-    }
-
-
-
-    public void topImage(RosterModel model, int i)
-    {
-        ModelNullCheck(model);
-        if (topCharacterImage == null)
-        {
-            Debug.Log("[RosterView] 상단 이미지 오브젝트 정보 없음");
-            return;
-        }
-
-        topCharacterImage.sprite = Resources.Load<Sprite>(model.ChracterIllust[i]);
-    }
-
-    public void bottomImage(RosterModel model, int i)
-    {
-        ModelNullCheck(model);
-        if (topCharacterImage == null)
-        {
-            Debug.Log("[RosterView] 하단 이미지 오브젝트 정보 없음");
-            return;
-        }
-
-        bottomCharacterImage.sprite = Resources.Load<Sprite>(model.ChracterIllust[i]);
-    }
 
     public void CharacterName(RosterModel model)
     {
@@ -95,7 +49,8 @@ public class RosterView : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            characterIllust[i].sprite = Resources.Load<Sprite>(model.ChracterIllust[i]);
+            characterIllust[i].text = model.ChracterName[i];
+            //characterIllust[i].sprite = Resources.Load<Sprite>(model.ChracterIllust[i]);
         }
     }
 

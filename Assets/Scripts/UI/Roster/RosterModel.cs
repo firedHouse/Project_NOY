@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEditor.U2D.Animation;
 using UnityEngine;
@@ -35,53 +36,37 @@ public class RosterModel : MonoBehaviour
     public string[] ChracterIllust => chracterIllust;
     public int[] ChracterClass => chracterClass;
     public int[] ChracterElement => chracterClass;
+    public string[] PlayerTeamID => playerTeamID;
+    public List<string> NewCharacterID => newCharacterID;
 
     private void Awake()
     {
+        //배열 생성
         chracterName = new string[3];
         chracterIllust = new string[3];
         chracterClass = new int[3];
         chracterElement = new int[3];
-
     }
-
-    #endregion
-    private void OnEnable()
+    private void Start()
     {
-        //if (BattleManager.Instance.PlayerTeam == null)
-        //{
-        //    Debug.Log("[RosterModel] 현재 팀 구성 비었음");
-        //    return;
-        //}
-
         playerTeamID = LobbyManager.Instance.SelectedCharacterIDs;
-
-        //테스트용
-        //testTeam.Add("10001");
-        //testTeam.Add("10002");
-        //testTeam.Add("10003");
-
 
         Debug.Log($"[RosterModel] {playerTeamID.Length}");
         //Debug.Log($"[RosterModel] {testTeam.Count}");
         NewListSet();
-        GetCharacterInfo();
-
-        //시작 시에 비활성 상태
     }
 
-    public void GetCharacterInfo()
+    public void CharacterInfo(int i, string ID)
     {
-        for (int i = 0; i < 3; i++)
-        {
-            CharacterData chaData = TableManager.Instance.CharacterTable.Get(newCharacterID[i]);
+        CharacterData characterData = TableManager.Instance.CharacterTable.Get(ID);
 
-            chracterName[i] = chaData.characterName;
-            chracterIllust[i] = chaData.characterSkin;
-            chracterClass[i] = chaData.position;
-            chracterElement[i] = chaData.elementUI;
-        }
+        chracterName[i] = characterData.characterName;
+        chracterIllust[i] = characterData.characterSkin;
+        chracterClass[i] = characterData.position;
+        chracterElement[i] = characterData.elementUI;
     }
+
+    #endregion
 
     public void NewListSet()
     {
@@ -93,11 +78,13 @@ public class RosterModel : MonoBehaviour
         //    Debug.Log($"[RosterModel] {playerTeam[i].UnitName} 제거");
         //}
 
-        //테스트용
         for (int i = 0; i < playerTeamID.Length; i++)
         {
-            allID.Remove(playerTeamID[i]);
-            Debug.Log($"[RosterModel] {playerTeamID[i]} 제거");
+            if(allID.Contains(playerTeamID[i]))
+            {
+                allID.Remove(playerTeamID[i]);
+                Debug.Log($"[RosterModel] {playerTeamID[i]} 제거");
+            }
         }
 
 

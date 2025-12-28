@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System.Collections.Generic;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class RosterModel : MonoBehaviour
@@ -10,16 +12,19 @@ public class RosterModel : MonoBehaviour
 
     [SerializeField] RosterPresenter presenter;
 
-    // 모든 캐릭터 데이터 가져오기 
-    [SerializeField] private string[] characterDataIDs = { "10001", "10002", "10003", "10004", "10005", "10006", "10007", "10008", "10009" };
+    // 모든 캐릭터 ID 가져오기 
+    [SerializeField] private List<string> allID = new List<string>() { "10001", "10002", "10003", "10004", "10005", "10006", "10007", "10008", "10009" };
 
+    //팀 아이디를 기준으로 중복 평가
     #region Field
-    [SerializeField] private string chracterName;
-    [SerializeField] private string chracterIllust;
-    [SerializeField] private int chracterClass;
-    [SerializeField] private int chracterElement;
+    [SerializeField] private string[] chracterName = new string[3];
+    [SerializeField] private string[] chracterIllust = new string[3];
+    [SerializeField] private int[] chracterClass = new int[3];
+    [SerializeField] private int[] chracterElement = new int[3];
 
-    private List<CharacterData> PlayerTeam = new List<CharacterData>();
+    private string[] playerTeamID;
+    //private List<string> testTeam = new List<string>();
+    private List<string> newCharacterID = new List<string>();
 
     private System.Random random = new System.Random();
 
@@ -27,57 +32,85 @@ public class RosterModel : MonoBehaviour
     #endregion
 
     #region Property 
-    public string ChracterName => chracterName;
-    public string ChracterIllust => chracterIllust;
-    public int ChracterClass => chracterClass;
-    public int ChracterElement => chracterClass;
+    public string[] ChracterName => chracterName;
+    public string[] ChracterIllust => chracterIllust;
+    public int[] ChracterClass => chracterClass;
+    public int[] ChracterElement => chracterClass;
+    public string[] PlayerTeamID => playerTeamID;
+    public List<string> NewCharacterID => newCharacterID;
 
-    #endregion
+    private void Awake()
+    {
+        //배열 생성
+        chracterName = new string[3];
+        chracterIllust = new string[3];
+        chracterClass = new int[3];
+        chracterElement = new int[3];
+    }
     private void Start()
     {
-       //Debug.Log($"[RosterPresenter] 플레이어팀{BattleManager.Instance.PlayerTeam[0].UnitName}");
+        playerTeamID = LobbyManager.Instance.SelectedCharacterIDs;
 
-        //PlayerTeam = BattleManager.Instance.PlayerTeam;
-        PlayerTeam = new List<CharacterData>();
-        PlayerTeam.Add(TableManager.Instance.CharacterTable.Get("10001"));
-        PlayerTeam.Add(TableManager.Instance.CharacterTable.Get("10002"));
-        PlayerTeam.Add(TableManager.Instance.CharacterTable.Get("10003"));
-
+        Debug.Log($"[RosterModel] {playerTeamID.Length}");
+        //Debug.Log($"[RosterModel] {testTeam.Count}");
         NewListSet();
     }
 
+    public void CharacterInfo(int i, string ID)
+    {
+        CharacterData characterData = TableManager.Instance.CharacterTable.Get(ID);
+
+        chracterName[i] = characterData.characterName;
+        chracterIllust[i] = characterData.characterSkin;
+        chracterClass[i] = characterData.position;
+        chracterElement[i] = characterData.elementUI;
+    }
+
+    #endregion
+
     public void NewListSet()
     {
-        do
+        Debug.Log("[RosterModel] 리스트 제작");
+        //현재 팀인 캐릭터 리스트에서 제거
+        //for (int i = 0; i < playerTeam.Count; i++)
+        //{
+        //    allCharacterDataID.Remove(playerTeam[i].UnitID);
+        //    Debug.Log($"[RosterModel] {playerTeam[i].UnitName} 제거");
+        //}
+
+        for (int i = 0; i < playerTeamID.Length; i++)
         {
-            //화면에 표시할 캐릭터 표시
-            //중복 검사
-            if (TableManager.Instance.CharacterTable == null)
+            if(allID.Contains(playerTeamID[i]))
             {
-                Debug.Log("[RosterPresenter] 캐릭터테이블 없음");
-                return;
+                allID.Remove(playerTeamID[i]);
+                Debug.Log($"[RosterModel] {playerTeamID[i]} 제거");
             }
+        }
 
-            //번호 랜덤으로 뽑기
-            int num = random.Next(0, 9);
-            CharacterData characterData = TableManager.Instance.CharacterTable.Get(characterDataIDs[num]);
 
-            //유닛네임으로 검색
-            for (int i = 0; i < PlayerTeam.Count; i++)
+        //캐릭터 리스트에서 중복되지 않도록 세개 추가
+        for (int i = 0; i < 3;)
+        {
+            int chaNum = random.Next(0, allID.Count);
+            Debug.Log($"[RosterModel] 번호 : {allID[chaNum]} ");
+
+            bool isAdd = true;
+
+            for (int j = 0; j < newCharacterID.Count; j++)
             {
-                if (characterData.characterName != PlayerTeam[i].characterName)
+                if (allID[chaNum] == newCharacterID[j])
                 {
-                    //중복 없으면 추가
-                    chracterName = characterData.characterName;
-                    chracterIllust = characterData.characterSkin;
-                    chracterClass = characterData.position;
-                    chracterElement = characterData.elementUI;
-                    Debug.Log("[RosterPresenter] 캐릭터 입력");
+                    isAdd = false;
                     break;
                 }
             }
-        } while (chracterName == null);
 
-        Debug.Log("[RosterPresenter] 루프끝");
+            if (isAdd == true)
+            {
+                newCharacterID.Add(allID[chaNum]);
+                Debug.Log($"[RosterModel] {allID[chaNum]} 추가");
+                i++;
+            }
+        }
     }
 }

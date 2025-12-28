@@ -24,7 +24,7 @@ public class RewardFlowController : MonoBehaviour
 
         isLocked = true;
         currentItem = item;
-        targetSelectUI.Open(item, ApplyItem);
+        targetSelectUI.Open(item, ApplyItem, CancelSelection);
     }
     //무료 아이템 선택 시 바로 사용할 수 있게 타겟 선택 오픈
     public void OnFreeItemSelected(object data)
@@ -34,7 +34,7 @@ public class RewardFlowController : MonoBehaviour
 
         isLocked = true;
         currentItem = data;
-        targetSelectUI.Open(data, ApplyItem);
+        targetSelectUI.Open(data, ApplyItem, CancelSelection);
     }
     //아이템 적용
     private void ApplyItem(BattleUnit target, Skill skill)
@@ -57,11 +57,22 @@ public class RewardFlowController : MonoBehaviour
             sucess = true;
         }
 
-        if(!sucess)
+        if (!sucess)
         {
             targetSelectUI.ReOpen();
         }
 
+        isLocked = false;
+    }
+    private void CancelSelection()
+    {
+        Debug.Log("아이템 선택 취소");
+        ResetFlow();
+    }
+
+    private void ResetFlow()
+    {
+        currentItem = null;
         isLocked = false;
     }
 

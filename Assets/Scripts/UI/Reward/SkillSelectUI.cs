@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,21 +11,29 @@ public class SkillSelectUI : MonoBehaviour
     [Header("스킬 버튼들")]
     [SerializeField] private Button[] skillButtons;
     [SerializeField] private Image[] skillImage;
-    [SerializeField] private Text[] ppText; 
+    [SerializeField] private Text[] ppText;
+
+    [SerializeField] private Button CancelButton;
 
     private Action<BattleUnit, Skill> onSelect;
     private BattleUnit owner;
+    private Action onCancel;
 
-    public void Open(BattleUnit owner, Action<BattleUnit, Skill> onSelect)
+    public void Open(BattleUnit owner, Action<BattleUnit, Skill> onSelect, Action cancel)
     {
         this.owner = owner;
         this.onSelect = onSelect;
+        onCancel = cancel;
         //UI 표시 로직 추가
         gameObject.SetActive(true);
 
         // selectedCharacterImage.sprite = Resources.Load<Sprite>(this.owner.이미지);
 
         RefreshSkillButtons();
+
+
+        CancelButton.onClick.RemoveAllListeners();
+        CancelButton.onClick.AddListener(Close);
     }
 
     private void RefreshSkillButtons()
@@ -68,6 +77,7 @@ public class SkillSelectUI : MonoBehaviour
     public void Close()
     {
         gameObject.SetActive(false);
+        onCancel?.Invoke();
     }
 
 }

@@ -16,15 +16,8 @@ public class StateEnd : IBattleState
         if (isWin)
         {
             Debug.Log("라운드 승리, 보상 패널 오픈");
-            if (bm.RewardPanelPrefab != null)
-            {
-                bool hasDeadPlayer = bm.HasDeadPlayer();
-                bm.RewardPanelPrefab.Open(hasDeadPlayer);
-            }
-            else
-            {
-                Debug.LogError("보상패널 연결안되어있음 BattleManager 체크");
-            }
+            bool hasDeadPlayer = bm.HasDeadPlayer();
+            bm.OpenRewardUI(hasDeadPlayer);
         }
         else
         {

@@ -35,6 +35,11 @@ public class BattleManager : MonoBehaviour
         {
             PlayerTeam = new List<Character>();
         }
+
+        if(RewardPanel == null)
+        {
+            RewardPanel = FindObjectOfType<RewardUI>(true);
+        }
     }
     //현재 실행중인 상태
     private IBattleState currentState;
@@ -63,7 +68,7 @@ public class BattleManager : MonoBehaviour
 
     //12.26 보상, 결과 패널도 연결 필요
     [Header("보상, 결과 패널 출력용")]
-    public RewardUI RewardPanelPrefab;
+    public RewardUI RewardPanel;
     public GameObject ResultPanelPrefab;
 
 
@@ -396,5 +401,15 @@ public class BattleManager : MonoBehaviour
     public bool HasDeadPlayer()
     {
         return PlayerTeam.Count < 3;
+    }
+    public void OpenRewardUI(bool hasDeadPlayer)
+    {
+        if (RewardPanel == null)
+        {
+            Debug.Log("RewardUI 연결 안됨");
+            return;
+        }
+
+        RewardPanel.Open(hasDeadPlayer);
     }
 }

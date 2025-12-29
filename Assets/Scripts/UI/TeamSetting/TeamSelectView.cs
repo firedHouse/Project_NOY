@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,9 +11,13 @@ public class TeamSelectView : MonoBehaviour
     [SerializeField] public MemberSlot[] slots;
     public MemberSlot[] Slots => slots;
     
-    private void Start()
+    private void Awake()
     {
         slots = gameObject.GetComponentsInChildren<MemberSlot>().ToArray();
+    }
+
+    private void Start()
+    {
         // 슬롯 클릭 전까지는 비활성화
         SetAllButtonInteractable(false);
     }

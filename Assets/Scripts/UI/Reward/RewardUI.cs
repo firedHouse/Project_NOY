@@ -106,7 +106,9 @@ public class RewardUI : MonoBehaviour
 
     public void OnClickNextStage()
     {
-        StageManager.Instance.OnRewardProcessCompleted();
         gameObject.SetActive(false);
+        Debug.Log("UI 닫힘");
+        Debug.Log("스테이지 넘어감");
+        StageManager.Instance.OnRewardProcessCompleted();
     }
 }

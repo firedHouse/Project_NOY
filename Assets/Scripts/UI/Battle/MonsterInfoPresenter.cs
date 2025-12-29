@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 partial class MonsterInfoPresenter : MonoBehaviour
@@ -16,11 +17,21 @@ partial class MonsterInfoPresenter : MonoBehaviour
 
     [SerializeField] private SkillProcesser skillProcesser;
 
+    #region position에서 사용
+    private BattleUnit[] _monster = new BattleUnit[3];
+    [SerializeField] private GameObject[] _basePos = new GameObject[3];
+    private Dictionary<BattleUnit, int> monsterBoxPos = new Dictionary<BattleUnit, int>();
+
+    int currentCount;
+    public GameObject[] BasePos => _basePos;
+    #endregion
+
 
     private void Awake()
     {
         //Debug.Log("[MonsterInfoPresenter] Awake");
         BattleManager.Instance.OnBattleSetted += Initialize;
+        BattleManager.Instance.OnBattleSetted += DeathMonster;
         skillProcesser.OnMarkChanged += Mark;
         skillProcesser.OnMarkReaction += SMark;
 
@@ -28,6 +39,8 @@ partial class MonsterInfoPresenter : MonoBehaviour
         void Initialize()
         {
             monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
+
+            monsterModel.OnDeath += HandleDeath;
             if (BattleManager.Instance.EnemyTeam != null)
             {
                 monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
@@ -83,6 +96,11 @@ partial class MonsterInfoPresenter : MonoBehaviour
     private void HandleHpChanged(BattleUnit monster, float hpChangedAmount)
     {
         monsterView.UpdateHPBar(hpChangedAmount);
+    }
+
+    private void HandleDeath(BattleUnit unit)
+    {
+        PosReset(unit);
     }
 
     public void Mark(BattleUnit unit, ElementType i)

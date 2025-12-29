@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
@@ -8,37 +8,35 @@ using UnityEngine.UIElements;
  partial class MonsterPositionView : MonoBehaviour
 {
     [Header("MonsterBoxFrontPanel : Front-Middle-Roar 순으로 추가")]
-
     [SerializeField] private GameObject[] _monsterBox = new GameObject[3];
 
-    //사망 캐릭터 박스 비활성화
+    //사망 몬스터 박스 비활성화
 
-    public void MonsterInactive(UnitPosition unit)
+    public void Inactive(int basePosNum)
     {
-        //사망 캐릭터 번호와 같은 번호의 박스 비활성화
 
-        switch (unit)
+        switch (basePosNum)
         {
-            case UnitPosition.Front:
+            case 0:
                 {
                     _monsterBox[0].SetActive(false);
-                    Debug.Log($"[CharacterPositionView] : 전열 비활성화");
+                    Debug.Log($"[CharacterPositionView] : {1}번 박스 비활성화");
                 }
                 break;
 
-            case UnitPosition.Mid:
+            case 1:
                 {
                     _monsterBox[1].SetActive(false);
-                    Debug.Log($"[CharacterPositionView] : 중열 비활성화");
+                    Debug.Log($"[CharacterPositionView] : {2}번 박스 비활성화");
                 }
                 break;
 
-            case UnitPosition.Back:
+            case 2:
                 {
                     _monsterBox[2].SetActive(false);
-                    Debug.Log($"[CharacterPositionView] : 후열 비활성화");
+                    Debug.Log($"[CharacterPositionView] : {3}번 박스 비활성화");
                 }
-                    break;
+                break;
         }
     }
 }

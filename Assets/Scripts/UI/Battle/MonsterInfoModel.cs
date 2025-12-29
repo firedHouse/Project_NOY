@@ -26,7 +26,7 @@ public class MonsterInfoModel : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"[MonsterInfoModel] {_monsterId} µ•¿Ã≈Õ ∞°¡Æø¿±‚ Ω«∆–");
+            Debug.LogError($"[MonsterInfoModel] {_monsterId} Îç∞Ïù¥ÌÑ∞ Í∞ÄÏ†∏Ïò§Í∏∞ Ïã§Ìå®");
         }
     }
 

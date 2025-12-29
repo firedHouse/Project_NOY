@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public partial class CharacterBattleInfoPresenter : MonoBehaviour
@@ -15,6 +16,16 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
 
     [SerializeField] private SkillProcesser skillProcesser;
 
+    #region position에서 사용
+    private BattleUnit[] _character = new BattleUnit[3];
+    [SerializeField] private GameObject[] _basePos = new GameObject[3];
+    private Dictionary<BattleUnit, int> characterBoxPos = new Dictionary<BattleUnit, int>();
+
+    int currentCount;
+    public GameObject[] BasePos => _basePos;
+    #endregion
+
+
     private void Awake()
     {
         //Debug.Log("[CharacterBattleInfoPresenter] Awake");
@@ -22,6 +33,10 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         BattleManager.Instance.OnBattleSetted += DeathCharacter;
         skillProcesser.OnMarkChanged += Mark;
         skillProcesser.OnMarkReaction += SMark;
+    }
+
+    private void Start()
+    {
     }
 
     //뷰 초기 설정
@@ -69,6 +84,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
     {
         //characterView.UpdatePosition(position);
     }
+
     public void Mark(BattleUnit unit, ElementType i)
     {
         //표식

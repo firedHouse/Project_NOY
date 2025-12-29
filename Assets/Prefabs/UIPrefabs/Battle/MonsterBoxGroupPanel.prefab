@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4520758817692353254}
   - component: {fileID: 859329018339391875}
   - component: {fileID: 3069630468945997986}
+  - component: {fileID: 1769155655976633748}
   m_Layer: 5
   m_Name: MonsterBoxGroupPanel
   m_TagString: Untagged
@@ -103,6 +104,22 @@ MonoBehaviour:
   m_Spacing: {x: 20, y: 20}
   m_Constraint: 0
   m_ConstraintCount: 3
+--- !u!114 &1769155655976633748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385814053685974630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007b8a2c9ca898d4797872ff7b6d996d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterPositionView
+  _monsterBox:
+  - {fileID: 5037031133676978633}
+  - {fileID: 5007276616780313078}
+  - {fileID: 8484746724649497005}
 --- !u!1001 &865516572441924258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112,13 +129,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 1578972526116938380}
     m_Modifications:
     - target: {fileID: 278665921526244058, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: monsterView
+      propertyPath: monsterMoveView
       value: 
-      objectReference: {fileID: 8884187920890486712}
-    - target: {fileID: 278665921526244058, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: monsterModel
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1769155655976633748}
     - target: {fileID: 880086121327655653, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -207,33 +220,9 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2909345810472862097, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: _monsterId
-      value: monster_id_10003
-      objectReference: {fileID: 0}
-    - target: {fileID: 4194378364028166162, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.000091552734
-      objectReference: {fileID: 0}
-    - target: {fileID: 4245346948457981997, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4245346948457981997, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8595145638539365658, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: classText
-      value: 
-      objectReference: {fileID: 5293749089545675906}
     - target: {fileID: 8772183650163303183, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: m_Name
       value: MonsterBoxRoarPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 8772183650163303183, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -245,28 +234,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 880086121327655653, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
   m_PrefabInstance: {fileID: 865516572441924258}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5293749089545675906 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5005119881112696352, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
+--- !u!1 &8484746724649497005 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8772183650163303183, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
   m_PrefabInstance: {fileID: 865516572441924258}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
---- !u!114 &8884187920890486712 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8595145638539365658, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-  m_PrefabInstance: {fileID: 865516572441924258}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a66336315bcec4dba1ae8b251827e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MonsterInfoView
 --- !u!1001 &4348840812153365190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -276,13 +248,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 1578972526116938380}
     m_Modifications:
     - target: {fileID: 278665921526244058, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: monsterView
+      propertyPath: monsterMoveView
       value: 
-      objectReference: {fileID: 5409448526033481692}
-    - target: {fileID: 278665921526244058, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: monsterModel
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1769155655976633748}
     - target: {fileID: 880086121327655653, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -371,33 +339,9 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2909345810472862097, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: _monsterId
-      value: monster_id_10001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4194378364028166162, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.000091552734
-      objectReference: {fileID: 0}
-    - target: {fileID: 4245346948457981997, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4245346948457981997, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7922732859560742251, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8772183650163303183, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: m_Name
       value: MonsterBoxFrontPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 8772183650163303183, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -409,17 +353,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 880086121327655653, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
   m_PrefabInstance: {fileID: 4348840812153365190}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5409448526033481692 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8595145638539365658, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
+--- !u!1 &5037031133676978633 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8772183650163303183, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
   m_PrefabInstance: {fileID: 4348840812153365190}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a66336315bcec4dba1ae8b251827e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MonsterInfoView
 --- !u!1001 &4377609889136399097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -429,13 +367,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 1578972526116938380}
     m_Modifications:
     - target: {fileID: 278665921526244058, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: monsterView
+      propertyPath: monsterMoveView
       value: 
-      objectReference: {fileID: 5442725955558006755}
-    - target: {fileID: 278665921526244058, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: monsterModel
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1769155655976633748}
     - target: {fileID: 880086121327655653, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -524,29 +458,9 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2909345810472862097, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: _monsterId
-      value: monster_id_10002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4194378364028166162, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.000091552734
-      objectReference: {fileID: 0}
-    - target: {fileID: 4245346948457981997, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4245346948457981997, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8772183650163303183, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: m_Name
       value: MonsterBoxMiddlePanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 8772183650163303183, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -558,14 +472,8 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 880086121327655653, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
   m_PrefabInstance: {fileID: 4377609889136399097}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5442725955558006755 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8595145638539365658, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
+--- !u!1 &5007276616780313078 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8772183650163303183, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
   m_PrefabInstance: {fileID: 4377609889136399097}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a66336315bcec4dba1ae8b251827e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MonsterInfoView

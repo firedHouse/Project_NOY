@@ -27,12 +27,6 @@ public class RewardUI : MonoBehaviour
         HideDescription();
     }
 
-    private IEnumerator Start()
-    {
-        yield return null;
-
-        Open(false);
-    }
 
     public void Open(bool hasDeadTeam)
     {

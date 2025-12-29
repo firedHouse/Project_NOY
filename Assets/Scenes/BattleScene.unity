@@ -381,10 +381,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamComposition
       objectReference: {fileID: 0}
-    - target: {fileID: 4894169276173350828, guid: e4e7334570cf15548b499a71e9b23cd1, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -433,10 +429,6 @@ PrefabInstance:
     - target: {fileID: 4735143300730121207, guid: 596282fb92e4a8f4a95a192709e54f8b, type: 3}
       propertyPath: m_Name
       value: ChangePositionPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735143300730121207, guid: 596282fb92e4a8f4a95a192709e54f8b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5078992456395746735, guid: 596282fb92e4a8f4a95a192709e54f8b, type: 3}
       propertyPath: m_AnchorMax.y
@@ -654,10 +646,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RewardUI
       objectReference: {fileID: 0}
-    - target: {fileID: 772595099432657691, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2695240701852972085, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -737,10 +725,6 @@ PrefabInstance:
     - target: {fileID: 2695240701852972085, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4335301774799215128, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1024,10 +1008,6 @@ PrefabInstance:
     - target: {fileID: 5200145777029705010, guid: cd41e2145b3ee244d9a129f9276aade6, type: 3}
       propertyPath: m_Name
       value: ResultUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 5200145777029705010, guid: cd41e2145b3ee244d9a129f9276aade6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1666,10 +1646,6 @@ PrefabInstance:
     - target: {fileID: 3354679111049600855, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
       propertyPath: m_Name
       value: BattleTestPrafabCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 3354679111049600855, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3897178908763617046, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
       propertyPath: m_AnchorMax.x

@@ -9,6 +9,13 @@ public class RewardUI : MonoBehaviour
     [SerializeField] private RewardItemSlotUI[] paidSlots;
     [SerializeField] private RewardItemSlotUI[] freeSlots;
 
+    [Header("Description Panel")]
+    [SerializeField] private GameObject descriptionPanel;
+    [SerializeField] private Text descriptionText;
+
+    [Header("Stage Text")]
+    [SerializeField] private Text stageInfoText;
+
     [SerializeField] private RewardFlowController flowController;
     [SerializeField] private RewardManager rewardManager;
 
@@ -17,6 +24,7 @@ public class RewardUI : MonoBehaviour
     private void OnEnable()
     {
         ResetSlots();
+        HideDescription();
     }
 
     private IEnumerator Start()
@@ -34,6 +42,8 @@ public class RewardUI : MonoBehaviour
         var paidItems = rewardManager.CreatePaidItems(hasDeadTeam);
 
         currentGold.text = EconomyManager.Instance.RunGold.ToString();
+
+        UpdateStageInfo();
 
         SetUpFree(freeItems);
         SetUpPaid(paidItems);
@@ -78,6 +88,43 @@ public class RewardUI : MonoBehaviour
                     flowController.OnFreeItemSelected);
             }
         }
+    }
+    private void UpdateStageInfo()
+    {
+        if (StageManager.Instance != null)
+        {
+            stageInfoText.text = "";
+            return;
+        }
+
+        if (StageManager.Instance.CurrentRound == 5)
+        {
+            stageInfoText.text += "(Boss)";
+            return;
+        }
+
+        int stage = StageManager.Instance.CurrentStage;
+        int round = StageManager.Instance.CurrentRound;
+
+        stageInfoText.text = $"스테이지 {stage}-{round}";
+    }
+
+    public void ShowDescription(object item)
+    {
+        if (item is RunTimeItem runTimeItem)
+        {
+            var data = runTimeItem.itemData;
+            descriptionText.text = data.itemTextUI;
+        }
+        else if (item is RunTimeRelic relic)
+        {
+            var data = relic.itemData;
+            descriptionText.text = data.itemEquipTextUI;
+        }
+    }
+    public void HideDescription()
+    {
+        descriptionText.text = "";
     }
 
     public void OnClickNextStage()

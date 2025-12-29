@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 373188286616457503}
   - component: {fileID: 7973201726207509911}
   - component: {fileID: 33662310052691044}
+  - component: {fileID: 6565258552004621802}
   m_Layer: 5
   m_Name: ShillingUIPanel
   m_TagString: Untagged
@@ -231,3 +232,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6565258552004621802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4781443733401442981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b98639b2d2a76b409511ecae3dfb11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShillingView
+  shillingText: {fileID: 8819925787440134546}

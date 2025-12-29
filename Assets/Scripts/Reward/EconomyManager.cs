@@ -50,7 +50,7 @@ public class EconomyManager : Singleton<EconomyManager>
     public void SpendGold(int cost)
     {
         runGold -= cost;
-        OnGoldChanged.Invoke(runGold);
+        OnGoldChanged?.Invoke(runGold);
         Debug.Log($"골드 사용 : -{cost}. 현재 골드 : {runGold}");
     }
 

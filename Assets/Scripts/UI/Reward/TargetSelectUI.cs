@@ -41,14 +41,30 @@ public class TargetSelectUI : MonoBehaviour
 
         for (int i = 0; i < characterButtons.Length; i++)
         {
-            if (i >= team.Count)
+
+            characterButtons[i].gameObject.SetActive(false);
+            characterButtons[i].onClick.RemoveAllListeners();
+        }
+
+        for (int i = 0; i < HPSlider.Length; i++)
+        {
+            HPSlider[i].gameObject.SetActive(false);
+            HPSlider[i].interactable = false;
+
+            var img = HPSlider[i].GetComponent<Image>();
+            if(img != null)
+            { img.raycastTarget = false; }
+        }
+
+        for (int i = 0; i < team.Count; i++)
+        {
+            if (i >= characterButtons.Length || i >= HPSlider.Length)
             {
-                characterButtons[i].gameObject.SetActive(false);
-                HPSlider[i].gameObject.SetActive(false);
-                continue;
+                break;
             }
 
             var character = team[i];
+
             characterButtons[i].gameObject.SetActive(true);
             HPSlider[i].gameObject.SetActive(true);
 
@@ -59,13 +75,18 @@ public class TargetSelectUI : MonoBehaviour
             HPSlider[i].value = currentHP;
 
             // 캐릭터 이미지 입히기
-            // characterImage[i].sprite = Resources.Load<Sprite>(path: CharacterData.characterSkin);
+            CharacterData data = TableManager.Instance.CharacterTable.Get(character.UnitID);
+            if(data != null )
+            {
+                characterImage[i].sprite = ResourceManager.Instance.LoadSprite(data.characterSkin);
+            }
 
             int index = i;
-            characterButtons[i].onClick.RemoveAllListeners();
             characterButtons[i].onClick.AddListener(() => { OnCharacterSelected(team[index]); });
         }
+    
     }
+
 
     private void OnCharacterSelected(Character character)
     {
@@ -75,6 +96,7 @@ public class TargetSelectUI : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
+
         Confirm(character, null);
     }
 

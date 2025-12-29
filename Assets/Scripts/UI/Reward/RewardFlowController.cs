@@ -1,13 +1,16 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RewardFlowController : MonoBehaviour
 {
     [SerializeField] private TargetSelectUI targetSelectUI;
     [SerializeField] private RewardManager rewardManager;
-    //골드 부족 UI 필요함
+    [SerializeField] private SpendGoldEnoughUI goldLackPanel;
 
     private object currentItem;
     private bool isLocked = false;
+    private bool isPaidItem;
+    private bool freeItemUsed = false;
     //읽기 전용 프로퍼티로 제작
     public bool IsLocked => isLocked;
 
@@ -18,26 +21,41 @@ public class RewardFlowController : MonoBehaviour
         { return; }
 
         var item = (RunTimeItem)data;
-        if(!EconomyManager.Instance.CanSpendGold(item.itemData.itemCost))
+        if (item == null) { return; }
+
+        if (!EconomyManager.Instance.CanSpendGold(item.itemData.itemCost))
         {
-            Debug.Log("골드 부족");
+            goldLackPanel.Open();
             return;
         }
 
-        isLocked = true;
-        currentItem = item;
-        targetSelectUI.Open(item, ApplyItem, CancelSelection);
+        isPaidItem = true;
+        BeginFlow(item);
     }
     //무료 아이템 선택 시 바로 사용할 수 있게 타겟 선택 오픈
     public void OnFreeItemSelected(object data)
     {
         if (isLocked)
         { return; }
+        
 
-        isLocked = true;
-        currentItem = data;
-        targetSelectUI.Open(data, ApplyItem, CancelSelection);
+        if (freeItemUsed) 
+        {
+            Debug.Log("이미 무료 아이템을 사용했습니다.");
+            return; 
+        }
+
+        isPaidItem = false;
+        BeginFlow(data);
     }
+
+    private void BeginFlow(object item)
+    {
+        isLocked = true;
+        currentItem = item;
+        targetSelectUI.Open(item, ApplyItem, CancelSelection);
+    }
+
     //아이템 적용
     private void ApplyItem(BattleUnit target, Skill skill)
     {
@@ -47,9 +65,16 @@ public class RewardFlowController : MonoBehaviour
         {
             sucess = UsableItemExcution.Use(item, target, skill);
 
-            if (sucess && item.itemData.itemCost > 0)
+            if (sucess)
             {
-                EconomyManager.Instance.SpendGold(item.itemData.itemCost);
+                if (isPaidItem)
+                {
+                    EconomyManager.Instance.SpendGold(item.itemData.itemCost);
+                }
+                else
+                {
+                    freeItemUsed = true;
+                }
             }
         }
         else if (currentItem is RunTimeRelic relic)
@@ -57,14 +82,16 @@ public class RewardFlowController : MonoBehaviour
             target.GetComponent<RelicComponent>()?.Equip(relic);
             rewardManager.MarkRelicUsed(relic);
             sucess = true;
+            freeItemUsed = true;
         }
 
         if (!sucess)
         {
+            currentItem = null;
             targetSelectUI.ReOpen();
         }
 
-        isLocked = false;
+        ResetFlow();
     }
     private void CancelSelection()
     {

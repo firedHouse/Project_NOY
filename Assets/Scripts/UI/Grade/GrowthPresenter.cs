@@ -77,7 +77,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
     //보유 실링 체크 : 구매 여부 체크
     public void IsCanUpgrade()
     {
-        if (shillingModel.CurrentShilling >= model.NeedShilling)
+        if (ShillingManager.Instance.OutGameShilling >= model.NeedShilling)
         {
             //실링 차감 매서드 호출, 비용만큼 차감
             //shillingModel.Decrease(model.NeedShilling);

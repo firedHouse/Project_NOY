@@ -936,7 +936,7 @@ PrefabInstance:
     - target: {fileID: 2487190337032625339, guid: 12014b84e0fda0543abe9b429d896763, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 466169278020853335}
     - target: {fileID: 2487190337032625339, guid: 12014b84e0fda0543abe9b429d896763, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1491,6 +1491,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8038765901073134293}
   m_SourcePrefab: {fileID: 100100000, guid: 12014b84e0fda0543abe9b429d896763, type: 3}
+--- !u!114 &466169278020853335 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 117525573154069492, guid: 12014b84e0fda0543abe9b429d896763, type: 3}
+  m_PrefabInstance: {fileID: 565662035660850595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510063153251520271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07c2e10e727dad4099ce28fc8690049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MemberPresenter
 --- !u!1 &747060052929008715 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 974947642516345320, guid: 12014b84e0fda0543abe9b429d896763, type: 3}

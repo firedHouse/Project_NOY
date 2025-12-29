@@ -5,7 +5,6 @@ using UnityEngine;
 public partial class CharacterListPresenter : CharacterPresenterBase
 {
     [SerializeField] protected GrowthView growthView;
-    [SerializeField] private ShillingModel shillingModel;
 
     //성장 버튼 클릭 활성화 조건 : 캐릭터 해금
     //버튼 클릭 시 : 실링 확인
@@ -77,7 +76,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
     //보유 실링 체크 : 구매 여부 체크
     public void IsCanUpgrade()
     {
-        if (shillingModel.CurrentShilling >= model.NeedShilling)
+        if (ShillingManager.Instance.OutGameShilling >= model.NeedShilling)
         {
             //실링 차감 매서드 호출, 비용만큼 차감
             //shillingModel.Decrease(model.NeedShilling);

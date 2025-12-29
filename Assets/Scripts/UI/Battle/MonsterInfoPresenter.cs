@@ -27,6 +27,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
 
         void Initialize()
         {
+            monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
             if (BattleManager.Instance.EnemyTeam != null)
             {
                 monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
@@ -50,7 +51,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
             monsterView.UpdateMonsterName(monsterModel.UnitName);
             monsterView.UpdateSpeed(monsterModel.Speed);
 
-            monsterView.UpdatePosition(monsterModel.Position);
+            monsterView.UpdateMonsterClass(monsterModel.MonsterPosition);
             monsterView.InitMark();
 
 
@@ -82,20 +83,6 @@ partial class MonsterInfoPresenter : MonoBehaviour
     private void HandleHpChanged(BattleUnit monster, float hpChangedAmount)
     {
         monsterView.UpdateHPBar(hpChangedAmount);
-    }
-
-    //private void HandleMarkChanged(BattleUnit monster, ElementType elementType)
-    //{
-    //}
-
-    private void HandleDeath(BattleUnit unit)
-    {
-        BattleManager.Instance.OnUnitDead(unit);
-    }
-
-    private void HandlePositionChanged(BattleUnit uni)
-    {
-        monsterView.UpdatePosition(position);
     }
 
     public void Mark(BattleUnit unit, ElementType i)

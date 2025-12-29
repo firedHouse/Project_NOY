@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class MonsterInfoView : MonoBehaviour
@@ -16,16 +16,24 @@ public class MonsterInfoView : MonoBehaviour
     [Header("몬스터 HP 바")]
     [SerializeField] private Slider HPSlider;
 
+    [Header("표식1")]
+    [SerializeField] Text currentMark;
+    //[SerializeField] Image currentMark;
+    [Header("표식2")]
+    [SerializeField] Text attackMark;
+    //[SerializeField] Image attackMark;
+
+
     public void UpdateMonsterName(string text)
     {
         monsterNameText.text = text;
     }
 
     //표식
-    public void UpdateElement(string text)
-    {
-        elementText.text = text;
-    }
+    //public void UpdateElement(string text)
+    //{
+    //    elementText.text = text;
+    //}
 
     //고유속성
     //public void UpdateElementClass(string text)
@@ -68,4 +76,74 @@ public class MonsterInfoView : MonoBehaviour
     {
         monsterPowerText.text = "공격력 : " + monsterPower.ToString();
     }
+
+    string imageLink = null;
+    bool isfirstMark = true;
+
+    public void UpdateMark(int element)
+    {
+        if (isfirstMark == true)
+        {
+            UpdateCurrentMark(element);
+        }
+
+        else if (isfirstMark == false)
+        {
+            UpdateAttackMark(element);
+        }
+    }
+
+    public void InitMark()
+    {
+        currentMark.text = "";
+        attackMark.text = "";
+        Debug.Log("[MonsterInfoView] 표식 초기화");
+    }
+
+    public void UpdateCurrentMark(int element)
+    {
+        ImageLik(element);
+        if (currentMark.text == imageLink && imageLink == "")
+        {
+            return;
+        }
+        currentMark.text = imageLink;
+            isfirstMark = false;
+            Debug.Log("[MonsterInfoView] 표식1 부여");
+        
+    }
+
+    public void UpdateAttackMark(int element)
+    {
+        ImageLik(element);
+        if (attackMark.text == imageLink && imageLink == "")
+        {
+            return;
+        }
+        attackMark.text = imageLink;
+            isfirstMark = true;
+            Debug.Log("[MonsterInfoView] 표식2 부여");
+        
+    }
+
+    public void ImageLik(int element)
+    {
+        switch (element)
+        {
+            case 6:
+                imageLink = "불";
+                break;
+            case 7:
+                imageLink = "물";
+                break;
+            case 8:
+                imageLink = "전기";
+                break;
+            case 9:
+                imageLink = "";
+                break;
+        }
+        Debug.Log($"[MonsterInfoView] 표식 {imageLink} 부여");
+    }
+
 }

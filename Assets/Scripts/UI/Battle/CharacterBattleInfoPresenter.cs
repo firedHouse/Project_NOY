@@ -40,14 +40,15 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         //고유속성
         //elementUI로 변경해야 함
         characterView.UpdateClass(characterModel.CurrentMark.ToString());
-
-        //표식
-        //characterView.UpdateElementMark(characterModel.CurrentMark.ToString());
+        characterView.InitMark();
     }
 
     private void HandleHpChanged(BattleUnit character, float hpChangedAmount)
     {
         characterView.UpdateHPBar(hpChangedAmount);
+        //표식
+        characterView.UpdateMark(characterModel.gameObject.layer);
+
     }
 
     // 속성 표시 변경 데이터인데 속성이 데이터 테이블에 없어서 지금은 사용 안함

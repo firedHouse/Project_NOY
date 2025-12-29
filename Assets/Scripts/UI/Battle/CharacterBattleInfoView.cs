@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterBattleInfoView : MonoBehaviour
+public partial class CharacterBattleInfoView : MonoBehaviour
 {
     [Header("캐릭터 이름")]
     [SerializeField] private Text characterNameText;
@@ -20,10 +20,16 @@ public class CharacterBattleInfoView : MonoBehaviour
     [SerializeField] private Slider HPSlider;
     [Header("캐릭터 표식 상태")]
     //추후에 이미지로 변경
-    [SerializeField] private Text mark1;
-    [SerializeField] private Image mark2;
-    
+
+    [Header("표식1")]
+    [SerializeField] Text currentMark;
+    //[SerializeField] Image currentMark;
+    [Header("표식2")]
+    [SerializeField] Text attackMark;
+    //[SerializeField] Image attackMark;
+
     private List<Skill> characterskills;
+
 
     // 캐릭터 이름으로 UI 변경
     public void UpdateCharacterName(string text)

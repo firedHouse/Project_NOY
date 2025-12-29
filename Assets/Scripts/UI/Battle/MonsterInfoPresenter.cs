@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 partial class MonsterInfoPresenter : MonoBehaviour
 {
@@ -49,9 +49,9 @@ partial class MonsterInfoPresenter : MonoBehaviour
         monsterView.UpdateSpeed(monsterModel.Speed);
 
         monsterView.UpdatePosition(monsterModel.Position);
+        monsterView.InitMark();
 
-        //표식
-        monsterView.UpdateElement(monsterModel.CurrentMark.ToString());
+
 
         //고유속성
         //ElementUI 사용
@@ -62,6 +62,8 @@ partial class MonsterInfoPresenter : MonoBehaviour
     private void HandleHpChanged(BattleUnit monster, float hpChangedAmount)
     {
         monsterView.UpdateHPBar(hpChangedAmount);
+        //표식
+        monsterView.UpdateMark(monsterModel.gameObject.layer);
     }
 
     //private void HandleMarkChanged(BattleUnit monster, ElementType elementType)

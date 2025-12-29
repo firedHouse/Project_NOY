@@ -189,6 +189,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &288329318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 288329320}
+  - component: {fileID: 288329319}
+  m_Layer: 0
+  m_Name: UserDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &288329319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288329318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2752cc20905952c449a7ab5a5d4e2cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UserDataManager
+--- !u!4 &288329320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288329318}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 895.90125, y: 534.9966, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &334393464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517786ec5732a4146ac389d5216e800f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  selectSlots: []
+  slots: []
 --- !u!114 &557188009 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6452727151144522411, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
@@ -968,7 +1012,7 @@ PrefabInstance:
     - target: {fileID: 8010589252411143247, guid: 3e698041f6932f846b2d258ea70d75e9, type: 3}
       propertyPath: shillingModel
       value: 
-      objectReference: {fileID: 899894367}
+      objectReference: {fileID: 0}
     - target: {fileID: 8755032797868868418, guid: 3e698041f6932f846b2d258ea70d75e9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1132,82 +1176,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6485055605490090094, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
   m_PrefabInstance: {fileID: 1901809539}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &899894366
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2601985473805173470, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
-      propertyPath: m_Name
-      value: ShillingModel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601985473805173470, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680277981379690581, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
-      propertyPath: currentShilling
-      value: 5000
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873090955389349554, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873090955389349554, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873090955389349554, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873090955389349554, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873090955389349554, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873090955389349554, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873090955389349554, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873090955389349554, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873090955389349554, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873090955389349554, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
---- !u!114 &899894367 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2680277981379690581, guid: 11ee01effe4084443a6fda6e98e704ed, type: 3}
-  m_PrefabInstance: {fileID: 899894366}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46cedf643cec9b64a9e0530e4e2b89d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShillingModel
 --- !u!224 &971098012 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7963941770727703422, guid: d85284478ba0d3d45a337e12660e72d5, type: 3}
@@ -1570,6 +1538,10 @@ MonoBehaviour:
   - 
   - 
   - 
+  selectedCharacterDatas:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   CharacterListModels:
   - {fileID: 0}
   - {fileID: 0}
@@ -2186,6 +2158,92 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1491862832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1491862836}
+  - component: {fileID: 1491862835}
+  - component: {fileID: 1491862834}
+  - component: {fileID: 1491862833}
+  - component: {fileID: 1491862837}
+  m_Layer: 0
+  m_Name: ShillingGroup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1491862833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491862832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b98639b2d2a76b409511ecae3dfb11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShillingView
+  shillingText: {fileID: 0}
+--- !u!114 &1491862834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491862832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a881e83dafb52b84796f2ed96ebf5f5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShillingPresenter
+  shillingView: {fileID: 1491862833}
+--- !u!114 &1491862835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491862832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46cedf643cec9b64a9e0530e4e2b89d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShillingModel
+--- !u!4 &1491862836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491862832}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 681.82587, y: 751.45776, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1491862837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491862832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba29569650611b47a7a8e3845d30a80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShillingManager
+  outGameShilling: 5000
 --- !u!114 &1571796843 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7095131214973050257, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
@@ -2319,7 +2377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4466021652c810242b3e189eaddf0b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterStatSave
-  lobbyCharacterDataList: []
 --- !u!4 &1772171338
 Transform:
   m_ObjectHideFlags: 0
@@ -2797,7 +2854,11 @@ PrefabInstance:
     - target: {fileID: 7377202140589631414, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
       propertyPath: shillingModel
       value: 
-      objectReference: {fileID: 899894367}
+      objectReference: {fileID: 1491862835}
+    - target: {fileID: 7377202140589631414, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
+      propertyPath: shillingPresenter
+      value: 
+      objectReference: {fileID: 1491862834}
     - target: {fileID: 7711004565410706956, guid: aefd370f0b5f1bf43b9ddc918d43fd9a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3318,5 +3379,6 @@ SceneRoots:
   - {fileID: 1210369758}
   - {fileID: 1701984928}
   - {fileID: 1243369026}
-  - {fileID: 899894366}
   - {fileID: 1772171338}
+  - {fileID: 288329320}
+  - {fileID: 1491862836}

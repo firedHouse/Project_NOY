@@ -14,7 +14,7 @@ public partial class CharacterListModel : CharacterModelBase
 
     //업그레이드 성공 여부 > 레벨 1회 상승 후 false
     //처음부터 true인 애들도 있음
-    private bool isUpgrade = false;
+    //private bool isUpgrade = false;
 
     #endregion
 
@@ -69,35 +69,43 @@ public partial class CharacterListModel : CharacterModelBase
 
     public void SuccessUpgrade()
     {
-        //학년 체크
-        GradeCheck();
+        //
+        UserDataManager.Instance.TryUpgradeCharacter(characterID);
 
-        //업그레이드 전달
-        isUpgrade = true;
-        //레벨 체크 - 버튼 활성/비활성
+        ////학년 체크
+        //GradeCheck();
+
+        ////업그레이드 전달
+        //isUpgrade = true;
+        ////레벨 체크 - 버튼 활성/비활성
 
 
-        Debug.Log($"[GrowthView] --- 업그레이드 전 ---");
-        Debug.Log($"[GrowthView] --- 레벨 : {level} ---");
-        Debug.Log($"[GrowthView] --- 공격력 : {attackLevel} ---");
-        Debug.Log($"[GrowthView] --- HP : {hpLevel} ---");
-        Debug.Log($"[GrowthView] --- 소모실링 : {needShilling} ---");
+        //Debug.Log($"[GrowthView] --- 업그레이드 전 ---");
+        //Debug.Log($"[GrowthView] --- 레벨 : {level} ---");
+        //Debug.Log($"[GrowthView] --- 공격력 : {attackLevel} ---");
+        //Debug.Log($"[GrowthView] --- HP : {hpLevel} ---");
+        //Debug.Log($"[GrowthView] --- 소모실링 : {needShilling} ---");
 
         level++;
 
-        AttackLevel += plusStat.attackUP;
-        HpLevel += plusStat.hpUP;
+        //AttackLevel += plusStat.attackUP;
+        //HpLevel += plusStat.hpUP;
 
         plusStat = TableManager.Instance.GradeTable.Get($"{++gradeIDNum}");
         needShilling = plusStat.needShilling1;
 
 
-        Debug.Log($"[GrowthView] --- 업그레이드 목록---");
-        Debug.Log($"[GrowthView] --- 레벨 : {level} ---");
-        Debug.Log($"[GrowthView] --- 공격력 : {attackLevel} ---");
-        Debug.Log($"[GrowthView] --- HP : {hpLevel} ---");
-        Debug.Log($"[GrowthView] --- 소모실링 : {needShilling} ---");
-        Debug.Log($"[GrowthView] --- 업그레이드 완료 ---");
+        //Debug.Log($"[GrowthView] --- 업그레이드 목록---");
+        //Debug.Log($"[GrowthView] --- 레벨 : {level} ---");
+        //Debug.Log($"[GrowthView] --- 공격력 : {attackLevel} ---");
+        //Debug.Log($"[GrowthView] --- HP : {hpLevel} ---");
+        //Debug.Log($"[GrowthView] --- 소모실링 : {needShilling} ---");
+        //Debug.Log($"[GrowthView] --- 업그레이드 완료 ---");
+        if (presenter == null)
+        {
+            Debug.Log($"[GrowthView] 프레젠터 null, 새로 참조");
+            presenter = GameObject.Find("CharacterListPanel").GetComponent<CharacterListPresenter>();
+        }
 
         //3레벨 달성 시 버튼 비활성화
         if (level == 2)
@@ -105,11 +113,6 @@ public partial class CharacterListModel : CharacterModelBase
             presenter.GrowthButton(false);
         }
 
-        if(presenter == null)
-        {
-            Debug.Log($"[GrowthView] 프레젠터 null, 새로 참조");
-            presenter = GameObject.Find("CharacterListPanel").GetComponent<CharacterListPresenter>();
-        }
 
         presenter.ShillingUpdate(this);
     }

@@ -264,5 +264,6 @@ public class StageManager : MonoBehaviour
     {
         Debug.Log("모든 스테이지 클리어!");
         //UI 패널 연결
+        battleManager.ResultPanelPrefab.SetActive(true);
     }
 }

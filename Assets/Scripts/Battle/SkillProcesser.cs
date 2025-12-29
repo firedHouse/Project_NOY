@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SkillProcesser : MonoBehaviour
@@ -5,6 +6,9 @@ public class SkillProcesser : MonoBehaviour
 
     //과부하는 3턴 고정
     private const int overloadDuration = 3;
+
+    public event Action<BattleUnit, ElementType> OnMarkChanged;
+    public event Action<BattleUnit, ElementReaction> OnMarkReaction;
 
     //스킬 적용 메서드
     public void ApplyElement(BattleUnit caster, BattleUnit target, Skill skill, BattleUnit[] enemyTeam)
@@ -34,8 +38,15 @@ public class SkillProcesser : MonoBehaviour
         if(reaction == ElementReaction.None)
         {
             elemental.SetElement(attackElement);
+            OnMarkChanged?.Invoke(target, attackElement);
             return;
         }
+
+        else
+        {
+            OnMarkReaction?.Invoke(target, reaction);
+        }
+
 
         //이번 턴에 원소 반응을 했었다면 Return;
         if (!elemental.CanReact())
@@ -64,7 +75,6 @@ public class SkillProcesser : MonoBehaviour
             
          elemental.MarkReacted();
          elemental.ClearElement();
-  
     }
  
 }

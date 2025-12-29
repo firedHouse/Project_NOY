@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -38,7 +39,7 @@ public class ElementalManager : MonoBehaviour
 
         gameObject.layer = ElementLayerUtil.ElementToLayer(element);
 
-        Debug.Log($"{element} 부여");
+        Debug.Log($"{element} {gameObject.GetComponent<BattleUnit>().UnitName}에게 레이어 {gameObject.layer} 부여");
     }
 
     public void ClearElement()

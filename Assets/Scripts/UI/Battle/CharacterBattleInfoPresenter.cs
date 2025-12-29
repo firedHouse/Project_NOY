@@ -13,11 +13,15 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
     [Header("전중후열 값")]
     [SerializeField] private UnitPosition position;
 
+    [SerializeField] private SkillProcesser skillProcesser;
+
     private void Awake()
     {
         //Debug.Log("[CharacterBattleInfoPresenter] Awake");
         BattleManager.Instance.OnBattleSetted += Initialize;
         BattleManager.Instance.OnBattleSetted += DeathCharacter;
+        skillProcesser.OnMarkChanged += Mark;
+        skillProcesser.OnMarkReaction += SMark;
     }
 
     //뷰 초기 설정
@@ -46,9 +50,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
 
     private void HandleHpChanged(BattleUnit character, float hpChangedAmount)
     {
-        characterView.UpdateHPBar(hpChangedAmount);
-        //표식
-        characterView.UpdateMark(characterModel.gameObject.layer);
+        characterView.UpdateHPBar(hpChangedAmount);        
 
     }
 
@@ -66,6 +68,25 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
     private void HandlePositionChanged(BattleUnit unit)
     {
         //characterView.UpdatePosition(position);
+    }
+    public void Mark(BattleUnit unit, ElementType i)
+    {
+        //표식
+        if(unit.UnitID == characterModel.UnitID)
+        {
+            characterView.UpdateMark(i);
+            Debug.Log($"[CharacterBattleInfoPresenter] {unit.UnitName}에게 {i} 부여");
+        }
+    }
+    public void SMark(BattleUnit unit, ElementReaction i)
+    {
+        //표식
+        if (unit.UnitID == characterModel.UnitID)
+        {
+            characterView.SUpdateMark(i);
+            Debug.Log($"[CharacterBattleInfoPresenter] {unit.UnitName}에게 {i} 부여");
+        }
+
     }
 
 }

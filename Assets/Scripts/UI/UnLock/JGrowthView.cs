@@ -58,7 +58,7 @@ public partial class GrowthView : MonoBehaviour
 
     public void SetDetailView(bool isActive)
     {
-        Debug.Log($"[GrowthView] 상세 패널 활성화 여부 : {isActive}");
+        // Debug.Log($"[GrowthView] 상세 패널 활성화 여부 : {isActive}");
         // 우측 패널 활성화 변경
         MiddlePanel.SetActive(isActive);
         RightPanel.SetActive(isActive);

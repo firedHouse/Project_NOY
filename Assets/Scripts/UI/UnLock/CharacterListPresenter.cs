@@ -51,6 +51,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
             UpdateMainInfo(model);
             // 잠금 ui 변경
             Debug.Log($"[CharacterListPresenter] {model.CharacterName} 해금 여부 : {model.IsUnlocked}");
+            // growthView.ChangeUnlockUIActivation(model.IsUnlocked);
             growthView.ChangeUnlockUIActivation(model.IsUnlocked);
             // 성장 버튼 활성화
             growthView.ButtonActive(model.IsUnlocked);
@@ -68,7 +69,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
     // 클릭한 캐릭터 슬롯에 해당하는 상세 정보 띄워주기
     // 클릭한 슬롯을 model에 넣어줌
     // 각 캐릭터 슬롯에서 호출
-    // 잠금된 캐릭터는 캐릭터 상세 정보가 출력되지 않고 화면만? > 아예 비활성화만하기?
+    // 잠금된 캐릭터는 캐릭터 상세 정보가 출력되지 않고 중앙 일러스트만
     public override void OnSlotClicked(CharacterListModel character)
     {
         Debug.Log("[CharacterListPresenter] 슬롯 클릭");

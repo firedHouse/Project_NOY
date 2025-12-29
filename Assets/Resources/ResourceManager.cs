@@ -26,14 +26,9 @@ public class ResourceManager : Singleton<ResourceManager>
 
         //확장자 제거
         string cleanName = fileName;
-        if (cleanName.Contains(".png"))
+        if (cleanName.Contains("."))
         {
-            cleanName = cleanName.Replace(".png", "");
-        }
-        //혹시몰라 jpg도
-        else if (cleanName.Contains(".jpg"))
-        {
-            cleanName = cleanName.Replace(".jpg", "");
+            cleanName = cleanName.Split('.')[0];
         }
         //최종경로
         string fullPath = $"{IMAGE_PATH}{cleanName}";

@@ -358,51 +358,78 @@ public class BattleManager : MonoBehaviour
 
         //플레이어 팀 리스트 초기화
         PlayerTeam.Clear();
-        //string[] teamData = TempLobbyManager.Instance.GetSelectedCharacterIDs();
         string[] teamData = LobbyManager.Instance.SelectedCharacterIDs;
 
-        //뭐시깽이 매니저.Instance.메서드 혹은 변수명, 데이터 형식 필요함
+        //LobbyManager에서 영입 후 배치 확정된 리스트가져오기
+        string[] newRosterIDs = LobbyManager.Instance.SelectedCharacterIDs;
 
         if (teamData == null)
         {
             Debug.LogError("팀 정보를 불러오지 못했습니다");
             return;
         }
+        //리뉴얼 팀 리스트 (순서대로 0, 1, 2번 슬롯)
+        List<Character> newTeamList = new List<Character>();
 
-        //슬롯(0,1,2) 순회하며 소환
+        //슬롯 0, 1, 2 순회하며 기존로직에 동기화 추가
         for (int i = 0; i < 3; i++)
         {
-            string charID = teamData[i];
+            string targetID = newRosterIDs[i];
 
-            //ID가 없으면 빈 자리이므로 패스
-            if (string.IsNullOrEmpty(charID))
+            //빈 슬롯이면 패스
+            if (string.IsNullOrEmpty(targetID))
             {
                 continue;
             }
 
-            //테이블에서 캐릭터 데이터 로드
-            CharacterData cData = TableManager.Instance.CharacterTable.Get(charID);
-            if (cData == null)
+            //현재 필드에 이미 있는 캐릭터인지 확인
+            Character existingChar = PlayerTeam.Find(c => c.UnitID == targetID);
+
+            //케이스 1 = 이미 존재함
+            if (existingChar != null)
             {
-                Debug.LogError($"캐릭터 데이터를 찾을 수 없음: {charID}");
-                continue;
+                //리스트에 추가하고 위치만 갱신 HP 유지됨
+                newTeamList.Add(existingChar);
+
+                if (i < PlayerSpawnPoints.Count)
+                {
+                    existingChar.MovePosition((UnitPosition)i, PlayerSpawnPoints[i].position);
+                }
+                Debug.Log($"{existingChar.UnitName} 유지 (위치 갱신)");
             }
-
-
-            if (i < PlayerSpawnPoints.Count)
+            else
             {
-                GameObject go = Instantiate(characterPrefab, PlayerSpawnPoints[i].position, Quaternion.identity);
-                Character character = go.GetComponent<Character>();
+                //케이스 2 = 명단엔 있는데 필드에 없음 -> 새로 소환 (풀피)
+                if (i < PlayerSpawnPoints.Count)
+                {
+                    CharacterData cData = TableManager.Instance.CharacterTable.Get(targetID);
+                    if (cData != null)
+                    {
+                        GameObject go = Instantiate(characterPrefab, PlayerSpawnPoints[i].position, Quaternion.identity);
+                        Character newChar = go.GetComponent<Character>();
 
-                //매니저 연결 및 데이터 주입
-                character.InitializeCharacter(charID, (UnitPosition)i);
-
-                //관리 리스트에 추가
-                PlayerTeam.Add(character);
-
-                Debug.Log($"[Spawn] {cData.characterName} 소환 완료");
+                        newChar.InitializeCharacter(targetID, (UnitPosition)i);
+                        newTeamList.Add(newChar);
+                        Debug.Log($"[Sync] {cData.characterName} 신규 소환");
+                    }
+                }
             }
         }
+
+        //케이스 3 = 기존 팀에는 있었는데, 새 팀 리스트에는 없는 애들 파괴
+        foreach (var oldChar in PlayerTeam)
+        {
+            if (!newTeamList.Contains(oldChar))
+            {
+                Debug.Log($"[Sync] {oldChar.UnitName} 방출/삭제됨");
+                Destroy(oldChar.gameObject);
+            }
+        }
+
+        //최종 리스트 교체
+        PlayerTeam = newTeamList;
+
+        //위치 재정렬
         UpdateTeamPositions(PlayerTeam, PlayerSpawnPoints);
     }
     public bool HasDeadPlayer()

@@ -175,4 +175,28 @@ public class UserDataManager : Singleton<UserDataManager>
         }
     }
 
+    //이번 게임에서 등장했던 캐릭터 ID 리스트
+    public List<string> UsedCharacterIDs = new List<string>();
+
+    //게임 초기화 시 호출 필요
+    public void ClearUsedList()
+    {
+        UsedCharacterIDs.Clear();
+    }
+
+    //캐릭터 ID 등록
+    public void AddUsedCharacter(string id)
+    {
+        if (!UsedCharacterIDs.Contains(id))
+        {
+            UsedCharacterIDs.Add(id);
+        }
+    }
+
+    //이미 사용된 캐릭터인지 확인
+    public bool IsCharacterUsed(string id)
+    {
+        return UsedCharacterIDs.Contains(id);
+    }
+
 }

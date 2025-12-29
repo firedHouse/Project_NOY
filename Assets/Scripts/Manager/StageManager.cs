@@ -144,7 +144,10 @@ public class StageManager : MonoBehaviour
         if (roundNum == 5)
         {
             var boss = TableManager.Instance.MonsterTable.Get(stageData.bossID);
-            if (boss != null) result.Add(boss);
+            if (boss != null)
+            {
+                result.Add(boss);
+            }
             return result;
         }
 

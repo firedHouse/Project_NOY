@@ -35,12 +35,13 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         characterView.SetSkillList(characterModel.Skills);
         characterView.UpdateCharacterName(characterModel.UnitName);
         characterView.UpdateSpeed(characterModel.Speed);
-        //characterView.UpdatePosition(characterModel.CharacterClass);
+        characterView.UpdateCharacterPosition(characterModel.CharacterPosition);
 
+        // 캐릭터에는 속성이 없어서 코드 삭제
         //고유속성
         //elementUI로 변경해야 함
-        characterView.UpdateClass(characterModel.CurrentMark.ToString());
-        characterView.InitMark();
+        // characterView.UpdateClass(characterModel.CurrentMark.ToString());
+        // characterView.InitMark();
     }
 
     private void HandleHpChanged(BattleUnit character, float hpChangedAmount)

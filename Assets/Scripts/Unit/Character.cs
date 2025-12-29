@@ -4,6 +4,12 @@ using UnityEngine;
 //아군 유닛 뼈대 스크립트
 public class Character : BattleUnit
 {
+
+    // Jihoo, 12.29
+    [SerializeField] private CharacterPosition characterPosition;
+    public CharacterPosition CharacterPosition => characterPosition;
+    // Jihoo
+    
     //초기화 메서드 필요
     public void InitializeCharacter(string charID, UnitPosition pos)
     {
@@ -68,6 +74,10 @@ public class Character : BattleUnit
                 finalAtk,
                 pos
             );
+            
+            // Jihoo 12.29
+            // 탱딜힐 포지션 저장
+            characterPosition = (CharacterPosition)baseData.position; 
 
         //스킬 로두
         List<string> skillIDs = new List<string>()

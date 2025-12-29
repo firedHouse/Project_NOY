@@ -734,7 +734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   CurrentStage: 1
-  CurrentRound: 1
+  CurrentRound: 5
   CurrentMapID: 
   battleManager: {fileID: 1450545189}
 --- !u!4 &363996396
@@ -938,6 +938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a61cde9164c4f934b881a6bdda32b822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
+  runGold: 0
 --- !u!4 &436749175
 Transform:
   m_ObjectHideFlags: 0
@@ -1011,6 +1012,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1146740305524434813, guid: 7691efe348ad5054498d6619e25a57d1, type: 3}
   m_PrefabInstance: {fileID: 751954261}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &626936938 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 458835689437946357, guid: f8c49d0e30e37da43b15219de034f573, type: 3}
+  m_PrefabInstance: {fileID: 8220335502561300687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!114 &656374251 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5997639350161543464, guid: 7691efe348ad5054498d6619e25a57d1, type: 3}
@@ -1197,6 +1209,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &735029182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4735143300730121207, guid: 596282fb92e4a8f4a95a192709e54f8b, type: 3}
+  m_PrefabInstance: {fileID: 9107766965310145821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &751954261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1346,6 +1363,8 @@ GameObject:
   - component: {fileID: 808953613}
   - component: {fileID: 808953612}
   - component: {fileID: 808953616}
+  - component: {fileID: 808953618}
+  - component: {fileID: 808953617}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1464,6 +1483,38 @@ MonoBehaviour:
   - {fileID: 585123657}
   - {fileID: 1083403159}
   flowController: {fileID: 436749177}
+  rewardManager: {fileID: 436749173}
+  currentGold: {fileID: 626936938}
+--- !u!114 &808953617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808953611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eabd1460e574fe045b68d50f5eb87dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetSelectUI
+  cancelButton: {fileID: 0}
+  characterButtons: []
+  characterImage: []
+  HPSlider: []
+  skillSelectUI: {fileID: 0}
+--- !u!114 &808953618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808953611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029fd115de27eaa4e9aa9be9282595ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RewardFlowController
+  targetSelectUI: {fileID: 808953617}
   rewardManager: {fileID: 436749173}
 --- !u!224 &835131281 stripped
 RectTransform:
@@ -1767,6 +1818,7 @@ MonoBehaviour:
   skillButtons: []
   skillImage: []
   ppText: []
+  CancelButton: {fileID: 0}
 --- !u!1 &1184350475
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,10 +2354,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 808953615}
     m_Modifications:
-    - target: {fileID: 3553565338411962696, guid: e4e7334570cf15548b499a71e9b23cd1, type: 3}
-      propertyPath: teamButtonText
+    - target: {fileID: 101925648770681057, guid: e4e7334570cf15548b499a71e9b23cd1, type: 3}
+      propertyPath: playerTeamListModel
       value: 
-      objectReference: {fileID: 985940274}
+      objectReference: {fileID: 721557538}
+    - target: {fileID: 3553565338411962696, guid: e4e7334570cf15548b499a71e9b23cd1, type: 3}
+      propertyPath: RePosPenel
+      value: 
+      objectReference: {fileID: 735029182}
+    - target: {fileID: 3553565338411962696, guid: e4e7334570cf15548b499a71e9b23cd1, type: 3}
+      propertyPath: nextStageButton
+      value: 
+      objectReference: {fileID: 1897554871}
+    - target: {fileID: 3553565338411962696, guid: e4e7334570cf15548b499a71e9b23cd1, type: 3}
+      propertyPath: playerTeamListModel
+      value: 
+      objectReference: {fileID: 721557538}
+    - target: {fileID: 3553565338411962696, guid: e4e7334570cf15548b499a71e9b23cd1, type: 3}
+      propertyPath: rewardFlowController
+      value: 
+      objectReference: {fileID: 808953618}
     - target: {fileID: 3742090306536619947, guid: e4e7334570cf15548b499a71e9b23cd1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2389,10 +2457,6 @@ PrefabInstance:
     - target: {fileID: 4894169276173350828, guid: e4e7334570cf15548b499a71e9b23cd1, type: 3}
       propertyPath: m_Name
       value: TeamComposition
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894169276173350828, guid: e4e7334570cf15548b499a71e9b23cd1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2668,6 +2732,51 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7060533292616323856, guid: 7691efe348ad5054498d6619e25a57d1, type: 3}
   m_PrefabInstance: {fileID: 608273508156477946}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1602237739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1602237741}
+  - component: {fileID: 1602237740}
+  m_Layer: 0
+  m_Name: EconomyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1602237740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602237739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61cde9164c4f934b881a6bdda32b822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
+  runGold: 0
+--- !u!4 &1602237741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602237739}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1090.6102, y: 42.87922, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1605348870 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 319737580849803533, guid: 7691efe348ad5054498d6619e25a57d1, type: 3}
@@ -2733,6 +2842,7 @@ GameObject:
   - component: {fileID: 1897554870}
   - component: {fileID: 1897554869}
   - component: {fileID: 1897554868}
+  - component: {fileID: 1897554871}
   m_Layer: 5
   m_Name: NextStageButton
   m_TagString: Untagged
@@ -2807,7 +2917,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1084106821}
         m_TargetAssemblyTypeName: RosterButton, Assembly-CSharp
         m_MethodName: OnTeamCompositionButton
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2854,6 +2964,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897554866}
   m_CullTransparentMesh: 1
+--- !u!114 &1897554871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897554866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599e0105092c1184bba0f3841ac092d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NextStageButton
+  teamButtonText: {fileID: 985940274}
 --- !u!114 &1898714314 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5997639350161543464, guid: 7691efe348ad5054498d6619e25a57d1, type: 3}
@@ -3285,7 +3408,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6674094554337604387, guid: 596282fb92e4a8f4a95a192709e54f8b, type: 3}
   m_PrefabInstance: {fileID: 9107766965310145821}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 735029182}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b765da23d08428d479510e13157682ee, type: 3}
@@ -3520,6 +3643,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChangePositionPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 5732785704267304293, guid: 596282fb92e4a8f4a95a192709e54f8b, type: 3}
+      propertyPath: playerTeamListModel
+      value: 
+      objectReference: {fileID: 721557538}
     - target: {fileID: 6118695350755278637, guid: 596282fb92e4a8f4a95a192709e54f8b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3618,6 +3745,7 @@ SceneRoots:
   - {fileID: 363996396}
   - {fileID: 1450545190}
   - {fileID: 2051268412}
+  - {fileID: 1602237741}
   - {fileID: 1186598144}
   - {fileID: 257169480}
   - {fileID: 808953615}

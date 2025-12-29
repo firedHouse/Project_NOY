@@ -18,7 +18,8 @@ public class StateEnd : IBattleState
             Debug.Log("라운드 승리, 보상 패널 오픈");
             if (bm.RewardPanelPrefab != null)
             {
-                bm.RewardPanelPrefab.SetActive(true);
+                bool hasDeadPlayer = bm.HasDeadPlayer();
+                bm.RewardPanelPrefab.Open(hasDeadPlayer);
             }
             else
             {

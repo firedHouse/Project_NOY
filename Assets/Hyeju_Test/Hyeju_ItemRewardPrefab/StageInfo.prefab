@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1109689432466642947}
   - component: {fileID: 5523925342112264369}
   - component: {fileID: 6520693279756652913}
+  - component: {fileID: -8822654051086612245}
   m_Layer: 5
   m_Name: StageInfo
   m_TagString: Untagged
@@ -76,6 +77,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-8822654051086612245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7903279427794077254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0397f1d2a7fd24eb0124cd43084824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageInfomation
+  stageInfoText: {fileID: 8286311573001144842}
 --- !u!1 &7992094164691111576
 GameObject:
   m_ObjectHideFlags: 0

@@ -197,6 +197,6 @@ public class MemberPresenter : CharacterPresenterBase
         LobbyManager.Instance.SetTeam(ids);
         LobbyManager.Instance.SetTeamData(teamMembers);
         // 씬 전환
-        SceneManager.LoadScene("HyeonGuTestScene");
+        SceneManager.LoadScene("BattleScene");
     }
 }

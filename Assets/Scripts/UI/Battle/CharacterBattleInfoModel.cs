@@ -9,13 +9,11 @@ public class CharacterBattleInfoModel : MonoBehaviour
     //[SerializeField] public CharacterData[] testCharacter = new CharacterData[3];
     [SerializeField] private UnitPosition position = UnitPosition.Front;
     [SerializeField] public Character character;
-    public event Action HPChanged;
     public event Action DataLoaded;
 
     private float maxHP;
 
     //Hyeju : 캐릭터 사망 이벤트 추가
-    public event Action<string> Death;
 
     //public CharacterData Character { get => character; set => character = value; }
     //public string CharacterName { get => character.characterName; }

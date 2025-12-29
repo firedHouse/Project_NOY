@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class MemberSlot : CharacterSlotBase
 {
     [SerializeField] public int memberPosition;
-    private bool isClickable = true;
     [SerializeField] public Text selectedCharacterName;
 
     public int MemberPosition => memberPosition;

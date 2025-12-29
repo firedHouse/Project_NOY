@@ -13,10 +13,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
 
     //private MonsterData monsterData;
     [SerializeField] private UnitPosition position;
-
-    // 테스트용 필드
-    private float HpChangeValue = 50;
-
+    
     private void Awake()
     {
         //Debug.Log("[MonsterInfoPresenter] Awake");

@@ -1,6 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -14,7 +13,6 @@ public class MemberPresenter : CharacterPresenterBase
     // 테스트용 팀 멤버 id 배열
     private string[] ids = new string[3];
     private CharacterListModel[] teamMembers = new CharacterListModel[3];
-    private SceneLoader sceneLoader;
     public string[] Ids => ids;
     public CharacterListModel[] TeamMembers => teamMembers;
     
@@ -22,17 +20,22 @@ public class MemberPresenter : CharacterPresenterBase
     {
         skillView = gameObject.GetComponent<GrowthSkillView>();
         selectView = GameObject.Find("SeletedTeamPanel").GetComponent<TeamSelectView>();
-        sceneLoader = GameObject.Find("SceneLoader").GetComponent<SceneLoader>();
         SetSlotUI();
         LoadCharacterList();
         skillView.SetDetailView(false);
         selectView.SetAllButtonInteractable(false);
         foreach (var slot in selectView.Slots)
         {
+            if (slot != null)
+            {
             Debug.Log($"[MemberPresenter] 슬롯 설정");
             SetButtonEvent(slot, SetTeamPosition);   
+            }
+            else
+            {
+                Debug.Log($"[MemberPresenter] 슬롯 설정 실패");
+            }
         }
-        Debug.Log($"[MemberPresenter] 슬롯 설정 실패");
     }
 
     // 캐릭터 리스트 가져오기
@@ -153,6 +156,6 @@ public class MemberPresenter : CharacterPresenterBase
         LobbyManager.Instance.SetTeam(ids);
         LobbyManager.Instance.SetTeamData(teamMembers);
         // 씬 전환
-        sceneLoader.LoadScene();
+        SceneManager.LoadScene("HyeonGuTestScene");
     }
 }

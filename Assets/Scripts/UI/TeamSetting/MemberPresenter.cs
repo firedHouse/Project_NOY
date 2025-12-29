@@ -92,16 +92,26 @@ public class MemberPresenter : CharacterPresenterBase
 
     // 전/중/후열 중에 하나를 클릭하면 해당 캐릭터 슬롯을 받아감
     // 현재 모델을 클릭된 열에 넣어준다
-    public void SetTeamPosition(CharacterSlot selectedSlot)
+    public void SetTeamPosition(MemberSlot selectedSlot)
     {
+        int idx = Array.IndexOf(teamMembers, model);
+        // if 다른 배열 위치에 저장되어 있었다면 해당 포지션의 slotModel을 null로 변경해준다
+        if (idx != -1)
+        {
+            teamMembers[idx] = null;
+            selectView.slots[idx].SlotModel = null;
+            selectView.slots[idx].selectedCharacterName.text = "";
+            Debug.Log($"위치 중복으로 이동됨 {teamMembers[idx]} {selectView.slots[idx].SlotModel}");
+        }
         Debug.Log($"[MemberPresenter] {selectedSlot.transform.parent.name} {model.CharacterName}");
         selectedSlot.SlotModel = model;
         selectedSlot.SlotCharacter.text = model.CharacterName;
-
+        // 해당 슬롯에 모델 저장
+        teamMembers[selectedSlot.memberPosition] = model;
     }
     
     // 클릭하면 버튼의 슬롯 모델에 현재 프레젠터의 모델을 넣음 
-    public void SetButtonEvent(CharacterSlot slot, UnityAction<CharacterSlot> onClickCallBack)
+    public void SetButtonEvent(MemberSlot slot, UnityAction<MemberSlot> onClickCallBack)
     {
         Debug.Log($"[MemberPresenter] 모델 선택 버튼");
         slot.SlotButton.onClick.AddListener(() => onClickCallBack(slot));

@@ -62,13 +62,10 @@ public partial class CharacterBattleInfoView : MonoBehaviour
     }
 
     // 포지션 업데이트
-    // 각 유닛 객체의 포지션을 변경? <- 이미 구현되어 있을 것 같은데
-    // 갱신된 포지션에 따라 패널에 다시 불러오기 realTargets로 불러오기?
-
-    //public void UpdatePosition(CharacterPosition role)
-    //{
-    //    characterPositionText.text = role.ToString();
-    //}
+    public void UpdateCharacterPosition(CharacterPosition characterPosition)
+    {
+        characterPositionText.text = characterPosition.ToString();
+    }
 
 
 

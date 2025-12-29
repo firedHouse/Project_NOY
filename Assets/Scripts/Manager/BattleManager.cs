@@ -38,7 +38,7 @@ public class BattleManager : MonoBehaviour
         //12.30 RewardUI 붙잡기
         if (RewardPanel == null)
         {
-            RewardPanel = FindObjectOfType<RewardUI>(true);
+            RewardPanel = FindFirstObjectByType<RewardUI>(FindObjectsInactive.Include);
         }
     }
     //현재 실행중인 상태

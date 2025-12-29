@@ -1616,6 +1616,7 @@ MonoBehaviour:
   monsterView: {fileID: 8595145638539365658}
   monsterMoveView: {fileID: 0}
   position: 0
+  skillProcesser: {fileID: 0}
 --- !u!114 &8595145638539365658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1634,8 +1635,8 @@ MonoBehaviour:
   monsterSpeedText: {fileID: 2256939635294768504}
   monsterPowerText: {fileID: 7457523021942129379}
   HPSlider: {fileID: 3543405289841070783}
-  currentMark: {fileID: 5082812535663332102}
-  attackMark: {fileID: 7511449147716882447}
+  firstMark: {fileID: 5082812535663332102}
+  secondMark: {fileID: 7511449147716882447}
 --- !u!61 &1318463423278411694
 BoxCollider2D:
   m_ObjectHideFlags: 0

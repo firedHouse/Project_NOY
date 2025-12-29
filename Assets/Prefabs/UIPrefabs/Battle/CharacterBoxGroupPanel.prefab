@@ -211,7 +211,7 @@ PrefabInstance:
     - target: {fileID: 3268719508118344517, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: characterMoveView
       value: 
-      objectReference: {fileID: 3965629401495003668}
+      objectReference: {fileID: 0}
     - target: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: m_Name
       value: CharacterBoxFrontPanel
@@ -224,14 +224,33 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: firstMark
+      value: 
+      objectReference: {fileID: 1060037997560205099}
+    - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: secondMark
+      value: 
+      objectReference: {fileID: 5643104480875667839}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       insertIndex: 3
-      addedObject: {fileID: 1586146181825834348}
+      addedObject: {fileID: 5612949245549753894}
   m_SourcePrefab: {fileID: 100100000, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+--- !u!114 &1060037997560205099 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 748845366597970584, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+  m_PrefabInstance: {fileID: 347458962858894771}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!224 &1081543352650032846 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 851186819685483389, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
@@ -242,7 +261,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
   m_PrefabInstance: {fileID: 347458962858894771}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1586146181825834348
+--- !u!114 &5612949245549753894
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -263,6 +282,18 @@ MonoBehaviour:
   position: 0
   currentMark: 0
   isDead: 0
+  characterPosition: 0
+--- !u!114 &5643104480875667839 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5368917157649876172, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+  m_PrefabInstance: {fileID: 347458962858894771}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1001 &3864608302685398204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -375,6 +406,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: firstMark
+      value: 
+      objectReference: {fileID: 4595279252589530660}
+    - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: secondMark
+      value: 
+      objectReference: {fileID: 9161413951570714736}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -390,6 +429,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 851186819685483389, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
   m_PrefabInstance: {fileID: 3864608302685398204}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4595279252589530660 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 748845366597970584, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+  m_PrefabInstance: {fileID: 3864608302685398204}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
+--- !u!114 &9161413951570714736 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5368917157649876172, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+  m_PrefabInstance: {fileID: 3864608302685398204}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1001 &5526460181279713863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -502,11 +563,41 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: firstMark
+      value: 
+      objectReference: {fileID: 5104127201289191647}
+    - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: secondMark
+      value: 
+      objectReference: {fileID: 446938233842708107}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+--- !u!114 &446938233842708107 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5368917157649876172, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+  m_PrefabInstance: {fileID: 5526460181279713863}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
+--- !u!114 &5104127201289191647 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 748845366597970584, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+  m_PrefabInstance: {fileID: 5526460181279713863}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!224 &5143651348610132282 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 851186819685483389, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}

@@ -26,6 +26,8 @@ public class RewardUI : MonoBehaviour
 
         gameObject.SetActive(true);
 
+        flowController.ResetFreeItemState();
+
         ResetSlots();
         HideDescription();
 

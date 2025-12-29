@@ -37,12 +37,12 @@ public class RewardFlowController : MonoBehaviour
     {
         if (isLocked)
         { return; }
-        
 
-        if (freeItemUsed) 
+
+        if (freeItemUsed)
         {
             Debug.Log("이미 무료 아이템을 사용했습니다.");
-            return; 
+            return;
         }
 
         isPaidItem = false;
@@ -105,4 +105,8 @@ public class RewardFlowController : MonoBehaviour
         isLocked = false;
     }
 
+    public void ResetFreeItemState()
+    {
+        freeItemUsed = false;
+    }
 }

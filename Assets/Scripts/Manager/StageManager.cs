@@ -89,6 +89,23 @@ public class StageManager : MonoBehaviour
             return;
         }
 
+        //탱커를 리스트의 맨 앞으로 보내는 정렬 로직
+        selectedMonsters.Sort((a, b) =>
+        {
+
+            bool isATanker = (MonsterClass)a.monsterClass == MonsterClass.Tanker;
+            bool isBTanker = (MonsterClass)b.monsterClass == MonsterClass.Tanker;
+            if (isATanker && !isBTanker)
+            {
+                return -1; //A가 탱커면 앞으로
+            }
+            if (!isATanker && isBTanker)
+            {
+                return 1; //B가 탱커면 A는 뒤로
+            }
+            return 0;
+        });
+
         //디버깅
         for (int i = 0; i < selectedMonsters.Count; i++)
         {

@@ -45,7 +45,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
         monsterView.UpdateMonsterName(monsterModel.UnitName);
         monsterView.UpdateSpeed(monsterModel.Speed);
 
-        monsterView.UpdatePosition(monsterModel.Position);
+        monsterView.UpdateMonsterClass(monsterModel.MonsterPosition);
         monsterView.InitMark();
 
 
@@ -62,19 +62,4 @@ partial class MonsterInfoPresenter : MonoBehaviour
         //표식
         monsterView.UpdateMark(monsterModel.gameObject.layer);
     }
-
-    //private void HandleMarkChanged(BattleUnit monster, ElementType elementType)
-    //{
-    //}
-
-    private void HandleDeath(BattleUnit unit)
-    {
-        BattleManager.Instance.OnUnitDead(unit);
-    }
-
-    private void HandlePositionChanged(BattleUnit uni)
-    {
-        monsterView.UpdatePosition(position);
-    }
-
 }

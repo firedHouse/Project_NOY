@@ -6,6 +6,12 @@ using UnityEngine;
 //적 유닛 뼈대 스크립트
 public class Monster : BattleUnit
 {
+    // Jihoo, 12.29
+    [SerializeField] private MonsterClass monsterPosition;
+
+    public MonsterClass MonsterPosition => monsterPosition;
+    // Jihoo
+
     private int dropGold; //드롭골드
     private int dropShilling; //드롭실링
     //보스 체크용
@@ -50,6 +56,11 @@ public class Monster : BattleUnit
         {
             Debug.LogError($"스킨 데이터를 찾을 수 없읆,,, {monsterSprite}");
         }
+
+        // Jihoo 12.29
+        // 탱딜힐 포지션 저장
+        monsterPosition = (MonsterClass)data.monsterClass; 
+
         //스킬 로드
         List<string> skillIDs = new List<string>
         {

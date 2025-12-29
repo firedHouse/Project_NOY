@@ -20,7 +20,7 @@ public partial class GrowthView : MonoBehaviour
     [SerializeField] private GameObject RightPanel;
     [SerializeField] private AlertPopUpView popup;
 
-    public AlertPopUpView Popup { get => popup; set => popup = value; }
+    public AlertPopUpView Popup  => popup; 
 
     public GameObject UnlockButton => unlockButton;
 

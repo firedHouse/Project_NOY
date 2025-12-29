@@ -9,11 +9,14 @@ public class TeamSelectView : MonoBehaviour
 
     // 버튼들 
     [SerializeField] public MemberSlot[] slots;
+    [SerializeField] private AlertPopUpView popup;
+
     public MemberSlot[] Slots => slots;
-    
+    public AlertPopUpView Popup => popup; 
     private void Awake()
     {
         slots = gameObject.GetComponentsInChildren<MemberSlot>().ToArray();
+        // popup = transform.parent.Find("NotifyPanel").GetComponent<AlertPopUpView>() ;
     }
 
     private void Start()

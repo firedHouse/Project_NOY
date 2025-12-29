@@ -26,27 +26,6 @@ public class MemberPresenter : CharacterPresenterBase
         skillView.SetDetailView(false);
         selectView.SetAllButtonInteractable(false);
         SetSelectTeamUI();
-        // if (selectView.Slots != null)
-        // {
-        //     foreach (var slot in selectView.Slots)
-        //     {
-        //         if (slot != null)
-        //         {
-        //         Debug.Log($"[MemberPresenter] 슬롯 설정");
-        //         SetButtonEvent(slot, SetTeamPosition);   
-        //         }
-        //         else
-        //         {
-        //             Debug.Log($"[MemberPresenter] 슬롯 설정 실패");
-        //         }
-        //
-        //         Debug.Log($"[MemberPresenter] 슬롯 설정 끝");
-        //     }
-        // }
-        // else
-        // {
-        //     Debug.Log($"[MemberPresenter] 슬롯 없어서 슬롯 설정 실패");
-        // }
     }
 
     private void SetSelectTeamUI()
@@ -169,12 +148,22 @@ public class MemberPresenter : CharacterPresenterBase
         // 슬롯에 있는 애들의 id를 가져와 배열에 저장
         for (int i = 0; i < selectView.Slots.Length; i++)
         {
+            if (selectView.Slots[i].SlotModel == null)
+            {
+                selectView.Popup.ShowPopup();
+                return;
+            }
             ids[i] = selectView.Slots[i].SlotModel.CharacterID;
         }
 
         // 슬롯에 있는 애들의 캐릭터 리스트 데이터를 가져와 배열에 저장
         for (int i = 0; i < selectView.Slots.Length; i++)
         {
+            if (selectView.Slots[i].SlotModel == null)
+            {
+                selectView.Popup.ShowPopup();
+                return;
+            }
             teamMembers[i] = selectView.Slots[i].SlotModel;
         }
         

@@ -285,8 +285,14 @@ public class BattleManager : MonoBehaviour
 
     public void SetupBattle(List<MonsterData> monsters, bool isBossRound, float multiplier = 1.0f)
     {
-        //아군 소환(PlayerSpawnPoints 사용) 
-        SpawnPlayerTeam();
+        if (PlayerTeam.Count == 0)
+        {
+            SpawnPlayerTeam();
+        }
+        else
+        {
+            UpdateTeamPositions(PlayerTeam, PlayerSpawnPoints);
+        }
 
         //적군 소환(여기로 로직 이동) 
         SpawnEnemyTeam(monsters, isBossRound, multiplier);

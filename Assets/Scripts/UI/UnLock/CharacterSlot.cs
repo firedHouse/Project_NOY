@@ -7,41 +7,11 @@ using UnityEngine.UI;
 // 각 캐릭터마다 리스트에 표시해줄 View
 // 캐릭터 unlock 속성이 unlock이면 검은 실루엣 이미지로 처리
 [RequireComponent(typeof(Button))]
-public class CharacterSlot : MonoBehaviour
+public class CharacterSlot : CharacterSlotBase
 {
     //[SerializeField] private CharacterListPresenter characterListPresenter;
-    [Header("캐릭터 슬롯 프리팹")]
-    [SerializeField] private Button slotButton;
-    [FormerlySerializedAs("model")] [SerializeField] private CharacterListModel slotModel;
-    private string id;
-    public Text slotCharacter;
-    private bool isClickable = true;
+
     
-    public Button SlotButton => slotButton;
-    public CharacterListModel SlotModel { get =>  slotModel; set => slotModel = value; }
-
-    public Text SlotCharacter { get => slotCharacter; set => slotCharacter = value; }
-
-    private void Awake()
-    {
-        slotButton = GetComponent<Button>();
-        slotCharacter = gameObject.GetComponentInChildren<Text>();
-    }
-
-    // 슬롯 클릭시 변경
-    public void SetButtonEvent(CharacterListModel model, UnityAction<CharacterListModel> onClickCallBack)
-    {
-        this.slotModel = model;
-        slotButton.onClick.AddListener(() => onClickCallBack(this.slotModel));
-    }
-
-    public void UpdateButtonAvailable(bool isAvailable)
-    {
-        slotButton.interactable = isAvailable;
-    }
-
-
-
     // 캐릭터 데이터 받아와서 띄우기
     // 초기화 하면서 필요한 데이터 모두 업데이트하기
     // 슬롯 기준으로는 id만 알면 된다?

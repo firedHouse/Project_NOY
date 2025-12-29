@@ -18,17 +18,17 @@ public class RewardUI : MonoBehaviour
 
     [SerializeField] private Text currentGold;
 
-    private void OnEnable()
-    {
-        ResetSlots();
-        HideDescription();
-    }
-
 
     public void Open(bool hasDeadTeam)
     {
+        if (gameObject.activeSelf)
+        { return; }
 
         gameObject.SetActive(true);
+
+        ResetSlots();
+        HideDescription();
+
         Debug.Log("보상 UI 열렸음 !");
         var freeItems = rewardManager.CreateFreeItems();
         var paidItems = rewardManager.CreatePaidItems(hasDeadTeam);
@@ -105,6 +105,6 @@ public class RewardUI : MonoBehaviour
     public void OnClickNextStage()
     {
         StageManager.Instance.OnRewardProcessCompleted();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

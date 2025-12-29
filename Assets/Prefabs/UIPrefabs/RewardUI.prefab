@@ -1244,7 +1244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2695240701852972085
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1349,6 +1349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f244b2afa67ee349a1c59b5f4a1e133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RewardUI
+  root: {fileID: 772595099432657691}
   paidSlots:
   - {fileID: 4135273084593550045}
   - {fileID: 1156707808510068748}
@@ -1359,7 +1360,6 @@ MonoBehaviour:
   - {fileID: 8432972739594351886}
   descriptionPanel: {fileID: 422450328281493609}
   descriptionText: {fileID: 2587471686892494368}
-  stageInfoText: {fileID: 0}
   flowController: {fileID: 0}
   rewardManager: {fileID: 0}
   currentGold: {fileID: 164831140009571446}

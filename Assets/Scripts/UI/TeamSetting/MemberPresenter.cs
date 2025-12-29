@@ -57,22 +57,10 @@ public class MemberPresenter : CharacterPresenterBase
         {
             foreach (var slot in selectView.Slots)
             {
-                if (slot != null)
-                {
                     Debug.Log($"[MemberPresenter] 각 슬롯 설정");
                     SetButtonEvent(slot, SetTeamPosition);
-                }
-                else
-                {
-                    Debug.Log($"[MemberPresenter] 슬롯 설정 실패");
-                }
-
             }
             Debug.Log($"[MemberPresenter] 슬롯 설정 끝");
-        }
-        else
-        {
-            Debug.Log($"[MemberPresenter] 슬롯 없어서 슬롯 설정 실패");
         }
         Debug.Log($"[MemberPresenter] 아무튼 슬롯 설정 끝냄");
     }

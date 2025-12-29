@@ -63,7 +63,7 @@ public class BattleManager : MonoBehaviour
 
     //12.26 보상, 결과 패널도 연결 필요
     [Header("보상, 결과 패널 출력용")]
-    public GameObject RewardPanelPrefab;
+    public RewardUI RewardPanelPrefab;
     public GameObject ResultPanelPrefab;
 
 
@@ -392,5 +392,9 @@ public class BattleManager : MonoBehaviour
             }
         }
         UpdateTeamPositions(PlayerTeam, PlayerSpawnPoints);
+    }
+    public bool HasDeadPlayer()
+    {
+        return PlayerTeam.Count < 3;
     }
 }

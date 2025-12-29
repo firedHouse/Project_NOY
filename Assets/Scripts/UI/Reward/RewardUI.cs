@@ -13,9 +13,6 @@ public class RewardUI : MonoBehaviour
     [SerializeField] private GameObject descriptionPanel;
     [SerializeField] private Text descriptionText;
 
-    [Header("Stage Text")]
-    [SerializeField] private Text stageInfoText;
-
     [SerializeField] private RewardFlowController flowController;
     [SerializeField] private RewardManager rewardManager;
 
@@ -37,8 +34,6 @@ public class RewardUI : MonoBehaviour
         var paidItems = rewardManager.CreatePaidItems(hasDeadTeam);
 
         currentGold.text = EconomyManager.Instance.RunGold.ToString();
-
-        UpdateStageInfo();
 
         SetUpFree(freeItems);
         SetUpPaid(paidItems);
@@ -87,25 +82,6 @@ public class RewardUI : MonoBehaviour
                     icon, flowController.OnFreeItemSelected);
             }
         }
-    }
-    private void UpdateStageInfo()
-    {
-        if (StageManager.Instance == null)
-        {
-            stageInfoText.text = "";
-            return;
-        }
-
-        if (StageManager.Instance.CurrentRound == 5)
-        {
-            stageInfoText.text += "(Boss)";
-            return;
-        }
-
-        int stage = StageManager.Instance.CurrentStage;
-        int round = StageManager.Instance.CurrentRound;
-
-        stageInfoText.text = $"스테이지 {stage}-{round}";
     }
 
     public void ShowDescription(object item)

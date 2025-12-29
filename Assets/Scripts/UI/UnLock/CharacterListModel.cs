@@ -22,17 +22,17 @@ public partial class CharacterListModel : CharacterModelBase
     // 해금 처리 
     public void Unlock()
     {
-        if (!isUnlocked)
+        if (!IsUnlocked)
         {
-            Debug.Log($"[CharacterListModel] {isUnlocked} > 해금");
+            Debug.Log($"[CharacterListModel] {IsUnlocked} > 해금");
             Debug.Log($"[CharacterListModel] 필요한 실링 : ");
             // 해금을 위해 실링 빼가는 처리
             ShillingManager.Instance.SpendShilling(unlockShilling);
-            isUnlocked = true;
+            SetIsUnlocked();
         }
         else
         {
-            Debug.Log($"[CharacterListModel] {isUnlocked} > 이미 해금됨!");
+            Debug.Log($"[CharacterListModel] {IsUnlocked} > 이미 해금됨!");
         }
     }
 

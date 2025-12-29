@@ -1,20 +1,33 @@
 using UnityEngine;
 
-//°¢Á¾ ¸Å´ÏÀú »ó¼Ó¿ë Á¦³×¸¯ ±â¹İ Å¬·¡½º
-//MonoBehaviour »ó¼Ó¹Ş´Â Å¬·¡½º·Î Á¦ÇÑ
+//ê°ì¢… ë§¤ë‹ˆì € ìƒì†ìš© ì œë„¤ë¦­ ê¸°ë°˜ í´ë˜ìŠ¤
+//MonoBehaviour ìƒì†ë°›ëŠ” í´ë˜ìŠ¤ë¡œ ì œí•œ
+//12.29 ì•ˆì „ì¥ì¹˜ ì¶”ê°€
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;
 
-    //¿ÜºÎ È£Ãâ¿ë ÇÁ·ÎÆÛÆ¼, ÇØ´ç Å¸ÀÔÀÇ ½Ì±ÛÅæÀÌ ¾øÀ¸¸é Ã£¾Æº¸°í, ¾øÀ» ½Ã »õ·Î »ı¼º ÈÄ ¼³Á¤
+    //ì™¸ë¶€ í˜¸ì¶œìš© í”„ë¡œí¼í‹°, í•´ë‹¹ íƒ€ì…ì˜ ì‹±ê¸€í†¤ì´ ì—†ìœ¼ë©´ ì°¾ì•„ë³´ê³ , ì—†ì„ ì‹œ ìƒˆë¡œ ìƒì„± í›„ ì„¤ì •
     public static T Instance
     {
         get
         {
+            //12.29 ë¦¬íŒ©í† ë§, Awake ì „ ë‹¤ë¥¸ ê³³ì—ì„œ ë¶ˆë €ì„ ë•Œ ëŒ€ë¹„ìš©
+            if (_instance == null)
+            {
+                //ì”¬ì— ìˆëŠ” ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì•„ë³´ê¸°
+                _instance = FindFirstObjectByType<T>();
+
+                //ê·¸ë˜ë„ ì—†ìœ¼ë©´? ë°°ì¹˜í•˜ì„¸ìš©~
+                if (_instance == null)
+                {
+                    Debug.LogError($"{typeof(T)}ê°€ ì”¬ì— ì—†ì†,,,");
+                }
+            }
             return _instance;
         }
     }
-    //Áßº¹Ã¼Å© ¹× ¿¬°á ±â´É ±¸Çö
+    //ì¤‘ë³µì²´í¬ ë° ì—°ê²° ê¸°ëŠ¥ êµ¬í˜„
     protected virtual void Awake()
     {
         if (_instance == null)
@@ -22,8 +35,8 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             _instance = this as T;
             DontDestroyOnLoad(gameObject);
         }
-        //ÀÌ¹Ì ÀÎ½ºÅÏ½º ÀÖ°í, ¼­·Î ´Ù¸¥ °æ¿ì (Áßº¹)
-        //¿øº» ¾Æ´Ï´Ï±î(ÀÌ¹Ì ÀÖÀ¸´Ï±î) ÆÄ±«
+        //ì´ë¯¸ ì¸ìŠ¤í„´ìŠ¤ ìˆê³ , ì„œë¡œ ë‹¤ë¥¸ ê²½ìš° (ì¤‘ë³µ)
+        //ì›ë³¸ ì•„ë‹ˆë‹ˆê¹Œ(ì´ë¯¸ ìˆìœ¼ë‹ˆê¹Œ) íŒŒê´´
         else
         {
             if (_instance != this)

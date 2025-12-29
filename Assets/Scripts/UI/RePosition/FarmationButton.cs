@@ -6,8 +6,13 @@ public class FarmationButton : MonoBehaviour
     [Header("프레젠터")]
     [SerializeField] FormationPresenter presenter;
 
+    [Header("캐릭터 리스트 모델")]
+    [SerializeField] PlayerTeamListModel playerTeamListModel;
+
     [Header("팀 자리 변경 패널")]
     [SerializeField] GameObject changePositionPanel;
+
+    public bool isJoinSkip = false;
 
     private int click;
 
@@ -25,8 +30,20 @@ public class FarmationButton : MonoBehaviour
 
     public void OnConfirmButton()
     {
-        changePositionPanel.SetActive(false);
-        presenter.TeamListPrint();
+        if (isJoinSkip)
+        {
+            //스킵한거면 다음 스테이지로 이어져야 함.
+            Debug.Log("[RosterButton] 배틀진입버튼 눌림");
+            presenter.ConfirmButton();
+            playerTeamListModel.IsJoinSkip = false;
+            Debug.Log($"[FarmationButton] 다음스테이지로");
+        }
+        else
+        {
+            //스킵한거 아니면 그냥 닫기
+            changePositionPanel.SetActive(false);
+            presenter.TeamListPrint();
+        }
     }
     #endregion
 

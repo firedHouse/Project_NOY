@@ -14,12 +14,12 @@ public class FormationPresenter : MonoBehaviour
     private int firstSlotNum;
 
 
-
     public void OnEnable()
     {
         firstCharacter = null;
         secondCharacter = null;
-        if(button == null)
+        IsJoinSkip();
+        if (button == null)
         {
             button = GameObject.Find("ChangePositionPanel").GetComponent<FarmationButton>();
         }
@@ -94,5 +94,13 @@ public class FormationPresenter : MonoBehaviour
         Debug.Log($"[RosterButton] {model.ChracterName[0]}");
         Debug.Log($"[RosterButton] {model.ChracterName[1]}");
         Debug.Log($"[RosterButton] {model.ChracterName[2]}");
+    }
+
+    public void IsJoinSkip()
+    {
+        if(model.IsJoinSkip)
+        {
+            button.isJoinSkip = true;
+        }
     }
 }

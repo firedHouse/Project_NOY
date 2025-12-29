@@ -1,21 +1,21 @@
 스킨 ID,캐릭터ID,전신이미지,얼굴이미지,스프라이트,주석
 skinID,characterID,imageFull,imageFace,skinSprite,desc
 string,string,string,string,string,string
-40001,10001,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,블레이즈 1학년
-40002,10001,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,블레이즈 3학년
-40003,10002,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,마린 1학년
-40004,10002,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,마린 3학년
-40005,10003,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,라이더 1학년
-40006,10003,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,라이더 3학년
-40007,10004,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,셰프 1학년
-40008,10004,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,셰프 3학년
-40009,10005,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,닥터 린 1학년
-40010,10005,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,닥터 린 3학년
-40011,10006,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,테이저 1학년
-40012,10006,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,테이저 3학년
-40013,10007,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,아리아 1학년
-40014,10007,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,아리아 3학년
-40015,10008,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,레이니 1학년
-40016,10008,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,레이니 3학년
-40017,10009,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,코드 1학년
-40018,10009,Resources/Image/이미지명.png,Resources/Image/이미지명.png,Resources/Image/이미지명.png,코드 3학년
+40001,10001,40001.png,40101.png,40201.png,블레이즈 1학년
+40002,10001,40001.png,40101.png,40202.png,블레이즈 3학년
+40003,10002,40001.png,40101.png,40203.png,마린 1학년
+40004,10002,40001.png,40101.png,40204.png,마린 3학년
+40005,10003,40001.png,40101.png,40205.png,라이더 1학년
+40006,10003,40001.png,40101.png,40206.png,라이더 3학년
+40007,10004,40001.png,40101.png,40207.png,셰프 1학년
+40008,10004,40001.png,40101.png,40208.png,셰프 3학년
+40009,10005,40001.png,40101.png,40209.png,닥터 린 1학년
+40010,10005,40001.png,40101.png,40210.png,닥터 린 3학년
+40011,10006,40001.png,40101.png,40211.png,테이저 1학년
+40012,10006,40001.png,40101.png,40212.png,테이저 3학년
+40013,10007,40001.png,40101.png,40213.png,아리아 1학년
+40014,10007,40001.png,40101.png,40214.png,아리아 3학년
+40015,10008,40001.png,40101.png,40215.png,레이니 1학년
+40016,10008,40001.png,40101.png,40216.png,레이니 3학년
+40017,10009,40001.png,40101.png,40217.png,코드 1학년
+40018,10009,40001.png,40101.png,40218.png,코드 3학년

@@ -217,6 +217,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1143047415461933176, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: position
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143047415461933176, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
       propertyPath: monsterMoveView
       value: 
       objectReference: {fileID: 8650301355523884967}
@@ -371,6 +375,10 @@ PrefabInstance:
     - target: {fileID: 3528241185745938460, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548178424251969571, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
+      propertyPath: position
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4548178424251969571, guid: c16b7785cbebd294c860e3aacdac3a8d, type: 3}
       propertyPath: monsterMoveView

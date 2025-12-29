@@ -56,8 +56,10 @@ public abstract class BattleUnit : MonoBehaviour
     public event Action<BattleUnit, float> OnHpChanged; //체력 변경 시
     public event Action<BattleUnit, ElementType> OnMarkChanged; //원소표식 변경 시
 
-
-
+    public float BaseMaxHP { get; private set; }
+    public float BaseAttack { get; private set; }
+    public float BaseSpeed { get; private set; }
+    
 
     //초기화 (자식 클래스에서 override 할 듯?)
     public virtual void InitializeBase(string id, string name, float hp, int spd, float atk, UnitPosition pos)
@@ -70,6 +72,9 @@ public abstract class BattleUnit : MonoBehaviour
         speed = spd;
         attackPower = atk;
         position = pos;
+        BaseMaxHP = maxHP;
+        BaseAttack = attackPower;
+        BaseSpeed = speed;
 
         //12.23 현재 스탯 반영
         //초기화 시 스탯도 초기화
@@ -281,8 +286,7 @@ public abstract class BattleUnit : MonoBehaviour
     {
         isDead = false;
 
-        currentHP = reviveHP;
-
+        currentHP = Mathf.Clamp(reviveHP, 1f, maxHP);
         OnHpChanged?.Invoke(this, currentHP);
     }
 

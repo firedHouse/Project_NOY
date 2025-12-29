@@ -11,6 +11,7 @@ public class RosterModel : MonoBehaviour
     //캐릭터 속성
 
     [SerializeField] RosterPresenter presenter;
+    [SerializeField] PlayerTeamListModel playerTeamListModel;
 
     // 모든 캐릭터 ID 가져오기 
     [SerializeField] private List<string> allID = new List<string>() { "10001", "10002", "10003", "10004", "10005", "10006", "10007", "10008", "10009" };
@@ -51,11 +52,8 @@ public class RosterModel : MonoBehaviour
     }
     private void Start()
     {
-        for (int i = 0; i < 3; i++)
-        {
-            playerTeamID.Add(LobbyManager.Instance.SelectedCharacterIDs[i]);
-        }
 
+        playerTeamID = playerTeamListModel.PlayerTeamID;
         Debug.Log($"[RosterModel] {playerTeamID.Count}");
         //Debug.Log($"[RosterModel] {testTeam.Count}");
         NewListSet();

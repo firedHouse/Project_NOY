@@ -14,12 +14,13 @@ public class PlayerTeamListModel : MonoBehaviour
     [SerializeField] private int[] chracterElement = new int[3];
 
     private List<string> playerTeamID = new List<string>();
+    private bool isJoinSkip = false;
 
     #endregion
 
     #region Property 
+    public bool IsJoinSkip { get { return isJoinSkip; } set { isJoinSkip = value; }  }
     public string[] ChracterID => chracterID;
-
     public string[] ChracterName => chracterName;
     public string[] ChracterIllust => chracterIllust;
     public List<string> PlayerTeamID => playerTeamID;
@@ -39,9 +40,9 @@ public class PlayerTeamListModel : MonoBehaviour
         {
             playerTeamID.Add(LobbyManager.Instance.SelectedCharacterIDs[i]);
         }
-
         Debug.Log($"[RosterModel] {playerTeamID.Count}");
     }
+
 
     //전중후열순으로 기록
     public void UpdateCharacterInfo(int i, string ID)

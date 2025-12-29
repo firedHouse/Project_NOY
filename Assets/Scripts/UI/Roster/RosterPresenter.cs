@@ -10,7 +10,6 @@ public class RosterPresenter : MonoBehaviour
     [SerializeField] RosterView view;
     [SerializeField] RosterModel model;
     [SerializeField] RosterButton button;
-    [SerializeField] GoldModel GoldModel;
     [SerializeField] Roster_ChangeView changeView;
 
     public List<string> beforePlayerTeamID = new List<string>();
@@ -80,12 +79,6 @@ public class RosterPresenter : MonoBehaviour
     public void ClickCharacter(int i)
     {
         beforePlayerTeamID = model.PlayerTeamID;
-        //if(GoldModel.CurrentGold < 1000)
-        //{
-        //    Debug.Log("[RosterButton] 골드가 부족합니다.");
-        //    return;
-        //}
-        Debug.Log("[RosterButton] 골드 연결 X : 영입에 필요한 골드 체크 부분 ");
 
         //추가할 캐릭터 선택
         if (button.ChangePenel.activeSelf == false)
@@ -165,7 +158,7 @@ public class RosterPresenter : MonoBehaviour
     {
         if (IsChangeTeam() == true)
         {
-            //GoldModel.Decrease(1000);
+            EconomyManager.Instance.SpendGold(500);
             Debug.Log($"[RosterButton] 골드 차감됨 -차감 매서드 호출 해야함.");
         }
         else

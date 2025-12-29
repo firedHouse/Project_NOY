@@ -612,7 +612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   CurrentStage: 1
-  CurrentRound: 5
+  CurrentRound: 1
   CurrentMapID: 
   battleManager: {fileID: 388897551}
 --- !u!4 &1925002359
@@ -1324,8 +1324,16 @@ PrefabInstance:
       value: EnemyPos
       objectReference: {fileID: 0}
     - target: {fileID: 3423897619820695160, guid: c56666f7afdb7374eac3e203950c61b0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3423897619820695160, guid: c56666f7afdb7374eac3e203950c61b0, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868465882022351119, guid: c56666f7afdb7374eac3e203950c61b0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.7
       objectReference: {fileID: 0}
     - target: {fileID: 4868465882022351119, guid: c56666f7afdb7374eac3e203950c61b0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1370,6 +1378,10 @@ PrefabInstance:
     - target: {fileID: 6566340103328194401, guid: c56666f7afdb7374eac3e203950c61b0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066228951517667326, guid: c56666f7afdb7374eac3e203950c61b0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.3
       objectReference: {fileID: 0}
     - target: {fileID: 7066228951517667326, guid: c56666f7afdb7374eac3e203950c61b0, type: 3}
       propertyPath: m_LocalPosition.y

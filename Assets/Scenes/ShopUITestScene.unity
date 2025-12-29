@@ -292,6 +292,9 @@ GameObject:
   - component: {fileID: 436749177}
   - component: {fileID: 436749178}
   - component: {fileID: 436749179}
+  - component: {fileID: 436749181}
+  - component: {fileID: 436749180}
+  - component: {fileID: 436749182}
   m_Layer: 0
   m_Name: RewardManager
   m_TagString: Untagged
@@ -399,6 +402,53 @@ MonoBehaviour:
   CurrentRound: 1
   CurrentMapID: 
   battleManager: {fileID: 436749178}
+--- !u!114 &436749180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436749172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baeacd30216e6e14bb5504ccedeafe6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LobbyManager
+  characterDatas: []
+  selectedCharacterIDs:
+  - 
+  - 
+  - 
+  selectedCharacterDatas:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  CharacterListModels: []
+  characterPrefab: {fileID: 0}
+--- !u!114 &436749181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436749172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71456b8e89c5b347af08606988c058b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceManager
+--- !u!114 &436749182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436749172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2752cc20905952c449a7ab5a5d4e2cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UserDataManager
 --- !u!1 &808953611 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 772595099432657691, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}

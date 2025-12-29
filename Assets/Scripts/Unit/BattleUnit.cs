@@ -276,6 +276,16 @@ public abstract class BattleUnit : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    //부활 메서드
+    public void ForceRevive(float reviveHP)
+    {
+        isDead = false;
+
+        currentHP = reviveHP;
+
+        OnHpChanged?.Invoke(this, currentHP);
+    }
+
     //턴 종료 시 호출 (과부하 지속 피해 및 버프, 디버프 지속시간 관리)
     public void OnTurnEnd(IEnumerable<BattleUnit> myTeam)
     {

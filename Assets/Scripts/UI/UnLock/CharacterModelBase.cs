@@ -29,7 +29,8 @@ public class CharacterModelBase : MonoBehaviour
     public Dictionary<int, (int, int)> gradeData = new Dictionary<int, (int, int)>();
 
     public string CharacterID => characterID;
-    public bool IsUnlocked { get => isUnlocked; private set => isUnlocked = value; }
+    public bool IsUnlocked { get => UserDataManager.Instance.IsCharacterUnlocked(characterID);
+    }
     public int Level => level;
     public int Position => position;
     public int Element => element;
@@ -44,7 +45,7 @@ public class CharacterModelBase : MonoBehaviour
     public void Initialize(string id, CharacterData characterData)
     {
         // CharacterData characterData = TableManager.Instance.CharacterTable.Get(id);
-        Debug.Log($"[CharacterListModel] {characterData.unlock}");
+        // Debug.Log($"[CharacterListModel] {characterData.unlock}");
 
         if(characterData is not null)
         {
@@ -88,5 +89,11 @@ public class CharacterModelBase : MonoBehaviour
             }
             // 딕셔너리 10001 캐릭터는 50001, 50002의 의 레벨업 정보를 가지고 있다. 정도의 내용
         }
+    }
+
+    protected void SetIsUnlocked()
+    {
+        isUnlocked = true;
+        UserDataManager.Instance.UnlockCharacter(characterID);
     }
 }

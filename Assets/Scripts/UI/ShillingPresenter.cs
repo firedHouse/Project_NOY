@@ -5,11 +5,15 @@ public class ShillingPresenter : MonoBehaviour
 {
     [Tooltip("실링 뷰")]
     [SerializeField] private ShillingView shillingView;
-    
+
+    private void Awake()
+    {
+        shillingView = GameObject.Find("ShillingUIPanel").GetComponent<ShillingView>();
+    }
+
     private void Start()
     {
         UpdateUI();
-
         // ShillingChanged += UpdateUI;
     }
 

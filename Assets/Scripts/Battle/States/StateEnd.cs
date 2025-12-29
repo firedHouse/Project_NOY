@@ -16,19 +16,22 @@ public class StateEnd : IBattleState
         if (isWin)
         {
             Debug.Log("라운드 승리, 보상 패널 오픈");
-            //if (bm.RewardPanelPrefab != null)
-            //{
-            //    bm.RewardPanelPrefab.SetActive(true);
-            //}
-            //else
-            //{
-            //    Debug.LogError("보상패널 연결안되어있음 BattleManager 체크");
-            //}
+            if (bm.RewardPanelPrefab != null)
+            {
+                bm.RewardPanelPrefab.SetActive(true);
+            }
+            else
+            {
+                Debug.LogError("보상패널 연결안되어있음 BattleManager 체크");
+            }
         }
         else
         {
             Debug.Log("패배!");
-            //resultPanel 출력
+            if (bm.ResultPanelPrefab != null)
+            {
+                bm.ResultPanelPrefab.SetActive(true);
+            }
         }
     }
 

@@ -543,9 +543,9 @@ RectTransform:
   - {fileID: 844271412214903213}
   m_Father: {fileID: 9195646865209162825}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 549.13477, y: -270.23758}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &856934722407185407
@@ -695,9 +695,9 @@ RectTransform:
   - {fileID: 2099027515711693968}
   m_Father: {fileID: 9195646865209162825}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 219.13477, y: -270.23758}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3634358267713163135
@@ -1005,9 +1005,9 @@ RectTransform:
   - {fileID: 3327776820305611811}
   m_Father: {fileID: 9195646865209162825}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 879.13477, y: -270.23758}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3987157957739954798
@@ -1062,13 +1062,14 @@ GameObject:
   - component: {fileID: 3206811006507444708}
   - component: {fileID: 6674094554337604387}
   - component: {fileID: 5732785704267304293}
+  - component: {fileID: 8218495850490645210}
   m_Layer: 5
   m_Name: ChangePositionPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6118695350755278637
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1090,7 +1091,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -17.703}
-  m_SizeDelta: {x: -544.4449, y: -294.5944}
+  m_SizeDelta: {x: -544.4448, y: -294.59436}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2559211357358173183
 CanvasRenderer:
@@ -1162,7 +1163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FormationPresenter
   view: {fileID: 3206811006507444708}
-  model: {fileID: 0}
+  model: {fileID: 8218495850490645210}
   button: {fileID: 5732785704267304293}
 --- !u!114 &5732785704267304293
 MonoBehaviour:
@@ -1180,6 +1181,33 @@ MonoBehaviour:
   playerTeamListModel: {fileID: 0}
   changePositionPanel: {fileID: 4735143300730121207}
   isJoinSkip: 0
+--- !u!114 &8218495850490645210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4735143300730121207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c59c4b4e5e748c46b326d2abad0f5be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FormationModel
+  formationPresenter: {fileID: 6674094554337604387}
+  chracterID:
+  - 
+  - 
+  - 
+  chracterName:
+  - 
+  - 
+  - 
+  chracterIllust:
+  - 
+  - 
+  - 
+  chracterClass: 000000000000000000000000
+  chracterElement: 000000000000000000000000
 --- !u!1 &5129351940894953099
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,8 +9,6 @@ public class ReviveFlowController : MonoBehaviour
     [SerializeField] private GameObject formationPanel;
     [SerializeField] PlayerTeamListModel playerTeamListModel;
 
-    private Character revivedCharacter;
-
     private void Awake()
     {
         if (instance == null)
@@ -22,8 +20,6 @@ public class ReviveFlowController : MonoBehaviour
     //부활 아이템 사용 완료 후 호출
     public void StartRevivalFlow(Character revived)
     {
-        revivedCharacter = revived;
-
         Debug.Log("부활 후 배치 변경 단계 진입");
 
         OpenFormationUI();
@@ -43,35 +39,11 @@ public class ReviveFlowController : MonoBehaviour
     public void ApplyFormationResult()
     {
         var orderedIDs = playerTeamListModel.PlayerTeamID;
-
-        if (orderedIDs == null || orderedIDs.Count == 0)
-        {
-            Debug.LogWarning("팀 ID 리스트가 비어있음");
-            return;
-        }
-
-        var team = BattleManager.Instance.PlayerTeam;
-
-        for (int i = 0; i < orderedIDs.Count; i++)
-        {
-            var targetID = orderedIDs[i];
-            int currentIndex = team.FindIndex(c => c.UnitID == targetID);
-
-            if (currentIndex != -1 && currentIndex != i)
-            {
-                var temp = team[i];
-                team[i] = team[currentIndex];
-                team[currentIndex] = temp;
-            }
-        }
-
-        BattleManager.Instance.SendMessage("UpdateTeamPositions", team, SendMessageOptions.DontRequireReceiver);
-
-        Debug.Log("전투 팀 재배치 완료");
+        BattleManager.Instance.ApplyPlayerFormation(orderedIDs);
 
         formationPanel.SetActive(false);
 
-        revivedCharacter = null;
+        FindObjectOfType<RewardFlowController>()?.ResetFlow();
 
     }
 }

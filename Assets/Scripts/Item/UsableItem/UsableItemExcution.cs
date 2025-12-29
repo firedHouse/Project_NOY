@@ -13,7 +13,7 @@ public static class UsableItemExcution
                 return UsePPPotion(item, skill);
             case UsableItemType.Revive:
                 return UseRevive(item, unit);
-
+            
         }
 
         return false;
@@ -36,18 +36,10 @@ public static class UsableItemExcution
     }
     private static bool UseRevive(RunTimeItem item, BattleUnit unit)
     {
-        if (unit == null || !unit.IsDead)
+        if (unit is not Character character || !unit.IsDead)
         { return false; }
 
-        unit.gameObject.SetActive(true);
-
-        unit.ForceRevive(item.itemData.value);
-
-        if (unit is Character character)
-        {
-            ReviveFlowController.instance?.StartRevivalFlow(character);
-        }
-
+        BattleManager.Instance.ReviveCharacter(character, item.itemData.value);
         return true;
     }
 }

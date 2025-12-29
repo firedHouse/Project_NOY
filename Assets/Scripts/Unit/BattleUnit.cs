@@ -56,6 +56,7 @@ public abstract class BattleUnit : MonoBehaviour
     public event Action<BattleUnit, float> OnHpChanged; //체력 변경 시
     public event Action<BattleUnit, ElementType> OnMarkChanged; //원소표식 변경 시
 
+    //12.30 한솔 유물 관련 public 값
     public float BaseMaxHP { get; private set; }
     public float BaseAttack { get; private set; }
     public float BaseSpeed { get; private set; }

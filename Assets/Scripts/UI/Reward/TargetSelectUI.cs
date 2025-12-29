@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,11 +38,20 @@ public class TargetSelectUI : MonoBehaviour
 
     private void RefreshCharacterButton()
     {
-        var team = BattleManager.Instance.PlayerTeam;
+        List<Character> team;
+
+        if (currentItem is RunTimeItem item && item.useType == UsableItemType.Revive)
+        {
+            team = BattleManager.Instance.DeadPlayerTeam;
+        }
+        else
+        {
+            team = BattleManager.Instance.PlayerTeam;
+        }
 
         for (int i = 0; i < characterButtons.Length; i++)
         {
-
+        
             characterButtons[i].gameObject.SetActive(false);
             characterButtons[i].onClick.RemoveAllListeners();
         }
@@ -78,7 +88,7 @@ public class TargetSelectUI : MonoBehaviour
             CharacterData data = TableManager.Instance.CharacterTable.Get(character.UnitID);
             if(data != null )
             {
-                characterImage[i].sprite = ResourceManager.Instance.LoadSprite(data.characterSkin);
+                characterImage[i].sprite = character.currentSkinSprite;
             }
 
             int index = i;

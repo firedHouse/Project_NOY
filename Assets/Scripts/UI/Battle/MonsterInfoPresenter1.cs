@@ -14,7 +14,7 @@ partial class MonsterInfoPresenter
         //사망 캐릭터 리스트에서 제거
         BattleManager.Instance.OnUnitDead(unit);
         //포지션 업데이트
-        monsterView.UpdatePosition(unit.Position);
+        // monsterView.UpdateMonsterClass(unit.Position);
 
         //UI 비활성화
         monsterMoveView.MonsterInactive(unit.Position);

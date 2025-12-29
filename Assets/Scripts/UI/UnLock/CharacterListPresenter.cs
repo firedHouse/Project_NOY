@@ -13,6 +13,8 @@ public partial class CharacterListPresenter : CharacterPresenterBase
     protected override void Start()
     {
         growthView = gameObject.GetComponent<GrowthView>();
+        shillingPresenter = GameObject.Find("ShillingManager").GetComponent<ShillingPresenter>();
+        
         SetSlotUI();
         unlockButton = growthView.UnlockButton.GetComponent<Button>();
         Debug.Log("슬롯 설정 완료");
@@ -97,7 +99,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
             }
  
             model.Unlock();
-            shillingPresenter.UpdateUI();
+            shillingPresenter?.UpdateUI();
             growthView.ChangeUnlockUIActivation(model.IsUnlocked);
             GrowthButton(model.IsUnlocked);
         }

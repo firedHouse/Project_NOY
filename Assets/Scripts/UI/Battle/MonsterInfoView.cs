@@ -44,8 +44,9 @@ public class MonsterInfoView : MonoBehaviour
 
 
     //position : 전열중열후열
-    public void UpdatePosition(UnitPosition position)
+    public void UpdateMonsterClass(MonsterClass monsterClass)
     {
+        classText.text = monsterClass.ToString();
     }
 
     //탱딜힐

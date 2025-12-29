@@ -6,6 +6,11 @@ public class Character : BattleUnit
 {   //한솔 현재 스킨 받아올 프로퍼티 작성
     public Sprite currentSkinSprite { get; private set; }
 
+    // Jihoo, 12.29
+    [SerializeField] private CharacterPosition characterPosition;
+    public CharacterPosition CharacterPosition => characterPosition;
+    // Jihoo
+    
     //초기화 메서드 필요
     public void InitializeCharacter(string charID, UnitPosition pos)
     {
@@ -71,7 +76,10 @@ public class Character : BattleUnit
             baseData.speed,
             finalAtk,
             pos
-        );
+        );  
+            // Jihoo 12.29
+            // 탱딜힐 포지션 저장
+            characterPosition = (CharacterPosition)baseData.position; 
 
         //스킬 로두
         List<string> skillIDs = new List<string>()

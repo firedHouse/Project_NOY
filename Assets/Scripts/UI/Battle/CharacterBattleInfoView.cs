@@ -22,11 +22,11 @@ public partial class CharacterBattleInfoView : MonoBehaviour
     //추후에 이미지로 변경
 
     [Header("표식1")]
-    [SerializeField] Text currentMark;
-    //[SerializeField] Image currentMark;
+    [SerializeField] Text firstMark;
+    //[SerializeField] Image firstMark;
     [Header("표식2")]
-    [SerializeField] Text attackMark;
-    //[SerializeField] Image attackMark;
+    [SerializeField] Text secondMark;
+    //[SerializeField] Image secondMark;
 
     private List<Skill> characterskills;
 
@@ -42,12 +42,6 @@ public partial class CharacterBattleInfoView : MonoBehaviour
     {
         characterElementText.text = text;
     }
-
-    //표식
-    //public void UpdateElementMark(string text)
-    //{
-    //    mark1.text = text;
-    //}
 
     public void SetMaxHP(float maxHP)
     {
@@ -66,8 +60,6 @@ public partial class CharacterBattleInfoView : MonoBehaviour
     {
         characterPositionText.text = characterPosition.ToString();
     }
-
-
 
 
     public void UpdateSpeed(int speed)

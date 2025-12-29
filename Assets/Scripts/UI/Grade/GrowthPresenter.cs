@@ -5,7 +5,6 @@ using UnityEngine;
 public partial class CharacterListPresenter : CharacterPresenterBase
 {
     [SerializeField] protected GrowthView growthView;
-    [SerializeField] private ShillingModel shillingModel;
 
     //성장 버튼 클릭 활성화 조건 : 캐릭터 해금
     //버튼 클릭 시 : 실링 확인

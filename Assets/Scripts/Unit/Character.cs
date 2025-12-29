@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor.Overlays;
 using UnityEngine;
 
 //아군 유닛 뼈대 스크립트
@@ -44,19 +43,31 @@ public class Character : BattleUnit
                 Debug.Log($"성장 반영 완료(HP:{finalHP}, ATK:{finalAtk})");
             }
         }
+        //12.29 스킨ID로 진짜 파일명 찾기
+        SkinData skinData = TableManager.Instance.SkinTable.Get(finalSkinID);
 
-        //성장 반영하여 유닛 초기화
-        InitializeBase(
-            charID,
-            baseData.characterName,
-            finalHP,
-            baseData.speed,
-            finalAtk,
-            pos
-        );
-
-        //리소스 로드
-        //finalSkinID 사용
+        if (skinData != null)
+        {
+            //csv 컬럼명
+            string spriteFileName = skinData.skinSprite;
+            //파일명 전달하고 이미지 로드
+            Sprite finalSprite = ResourceManager.Instance.LoadSprite(spriteFileName);
+            //스프라이트 반영
+            GetComponent<SpriteRenderer>().sprite = finalSprite;
+        }
+        else
+        {
+            Debug.LogError($"스킨 데이터를 찾을 수 없읆,,, {finalSkinID}");
+        }
+            //성장 반영하여 유닛 초기화
+            InitializeBase(
+                charID,
+                baseData.characterName,
+                finalHP,
+                baseData.speed,
+                finalAtk,
+                pos
+            );
 
         //스킬 로두
         List<string> skillIDs = new List<string>()

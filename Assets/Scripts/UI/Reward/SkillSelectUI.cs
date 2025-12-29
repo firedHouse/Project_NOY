@@ -27,10 +27,13 @@ public class SkillSelectUI : MonoBehaviour
         //UI 표시 로직 추가
         gameObject.SetActive(true);
         //선택된 캐릭터 이미지
-        CharacterData data = TableManager.Instance.CharacterTable.Get(owner.UnitID);
-        if(data != null )
+        if (owner is Character character)
         {
-            selectedCharacterImage.sprite = ResourceManager.Instance.LoadSprite(data.characterSkin);
+            selectedCharacterImage.sprite = character.currentSkinSprite;
+        }
+        else
+        {
+            selectedCharacterImage.sprite = null;
         }
 
         RefreshSkillButtons();

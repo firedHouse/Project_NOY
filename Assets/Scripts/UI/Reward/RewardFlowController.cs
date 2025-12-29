@@ -13,6 +13,7 @@ public class RewardFlowController : MonoBehaviour
     private bool freeItemUsed = false;
     //읽기 전용 프로퍼티로 제작
     public bool IsLocked => isLocked;
+    public bool FreeItemUsed => freeItemUsed;
 
     //유료 아이템을 선택한 경우 골드 차감 후 타겟 선택 오픈 -> 골드 차감 타이밍 조금 미뤄야함.
     public void OnPaidItemSelected(object data)
@@ -71,10 +72,12 @@ public class RewardFlowController : MonoBehaviour
                 {
                     EconomyManager.Instance.SpendGold(item.itemData.itemCost);
                 }
-                else
+                else if (item.useType == UsableItemType.Revive)
                 {
-                    freeItemUsed = true;
+                    return;
                 }
+                else
+                { freeItemUsed = true; }
             }
         }
         else if (currentItem is RunTimeRelic relic)
@@ -99,7 +102,7 @@ public class RewardFlowController : MonoBehaviour
         ResetFlow();
     }
 
-    private void ResetFlow()
+    public void ResetFlow()
     {
         currentItem = null;
         isLocked = false;

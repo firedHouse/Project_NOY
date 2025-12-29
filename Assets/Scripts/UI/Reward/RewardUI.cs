@@ -15,6 +15,7 @@ public class RewardUI : MonoBehaviour
 
     [SerializeField] private RewardFlowController flowController;
     [SerializeField] private RewardManager rewardManager;
+    [SerializeField] private RewardSkipConfirmUI skipConfirmUI;
 
     [SerializeField] private Text currentGold;
 
@@ -106,9 +107,14 @@ public class RewardUI : MonoBehaviour
 
     public void OnClickNextStage()
     {
+        if (!flowController.FreeItemUsed)
+        { skipConfirmUI.Open(this); return; }
+    }
+
+    public void ProceedNextStage()
+    {
         gameObject.SetActive(false);
-        Debug.Log("UI 닫힘");
-        Debug.Log("스테이지 넘어감");
+        flowController.ResetFreeItemState();
         StageManager.Instance.OnRewardProcessCompleted();
     }
 }

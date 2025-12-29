@@ -35,8 +35,8 @@ public class BattleManager : MonoBehaviour
         {
             PlayerTeam = new List<Character>();
         }
-
-        if(RewardPanel == null)
+        //12.30 RewardUI 붙잡기
+        if (RewardPanel == null)
         {
             RewardPanel = FindObjectOfType<RewardUI>(true);
         }
@@ -46,6 +46,7 @@ public class BattleManager : MonoBehaviour
 
     //데이터 저장소 (State 접근용 Public) 
     public List<Character> PlayerTeam { get; private set; } = new List<Character>();
+    public List<Character> DeadPlayerTeam { get; private set; } = new List<Character>(); // 12.30 한솔 부활 메서드에 필요
     public List<Monster> EnemyTeam { get; private set; } = new List<Monster>();
 
     //순서가 정렬된? 최종 실행 큐 
@@ -187,12 +188,12 @@ public class BattleManager : MonoBehaviour
     public void OnUnitDead(BattleUnit deadUnit)
     {
         bool isPlayer = deadUnit is Character;
-
-        if (isPlayer)
+        //12.30 한솔 부활 메서드에 필요
+        if (deadUnit is Character character)
         {
-            if (PlayerTeam.Contains((Character)deadUnit))
+            if (PlayerTeam.Remove((Character)deadUnit))
             {
-                PlayerTeam.Remove((Character)deadUnit);
+                DeadPlayerTeam.Add((Character)deadUnit);
                 Debug.Log($"아군 {deadUnit.UnitName} 사망");
                 //당기기
                 UpdateTeamPositions(PlayerTeam, PlayerSpawnPoints);
@@ -417,5 +418,44 @@ public class BattleManager : MonoBehaviour
         }
 
         RewardPanel.Open(hasDeadPlayer);
+    }
+    // 25.12.30 한솔 부활 메커니즘
+    public void ReviveCharacter(Character character, float reviveHP)
+    {
+        if (!DeadPlayerTeam.Contains(character))
+        {
+            Debug.LogWarning("DeadPlayerTeam에 없는 캐릭터 부활 시도");
+            return;
+        }
+
+        DeadPlayerTeam.Remove(character);
+
+        //위치 확정 X
+        PlayerTeam.Add(character);
+
+        character.gameObject.SetActive(true);
+        character.ForceRevive(reviveHP);
+
+        Debug.Log($"[BattleManager] {character.UnitName} 부활 완료");
+
+        ReviveFlowController.instance?.StartRevivalFlow(character);
+    }
+
+    public void ApplyPlayerFormation(List<string> orderedIDs)
+    {
+        List<Character> neworder = new();
+
+        foreach (var id in orderedIDs)
+        {
+            var character = PlayerTeam.FirstOrDefault(c => c.UnitID == id);
+            if (character != null)
+            {
+                neworder.Add(character);
+            }
+        }
+        PlayerTeam = neworder;
+        UpdateTeamPositions(PlayerTeam, PlayerSpawnPoints);
+
+        Debug.Log("[BattleManager] 플레이어 팀 재배치 완료");
     }
 }

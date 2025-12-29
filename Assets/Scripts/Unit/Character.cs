@@ -3,7 +3,8 @@ using UnityEngine;
 
 //아군 유닛 뼈대 스크립트
 public class Character : BattleUnit
-{
+{   //한솔 현재 스킨 받아올 프로퍼티 작성
+    public Sprite currentSkinSprite { get; private set; }
 
     // Jihoo, 12.29
     [SerializeField] private CharacterPosition characterPosition;
@@ -60,21 +61,22 @@ public class Character : BattleUnit
             Sprite finalSprite = ResourceManager.Instance.LoadSprite(spriteFileName);
             //스프라이트 반영
             GetComponent<SpriteRenderer>().sprite = finalSprite;
+            //12.30 한솔 스킨 값 받아오기 메서드 사용
+            ApplySkin(skinData);
         }
         else
         {
             Debug.LogError($"스킨 데이터를 찾을 수 없읆,,, {finalSkinID}");
         }
-            //성장 반영하여 유닛 초기화
-            InitializeBase(
-                charID,
-                baseData.characterName,
-                finalHP,
-                baseData.speed,
-                finalAtk,
-                pos
-            );
-            
+        //성장 반영하여 유닛 초기화
+        InitializeBase(
+            charID,
+            baseData.characterName,
+            finalHP,
+            baseData.speed,
+            finalAtk,
+            pos
+        );  
             // Jihoo 12.29
             // 탱딜힐 포지션 저장
             characterPosition = (CharacterPosition)baseData.position; 
@@ -111,5 +113,24 @@ public class Character : BattleUnit
 
         }
     }
+    //12.30 한솔 스킨 값 가져오기
+    public void ApplySkin(SkinData skinData)
+    {
+        if (skinData == null || skinData.skinSprite == null)
+        {
+            Debug.Log("스킨 없음 !");
+            return;
+        }
 
+        Sprite sprite = ResourceManager.Instance.LoadSprite(skinData.skinSprite);
+
+        if (sprite == null)
+        {
+            Debug.LogWarning($"{unitName} 스킨 Sprite 로드 실패 : {skinData.skinSprite}");
+        }
+
+        currentSkinSprite = sprite;
+
+        GetComponent<SpriteRenderer>().sprite = currentSkinSprite;
+    }
 }

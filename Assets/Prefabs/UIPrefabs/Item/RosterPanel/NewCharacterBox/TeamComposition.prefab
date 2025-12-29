@@ -145,6 +145,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChangePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 4050746399910497323, guid: 8becae3c994f53a45af2dbd2a4d2f9ab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4456184461624709953, guid: 8becae3c994f53a45af2dbd2a4d2f9ab, type: 3}
       propertyPath: presenter
       value: 
@@ -282,6 +286,10 @@ PrefabInstance:
     - target: {fileID: 3643836699863663790, guid: 711896e00c7ba29479585886a40d6467, type: 3}
       propertyPath: m_Name
       value: SkipCautionPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3643836699863663790, guid: 711896e00c7ba29479585886a40d6467, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4169735343516926632, guid: 711896e00c7ba29479585886a40d6467, type: 3}
       propertyPath: m_Pivot.x
@@ -485,6 +493,10 @@ PrefabInstance:
     - target: {fileID: 5871761037211801652, guid: afbbae7349dedc64da01db8b7712fc1b, type: 3}
       propertyPath: m_Name
       value: RosterPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871761037211801652, guid: afbbae7349dedc64da01db8b7712fc1b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6020586833433404087, guid: afbbae7349dedc64da01db8b7712fc1b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

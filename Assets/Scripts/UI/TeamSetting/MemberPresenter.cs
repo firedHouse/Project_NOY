@@ -11,27 +11,28 @@ public class MemberPresenter : CharacterPresenterBase
     [SerializeField] protected GrowthSkillView skillView;
     [SerializeField] private TeamSelectView selectView;
     
-    // private CharacterListModel[] ids = new CharacterListModel[3];
     // 테스트용 팀 멤버 id 배열
-    // private string[] ids = new string[] {"10002", "10003", "10008"};
     private string[] ids = new string[3];
     private CharacterListModel[] teamMembers = new CharacterListModel[3];
-
+    private SceneLoader sceneLoader;
+    public string[] Ids => ids;
     public CharacterListModel[] TeamMembers => teamMembers;
     
     protected override void Start()
     {
         skillView = gameObject.GetComponent<GrowthSkillView>();
         selectView = GameObject.Find("SeletedTeamPanel").GetComponent<TeamSelectView>();
+        sceneLoader = GameObject.Find("SceneLoader").GetComponent<SceneLoader>();
         SetSlotUI();
         LoadCharacterList();
         skillView.SetDetailView(false);
         selectView.SetAllButtonInteractable(false);
         foreach (var slot in selectView.Slots)
         {
-            Debug.Log($"슬롯 설정");
+            Debug.Log($"[MemberPresenter] 슬롯 설정");
             SetButtonEvent(slot, SetTeamPosition);   
         }
+        Debug.Log($"[MemberPresenter] 슬롯 설정 실패");
     }
 
     // 캐릭터 리스트 가져오기
@@ -81,7 +82,7 @@ public class MemberPresenter : CharacterPresenterBase
     }
 
     /// <summary>
-    /// 이름, 해금 여부?, 코드네임, 속성, 대사, 인포, 업데이트
+    /// 이름, 해금 여부, 코드네임, 속성, 대사, 인포, 업데이트
     /// </summary>
     public override void UpdateMainInfo(CharacterListModel character)
     {
@@ -148,7 +149,10 @@ public class MemberPresenter : CharacterPresenterBase
         Debug.Log($"[MemberPresenter] {ids[0]} - {ids[1]} - {ids[2]}");
         Debug.Log($"[MemberPresenter] {teamMembers[0].CharacterName} - {teamMembers[1].CharacterName} - {teamMembers[2].CharacterName}");
         
+        // 로비 매니저에 구성된 팀원 저장
         LobbyManager.Instance.SetTeam(ids);
         LobbyManager.Instance.SetTeamData(teamMembers);
+        // 씬 전환
+        sceneLoader.LoadScene();
     }
 }

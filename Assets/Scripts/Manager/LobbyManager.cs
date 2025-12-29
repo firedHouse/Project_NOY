@@ -51,7 +51,7 @@ public class LobbyManager : Singleton<LobbyManager>
             {
                 continue;
             }
-            Debug.Log($"[LobbyManager] {CharacterListModels[i].CharacterName} 로드");
+            // Debug.Log($"[LobbyManager] {CharacterListModels[i].CharacterName} 로드");
 
         }
         Debug.Log($"[LobbyManager] 캐릭터 데이터 목록 생성완료");

@@ -18,24 +18,63 @@ public class MemberPresenter : CharacterPresenterBase
     
     protected override void Start()
     {
+        Debug.Log($"[MemberPresenter] start");
         skillView = gameObject.GetComponent<GrowthSkillView>();
         selectView = GameObject.Find("SeletedTeamPanel").GetComponent<TeamSelectView>();
         SetSlotUI();
         LoadCharacterList();
         skillView.SetDetailView(false);
         selectView.SetAllButtonInteractable(false);
-        foreach (var slot in selectView.Slots)
+        SetSelectTeamUI();
+        // if (selectView.Slots != null)
+        // {
+        //     foreach (var slot in selectView.Slots)
+        //     {
+        //         if (slot != null)
+        //         {
+        //         Debug.Log($"[MemberPresenter] 슬롯 설정");
+        //         SetButtonEvent(slot, SetTeamPosition);   
+        //         }
+        //         else
+        //         {
+        //             Debug.Log($"[MemberPresenter] 슬롯 설정 실패");
+        //         }
+        //
+        //         Debug.Log($"[MemberPresenter] 슬롯 설정 끝");
+        //     }
+        // }
+        // else
+        // {
+        //     Debug.Log($"[MemberPresenter] 슬롯 없어서 슬롯 설정 실패");
+        // }
+    }
+
+    private void SetSelectTeamUI()
+    {
+        Debug.Log($"[MemberPresenter] 슬롯 설정 시작");
+        
+        if (selectView.Slots.Length != 0)
         {
-            if (slot != null)
+            foreach (var slot in selectView.Slots)
             {
-            Debug.Log($"[MemberPresenter] 슬롯 설정");
-            SetButtonEvent(slot, SetTeamPosition);   
+                if (slot != null)
+                {
+                    Debug.Log($"[MemberPresenter] 각 슬롯 설정");
+                    SetButtonEvent(slot, SetTeamPosition);
+                }
+                else
+                {
+                    Debug.Log($"[MemberPresenter] 슬롯 설정 실패");
+                }
+
             }
-            else
-            {
-                Debug.Log($"[MemberPresenter] 슬롯 설정 실패");
-            }
+            Debug.Log($"[MemberPresenter] 슬롯 설정 끝");
         }
+        else
+        {
+            Debug.Log($"[MemberPresenter] 슬롯 없어서 슬롯 설정 실패");
+        }
+        Debug.Log($"[MemberPresenter] 아무튼 슬롯 설정 끝냄");
     }
 
     // 캐릭터 리스트 가져오기
@@ -98,6 +137,8 @@ public class MemberPresenter : CharacterPresenterBase
     // 현재 모델을 클릭된 열에 넣어준다
     public void SetTeamPosition(MemberSlot selectedSlot)
     {
+        Debug.Log($"[MemberPresenter] {selectedSlot.MemberPosition} 슬롯 클릭됨");
+        
         int idx = Array.IndexOf(teamMembers, model);
         // if 다른 배열 위치에 저장되어 있었다면 해당 포지션의 slotModel을 null로 변경해준다
         if (idx != -1)
@@ -105,7 +146,7 @@ public class MemberPresenter : CharacterPresenterBase
             teamMembers[idx] = null;
             selectView.slots[idx].SlotModel = null;
             selectView.slots[idx].selectedCharacterName.text = "";
-            Debug.Log($"위치 중복으로 이동됨 {teamMembers[idx]} {selectView.slots[idx].SlotModel}");
+            Debug.Log($"[MemberPresenter] 위치 중복으로 이동됨 {teamMembers[idx]} {selectView.slots[idx].SlotModel}");
         }
         Debug.Log($"[MemberPresenter] {selectedSlot.transform.parent.name} {model.CharacterName}");
         selectedSlot.SlotModel = model;

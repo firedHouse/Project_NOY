@@ -37,8 +37,19 @@ public class Monster : BattleUnit
             pos
             );
 
-        //리소스 로드 data.monsterResource 등
+        //리소스 로드
+        string spriteName = data.monsterSprite;
+        Sprite monsterSprite = ResourceManager.Instance.LoadSprite(spriteName);
 
+        if (monsterSprite != null)
+        {
+            //등록
+            GetComponent<SpriteRenderer>().sprite = monsterSprite;
+        }
+        else
+        {
+            Debug.LogError($"스킨 데이터를 찾을 수 없읆,,, {monsterSprite}");
+        }
         //스킬 로드
         List<string> skillIDs = new List<string>
         {

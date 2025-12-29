@@ -26,8 +26,12 @@ public class SkillSelectUI : MonoBehaviour
         onCancel = cancel;
         //UI 표시 로직 추가
         gameObject.SetActive(true);
-
-        // selectedCharacterImage.sprite = Resources.Load<Sprite>(this.owner.이미지);
+        //선택된 캐릭터 이미지
+        CharacterData data = TableManager.Instance.CharacterTable.Get(owner.UnitID);
+        if(data != null )
+        {
+            selectedCharacterImage.sprite = ResourceManager.Instance.LoadSprite(data.characterSkin);
+        }
 
         RefreshSkillButtons();
 
@@ -52,7 +56,7 @@ public class SkillSelectUI : MonoBehaviour
             var skill = skills[i];
             skillButtons[i].gameObject.SetActive(true);
 
-            skillImage[i].sprite = Resources.Load<Sprite>(skill.Data.skillIcon);
+            skillImage[i].sprite = ResourceManager.Instance.LoadSprite(skill.Data.skillIcon);
 
             ppText[i].text = $"PP{skill.CurrentPP} / {skill.Data.skillPP}";
 
@@ -71,13 +75,17 @@ public class SkillSelectUI : MonoBehaviour
     public void OnSelectSkill(Skill skill)
     {
         onSelect?.Invoke(owner, skill);
-        Close();
+        Exit();
     }
 
     public void Close()
     {
         gameObject.SetActive(false);
         onCancel?.Invoke();
+    }
+    private void Exit()
+    {
+        gameObject.SetActive(false);
     }
 
 }

@@ -36,6 +36,7 @@ public class RewardUI : MonoBehaviour
 
     public void Open(bool hasDeadTeam)
     {
+
         gameObject.SetActive(true);
         Debug.Log("보상 UI 열렸음 !");
         var freeItems = rewardManager.CreateFreeItems();
@@ -47,6 +48,7 @@ public class RewardUI : MonoBehaviour
 
         SetUpFree(freeItems);
         SetUpPaid(paidItems);
+
     }
     private void ResetSlots()
     {
@@ -64,9 +66,10 @@ public class RewardUI : MonoBehaviour
         {
             var item = items[i];
 
+            Sprite icon = ResourceManager.Instance.LoadSprite(item.itemData.itemImage);
+
             paidSlots[i].SetItem(item, item.itemData.itemCost, item.itemData.itemName,
-                Resources.Load<Sprite>(item.itemData.itemImage),
-                flowController.OnPaidItemSelected);
+                icon, flowController.OnPaidItemSelected);
         }
     }
     // 무료 아이템 슬롯에 아이템 세팅
@@ -77,21 +80,23 @@ public class RewardUI : MonoBehaviour
         {
             if (items[i] is RunTimeItem item)
             {
+                Sprite icon = ResourceManager.Instance.LoadSprite(item.itemData.itemImage);
+
                 freeSlots[i].SetItem(item, 0, item.itemData.itemName,
-                    Resources.Load<Sprite>(item.itemData.itemImage),
-                    flowController.OnFreeItemSelected);
+                    icon, flowController.OnFreeItemSelected);
             }
             else if (items[i] is RunTimeRelic relic)
             {
+                Sprite icon = ResourceManager.Instance.LoadSprite(relic.itemData.itemEquipImage);
+
                 freeSlots[i].SetItem(relic, 0, relic.itemData.itemEquipName,
-                    Resources.Load<Sprite>(relic.itemData.itemEquipImage),
-                    flowController.OnFreeItemSelected);
+                    icon, flowController.OnFreeItemSelected);
             }
         }
     }
     private void UpdateStageInfo()
     {
-        if (StageManager.Instance != null)
+        if (StageManager.Instance == null)
         {
             stageInfoText.text = "";
             return;

@@ -38,7 +38,8 @@ public class RosterButton : MonoBehaviour
 
     private void Start()
     {
-        isitemChoice = rewardFlowController.IsLocked;
+        Debug.Log("[RosterButton] 'rewardFlowController.IsLocked' 프로퍼티 만들어지면 주석 처리 해제");
+        //isitemChoice = rewardFlowController.IsLocked;
     }
 
 

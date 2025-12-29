@@ -89,6 +89,11 @@ public class StageManager : MonoBehaviour
             return;
         }
 
+        //디버깅
+        for (int i = 0; i < selectedMonsters.Count; i++)
+        {
+            Debug.Log($"[{i}번 몬스터] 이름: {selectedMonsters[i].monsterName}, 직업: {selectedMonsters[i].monsterClass}");
+        }
         //5라운드는 보스전 플래그 true
         bool isBoss = (CurrentRound == 5);
 

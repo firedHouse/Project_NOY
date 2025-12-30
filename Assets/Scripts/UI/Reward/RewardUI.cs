@@ -50,6 +50,11 @@ public class RewardUI : MonoBehaviour
         UpdateButton(isBossRound);
     }
 
+    public void Update()
+    {
+        currentGold.text = EconomyManager.Instance.RunGold.ToString();
+    }
+
     private void ResetSlots()
     {
         foreach (var slot in paidSlots)
@@ -108,6 +113,7 @@ public class RewardUI : MonoBehaviour
             descriptionText.text = data.itemEquipTextUI;
         }
     }
+
     public void HideDescription()
     {
         descriptionText.text = "";

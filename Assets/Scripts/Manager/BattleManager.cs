@@ -451,24 +451,23 @@ public class BattleManager : MonoBehaviour
         character.gameObject.SetActive(true);
         character.ForceRevive(reviveHP);
 
-        Debug.Log($"[BattleManager] {character.UnitName} 부활 완료");
+        FormationUI.Instance.Open(character);
 
-        ReviveFlowController.instance?.StartRevivalFlow(character);
     }
 
     public void ApplyPlayerFormation(List<string> orderedIDs)
     {
-        List<Character> neworder = new();
+        List<Character> newOrder = new List<Character>();
 
         foreach (var id in orderedIDs)
         {
             var character = PlayerTeam.FirstOrDefault(c => c.UnitID == id);
             if (character != null)
             {
-                neworder.Add(character);
+                newOrder.Add(character);
             }
         }
-        PlayerTeam = neworder;
+        PlayerTeam = newOrder;
         UpdateTeamPositions(PlayerTeam, PlayerSpawnPoints);
 
         Debug.Log("[BattleManager] 플레이어 팀 재배치 완료");

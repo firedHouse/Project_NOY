@@ -13,7 +13,6 @@ public class FormationPresenter : MonoBehaviour
     private string secondCharacter;
     private int firstSlotNum;
 
-
     public void OnEnable()
     {
         firstCharacter = null;

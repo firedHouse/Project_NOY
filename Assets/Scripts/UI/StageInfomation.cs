@@ -18,12 +18,6 @@ public class StageInfomation : MonoBehaviour
             return;
         }
 
-        if (StageManager.Instance.CurrentRound == 5)
-        {
-            stageInfoText.text += "(Boss)";
-            return;
-        }
-
         int stage = StageManager.Instance.CurrentStage;
         int round = StageManager.Instance.CurrentRound;
 

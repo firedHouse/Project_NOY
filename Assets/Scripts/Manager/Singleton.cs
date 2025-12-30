@@ -35,6 +35,10 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             _instance = this as T;
             DontDestroyOnLoad(gameObject);
         }
+        else if (_instance == this)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
         //이미 인스턴스 있고, 서로 다른 경우 (중복)
         //원본 아니니까(이미 있으니까) 파괴
         else

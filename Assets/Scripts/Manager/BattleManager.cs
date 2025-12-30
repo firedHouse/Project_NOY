@@ -286,7 +286,7 @@ public class BattleManager : MonoBehaviour
 
     public void SetupBattle(List<MonsterData> monsters, bool isBossRound, float multiplier = 1.0f)
     {
-        SpawnPlayerTeam();     
+        SpawnPlayerTeam();
         //적군 소환(여기로 로직 이동) 
         SpawnEnemyTeam(monsters, isBossRound, multiplier);
 
@@ -388,18 +388,21 @@ public class BattleManager : MonoBehaviour
             else
             {
                 //케이스 2 = 명단엔 있는데 필드에 없음 -> 새로 소환 (풀피)
-                if (i < PlayerSpawnPoints.Count)
+                bool isDead = DeadPlayerTeam.Exists(d => d.UnitID == targetID);
+                if (isDead)
                 {
-                    CharacterData cData = TableManager.Instance.CharacterTable.Get(targetID);
-                    if (cData != null)
-                    {
-                        GameObject go = Instantiate(characterPrefab, PlayerSpawnPoints[i].position, Quaternion.identity);
-                        Character newChar = go.GetComponent<Character>();
+                    continue;
+                }
 
-                        newChar.InitializeCharacter(targetID, (UnitPosition)i);
-                        newTeamList.Add(newChar);
-                        Debug.Log($"[팀갱신] {cData.characterName} 신규 소환");
-                    }
+                CharacterData cData = TableManager.Instance.CharacterTable.Get(targetID);
+                if (cData != null)
+                {
+                    GameObject go = Instantiate(characterPrefab, PlayerSpawnPoints[i].position, Quaternion.identity);
+                    Character newChar = go.GetComponent<Character>();
+
+                    newChar.InitializeCharacter(targetID, (UnitPosition)i);
+                    newTeamList.Add(newChar);
+                    Debug.Log($"[팀갱신] {cData.characterName} 신규 소환");
                 }
             }
         }

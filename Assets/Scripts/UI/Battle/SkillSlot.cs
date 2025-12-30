@@ -10,6 +10,12 @@ public class SkillSlot : MonoBehaviour
 
     private Skill mySkill;
 
+    public Skill MySkill
+    {
+        get => mySkill;
+        set => mySkill = value;
+    }
+
     //초기화
     //스킬 정보랑, 클릭시 실행될 함수 받아옴
     public void Setup(Skill skill, UnityAction<Skill> onClickCallback)

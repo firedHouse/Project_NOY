@@ -5,6 +5,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
 {
     [Header("모델, 런타임 중 자동 추가")]
     [SerializeField] private Monster monsterModel;
+    [SerializeField] private MonsterInfoModel infoModel;
 
     [Header("몬스터 CharacterBox Panel, 전중후열에 맞게 각각 추가")]
     [SerializeField] private MonsterInfoView monsterView;
@@ -72,8 +73,8 @@ partial class MonsterInfoPresenter : MonoBehaviour
 
             //고유속성
             //ElementUI 사용
-            //monsterView.UpdateElementClass(monsterModel.ElementUI.ToString());
-            //monsterView.UpdateCalss(monsterModel.Role);
+            // monsterView.UpdateElementClass(monsterModel.MonsterElementUI);
+            // monsterView.UpdateCalss(monsterModel.Role);
         }
         //Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
 

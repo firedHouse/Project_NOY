@@ -613,8 +613,7 @@ MonoBehaviour:
   - {fileID: 1356190263594692791}
   model: {fileID: 0}
   growthView: {fileID: 0}
-  shillingModel: {fileID: 0}
-  Shilling: 0
+  shillingPresenter: {fileID: 0}
 --- !u!114 &4227284928091896290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,13 +627,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrowthCharacterInfoView
   presenter: {fileID: 0}
-  elementImage: {fileID: 6559758113313204713}
+  elementImage: {fileID: 0}
   charName: {fileID: 2752155856623491827}
   codeName: {fileID: 7095131214973050257}
   starImage:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  yellowStar: {fileID: 0}
+  grayStar: {fileID: 0}
   illust: {fileID: 0}
   notEnoughShilingPanel: {fileID: 0}
   notEnoughShilingText: {fileID: 0}
@@ -2329,6 +2330,14 @@ PrefabInstance:
     - target: {fileID: 481880539551086435, guid: 4627c23c9d54f7741a84f7bcd96ddd24, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998634257763880743, guid: 4627c23c9d54f7741a84f7bcd96ddd24, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -112
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998634257763880743, guid: 4627c23c9d54f7741a84f7bcd96ddd24, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -23
       objectReference: {fileID: 0}
     - target: {fileID: 7863644069090789818, guid: 4627c23c9d54f7741a84f7bcd96ddd24, type: 3}
       propertyPath: m_Name

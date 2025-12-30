@@ -61,6 +61,9 @@ partial class MonsterInfoPresenter : MonoBehaviour
             monsterView.SetMaxHP(monsterModel.MaxHP);
             monsterView.UpdateMonsterName(monsterModel.UnitName);
             monsterView.UpdateSpeed(monsterModel.Speed);
+            GetElementUI(monsterModel.UnitID);
+
+
 
             monsterView.UpdateMonsterClass(monsterModel.MonsterPosition);
             monsterView.InitMark();
@@ -82,6 +85,14 @@ partial class MonsterInfoPresenter : MonoBehaviour
     private void HandleDeath(BattleUnit unit)
     {
         PosReset(unit);
+    }
+
+    private void GetElementUI(string ID)
+    {
+        int monster = TableManager.Instance.MonsterTable.Get(ID).elementUI;
+        ElementType elementType = (ElementType)monster;
+
+        monsterView.UpdateElement(elementType.ToString());
     }
 
     public void Mark(BattleUnit unit, ElementType i)

@@ -34,13 +34,11 @@ partial class MonsterInfoPresenter : MonoBehaviour
         BattleManager.Instance.OnBattleSetted += DeathMonster;
         skillProcesser.OnMarkChanged += Mark;
         skillProcesser.OnMarkReaction += SMark;
-
+    }
 
         void Initialize()
         {
-            monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
-
-            monsterModel.OnDeath += HandleDeath;
+            //monsterModel.OnDeath += HandleDeath;
             if (BattleManager.Instance.EnemyTeam != null)
             {
                 monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
@@ -76,23 +74,6 @@ partial class MonsterInfoPresenter : MonoBehaviour
         }
         //Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
 
-        monsterModel.OnHpChanged += HandleHpChanged;
-        //monsterView.UpdatePower(monsterModel.Monster.monsterAttack);
-
-        monsterView.SetMaxHP(monsterModel.MaxHP);
-        monsterView.UpdateMonsterName(monsterModel.UnitName);
-        monsterView.UpdateSpeed(monsterModel.Speed);
-
-        monsterView.UpdateMonsterClass(monsterModel.MonsterPosition);
-
-
-
-        //고유속성
-        //ElementUI 사용
-        //monsterView.UpdateElementClass(monsterModel.ElementUI.ToString());
-        //monsterView.UpdateCalss(monsterModel.Role);
-    }
-
     private void HandleHpChanged(BattleUnit monster, float hpChangedAmount)
     {
         monsterView.UpdateHPBar(hpChangedAmount);
@@ -125,3 +106,4 @@ partial class MonsterInfoPresenter : MonoBehaviour
 
     }
 }
+

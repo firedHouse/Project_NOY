@@ -76,3 +76,9 @@ crashlytics-build.properties
 
 [Aa]ssets/Hyeju_Test/TestImage/
 
+
+[Aa]ssets/Puzzle Games Vol 1/**
+![Aa]ssets/Puzzle Games Vol 1/**/*.meta
+[Aa]ssets/SPUM/**
+![Aa]ssets/SPUM/**/*.meta
+

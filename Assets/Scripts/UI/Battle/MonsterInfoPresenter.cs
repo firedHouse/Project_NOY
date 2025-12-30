@@ -10,16 +10,13 @@ partial class MonsterInfoPresenter : MonoBehaviour
     [Header("몬스터 CharacterBox Panel, 전중후열에 맞게 각각 추가")]
     [SerializeField] private MonsterInfoView monsterView;
 
-    [Header("MonsterBoxGroupPanel 추가")]
-    [SerializeField] private MonsterPositionView monsterMoveView;
-
     //private MonsterData monsterData;
     [SerializeField] private UnitPosition position;
 
     [SerializeField] private SkillProcesser skillProcesser;
 
     #region position에서 사용
-    private BattleUnit[] _monster = new BattleUnit[3];
+    private BattleUnit[] _monster;
     [SerializeField] private GameObject[] _basePos = new GameObject[3];
     private Dictionary<BattleUnit, int> monsterBoxPos = new Dictionary<BattleUnit, int>();
 
@@ -32,7 +29,6 @@ partial class MonsterInfoPresenter : MonoBehaviour
     {
         //Debug.Log("[MonsterInfoPresenter] Awake");
         BattleManager.Instance.OnBattleSetted += Initialize;
-        BattleManager.Instance.OnBattleSetted += DeathMonster;
         skillProcesser.OnMarkChanged += Mark;
         skillProcesser.OnMarkReaction += SMark;
     }
@@ -69,7 +65,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
             monsterView.UpdateMonsterClass(monsterModel.MonsterPosition);
             monsterView.InitMark();
 
-
+            monsterView.gameObject.SetActive(true);
 
             //고유속성
             //ElementUI 사용

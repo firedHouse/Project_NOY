@@ -8,8 +8,6 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
     [SerializeField] private Character characterModel;
     [Header("캐릭터 CharacterBox Panel, 전중후열에 맞게 각각 추가")]
     [SerializeField] private CharacterBattleInfoView characterView;
-    [Header("CharacterBoxGroupPanel 추가")]
-    [SerializeField] private CharacterPositionView characterMoveView;
     //private CharacterData characterData;
     [Header("전중후열 값")]
     [SerializeField] private UnitPosition position;
@@ -30,7 +28,6 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
     {
         //Debug.Log("[CharacterBattleInfoPresenter] Awake");
         BattleManager.Instance.OnBattleSetted += Initialize;
-        BattleManager.Instance.OnBattleSetted += DeathCharacter;
         skillProcesser.OnMarkChanged += Mark;
         skillProcesser.OnMarkReaction += SMark;
     }
@@ -55,6 +52,8 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         characterView.UpdateCharacterName(characterModel.UnitName);
         characterView.UpdateSpeed(characterModel.Speed);
         characterView.UpdateCharacterPosition(characterModel.CharacterPosition);
+
+        characterView.gameObject.SetActive(true);
 
         // 캐릭터에는 속성이 없어서 코드 삭제
         //고유속성

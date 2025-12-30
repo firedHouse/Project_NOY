@@ -18,6 +18,7 @@ public class RewardSkipConfirmUI : MonoBehaviour
 
     public void Open(RewardUI rewardUI)
     {
+        Debug.Log("[SkipConfirmUI] Open 호출됨");
         owner = rewardUI;
         gameObject.SetActive(true);
     }
@@ -25,6 +26,11 @@ public class RewardSkipConfirmUI : MonoBehaviour
     private void OnBack()
     {
         gameObject.SetActive(false);
+
+        if(owner != null)
+        {
+            owner.OnSkipConfirmClosed();
+        }
         owner = null;
     }
 
@@ -34,6 +40,7 @@ public class RewardSkipConfirmUI : MonoBehaviour
 
         if(owner != null)
         {
+            owner.OnSkipConfirmClosed();
             owner.ProceedNextStage();
             owner = null;
         }

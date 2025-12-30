@@ -5,15 +5,24 @@ public class MonsterInfoModel : MonoBehaviour
 {
     [SerializeField] private string _monsterId; // = "monster_id_10001";
     [SerializeField] private MonsterData monster;
+
+    private int elementUI;
+    
     public event Action MonsterHPChanged;
     public event Action DataLoaded;
 
     private float maxHP;
 
-    public MonsterData Monster { get => monster; set => monster = value; }
+    public MonsterData Monster => monster;
 
-    public string MonsterName { get => monster.monsterName; }
+    public string MonsterName => monster.monsterName;
     public float MaxHP { get => maxHP; set => maxHP = value; }
+
+    public int ElementUI
+    {
+        get => elementUI;
+        set => elementUI = value;
+    }
 
     private void Start()
     {
@@ -21,7 +30,7 @@ public class MonsterInfoModel : MonoBehaviour
         if (monster != null)
         {
             maxHP = monster.monsterHP;
-
+            // elementUI = monster.elementUI;
             DataLoaded?.Invoke();
         }
         else

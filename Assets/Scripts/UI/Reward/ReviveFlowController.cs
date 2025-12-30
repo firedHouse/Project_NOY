@@ -43,7 +43,7 @@ public class ReviveFlowController : MonoBehaviour
 
         formationPanel.SetActive(false);
 
-        FindObjectOfType<RewardFlowController>()?.ResetFlow();
+        FindFirstObjectByType<RewardFlowController>()?.ResetFlow();
 
     }
 }

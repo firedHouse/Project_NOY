@@ -431,8 +431,8 @@ public class BattleManager : MonoBehaviour
             Debug.Log("RewardUI 연결 안됨");
             return;
         }
-
-        RewardPanel.Open(hasDeadPlayer);
+        bool isBossStage = StageManager.Instance.CurrentRound == 5;
+        RewardPanel.Open(hasDeadPlayer, isBossStage);
     }
     // 25.12.30 한솔 부활 메커니즘
     public void ReviveCharacter(Character character, float reviveHP)

@@ -5,7 +5,7 @@ public class MonsterInfoView : MonoBehaviour
 {
     [Header("몬스터 이름")]
     [SerializeField] private Text monsterNameText;
-    [Header("몬스터 속성")]
+    [Header("몬스터 속성")] //현재 출력안됨
     [SerializeField] private Text elementText;
     [Header("몬스터 클래스")]
     [SerializeField] private Text classText;
@@ -30,16 +30,16 @@ public class MonsterInfoView : MonoBehaviour
     }
 
     //표식
-    //public void UpdateElement(string text)
-    //{
-    //    elementText.text = text;
-    //}
+    public void UpdateElement(string text)
+    {
+        elementText.text = text;
+    }
 
     //고유속성
-    //public void UpdateElementClass(string text)
-    //{
-    //    elementText.text = text;
-    //}
+    // public void UpdateElementClass(ElementUI monsterUI)
+    // {
+    //     elementText.text = monsterUI.ToString();
+    // }
 
 
 

@@ -326,21 +326,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: RewardUI
       objectReference: {fileID: 0}
+    - target: {fileID: 772595099432657691, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 894278703788084933, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 894278703788084933, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 894278703788084933, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 561.3572
       objectReference: {fileID: 0}
     - target: {fileID: 894278703788084933, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -277.53476
       objectReference: {fileID: 0}
     - target: {fileID: 931750059287818297, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: recruitUI
@@ -352,19 +356,19 @@ PrefabInstance:
       objectReference: {fileID: 983535458}
     - target: {fileID: 1927124529021145564, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1927124529021145564, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1927124529021145564, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 231.35718
       objectReference: {fileID: 0}
     - target: {fileID: 1927124529021145564, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -277.53476
       objectReference: {fileID: 0}
     - target: {fileID: 2695240701852972085, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_Pivot.x
@@ -448,19 +452,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7075671250574724644, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7075671250574724644, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7075671250574724644, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 891.3572
       objectReference: {fileID: 0}
     - target: {fileID: 7075671250574724644, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -277.53476
       objectReference: {fileID: 0}
     - target: {fileID: 8908123338203121160, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: rewardManager

@@ -30,11 +30,22 @@ public class RecruitUI : MonoBehaviour
     private string newCandidateID; //새로 뽑은 캐릭터 ID
     private CharacterData newCandidateData; //그 캐릭터의 데이터
 
+    [Header("UI 복구용 저장 변수")]
+    private Vector2 originalAnchorPos; //중앙 이미지의 원래 좌표
+    private Transform originalParent;  //중앙 이미지의 원래 부모
+
     private void Start()
     {
         selectionPanel.SetActive(false);
         placementPanel.SetActive(false);
         //Invoke("Open", 1.0f);//테스트용
+
+        //중앙 이미지의 원래 위치와 부모를 기억해둠
+        if (newCharPortrait != null)
+        {
+            originalAnchorPos = newCharPortrait.rectTransform.anchoredPosition;
+            originalParent = newCharPortrait.transform.parent;
+        }
     }
 
     //리스트업 3장 출력
@@ -122,8 +133,42 @@ public class RecruitUI : MonoBehaviour
     //후보 중 하나를 클릭하면 2단계 진행
     public void SelectCandidate(CharacterData data)
     {
+        //이전 데이터(1-5방출) 초기화
+        dismissedID = "";
+
         newCandidateData = data;
         newCandidateID = data.characterID;
+
+        if (newCharPortrait != null)
+        {
+            //다른 슬롯 밑에 있다면 원래 부모 밑으로 복귀
+            if (originalParent != null)
+            {
+                newCharPortrait.transform.SetParent(originalParent);
+            }
+
+            //이상한 위치에 있다면 원래 좌표로 복귀
+            newCharPortrait.rectTransform.anchoredPosition = originalAnchorPos;
+
+            //드래그 복구
+            newCharPortrait.transform.localScale = Vector3.one;
+            newCharPortrait.color = Color.white;
+
+            //12.31 Blocks Raycasts 켜기
+            CanvasGroup cg = newCharPortrait.GetComponent<CanvasGroup>();
+            if (cg != null)
+            {
+                cg.blocksRaycasts = true;
+                cg.alpha = 1.0f;    
+            }
+
+            //Image 자체의 Raycast Target 켜기
+            Image img = newCharPortrait.GetComponent<Image>();
+            if (img != null)
+            {
+                img.raycastTarget = true;
+            }
+        }
 
         //현재 팀 정보 복사해오기 (임시 리스트 생성)
         tempRoster.Clear();

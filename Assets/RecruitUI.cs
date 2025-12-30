@@ -37,7 +37,7 @@ public class RecruitUI : MonoBehaviour
     {
         selectionPanel.SetActive(false);
         placementPanel.SetActive(false);
-        Invoke("Open", 1.0f);//테스트용
+        //Invoke("Open", 1.0f);//테스트용
     }
 
     //리스트업 3장 출력

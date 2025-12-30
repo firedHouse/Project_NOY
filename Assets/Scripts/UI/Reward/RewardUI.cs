@@ -17,10 +17,16 @@ public class RewardUI : MonoBehaviour
     [SerializeField] private RewardManager rewardManager;
     [SerializeField] private RewardSkipConfirmUI skipConfirmUI;
 
+    [SerializeField] private GameObject nextStageButton;
+    [SerializeField] private GameObject recruitButton;
+
+    [SerializeField] private RecruitUI recruitUI;
+
     [SerializeField] private Text currentGold;
 
+    private bool isSkipConfirmOpen = false;
 
-    public void Open(bool hasDeadTeam)
+    public void Open(bool hasDeadTeam, bool isBossRound)
     {
         if (gameObject.activeSelf)
         { return; }
@@ -41,7 +47,9 @@ public class RewardUI : MonoBehaviour
         SetUpFree(freeItems);
         SetUpPaid(paidItems);
 
+        UpdateButton(isBossRound);
     }
+
     private void ResetSlots()
     {
         foreach (var slot in paidSlots)
@@ -107,8 +115,22 @@ public class RewardUI : MonoBehaviour
 
     public void OnClickNextStage()
     {
+        if(isSkipConfirmOpen)
+        { return; }
+
         if (!flowController.FreeItemUsed)
-        { skipConfirmUI.Open(this); return; }
+        {
+            isSkipConfirmOpen = true;
+            skipConfirmUI.Open(this); 
+            return; 
+        }
+
+        ProceedNextStage();
+    }
+
+    public void OnSkipConfirmClosed()
+    {
+        isSkipConfirmOpen = false;
     }
 
     public void ProceedNextStage()
@@ -116,5 +138,27 @@ public class RewardUI : MonoBehaviour
         gameObject.SetActive(false);
         flowController.ResetFreeItemState();
         StageManager.Instance.OnRewardProcessCompleted();
+    }
+
+    private void UpdateButton(bool isBossRound)
+    {
+        if (nextStageButton != null)
+        {
+            nextStageButton.gameObject.SetActive(!isBossRound);
+        }
+        if (recruitButton != null)
+        {
+            recruitButton.gameObject.SetActive(isBossRound);
+        }
+    }
+
+    public void OnClinkRecruit()
+    {
+        Debug.Log("영입 버튼 클릭");
+        if (recruitUI != null)
+        {
+            Debug.LogError("recruitUI 연결되지 않음 !");
+        }
+        recruitUI.Open();
     }
 }

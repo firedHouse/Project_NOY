@@ -25,6 +25,11 @@ public class RewardSkipConfirmUI : MonoBehaviour
     private void OnBack()
     {
         gameObject.SetActive(false);
+
+        if(owner != null)
+        {
+            owner.OnSkipConfirmClosed();
+        }
         owner = null;
     }
 
@@ -34,6 +39,7 @@ public class RewardSkipConfirmUI : MonoBehaviour
 
         if(owner != null)
         {
+            owner.OnSkipConfirmClosed();
             owner.ProceedNextStage();
             owner = null;
         }

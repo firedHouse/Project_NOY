@@ -294,6 +294,12 @@ public class RecruitUI : MonoBehaviour
             }
         }
 
+        RewardUI rewardUI = FindFirstObjectByType<RewardUI>();
+        if (rewardUI != null)
+        {
+            rewardUI.gameObject.SetActive(false);
+        }
+
         //방출된 애도 등록
         if (!string.IsNullOrEmpty(dismissedID))
         {

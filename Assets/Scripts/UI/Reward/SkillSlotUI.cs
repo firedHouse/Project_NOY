@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class SkillSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class SkillSlotUI : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField] private Button button;
     [SerializeField] private Image icon;
@@ -45,8 +45,4 @@ public class SkillSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         onHover?.Invoke(skill);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        onExit?.Invoke();
-    }
 }

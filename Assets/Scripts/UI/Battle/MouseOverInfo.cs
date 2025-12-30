@@ -16,6 +16,7 @@ public partial class MouseOverInfo : MonoBehaviour
 
     [Header("PP")]
     [SerializeField] private Text[] PPText = new Text[3];
+    [SerializeField] private Button[] skillButton = new Button[3];
     
     //스킬 이미지 : 스킬정보가 바뀌면 이미지도 바뀌어야 함.
     //스킬 이미지 이름 > 스킬 리스트에서 받아와야 함.
@@ -71,7 +72,24 @@ public partial class MouseOverInfo : MonoBehaviour
             int maxPP = currentCharacter.Skills[i].Data.skillPP;
             PPText[i].text = $"{currentCharacter.Skills[i].CurrentPP} / {maxPP}";
             Debug.Log($"-------스킬이름 {currentCharacter.Skills[i].Data.skillName}");
+
+            //PP가 0일때 
+            if (currentCharacter.Skills[i].CurrentPP < 1)
+            {
+                skillButton[i].interactable = false ;
+            }
+
+            else if(currentCharacter.Skills[i].CurrentPP > 0)
+            {
+                skillButton[i].interactable = true ;
+            }
+                
         }
+    }
+
+    public void SkillInactive(Character currentCharacter)
+    {
+        
     }
 }
 

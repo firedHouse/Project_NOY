@@ -9,9 +9,11 @@ public class SkillSelectUI : MonoBehaviour
     [SerializeField] private Image selectedCharacterImage;
 
     [Header("스킬 버튼들")]
-    [SerializeField] private Button[] skillButtons;
-    [SerializeField] private Image[] skillImage;
-    [SerializeField] private Text[] ppText;
+    [SerializeField] private SkillSlotUI[] skillSlots;
+
+    [Header("스킬 설명들")]
+    [SerializeField] private Text skillNameText;
+    [SerializeField] private Text skillDiscriptText;
 
     [SerializeField] private Button CancelButton;
 
@@ -27,53 +29,60 @@ public class SkillSelectUI : MonoBehaviour
         //UI 표시 로직 추가
         gameObject.SetActive(true);
         //선택된 캐릭터 이미지
-        if (owner is Character character)
-        {
-            selectedCharacterImage.sprite = character.currentSkinSprite;
-        }
-        else
-        {
-            selectedCharacterImage.sprite = null;
-        }
 
-        RefreshSkillButtons();
-
+        ApplyCharacterImage();
+        RefreshSlots();
 
         CancelButton.onClick.RemoveAllListeners();
         CancelButton.onClick.AddListener(Close);
+        
+        ClearDescription();
     }
 
-    private void RefreshSkillButtons()
+    private void ApplyCharacterImage()
     {
-        var skills = owner.Skills;
+        if (owner is Character character)
+            selectedCharacterImage.sprite = character.currentSkinSprite;
+        else
+            selectedCharacterImage.sprite = null;
+    }
 
-        for (int i = 0; i < skillButtons.Length; i++)
+    private void RefreshSlots()
+    {
+        var skills = owner?.Skills;
+        if (skills == null) return;
+
+        for (int i = 0; i < skillSlots.Length; i++)
         {
             if (i >= skills.Count || !skills[i].IsValid())
             {
-                skillButtons[i].gameObject.SetActive(false);
+                skillSlots[i].Hide();
                 continue;
             }
 
-
-            var skill = skills[i];
-            skillButtons[i].gameObject.SetActive(true);
-
-            skillImage[i].sprite = ResourceManager.Instance.LoadSprite(skill.Data.skillIcon);
-
-            ppText[i].text = $"PP{skill.CurrentPP} / {skill.Data.skillPP}";
-
-            bool canUse = skill.CurrentPP <= skill.Data.skillPP;
-            skillButtons[i].interactable = canUse;
-
-            int index = i;
-            skillButtons[i].onClick.RemoveAllListeners();
-            skillButtons[i].onClick.AddListener(() =>
-            {
-                OnSelectSkill(skills[index]);
-            });
+            skillSlots[i].Set(
+                skills[i],
+                OnSelectSkill,
+                ShowSkillDescription,
+                ClearDescription
+            );
         }
     }
+
+    private void ShowSkillDescription(Skill skill)
+    {
+        if (skill == null) return;
+
+        skillNameText.text = skill.Data.skillName;
+        skillDiscriptText.text = skill.Data.skillTooltip;
+    }
+
+    private void ClearDescription()
+    {
+        skillNameText.text = "";
+        skillDiscriptText.text = "스킬에 마우스를 올리면 설명이 나타납니다.";
+    }
+
 
     public void OnSelectSkill(Skill skill)
     {

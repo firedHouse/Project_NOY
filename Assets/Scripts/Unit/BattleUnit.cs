@@ -152,7 +152,6 @@ public abstract class BattleUnit : MonoBehaviour
         }
         maxHP += amount;
         //늘어난 최대 체력만큼 현재 체력도 같이 회복
-        currentHP += amount;
         OnHpChanged?.Invoke(this, currentHP);
     }
 

@@ -47,6 +47,7 @@ public class RelicComponent : MonoBehaviour
                 appliedHP = owner.BaseMaxHP * percent;
                 Debug.Log($"{owner.UnitName}에게 유물 장착, 체력 {appliedHP}만큼 증가");
                 owner.IncreaseMaxHP(appliedHP);
+                owner.Heal(appliedHP);
                 break;
             case RelicStateType.AttackBuff:
                 appliedAtk = owner.BaseAttack * percent;

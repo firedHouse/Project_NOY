@@ -337,6 +337,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: RewardUI
       objectReference: {fileID: 0}
+    - target: {fileID: 931750059287818297, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
+      propertyPath: recruitUI
+      value: 
+      objectReference: {fileID: 722366449}
+    - target: {fileID: 931750059287818297, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
+      propertyPath: rewardManager
+      value: 
+      objectReference: {fileID: 983535458}
     - target: {fileID: 2695240701852972085, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -924,17 +932,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1713643736 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1110625826614088187, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
-  m_PrefabInstance: {fileID: 718469035}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33c6aa078a18f544a1d9c48fd959bb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpendGoldEnoughUI
 --- !u!4 &1730145134 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 357081740400716084, guid: 61c5a0e8769968e4b8dde8d211d23fa7, type: 3}

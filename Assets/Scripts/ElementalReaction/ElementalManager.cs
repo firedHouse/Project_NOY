@@ -57,24 +57,12 @@ public class ElementalManager : MonoBehaviour
     {
         if(IsOverloadActive)
         {
+            ReactionDamageProcesser.ApplyOverload(GetComponent<BattleUnit>());
             return;
         }
 
         overloadReamainTurn = duration;
         Debug.Log($"과부하 상태 부여 {duration}턴");
-    }
-    public void ConsumeOverload()
-    {
-        if(!IsOverloadActive)
-        {  return; }
-
-        overloadReamainTurn--;
-
-        if (overloadReamainTurn <= 0)
-        {
-            Debug.Log("과부하 종료");
-        }
-
     }
 
     //12.23 턴 종료시에 호출하고 과부하턴 줄이기
@@ -82,6 +70,7 @@ public class ElementalManager : MonoBehaviour
     {
         if (overloadReamainTurn > 0)
         {
+            ReactionDamageProcesser.ApplyOverload(GetComponent<BattleUnit>());
             overloadReamainTurn--;
             if (overloadReamainTurn <= 0)
             {

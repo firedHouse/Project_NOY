@@ -15,14 +15,11 @@ public class RecruitUI : MonoBehaviour
     public Image newCharPortrait; //중앙 신규 캐릭터 아이콘
     public UI_DraggableItem[] teamPortraits; //기존 팀 3개
 
-    // ★ [주석 처리 1] 텍스트 변수 선언 막기
-    // public Text[] teamNames; //하단 이름 텍스트
-
     [Header("Resources")]
     public Sprite emptySprite; //빈 슬롯 이미지 (투명 하나?)
 
     [Header("집에간다 스프라이트")]
-    public Image dismissPortrait; // '집에 간다' 위치에 있는 캐릭터 이미지 (인스펙터 연결)
+    public Image dismissPortrait; //집에 간다 위치에 있는 캐릭터 이미지 (인스펙터 연결)
 
     //내부 데이터
     private string dismissedID = ""; //집에 간다 자리에 있는 캐릭터 ID
@@ -37,7 +34,7 @@ public class RecruitUI : MonoBehaviour
     {
         selectionPanel.SetActive(false);
         placementPanel.SetActive(false);
-        //Invoke("Open", 1.0f);//테스트용
+        Invoke("Open", 1.0f);//테스트용
     }
 
     //리스트업 3장 출력
@@ -57,7 +54,10 @@ public class RecruitUI : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        if (TableManager.Instance == null) return;
+        if (TableManager.Instance == null)
+        {
+            return;
+        }
 
         //전체 캐릭터 목록 가져오기
         var allChars = TableManager.Instance.CharacterTable.GetAll();
@@ -76,26 +76,38 @@ public class RecruitUI : MonoBehaviour
             //카드 생성
             GameObject go = Instantiate(selectionCardPrefab, selectionContainer);
 
-            //이미지 찾기
-            Transform imgTr = go.transform.Find("NewCharacterBox1/CharacterImage");
-            if (imgTr == null) // 못 찾으면 전체 검색
-            {
-                Image[] images = go.GetComponentsInChildren<Image>();
-                if (images.Length > 0)
-                {
-                    imgTr = images[images.Length - 1].transform;
+            //NewCharacterBox1 찾기
+            Transform boxTr = go.transform.Find("NewCharacterBox1");
 
+            if (boxTr != null)
+            {
+                //이미지 설정
+                Transform imgTr = boxTr.Find("CharacterImage");
+                if (imgTr != null)
+                {
+                    Image img = imgTr.GetComponent<Image>();
+                    Sprite sprite = GetCharacterSprite(picked.characterID);
+                    if (img != null && sprite != null) img.sprite = sprite;
                 }
-            }
 
-            if (imgTr != null)
-            {
-                Image img = imgTr.GetComponent<Image>();
-                Sprite sprite = GetCharacterSprite(picked.characterID);
-                if (img != null && sprite != null)
+                //이름 설정
+                Transform nameTr = boxTr.Find("NameText");
+                if (nameTr != null)
                 {
-                    img.sprite = sprite;
-                    // img.preserveAspect = true; 
+                    Text nameTxt = nameTr.GetComponent<Text>();
+                    if (nameTxt != null) nameTxt.text = picked.characterName;
+                }
+
+                //역할군 설정
+                Transform classTr = boxTr.Find("ClassText");
+                if (classTr != null)
+                {
+                    Text classTxt = classTr.GetComponent<Text>();
+                    if (classTxt != null)
+                    {
+                        //아래에 있는 GetRoleText 함수로 변환해서 넣기
+                        classTxt.text = GetRoleText(picked.position);
+                    }
                 }
             }
 
@@ -103,7 +115,6 @@ public class RecruitUI : MonoBehaviour
             Button btn = go.GetComponent<Button>();
             if (btn == null) btn = go.AddComponent<Button>();
 
-            //클릭 시 SelectCandidate 함수 연결
             btn.onClick.AddListener(() => SelectCandidate(picked));
         }
     }
@@ -125,13 +136,13 @@ public class RecruitUI : MonoBehaviour
             //테스트용 빈 리스트
             tempRoster = new List<string> { "", "", "" };
         }
-        // 항상 3칸 유지
+        //항상 3칸 유지
         while (tempRoster.Count < 3)
         {
             tempRoster.Add("");
         }
 
-        // 2단계 UI 열기
+        //2단계 UI 열기
         selectionPanel.SetActive(false);
         placementPanel.SetActive(true);
 
@@ -185,7 +196,7 @@ public class RecruitUI : MonoBehaviour
             }
             else
             {
-                teamPortraits[i].gameObject.SetActive(false); // 빈칸
+                teamPortraits[i].gameObject.SetActive(false); //빈칸
             }
 
             var dragTeam = teamPortraits[i].GetComponent<UI_DraggableItem>();
@@ -200,17 +211,17 @@ public class RecruitUI : MonoBehaviour
         {
             dismissPortrait.gameObject.SetActive(true);
 
-            // 스킨 이미지 가져오기
+            //스킨 이미지 가져오기
             Sprite skin = GetCharacterSprite(dismissedID);
             if (skin != null) dismissPortrait.sprite = skin;
 
-            // 드래그 가능하도록 세팅
+            //드래그 가능하도록 세팅
             UI_DraggableItem draggable = dismissPortrait.GetComponent<UI_DraggableItem>();
-            if (draggable != null) draggable.SlotIndex = -1; // -1번 슬롯임을 명시
+            if (draggable != null) draggable.SlotIndex = -1; //-1번 슬롯임을 명시
         }
         else
         {
-            dismissPortrait.gameObject.SetActive(false); // 비어있으면 숨김
+            dismissPortrait.gameObject.SetActive(false); //비어있으면 숨김
         }
     }
 
@@ -226,7 +237,7 @@ public class RecruitUI : MonoBehaviour
 
         //이동할 캐릭터들의 ID 확인
         string fromID = GetIDByIndex(fromIndex);
-        string toID = GetIDByIndex(toIndex); // 목적지에 이미 누가 있는지 확인
+        string toID = GetIDByIndex(toIndex); //목적지에 이미 누가 있는지 확인
 
         //대기석(뽑힌놈) 이동 
         if (fromIndex == 99 && toIndex >= 0 && toIndex <= 2)
@@ -299,6 +310,9 @@ public class RecruitUI : MonoBehaviour
     {
         //저장 안 하고 그냥 닫음
         selectionPanel.SetActive(false);
+
+
+        RewardUI rewardUI = FindFirstObjectByType<RewardUI>();
         StageManager.Instance.OnRewardProcessCompleted();
     }
 
@@ -339,5 +353,20 @@ public class RecruitUI : MonoBehaviour
         }
         //리턴
         return ResourceManager.Instance.LoadSprite(sData.skinSprite);
+    }
+
+    //역할군(position) => 한글 텍스트 변환용
+    private string GetRoleText(int positionIndex)
+    {
+        //형변환
+        CharacterPosition pos = (CharacterPosition)positionIndex;
+
+        switch (pos)
+        {
+            case CharacterPosition.Tanker: return "탱커"; 
+            case CharacterPosition.Dealer: return "딜러";  
+            case CharacterPosition.Healer: return "힐러";  
+            default: return "기타";
+        }
     }
 }

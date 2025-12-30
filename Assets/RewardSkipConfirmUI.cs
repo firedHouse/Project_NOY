@@ -36,12 +36,38 @@ public class RewardSkipConfirmUI : MonoBehaviour
 
     private void OnSkip()
     {
+        // 1. 확인창 끄기
         gameObject.SetActive(false);
 
-        if(owner != null)
+        if (owner != null)
         {
             owner.OnSkipConfirmClosed();
-            owner.ProceedNextStage();
+
+            Transform recruitBtnTr = owner.transform.Find("RecruitButton");
+
+            bool isBossRound = (recruitBtnTr != null && recruitBtnTr.gameObject.activeSelf);
+
+            if (isBossRound)
+            {
+                RecruitUI recruitUI = FindFirstObjectByType<RecruitUI>(FindObjectsInactive.Include);
+
+                if (recruitUI != null)
+                {
+                    Debug.Log("[SkipConfirm] 스킵 후 영입 UI 강제 오픈");
+                    recruitUI.Open();
+
+                    owner.isRecruitOpen = true;
+                }
+                else
+                {
+                    Debug.LogError("씬에서 RecruitUI 스크립트를 가진 오브젝트를 찾을 수 없습니다!");
+                }
+            }
+            else
+            {
+                owner.ProceedNextStage();
+            }
+
             owner = null;
         }
     }

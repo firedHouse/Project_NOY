@@ -24,7 +24,7 @@ public class RewardUI : MonoBehaviour
 
     [SerializeField] private Text currentGold;
 
-    private bool isSkipConfirmOpen = false;
+    public bool isSkipConfirmOpen = false;
     public bool isRecruitOpen = false;
 
     public void Open(bool hasDeadTeam, bool isBossRound)

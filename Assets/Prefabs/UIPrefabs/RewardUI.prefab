@@ -9859,7 +9859,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 931750059287818297}
         m_TargetAssemblyTypeName: RewardUI, Assembly-CSharp
-        m_MethodName: OnClinkRecruit
+        m_MethodName: OnClickRecruit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

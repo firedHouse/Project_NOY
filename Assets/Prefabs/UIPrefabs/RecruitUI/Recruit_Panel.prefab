@@ -274,14 +274,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RecruitUI
   selectionPanel: {fileID: 8873475731064060511}
   selectionContainer: {fileID: 5902509520348449838}
-  selectionCardPrefab: {fileID: 0}
+  selectionCardPrefab: {fileID: 1132610202206457604, guid: ea138839ec3da9a42bfa7c2d0362cdec, type: 3}
   placementPanel: {fileID: 74440658335121066}
   newCharPortrait: {fileID: 1650423547255472785}
   teamPortraits:
   - {fileID: 615954396701904848}
   - {fileID: 4833764246965888391}
   - {fileID: 4127329587599930392}
-  teamNames: []
   emptySprite: {fileID: 0}
   dismissPortrait: {fileID: 4966722669251876295}
 --- !u!1 &530527337552377314
@@ -476,7 +475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 508.28, y: 348.7}
+  m_AnchoredPosition: {x: 514.15, y: 355.46}
   m_SizeDelta: {x: 359, y: 88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2417020557013721017
@@ -560,7 +559,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5581348603321391913}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7151672691328188019}
+        m_TargetAssemblyTypeName: RecruitUI, Assembly-CSharp
+        m_MethodName: OnClickConfirm
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1934116155696310982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,6 +1787,7 @@ GameObject:
   - component: {fileID: 5902509520348449838}
   - component: {fileID: 2829454743173983524}
   - component: {fileID: 1509710444518581610}
+  - component: {fileID: 4440033673055387833}
   m_Layer: 5
   m_Name: CharacterSlot
   m_TagString: Untagged
@@ -1840,6 +1852,32 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4440033673055387833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716326834906100502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 5
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &5805650368356675800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,7 +2077,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9030371876029958687}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7151672691328188019}
+        m_TargetAssemblyTypeName: RecruitUI, Assembly-CSharp
+        m_MethodName: OnClickSkip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6108344453702179718
 GameObject:
   m_ObjectHideFlags: 0

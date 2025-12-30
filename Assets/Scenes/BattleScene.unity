@@ -119,9 +119,9 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &59556211 stripped
+--- !u!114 &135692603 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4053866583452124741, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5301416937926945839, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
   m_PrefabInstance: {fileID: 4111442481768125230}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2244241893a75a344b488207b7a7c860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleLogManager
-  logText: {fileID: 59556211}
+  logText: {fileID: 135692603}
   maxLines: 5
 --- !u!4 &1361135411
 Transform:
@@ -1040,37 +1040,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 357081740400716084, guid: 61c5a0e8769968e4b8dde8d211d23fa7, type: 3}
   m_PrefabInstance: {fileID: 2068492327635071731}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1815268474 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5716326834906100502, guid: 370962cf91317984fa4604453ab7926f, type: 3}
-  m_PrefabInstance: {fileID: 848123731605038151}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1815268478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815268474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 5
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!1 &1925002357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,10 +1144,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Recruit_Panel
       objectReference: {fileID: 0}
-    - target: {fileID: 389971436693864197, guid: 370962cf91317984fa4604453ab7926f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4532941118438990312, guid: 370962cf91317984fa4604453ab7926f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1259,17 +1224,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7151672691328188019, guid: 370962cf91317984fa4604453ab7926f, type: 3}
-      propertyPath: selectionCardPrefab
-      value: 
-      objectReference: {fileID: 1132610202206457604, guid: ea138839ec3da9a42bfa7c2d0362cdec, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5716326834906100502, guid: 370962cf91317984fa4604453ab7926f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1815268478}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 370962cf91317984fa4604453ab7926f, type: 3}
 --- !u!1001 &2068492327635071731
 PrefabInstance:

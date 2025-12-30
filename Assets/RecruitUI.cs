@@ -298,7 +298,7 @@ public class RecruitUI : MonoBehaviour
     public void OnClickSkip()
     {
         //저장 안 하고 그냥 닫음
-        placementPanel.SetActive(false);
+        selectionPanel.SetActive(false);
         StageManager.Instance.OnRewardProcessCompleted();
     }
 

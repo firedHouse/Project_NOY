@@ -63,7 +63,19 @@ public class StageManager : MonoBehaviour
     public void StartBattle()
     {
         Debug.Log($"스테이지 {CurrentStage}-{CurrentRound} 시작");
-        
+
+        if (LobbyManager.Instance != null && LobbyManager.Instance.SelectedCharacterIDs != null)
+        {
+            foreach (string id in LobbyManager.Instance.SelectedCharacterIDs)
+            {
+                if (!string.IsNullOrEmpty(id))
+                {
+                    Debug.Log("UsedCharacter 캐릭터 추가");
+                    UserDataManager.Instance.AddUsedCharacter(id);
+                }
+            }
+        }
+
         //리스트 비어있으면 재 초기화
         if (mapOrder.Count == 0)
         {

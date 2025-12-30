@@ -426,6 +426,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
+--- !u!114 &722366449 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7151672691328188019, guid: 370962cf91317984fa4604453ab7926f, type: 3}
+  m_PrefabInstance: {fileID: 848123731605038151}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a24399ba4097a34da2d12eec4e1a12c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RecruitUI
 --- !u!4 &745351635 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9124236190204601952, guid: ad156f1d3f33a314eb4ca30a0ecaca3c, type: 3}
@@ -913,6 +924,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1713643736 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1110625826614088187, guid: 41f4a03b78297bf4a84ebf41c7e3451c, type: 3}
+  m_PrefabInstance: {fileID: 718469035}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33c6aa078a18f544a1d9c48fd959bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpendGoldEnoughUI
 --- !u!4 &1730145134 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 357081740400716084, guid: 61c5a0e8769968e4b8dde8d211d23fa7, type: 3}
@@ -1973,7 +1995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1759575971581753052, guid: f00620fb552dfe1469102b4b0ebe2b41, type: 3}
       propertyPath: CurrentStage
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1759575971581753052, guid: f00620fb552dfe1469102b4b0ebe2b41, type: 3}
       propertyPath: battleManager

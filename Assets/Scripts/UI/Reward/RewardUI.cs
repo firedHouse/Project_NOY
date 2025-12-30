@@ -115,8 +115,12 @@ public class RewardUI : MonoBehaviour
 
     public void OnClickNextStage()
     {
-        if(isSkipConfirmOpen)
+        Debug.Log("[rewardUI] 다음 스테이지 버튼 클릭 됨");
+
+        if (isSkipConfirmOpen)
         { return; }
+
+        Debug.Log("체크 완료");
 
         if (!flowController.FreeItemUsed)
         {
@@ -124,6 +128,8 @@ public class RewardUI : MonoBehaviour
             skipConfirmUI.Open(this); 
             return; 
         }
+
+        Debug.Log("체크용 디버그");
 
         ProceedNextStage();
     }
@@ -152,10 +158,10 @@ public class RewardUI : MonoBehaviour
         }
     }
 
-    public void OnClinkRecruit()
+    public void OnClickRecruit()
     {
         Debug.Log("영입 버튼 클릭");
-        if (recruitUI != null)
+        if (recruitUI == null)
         {
             Debug.LogError("recruitUI 연결되지 않음 !");
         }

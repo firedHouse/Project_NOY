@@ -18,6 +18,10 @@ public class StageManager : MonoBehaviour
     [Header("배틀매니저")]
     public BattleManager battleManager; //기존 BattleManager 참조
 
+    //12.30추가
+    [Header("배경화면 설정")]
+    public SpriteRenderer backgroundRenderer;
+
     //이번 게임에서 진행할 스테이지 ID 순서를 저장할 리스트
     private List<string> mapOrder = new List<string>();
 
@@ -80,6 +84,8 @@ public class StageManager : MonoBehaviour
         CurrentMapID = mapOrder[mapIndex];
         Debug.Log($"선택된 스테이지 진행도: {CurrentStage}번째 | 맵ID: {CurrentMapID} | 라운드: {CurrentRound}");
 
+        ChangeStageBackground(CurrentMapID);
+
         //맵ID 넘겨서 몬스터 선택
         List<MonsterData> selectedMonsters = SelectMonstersForStage(CurrentMapID, CurrentRound);
 
@@ -125,6 +131,39 @@ public class StageManager : MonoBehaviour
         //12.25 몬스터 리스트, 보스여부, + 강화수치 전달)
         //BattleManager에게 전투 세팅 요청
         battleManager.SetupBattle(selectedMonsters, isBoss, stageBuffMultiplier);
+    }
+
+    //12.30 배경화면 변경 함수
+    private void ChangeStageBackground(string mapID)
+    {
+        var stageData = TableManager.Instance.StageTable.Get(mapID);
+        if (stageData == null)
+        {
+            Debug.LogError($"StageData를 찾을 수 없읆,,, {mapID}");
+            return;
+        }
+        //리소스매니저 이미지 로드
+        Sprite bgSprite = ResourceManager.Instance.LoadSprite(stageData.image);
+
+        //렌더러 적용
+        if (backgroundRenderer != null && bgSprite != null)
+        {
+            backgroundRenderer.sprite = bgSprite;
+            //화면크기에 맞추기
+            FitBackgroundToScreen();
+        }
+        else
+        {
+            if (backgroundRenderer == null)
+            {
+                Debug.LogError("배경화면 연결 체크해야함");
+            }
+            if (bgSprite == null)
+            {
+                Debug.LogError($"배경 이미지 데이터 X {stageData.image}");
+            }
+        }
+
     }
 
     //12.24 TestBattleStarter 로직 이관, 몬스터 뽑기
@@ -269,4 +308,34 @@ public class StageManager : MonoBehaviour
         //UI 패널 연결
         battleManager.ResultPanelPrefab.SetActive(true);
     }
+    //배경을 화면 크기에 맞추기
+    private void FitBackgroundToScreen()
+    {
+        //메인 카메라 찾기
+        Camera cam = Camera.main;
+
+        if (cam == null)
+        {
+            return;
+        }
+        //배경 렌더러의 트랜스폼 스케일 초기화
+        backgroundRenderer.transform.localScale = Vector3.one;
+
+        //스프라이트의 현재 월드 크기 구하기
+        float width = backgroundRenderer.sprite.bounds.size.x;
+        float height = backgroundRenderer.sprite.bounds.size.y;
+
+        //화면의 월드 높이와 너비 구하기
+        float worldScreenHeight = cam.orthographicSize * 2.0f;
+        float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
+
+        //비율 계산
+        float scaleX = worldScreenWidth / width;
+        float scaleY = worldScreenHeight / height;
+
+        //스케일 적용
+        backgroundRenderer.transform.localScale = new Vector3(scaleX, scaleY, 1f); 
+
+    }
+
 }

@@ -36,7 +36,7 @@ public static class UsableItemExcution
     }
     private static bool UseRevive(RunTimeItem item, BattleUnit unit)
     {
-        if (unit is not Character character || !unit.IsDead)
+        if (unit is not Character character)
         { return false; }
 
         BattleManager.Instance.ReviveCharacter(character, item.itemData.value);

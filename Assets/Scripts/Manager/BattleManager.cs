@@ -286,15 +286,7 @@ public class BattleManager : MonoBehaviour
 
     public void SetupBattle(List<MonsterData> monsters, bool isBossRound, float multiplier = 1.0f)
     {
-        if (PlayerTeam.Count == 0)
-        {
-            SpawnPlayerTeam();
-        }
-        else
-        {
-            UpdateTeamPositions(PlayerTeam, PlayerSpawnPoints);
-        }
-
+        SpawnPlayerTeam();     
         //적군 소환(여기로 로직 이동) 
         SpawnEnemyTeam(monsters, isBossRound, multiplier);
 
@@ -356,14 +348,10 @@ public class BattleManager : MonoBehaviour
     {
         Debug.Log("[BattleManager] 아군 소환 시작");
 
-        //플레이어 팀 리스트 초기화
-        PlayerTeam.Clear();
-        string[] teamData = LobbyManager.Instance.SelectedCharacterIDs;
-
         //LobbyManager에서 영입 후 배치 확정된 리스트가져오기
         string[] newRosterIDs = LobbyManager.Instance.SelectedCharacterIDs;
 
-        if (teamData == null)
+        if (newRosterIDs == null || newRosterIDs.Length == 0)
         {
             Debug.LogError("팀 정보를 불러오지 못했습니다");
             return;
@@ -410,7 +398,7 @@ public class BattleManager : MonoBehaviour
 
                         newChar.InitializeCharacter(targetID, (UnitPosition)i);
                         newTeamList.Add(newChar);
-                        Debug.Log($"[Sync] {cData.characterName} 신규 소환");
+                        Debug.Log($"[팀갱신] {cData.characterName} 신규 소환");
                     }
                 }
             }
@@ -421,7 +409,7 @@ public class BattleManager : MonoBehaviour
         {
             if (!newTeamList.Contains(oldChar))
             {
-                Debug.Log($"[Sync] {oldChar.UnitName} 방출/삭제됨");
+                Debug.Log($"[팀갱신] {oldChar.UnitName} 방출/삭제됨");
                 Destroy(oldChar.gameObject);
             }
         }

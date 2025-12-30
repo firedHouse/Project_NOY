@@ -1032,7 +1032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2695240701852972085
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1055,6 +1055,7 @@ RectTransform:
   - {fileID: 8116639065399499942}
   - {fileID: 2497539066160220865}
   - {fileID: 5712853349214672487}
+  - {fileID: 4490203696929553106}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1147,7 +1148,7 @@ MonoBehaviour:
   - {fileID: 8432972739594351886}
   descriptionPanel: {fileID: 422450328281493609}
   descriptionText: {fileID: 2587471686892494368}
-  flowController: {fileID: 0}
+  flowController: {fileID: 8908123338203121160}
   rewardManager: {fileID: 0}
   skipConfirmUI: {fileID: 3217817272342078056}
   nextStageButton: {fileID: 8189368427082072487}
@@ -7673,6 +7674,53 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\uB4A4\uB85C \uAC00\uAE30"
+--- !u!1 &5749419447503737588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4490203696929553106}
+  - component: {fileID: 8908123338203121160}
+  m_Layer: 0
+  m_Name: RewardFlowController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4490203696929553106
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5749419447503737588}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2695240701852972085}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8908123338203121160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5749419447503737588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029fd115de27eaa4e9aa9be9282595ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RewardFlowController
+  targetSelectUI: {fileID: 8747438996647168968}
+  rewardManager: {fileID: 0}
+  goldLackPanel: {fileID: 1110625826614088187}
 --- !u!1 &6292212522437709993
 GameObject:
   m_ObjectHideFlags: 0

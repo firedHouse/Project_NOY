@@ -18,7 +18,9 @@ public class CharacterModelBase : MonoBehaviour
     [SerializeField] private string characterSkin;
     [SerializeField] protected float attackLevel;
     [SerializeField] protected float hpLevel;
-    
+
+    protected List<Skill> skills = new List<Skill>();
+
     private string ownedSkill02;
     private string ownedSkill01;
     private string ownedSkill03;
@@ -41,7 +43,8 @@ public class CharacterModelBase : MonoBehaviour
     public string CharacterSkin => characterSkin;
     public float AttackLevel { get => attackLevel; set => attackLevel = value; }
     public float HpLevel { get => hpLevel; set => hpLevel = value; }
-    
+    public List<Skill> Skills => skills;
+
     public void Initialize(string id, CharacterData characterData)
     {
         // CharacterData characterData = TableManager.Instance.CharacterTable.Get(id);
@@ -68,9 +71,37 @@ public class CharacterModelBase : MonoBehaviour
         }
 
         GetGradeData();
-        // 스킬 로드 (BattelUnit.LoadSkills 메서드 사용 예정)> 팀 구성에서 이 클래스 사용하게 되면 추가
+
+        // 스킬 로드 (BattelUnit.LoadSkills 메서드 사용 예정)> 팀 구성에서 이 클래스 사용하게 되면 추가 O
+        // 캐릭터 스킬 리스트 만들고 스킬 로드
+        List<string> skillIDs = new List<string>()
+        {
+            characterData.ownedSkill01,
+            characterData.ownedSkill02,
+            characterData.ownedSkill03
+        };
+
+        LoadSkills(skillIDs);
+
+        
     }
 
+    //스킬 로드 공통 로직 (스킬ID 리스트를 받아 Skill 객체 생성)
+    protected void LoadSkills(List<string> skillIDs)
+    {
+        skills.Clear();
+        foreach (var id in skillIDs)
+        {
+            Debug.Log($"[Battleunit] {id} 스킬 로드");
+            Skill newSkill = new Skill(id);
+            //IsValid()가 true일 때만 리스트에 추가
+            if (newSkill.IsValid())
+            {
+                skills.Add(newSkill);
+            }
+        }
+    }
+    
     // growthPresenter에서 모델 베이스 클래스로 이동
     private void GetGradeData()
     {

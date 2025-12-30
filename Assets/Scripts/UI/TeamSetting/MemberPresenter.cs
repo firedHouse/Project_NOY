@@ -4,12 +4,21 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+// 클릭한 모델의 스킬을 불러와 스킬칸에 띄워줌
+// 스킬에 마우스 오버 하면 스킬의 설명을 띄워줌
+// pp 계산이나 다른 것들은 필요 없고 단순히 출력만 하면 된다
+// 필요한 것 : 모델 불러오기 O, 스킬 로드하기 O > 모델 베이스, 스킬 출력, 마우스오버, 마우스 오버에 따라 스킬 다르게 출력해주기
+
 // 팀 구성 페이지에서 사용할 프레젠터
 public class MemberPresenter : CharacterPresenterBase
 {
     [SerializeField] protected GrowthSkillView skillView;
     [SerializeField] private TeamSelectView selectView;
-    
+
+    [Header("스킬 UI 출력 컴포넌트")]
+    [SerializeField] private TeamOrganizationSkillList skillList; // 스킬 슬롯들이 있는 UI
+    [SerializeField] private TeamOrganizationMouseOverInfo mouseOverInfo;
+
     // 테스트용 팀 멤버 id 배열
     private string[] ids = new string[3];
     private CharacterListModel[] teamMembers = new CharacterListModel[3];
@@ -73,7 +82,6 @@ public class MemberPresenter : CharacterPresenterBase
         ShowDetailView(character);
         skillView.SetDetailView(true);
         selectView.SetAllButtonInteractable(true);
-
     }
 
     protected override void ShowDetailView(CharacterListModel character)
@@ -83,6 +91,8 @@ public class MemberPresenter : CharacterPresenterBase
             model = character;
             UpdateCharacterInfo(character);
             UpdateMainInfo(model);
+            // 스킬 리스트에게 지금 모델의 스킬들 가져오라고 전달
+            UpdateSkillInfo(character);
         }
         else
         {
@@ -97,7 +107,7 @@ public class MemberPresenter : CharacterPresenterBase
     {
         Debug.Log($"[CharacterListPresenter] 기본 정보 업데이트");
         skillView.CharacterName(character);
-        //growthView.CharacterElement(character);
+        skillView.CharacterElement(character);
     }
 
     // 전/중/후열 중에 하나를 클릭하면 해당 캐릭터 슬롯을 받아감
@@ -175,5 +185,14 @@ public class MemberPresenter : CharacterPresenterBase
         LobbyManager.Instance.SetTeamData(teamMembers);
         // 씬 전환
         SceneManager.LoadScene("BattleScene");
+    }
+
+
+    // 12.30 
+    // 스킬 정보 업데이트하는 메서드
+    public void UpdateSkillInfo(CharacterListModel character)
+    {
+        skillList.UpdateSkillView(character);
+        Debug.Log($"[MemberPresenter] {character.CharacterName} 스킬 로드");
     }
 }

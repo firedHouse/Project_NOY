@@ -61,6 +61,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
             GrowthButton(model.IsUnlocked);
             // CanClick(model);
             // model.OnUnlock += CanClick;
+
         }
         else
         {

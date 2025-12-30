@@ -8,14 +8,6 @@ public enum ElementType
     None = 0        // 무속성
 }
 
-public enum ElementUI
-{
-    Fire = 0,       // 불
-    Water = 1,      // 물
-    Electric = 2,   // 전기
-    None = 3        // 무속성
-}
-
 public enum ElementReaction
 {
     None = 0,

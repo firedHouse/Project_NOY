@@ -30,7 +30,7 @@ public class MonsterInfoModel : MonoBehaviour
         if (monster != null)
         {
             maxHP = monster.monsterHP;
-            elementUI = monster.elementUI;
+            // elementUI = monster.elementUI;
             DataLoaded?.Invoke();
         }
         else

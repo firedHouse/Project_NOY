@@ -40,7 +40,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
         void Initialize()
         {
             monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
-            infoModel = gameObject.GetComponent<MonsterInfoModel>();
+            // infoModel = gameObject.GetComponent<MonsterInfoModel>();
             monsterModel.OnDeath += HandleDeath;
             if (BattleManager.Instance.EnemyTeam != null)
             {
@@ -72,7 +72,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
 
             //고유속성
             //ElementUI 사용
-            monsterView.UpdateElementClass(monsterModel.MonsterElementUI);
+            // monsterView.UpdateElementClass(monsterModel.MonsterElementUI);
             // monsterView.UpdateCalss(monsterModel.Role);
         }
         //Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
@@ -90,7 +90,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
 
         //고유속성
         //ElementUI 사용
-        monsterView.UpdateElementClass(monsterModel.MonsterElementUI);
+        // monsterView.UpdateElementClass(monsterModel.MonsterElementUI);
         //monsterView.UpdateCalss(monsterModel.Role);
     }
 

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
@@ -49,6 +49,7 @@ public class SkillListPresenter : MonoBehaviour
         //UI 텍스트 갱신 (누구 턴인지 표시)
         mouseOverInfo.UpdateTurnInfo(currentActorIndex);
         skillList.SetSkillSlotAvailable(true);
+        mouseOverInfo.PPInfo(currentCharacter);
 
         //skillList UI에 현재 캐릭터 정보를 넘겨서, 버튼 아이콘 등을 갱신
         //기존 로직 활용
@@ -83,6 +84,8 @@ public class SkillListPresenter : MonoBehaviour
 
         //배틀매니저에게 행동 전달
         BattleManager.Instance.ReceivePlayerAction(actingCharacter, selectedSkill, target);
+        int skillNum = actingCharacter.Skills.IndexOf(selectedSkill);
+        actingCharacter.UseSkill(skillNum, target);
 
         // 다음 타자로 넘어가기
         currentActorIndex++;

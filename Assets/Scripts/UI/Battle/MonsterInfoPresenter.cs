@@ -38,11 +38,11 @@ partial class MonsterInfoPresenter : MonoBehaviour
 
         void Initialize()
         {
-            //monsterModel.OnDeath += HandleDeath;
             if (BattleManager.Instance.EnemyTeam != null)
             {
                 monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
             }
+            monsterModel.OnDeath += HandleDeath;
             Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
             ViewInit();
         }

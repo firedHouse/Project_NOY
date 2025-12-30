@@ -1,13 +1,21 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 //view
 public partial class MouseOverInfo : MonoBehaviour
 {
-    //스킬 정보표시할 텍스트
+    [Header("텍스트")]
     [SerializeField] private Text _skillInfo;
     [SerializeField] private Text _skillName;
+
+    [Header("hSkillList")]
     [SerializeField] private hSkillList _skillList;
+
+    [Header("firstCharacterModel")]
+    [SerializeField] private Character firstCharacterModel;
+
+    [Header("PP")]
+    [SerializeField] private Text[] PPText = new Text[3];
     
     //스킬 이미지 : 스킬정보가 바뀌면 이미지도 바뀌어야 함.
     //스킬 이미지 이름 > 스킬 리스트에서 받아와야 함.
@@ -55,6 +63,16 @@ public partial class MouseOverInfo : MonoBehaviour
     }
 
     #endregion
+
+    public void PPInfo (Character currentCharacter)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            int maxPP = currentCharacter.Skills[i].Data.skillPP;
+            PPText[i].text = $"{currentCharacter.Skills[i].CurrentPP} / {maxPP}";
+            Debug.Log($"-------스킬이름 {currentCharacter.Skills[i].Data.skillName}");
+        }
+    }
 }
 
 // Jihoo 작업 부분

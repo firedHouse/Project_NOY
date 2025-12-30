@@ -33,8 +33,6 @@ public class LobbyManager : Singleton<LobbyManager>
     private void Start()
     {
         SetCharacterDataList();
-        PlayerPrefs.SetInt("OutGameShilling", 5000);
-        Debug.Log($"[ShillingPresenter] 해금 테스트시 실링 소비를 위해 실링 값 조정");
     }
 
     public void SetCharacterDataList()

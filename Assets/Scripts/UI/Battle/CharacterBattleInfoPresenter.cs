@@ -47,7 +47,9 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         //characterModel.OnMarkChanged += HandleMarkChanged;
 
 
+        //HP바 수정 > 현재 체력으로
         characterView.SetMaxHP(characterModel.MaxHP);
+        characterView.UpdateHPBar(characterModel.CurrentHP);
         characterView.SetSkillList(characterModel.Skills);
         characterView.UpdateCharacterName(characterModel.UnitName);
         characterView.UpdateSpeed(characterModel.Speed);

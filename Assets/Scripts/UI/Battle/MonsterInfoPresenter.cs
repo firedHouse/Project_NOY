@@ -33,46 +33,48 @@ partial class MonsterInfoPresenter : MonoBehaviour
         skillProcesser.OnMarkReaction += SMark;
     }
 
-        void Initialize()
+    void Initialize()
+    {
+        if (BattleManager.Instance.EnemyTeam != null)
         {
-            if (BattleManager.Instance.EnemyTeam != null)
-            {
-                monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
-            }
-            monsterModel.OnDeath += HandleDeath;
-            Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
-            ViewInit();
+            monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
         }
+        monsterModel.OnDeath += HandleDeath;
+        Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
+        ViewInit();
+    }
 
-        void ViewInit()
+    void ViewInit()
+    {
+        if (BattleManager.Instance.EnemyTeam != null)
         {
-            if (BattleManager.Instance.EnemyTeam != null)
-            {
-                monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
-            }
-            //Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
-
-            monsterModel.OnHpChanged += HandleHpChanged;
-            //monsterView.UpdatePower(monsterModel.Monster.monsterAttack);
-
-            monsterView.SetMaxHP(monsterModel.MaxHP);
-            monsterView.UpdateMonsterName(monsterModel.UnitName);
-            monsterView.UpdateSpeed(monsterModel.Speed);
-            GetElementUI(monsterModel.UnitID);
-
-
-
-            monsterView.UpdateMonsterClass(monsterModel.MonsterPosition);
-            monsterView.InitMark();
-
-            monsterView.gameObject.SetActive(true);
-
-            //고유속성
-            //ElementUI 사용
-            // monsterView.UpdateElementClass(monsterModel.MonsterElementUI);
-            // monsterView.UpdateCalss(monsterModel.Role);
+            monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
         }
         //Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
+
+        monsterModel.OnHpChanged += HandleHpChanged;
+        //monsterView.UpdatePower(monsterModel.Monster.monsterAttack);
+
+        //HP바 수정 > 현재 체력으로
+        monsterView.SetMaxHP(monsterModel.CurrentHP);
+        monsterView.UpdateHPBar(monsterModel.CurrentHP);
+        monsterView.UpdateMonsterName(monsterModel.UnitName);
+        monsterView.UpdateSpeed(monsterModel.Speed);
+        GetElementUI(monsterModel.UnitID);
+
+
+
+        monsterView.UpdateMonsterClass(monsterModel.MonsterPosition);
+        monsterView.InitMark();
+
+        monsterView.gameObject.SetActive(true);
+
+        //고유속성
+        //ElementUI 사용
+        // monsterView.UpdateElementClass(monsterModel.MonsterElementUI);
+        // monsterView.UpdateCalss(monsterModel.Role);
+    }
+    //Debug.Log($"[MonsterInfoPresenter] monsterData 내부 데이터 불러오기 성공");
 
     private void HandleHpChanged(BattleUnit monster, float hpChangedAmount)
     {
@@ -89,7 +91,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
     private void GetElementUI(string ID)
     {
         int monster = TableManager.Instance.MonsterTable.Get(ID).elementUI;
-        
+
         switch (monster)
         {
             case 0:
@@ -104,8 +106,8 @@ partial class MonsterInfoPresenter : MonoBehaviour
             case 3:
                 elementType = ElementType.None;
                 break;
-        }    
-        
+        }
+
         monsterView.UpdateElement(elementType.ToString());
     }
 

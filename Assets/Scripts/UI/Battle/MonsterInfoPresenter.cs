@@ -87,11 +87,28 @@ partial class MonsterInfoPresenter : MonoBehaviour
         PosReset(unit);
     }
 
+    ElementType elementType;
+    //0불 1물 2전기 3무속성
     private void GetElementUI(string ID)
     {
         int monster = TableManager.Instance.MonsterTable.Get(ID).elementUI;
-        ElementType elementType = (ElementType)monster;
-
+        
+        switch (monster)
+        {
+            case 0:
+                elementType = ElementType.Fire;
+                break;
+            case 1:
+                elementType = ElementType.Water;
+                break;
+            case 2:
+                elementType = ElementType.Electric;
+                break;
+            case 3:
+                elementType = ElementType.None;
+                break;
+        }    
+        
         monsterView.UpdateElement(elementType.ToString());
     }
 

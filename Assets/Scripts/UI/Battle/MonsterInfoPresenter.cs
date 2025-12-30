@@ -37,6 +37,13 @@ partial class MonsterInfoPresenter : MonoBehaviour
         {
             if (BattleManager.Instance.EnemyTeam != null)
             {
+                // 임시방편
+                // 리스트에 크기를 넘어가는 걸 확인하지 않고 참조하는 것이 문제
+                if ((int)position >= BattleManager.Instance.EnemyTeam.Count)
+                {
+                    gameObject.SetActive(false);
+                    return;
+                }
                 monsterModel = BattleManager.Instance.EnemyTeam[(int)position];
             }
             monsterModel.OnDeath += HandleDeath;

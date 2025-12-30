@@ -310,9 +310,12 @@ public class RecruitUI : MonoBehaviour
     {
         //저장 안 하고 그냥 닫음
         selectionPanel.SetActive(false);
-
-
+        
         RewardUI rewardUI = FindFirstObjectByType<RewardUI>();
+        if (rewardUI != null)
+        {
+            rewardUI.gameObject.SetActive(false);
+        }
         StageManager.Instance.OnRewardProcessCompleted();
     }
 

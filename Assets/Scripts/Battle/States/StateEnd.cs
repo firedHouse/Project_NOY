@@ -15,9 +15,21 @@ public class StateEnd : IBattleState
     {
         if (isWin)
         {
-            Debug.Log("라운드 승리, 보상 패널 오픈");
-            bool hasDeadPlayer = bm.HasDeadPlayer();
-            bm.OpenRewardUI(hasDeadPlayer);
+            if (StageManager.Instance != null &&
+                StageManager.Instance.CurrentStage == 3 &&
+                StageManager.Instance.CurrentRound == 5)
+            {
+                if (bm.ResultPanelPrefab != null)
+                {
+                    bm.ResultPanelPrefab.SetActive(true);
+                }
+            }
+            else
+            {
+                Debug.Log("라운드 승리, 보상 패널 오픈");
+                bool hasDeadPlayer = bm.HasDeadPlayer();
+                bm.OpenRewardUI(hasDeadPlayer);
+            }
         }
         else
         {

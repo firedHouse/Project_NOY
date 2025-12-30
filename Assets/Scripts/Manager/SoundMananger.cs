@@ -11,8 +11,8 @@ public class SoundManager : Singleton<SoundManager>
 
 
     [Range(0f, 1f)]
-    [SerializeField]
-    private float masterVolume = 1.0f;
+    public float masterVolume = 1.0f;
+
     private const string SOUND_PATH = "Sound/";
 
     protected override void Awake()

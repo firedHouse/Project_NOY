@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScene.unity
     guid: 4997be4b82e55f64f929dcc349ba691d
   - enabled: 1
-    path: Assets/Scenes/TestJihooTestScene.unity
+    path: Assets/Scenes/LobbyScene.unity
     guid: 28eb6e73b5b9a2f44b2511ebbc782b7b
   - enabled: 1
     path: Assets/Scenes/BattleScene.unity

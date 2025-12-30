@@ -84,7 +84,9 @@ public class StageManager : MonoBehaviour
         CurrentMapID = mapOrder[mapIndex];
         Debug.Log($"선택된 스테이지 진행도: {CurrentStage}번째 | 맵ID: {CurrentMapID} | 라운드: {CurrentRound}");
 
+        //배경, BGM 변경
         ChangeStageBackground(CurrentMapID);
+        ChangeStageBGM(CurrentMapID);
 
         //맵ID 넘겨서 몬스터 선택
         List<MonsterData> selectedMonsters = SelectMonstersForStage(CurrentMapID, CurrentRound);
@@ -336,6 +338,16 @@ public class StageManager : MonoBehaviour
         //스케일 적용
         backgroundRenderer.transform.localScale = new Vector3(scaleX, scaleY, 1f); 
 
+    }
+
+    //스테이지 ID 연결 함수
+    private void ChangeStageBGM(string mapID)
+    {
+       StageData stageData = TableManager.Instance.StageTable.Get(mapID);
+        if (stageData != null && !string.IsNullOrEmpty(stageData.sound))
+        {
+            SoundManager.Instance.PlayBGM(stageData.sound);
+        }
     }
 
 }

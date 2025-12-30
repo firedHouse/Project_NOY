@@ -36,10 +36,10 @@ public class MonsterInfoView : MonoBehaviour
     //}
 
     //고유속성
-    //public void UpdateElementClass(string text)
-    //{
-    //    elementText.text = text;
-    //}
+    public void UpdateElementClass(ElementUI monsterUI)
+    {
+        elementText.text = monsterUI.ToString();
+    }
 
 
 

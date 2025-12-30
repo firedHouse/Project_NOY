@@ -10,6 +10,10 @@ public class Monster : BattleUnit
     [SerializeField] private MonsterClass monsterPosition;
 
     public MonsterClass MonsterPosition => monsterPosition;
+
+    [SerializeField] private ElementUI monsterElementUI;
+
+    public ElementUI MonsterElementUI => monsterElementUI;
     // Jihoo
 
     private int dropGold; //드롭골드
@@ -59,7 +63,8 @@ public class Monster : BattleUnit
 
         // Jihoo 12.29
         // 탱딜힐 포지션 저장
-        monsterPosition = (MonsterClass)data.monsterClass; 
+        monsterPosition = (MonsterClass)data.monsterClass;
+        monsterElementUI = (ElementUI)data.elementUI;
 
         //스킬 로드
         List<string> skillIDs = new List<string>

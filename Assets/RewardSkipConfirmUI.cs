@@ -18,6 +18,7 @@ public class RewardSkipConfirmUI : MonoBehaviour
 
     public void Open(RewardUI rewardUI)
     {
+        Debug.Log("[SkipConfirmUI] Open 호출됨");
         owner = rewardUI;
         gameObject.SetActive(true);
     }

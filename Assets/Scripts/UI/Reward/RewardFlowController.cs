@@ -84,8 +84,8 @@ public class RewardFlowController : MonoBehaviour
         {
             target.GetComponent<RelicComponent>()?.Equip(relic);
             rewardManager.MarkRelicUsed(relic);
-            sucess = true;
             freeItemUsed = true;
+            sucess = true;
         }
 
         if (!sucess)

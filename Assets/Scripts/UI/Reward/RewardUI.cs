@@ -25,7 +25,7 @@ public class RewardUI : MonoBehaviour
     [SerializeField] private Text currentGold;
 
     private bool isSkipConfirmOpen = false;
-    private bool isRecruitOpen = false;
+    public bool isRecruitOpen = false;
 
     public void Open(bool hasDeadTeam, bool isBossRound)
     {
@@ -180,9 +180,10 @@ public class RewardUI : MonoBehaviour
             skipConfirmUI.Open(this);
             return;
         }
-
+        Debug.Log("체크하기");
         if (isRecruitOpen)
         { return; }
+        Debug.Log("멈춤 지점");
 
         Debug.Log("영입 오픈");
         recruitUI.Open();

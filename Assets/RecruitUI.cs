@@ -308,6 +308,7 @@ public class RecruitUI : MonoBehaviour
 
         //종료
         placementPanel.SetActive(false);
+        rewardUI.isRecruitOpen = false;
         StageManager.Instance.OnRewardProcessCompleted();
     }
 
@@ -321,6 +322,7 @@ public class RecruitUI : MonoBehaviour
         if (rewardUI != null)
         {
             rewardUI.gameObject.SetActive(false);
+            rewardUI.isRecruitOpen = false;
         }
         StageManager.Instance.OnRewardProcessCompleted();
     }

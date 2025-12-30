@@ -364,18 +364,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillSelectUI
   selectedCharacterImage: {fileID: 6377388502617368124}
-  skillButtons:
-  - {fileID: 3535783405517152661}
-  - {fileID: 7670618853421278084}
-  - {fileID: 8305240268038062657}
-  skillImage:
-  - {fileID: 6324006400616757155}
-  - {fileID: 910080215182095794}
-  - {fileID: 1553994844281574519}
-  ppText:
-  - {fileID: 6841688132672086719}
-  - {fileID: 6794467031762777552}
-  - {fileID: 724421357796544445}
+  skillSlots:
+  - {fileID: 760374746342115848}
+  - {fileID: 4122649351573136255}
+  - {fileID: 8595197397399233685}
+  skillNameText: {fileID: 4976393382344505571}
+  skillDiscriptText: {fileID: 2954736429428672165}
   CancelButton: {fileID: 2158439251278751812}
 --- !u!1 &422450328281493609
 GameObject:
@@ -1032,7 +1026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2695240701852972085
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3947,6 +3941,7 @@ GameObject:
   - component: {fileID: 3535783405517152661}
   - component: {fileID: 1639632262682098917}
   - component: {fileID: 5717208026804907433}
+  - component: {fileID: 760374746342115848}
   m_Layer: 5
   m_Name: Skill_Icon (0)
   m_TagString: Untagged
@@ -4087,9 +4082,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 374484252249285716}
           m_TargetAssemblyTypeName: MouseOverInfo, Assembly-CSharp
-          m_MethodName: OnSkillOver
+          m_MethodName: 
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4103,9 +4098,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 374484252249285716}
           m_TargetAssemblyTypeName: MouseOverInfo, Assembly-CSharp
-          m_MethodName: OnSkillExit
+          m_MethodName: 
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4131,6 +4126,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &760374746342115848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2671150396493051225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1554238c3e7ced94fa25134ddbe7e123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSlotUI
+  button: {fileID: 3535783405517152661}
+  icon: {fileID: 6324006400616757155}
+  ppText: {fileID: 6841688132672086719}
 --- !u!1 &2693583041276178491
 GameObject:
   m_ObjectHideFlags: 0
@@ -4565,11 +4575,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 32
+    m_FontSize: 28
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 3
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 280
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -5187,7 +5197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5319,8 +5329,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -130, y: 41.123474}
-  m_SizeDelta: {x: 391.3301, y: 50.7531}
+  m_AnchoredPosition: {x: -209.71, y: 41.123474}
+  m_SizeDelta: {x: 268.5817, y: 50.7531}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7221939717066913599
 CanvasRenderer:
@@ -5352,12 +5362,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 32
+    m_FontSize: 34
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -6936,7 +6946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7210,7 +7220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9600,6 +9610,7 @@ GameObject:
   - component: {fileID: 8305240268038062657}
   - component: {fileID: 6094109822583594801}
   - component: {fileID: 937907795226267261}
+  - component: {fileID: 8595197397399233685}
   m_Layer: 5
   m_Name: Skill_Icon (2)
   m_TagString: Untagged
@@ -9739,51 +9750,30 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: MouseOverInfo, Assembly-CSharp
-          m_MethodName: OnSkillOver
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: MouseOverInfo, Assembly-CSharp
-          m_MethodName: OnSkillExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7440599013346465421}
-          m_TargetAssemblyTypeName: MouseOverInfo, Assembly-CSharp
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
+--- !u!114 &8595197397399233685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7440599013346465421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1554238c3e7ced94fa25134ddbe7e123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSlotUI
+  button: {fileID: 8305240268038062657}
+  icon: {fileID: 1553994844281574519}
+  ppText: {fileID: 724421357796544445}
 --- !u!1 &7460505053189318166
 GameObject:
   m_ObjectHideFlags: 0
@@ -11370,6 +11360,7 @@ GameObject:
   - component: {fileID: 7670618853421278084}
   - component: {fileID: 5594323588555177716}
   - component: {fileID: 1456273576745447352}
+  - component: {fileID: 4122649351573136255}
   m_Layer: 5
   m_Name: Skill_Icon (1)
   m_TagString: Untagged
@@ -11554,6 +11545,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &4122649351573136255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9111897298343327560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1554238c3e7ced94fa25134ddbe7e123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSlotUI
+  button: {fileID: 7670618853421278084}
+  icon: {fileID: 910080215182095794}
+  ppText: {fileID: 6794467031762777552}
 --- !u!1 &9135721994634362434
 GameObject:
   m_ObjectHideFlags: 0

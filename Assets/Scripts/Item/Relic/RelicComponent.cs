@@ -55,8 +55,8 @@ public class RelicComponent : MonoBehaviour
                 break;
             case RelicStateType.SpeedBuff:
                 appliedSpeed = owner.BaseSpeed * percent;
-                Debug.Log($"{owner.UnitName}에게 유물 장착, 속도 {appliedHP}만큼 증가");
-                owner.IncreaseMaxHP(appliedSpeed);
+                Debug.Log($"{owner.UnitName}에게 유물 장착, 속도 {appliedSpeed}만큼 증가");
+                owner.ApplyBuff(SkillType.SpeedBuff, appliedSpeed);
                 break;
             case RelicStateType.AllStatBuff:
                 appliedHP = owner.BaseMaxHP * percent;

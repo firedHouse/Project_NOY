@@ -697,6 +697,10 @@ MonoBehaviour:
   - {fileID: 6786574396795461210}
   - {fileID: 3698213751300441898}
   - {fileID: 4847398195604231607}
+  skillButton:
+  - {fileID: 7894739091595831600}
+  - {fileID: 6484855726765591557}
+  - {fileID: 2447788860136783006}
   _turnInfo: {fileID: 2310615166396110661}
 --- !u!1 &7524527951170310304
 GameObject:
@@ -1070,6 +1074,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7eabfb2dc75ddb4ebbd770f66c51c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillSlot
+--- !u!114 &7894739091595831600 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8109853921779967621, guid: afe23cb81b81bc742a637c8269bbfa1a, type: 3}
+  m_PrefabInstance: {fileID: 2090869023892131765}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &7919154342143514431 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8134132759871461514, guid: afe23cb81b81bc742a637c8269bbfa1a, type: 3}
@@ -1204,6 +1219,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8134132759871461514, guid: afe23cb81b81bc742a637c8269bbfa1a, type: 3}
   m_PrefabInstance: {fileID: 2987338734296738432}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6484855726765591557 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8109853921779967621, guid: afe23cb81b81bc742a637c8269bbfa1a, type: 3}
+  m_PrefabInstance: {fileID: 2987338734296738432}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!114 &9092294247481659765 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6294758708517633013, guid: afe23cb81b81bc742a637c8269bbfa1a, type: 3}
@@ -1347,3 +1373,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8134132759871461514, guid: afe23cb81b81bc742a637c8269bbfa1a, type: 3}
   m_PrefabInstance: {fileID: 5869236857763306011}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2447788860136783006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8109853921779967621, guid: afe23cb81b81bc742a637c8269bbfa1a, type: 3}
+  m_PrefabInstance: {fileID: 5869236857763306011}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button

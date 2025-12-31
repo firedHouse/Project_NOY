@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 //딕셔너리 -> List로 변경해서 JsonUtility로 저장할 수 있도록 만드는
 //저장용 껍데기들
@@ -35,6 +36,10 @@ public class UserDataManager : Singleton<UserDataManager>
     //key: 캐릭터ID, Value: 0/1/2 = 1/2/3학년
 
     private Dictionary<string, int> charGradeDict = new Dictionary<string, int>();
+
+    //파일명, 저장 장소
+    private string SaveFileName => "UserSaveData.json";
+    private string SavePath => Path.Combine(Application.persistentDataPath, SaveFileName);
 
     private const string SAVE_KEY = "NOY_USER_DATA";
 
@@ -136,43 +141,59 @@ public class UserDataManager : Singleton<UserDataManager>
                 gradeLevel = kvp.Value 
             });
         }
-        //껍데기에 담아둔 내용을 전부 JSON으로 변경하고 저장소에 NOY_USER_DATA 라는 이름으로 기억하기
-        PlayerPrefs.SetString(SAVE_KEY, JsonUtility.ToJson(saveData));
-        //저장 확정
-        PlayerPrefs.Save();
+
+        //JSON 문자열 변환
+        string json = JsonUtility.ToJson(saveData, true);
+
+        try
+        {
+            File.WriteAllText(SavePath, json);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"저장 실패");
+        }
     }
 
 
     //저장된 텍스트를 불러와서 다시 딕셔너리와 해쉬셋으로 정리
     public void LoadGame()
     {
-        //세이브 파일 있는지 체크
-        if (PlayerPrefs.HasKey(SAVE_KEY))
+        Debug.Log("Json 저장 경로" + Application.persistentDataPath);
+        if (File.Exists(SavePath))
         {
-            //저장된 텍스트 불러오기
-            string json = PlayerPrefs.GetString(SAVE_KEY);
-
-            //역직렬화, 다시 객체로 변환
-            var saveData = JsonUtility.FromJson<UserSaveData>(json);
-
-            //담기
-            this.unlockedCharList = saveData.unlockedCharacters;
-
-            //List에 있는 데이터를 딕셔너리로 옮겨담기
-            charGradeDict.Clear();
-            foreach (var gd in saveData.characterGrades)
+            try
             {
-                //ID, 레벨을 다시 등록
-                charGradeDict[gd.charID] = gd.gradeLevel;
+                //읽어오기 역직렬화
+                string json = File.ReadAllText(SavePath);
+                var SaveData = JsonUtility.FromJson<UserSaveData>(json);
+                this.unlockedCharList = SaveData.unlockedCharacters;
+                charGradeDict.Clear();
+                foreach (var gd in SaveData.characterGrades)
+                {
+                    charGradeDict[gd.charID] = gd.gradeLevel;
+                }
+                Debug.Log($"로드 성공");
+            }
+            catch (System.Exception e)
+            {
+                //초기 데이터 세팅, 기본 캐릭터 해금 정도
+                SetDefaultData();
             }
         }
         else
         {
-            //초기 데이터 세팅, 기본 캐릭터 해금 정도
-            UnlockCharacter("10001");
-            UnlockCharacter("10002");
-            UnlockCharacter("10003");
+            //파일 x
+            SetDefaultData();
         }
+    }
+
+    private void SetDefaultData()
+    {
+        //초기 데이터 세팅, 기본 캐릭터 해금 정도
+        UnlockCharacter("10001");
+        UnlockCharacter("10002");
+        UnlockCharacter("10003");
     }
 
     //이번 게임에서 등장했던 캐릭터 ID 리스트

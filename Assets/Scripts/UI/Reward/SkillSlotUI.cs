@@ -27,7 +27,7 @@ public class SkillSlotUI : MonoBehaviour, IPointerEnterHandler
 
         icon.sprite = ResourceManager.Instance.LoadSprite(skill.Data.skillIcon);
         ppText.text = $"PP {skill.CurrentPP}/{skill.Data.skillPP}";
-        button.interactable = skill.CurrentPP > 0;
+        button.interactable = true;
 
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => this.onClick?.Invoke(skill));

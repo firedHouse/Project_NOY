@@ -1489,6 +1489,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2163288360565885869, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163288360565885869, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163288360565885869, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163288360565885869, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163288360565885869, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 431
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163288360565885869, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -153.95642
+      objectReference: {fileID: 0}
     - target: {fileID: 2534541733765414847, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
       propertyPath: skillProcesser
       value: 

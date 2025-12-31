@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fafc6abeb1220d4190addaceff90d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
-  _sceneName: LobbyScene
+  _sceneName: TestJihooTestScene
 --- !u!4 &88201746
 Transform:
   m_ObjectHideFlags: 0

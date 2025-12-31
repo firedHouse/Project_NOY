@@ -8,7 +8,6 @@ public class ShillingPresenter : MonoBehaviour
 
     private void Awake()
     {
-        shillingView = GameObject.Find("ShillingUIPanel").GetComponent<ShillingView>();
     }
 
     private void Start()

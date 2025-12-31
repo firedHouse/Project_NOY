@@ -160,7 +160,7 @@ public class StateExecution : IBattleState
                 }
             }
             //다음 공격 대기
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(1.5f);
         }
         //큐 비면 실행종료 변수 true
         isExecutionFinished = true;

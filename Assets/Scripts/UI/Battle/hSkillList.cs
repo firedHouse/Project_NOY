@@ -54,9 +54,11 @@ public class hSkillList : MonoBehaviour
                 //셋업 실행 전에 대사부터 출력
                 slots[i].Setup(skillUI[i], (clickedSkill) =>
                 {
-                    //클릭 시 대사 데이터 확인 및 출력
-                    CheckDialogue(clickedSkill, minMaxPP);
-
+                    if (clickedSkill.CurrentPP > 0)
+                    {
+                        //클릭 시 대사 데이터 확인 및 출력
+                        CheckDialogue(clickedSkill, minMaxPP);
+                    }
                     //다시 기능 실행
                     onSkillClicked?.Invoke(clickedSkill);
 

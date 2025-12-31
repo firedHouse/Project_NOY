@@ -63,7 +63,13 @@ public class SkillListPresenter : MonoBehaviour
     //SkillSlot 스크립트에서 버튼 클릭 시, 이 함수를 호출하며 자신의 Skill 정보를 넘겨줘야 함
     public void OnSkillButtonClicked(Skill selectedSkill)
     {
-        // 한번 클릭하면 버튼 비활성화
+        if (selectedSkill != null && selectedSkill.CurrentPP <= 0)
+        {
+            Debug.Log("PP 부족, 클릭 무시");
+            return;
+        }
+
+        //한번 클릭하면 버튼 비활성화
         skillList.SetSkillSlotAvailable(false);
 
         //현재 행동하는 캐릭터
@@ -87,7 +93,7 @@ public class SkillListPresenter : MonoBehaviour
         int skillNum = actingCharacter.Skills.IndexOf(selectedSkill);
         actingCharacter.UseSkill(skillNum, target);
 
-        // 다음 타자로 넘어가기
+        //다음 타자로 넘어가기
         currentActorIndex++;
 
         //다음 타자 UI 갱신?

@@ -13,6 +13,7 @@ public class BattleLogManager : MonoBehaviour
 
     [Header("줄 설정")]
     public int maxLines = 5;
+    public int maxCharsPerLine = 18;//글자수제한
 
     //queue사용
     private Queue<string> logQueue = new Queue<string>();
@@ -36,12 +37,34 @@ public class BattleLogManager : MonoBehaviour
 
     public void AddLog(string message)
     {
-        logQueue.Enqueue(message);
-        if (logQueue.Count > maxLines)
+        while (message.Length > maxCharsPerLine)
+        {
+            //18글자 자르기
+            string part = message.Substring(0, maxCharsPerLine);
+            EnqueueMessage(part);
+            
+            //앞 제거하고 나머지부터로 지정
+            message = message.Substring(maxCharsPerLine);
+        }
+
+        if (!string.IsNullOrEmpty(message))
+        {
+            //나머지 출력
+            EnqueueMessage(message);
+        }
+        UpdateLogUI();
+    }
+
+    //큐 등록 + 최대 줄 수 관리
+    private void EnqueueMessage(string msg)
+    {
+        logQueue.Enqueue(msg);
+
+        //최대 줄 수를 넘으면 가장 오래된 로그 삭제
+        while (logQueue.Count > maxLines)
         {
             logQueue.Dequeue();
         }
-        UpdateLogUI();
     }
     private void UpdateLogUI()
     {

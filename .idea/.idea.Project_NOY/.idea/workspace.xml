@@ -6,15 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="37a3860c-ebe5-4424-a683-ef50730f18b7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Project_NOY/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project_NOY/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hyeju_Test/Hyeju_ItemRewardPrefab/Skill_Icon.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hyeju_Test/Hyeju_ItemRewardPrefab/Skill_Icon.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hyeju_Test/Hyeju_ItemRewardPrefab/Skill_InfoPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hyeju_Test/Hyeju_ItemRewardPrefab/Skill_InfoPanel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/CharacterList/CharacterDetailInfoPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/CharacterList/CharacterDetailInfoPanel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/CharacterList/CharacterInfoPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/CharacterList/CharacterInfoPanel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/CharacterList/CharacterListPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/CharacterList/CharacterListPanel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/CharacterSelectButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/CharacterSelectButton.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/TeamOrganization/CharacterSelectPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/TeamOrganization/CharacterSelectPanel.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/TeamOrganization/CharacterSkillInfoImage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/TeamOrganization/CharacterSkillInfoImage.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/TeamOrganization/TeamOrganizationPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/TeamOrganization/TeamOrganizationPanel.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/TestLobbyCanvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/TestLobbyCanvas.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/MonsterInfoPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/MonsterInfoPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/MonsterInfoView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/MonsterInfoView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/SkillSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/SkillSlot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/TeamSetting/MemberPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/TeamSetting/MemberPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UnLock/CharacterListPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UnLock/CharacterListPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UnLock/CharacterModelBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UnLock/CharacterModelBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/TeamOrganization/SeletedTeamPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Lobby/TeamOrganization/SeletedTeamPanel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/RecruitUI/Recruit_Panel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/RecruitUI/Recruit_Panel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/ResourceAttachedUI/ResourceRecruit_Panel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/ResourceAttachedUI/ResourceRecruit_Panel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/ResultUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/ResultUI.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Reward/PPRecovery 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/Reward/PPRecovery 1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/RewardUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UIPrefabs/RewardUI.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BattleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BattleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LobbyScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LobbyScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ResourceBattleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ResourceBattleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TitleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TitleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UnLock/CharacterSlotBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UnLock/CharacterSlotBase.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,15 +137,13 @@
       <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="876124">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="876124" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
-        <list>
-          <MonoRuntime />
-        </list>
+        <list />
       </option>
       <option name="selectedOptions">
         <list />
@@ -157,6 +165,8 @@
       <workItem from="1766114684885" duration="6000" />
       <workItem from="1766710605535" duration="26088000" />
       <workItem from="1766822217795" duration="5969000" />
+      <workItem from="1767161632549" duration="3161000" />
+      <workItem from="1767210017617" duration="396000" />
     </task>
     <servers />
   </component>

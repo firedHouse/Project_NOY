@@ -212,6 +212,14 @@ PrefabInstance:
       propertyPath: characterMoveView
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3486559367524539434, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486559367524539434, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: m_Name
       value: CharacterBoxFrontPanel
@@ -257,6 +265,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: HPSlider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: firstMark
       value: 
       objectReference: {fileID: 1060037997560205099}
@@ -265,7 +277,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5643104480875667839}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8755222472238625487, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
@@ -426,6 +439,14 @@ PrefabInstance:
       propertyPath: characterMoveView
       value: 
       objectReference: {fileID: 3965629401495003668}
+    - target: {fileID: 3486559367524539434, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486559367524539434, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: m_Name
       value: CharacterBoxRoarPanel
@@ -471,6 +492,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: HPSlider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: firstMark
       value: 
       objectReference: {fileID: 4595279252589530660}
@@ -479,7 +504,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9161413951570714736}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8755222472238625487, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
@@ -615,6 +641,14 @@ PrefabInstance:
       propertyPath: characterMoveView
       value: 
       objectReference: {fileID: 3965629401495003668}
+    - target: {fileID: 3486559367524539434, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486559367524539434, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: m_Name
       value: CharacterBoxMiddlePanel
@@ -660,6 +694,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+      propertyPath: HPSlider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: firstMark
       value: 
       objectReference: {fileID: 5104127201289191647}
@@ -668,7 +706,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 446938233842708107}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8755222472238625487, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}

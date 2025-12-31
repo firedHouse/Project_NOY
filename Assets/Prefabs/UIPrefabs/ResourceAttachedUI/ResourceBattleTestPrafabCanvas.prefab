@@ -618,6 +618,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 415289403926837398, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -9.9875
+      objectReference: {fileID: 0}
+    - target: {fileID: 415289403926837398, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -12.906
+      objectReference: {fileID: 0}
+    - target: {fileID: 415289403926837398, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.020202637
+      objectReference: {fileID: 0}
+    - target: {fileID: 415289403926837398, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0055999756
+      objectReference: {fileID: 0}
     - target: {fileID: 790982732030752338, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -685,6 +701,10 @@ PrefabInstance:
     - target: {fileID: 2994540839183742710, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
       propertyPath: characterMoveView
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3534701880892857033, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3546137448799962390, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -866,6 +886,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.000009536743
       objectReference: {fileID: 0}
+    - target: {fileID: 7458091499139822630, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
+      propertyPath: HPSlider
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8352510574390360233, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -919,7 +943,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5485688589253236339, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b3606f1b93e51342a3e1e84d1731927, type: 3}

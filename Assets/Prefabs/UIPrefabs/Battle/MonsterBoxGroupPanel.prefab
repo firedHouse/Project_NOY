@@ -220,6 +220,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1620522181018491468, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0236969
+      objectReference: {fileID: 0}
     - target: {fileID: 8772183650163303183, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: m_Name
       value: MonsterBoxRoarPanel
@@ -339,6 +343,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1620522181018491468, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0236969
+      objectReference: {fileID: 0}
     - target: {fileID: 8772183650163303183, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: m_Name
       value: MonsterBoxFrontPanel
@@ -457,6 +465,10 @@ PrefabInstance:
     - target: {fileID: 1620522181018491468, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620522181018491468, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0236969
       objectReference: {fileID: 0}
     - target: {fileID: 8772183650163303183, guid: c50eb53ed0b387340b4f3aecbc8dc397, type: 3}
       propertyPath: m_Name

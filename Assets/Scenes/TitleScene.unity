@@ -222,7 +222,7 @@ PrefabInstance:
     - target: {fileID: 6496441591275017306, guid: 9d1bcd350a4adc249b9c20005915f722, type: 3}
       propertyPath: m_TargetGraphic
       value: 
-      objectReference: {fileID: 560951369}
+      objectReference: {fileID: 244081078}
     - target: {fileID: 6496441591275017306, guid: 9d1bcd350a4adc249b9c20005915f722, type: 3}
       propertyPath: m_Colors.m_PressedColor.b
       value: 0
@@ -406,6 +406,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &244081078 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8256183183241886630, guid: 9d1bcd350a4adc249b9c20005915f722, type: 3}
+  m_PrefabInstance: {fileID: 33042823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &367706179
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,17 +588,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &560951369 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3340870674438309073, guid: 9d1bcd350a4adc249b9c20005915f722, type: 3}
-  m_PrefabInstance: {fileID: 33042823}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -192,8 +192,8 @@ public class UserDataManager : Singleton<UserDataManager>
     {
         //초기 데이터 세팅, 기본 캐릭터 해금 정도
         UnlockCharacter("10001");
-        UnlockCharacter("10002");
-        UnlockCharacter("10003");
+        UnlockCharacter("10005");
+        UnlockCharacter("10009");
     }
 
     //이번 게임에서 등장했던 캐릭터 ID 리스트

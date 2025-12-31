@@ -23,7 +23,7 @@ public partial class GrowthView : MonoBehaviour
     [SerializeField] private Sprite grayStar;
 
     [Header("일러스트출력")]
-    [SerializeField] private RawImage illust;
+    [SerializeField] private Image illust;
 
     [Header("실링부족텍스트")]
     [SerializeField] private GameObject notEnoughShilingPanel;
@@ -178,14 +178,13 @@ public partial class GrowthView : MonoBehaviour
         }
 
         Sprite sprite = ResourceManager.Instance.LoadSprite(skinData);
-        Texture texture = sprite.texture;
 
-        if (texture == null)
+        if (sprite == null)
         {
-            Debug.LogWarning($"{gameObject.name} 스킨 Sprite 로드 실패 : {texture}");
+            Debug.LogWarning($"{gameObject.name} 스킨 Sprite 로드 실패 : {sprite}");
         }
 
-        illust.texture = texture;
+        illust.sprite = sprite;
     }
 
     //비용 업데이트

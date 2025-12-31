@@ -7,6 +7,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
 {
     [SerializeField] protected GrowthView growthView;
 
+
     //성장 버튼 클릭 활성화 조건 : 캐릭터 해금
     //버튼 클릭 시 : 실링 확인
     //부족 > 실링부족 패널
@@ -83,6 +84,7 @@ public partial class CharacterListPresenter : CharacterPresenterBase
             //shillingModel.Decrease(model.NeedShilling);
             //업그레이드 정보 전달
             model.SuccessUpgrade();
+            shillingPresenter?.UpdateUI();
             return;
         }
         //실링부족 > 패널 띄움

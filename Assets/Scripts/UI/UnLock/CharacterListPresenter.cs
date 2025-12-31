@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 // 캐릭터 목록에서 캐릭터 정보 출력에 전체적으로 사용할 프레젠터
@@ -59,6 +60,9 @@ public partial class CharacterListPresenter : CharacterPresenterBase
             growthView.ButtonActive(model.IsUnlocked);
             Debug.Log($"[CharacterListPresenter] 해금시 성장 버튼 변경 설정");
             GrowthButton(model.IsUnlocked);
+            Debug.Log($"{character.CharacterName} 레벨{character.Level}");
+            Debug.Log($"저장 데이터 레벨 {character.CharacterName} 레벨{UserDataManager.Instance.GetCharacterGrade(character.CharacterID)}");
+
             // CanClick(model);
             // model.OnUnlock += CanClick;
 

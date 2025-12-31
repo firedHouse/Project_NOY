@@ -220,4 +220,24 @@ public class UserDataManager : Singleton<UserDataManager>
         return UsedCharacterIDs.Contains(id);
     }
 
+    //저장된 파일이 있는지 체크
+    public bool HasSaveData()
+    {
+        return File.Exists(SavePath);
+    }
+
+    //뉴게임
+    public void CreateNewGame()
+    {
+        //데이터 정리(실링은 실링매니저가 초기화)
+        unlockedCharList.Clear();
+        charGradeDict.Clear();
+        UsedCharacterIDs.Clear(); 
+
+        //초기화
+        SetDefaultData();
+
+        Debug.Log("new game 생성 완료");
+    }
+
 }

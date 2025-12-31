@@ -62,4 +62,12 @@ public class ShillingManager : Singleton<ShillingManager>
         return true;
     }
 
+    //12.31 여현구. 뉴게임용
+    public void ResetShilling()
+    {
+        outGameShilling = 0;
+        SaveShilling(); 
+        Debug.Log("실링 초기화 완료: 0");
+    }
+
 }

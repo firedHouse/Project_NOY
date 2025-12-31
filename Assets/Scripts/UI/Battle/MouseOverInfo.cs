@@ -71,18 +71,18 @@ public partial class MouseOverInfo : MonoBehaviour
         {
             int maxPP = currentCharacter.Skills[i].Data.skillPP;
             PPText[i].text = $"{currentCharacter.Skills[i].CurrentPP} / {maxPP}";
-            Debug.Log($"-------스킬이름 {currentCharacter.Skills[i].Data.skillName}");
+            //Debug.Log($"-------스킬이름 {currentCharacter.Skills[i].Data.skillName}");
 
-            //PP가 0일때 
-            if (currentCharacter.Skills[i].CurrentPP < 1)
-            {
-                skillButton[i].interactable = false ;
-            }
+            ////PP가 0일때 
+            //if (currentCharacter.Skills[i].CurrentPP < 1)
+            //{
+            //    skillButton[i].interactable = false ;
+            //}
 
-            else if(currentCharacter.Skills[i].CurrentPP > 0)
-            {
-                skillButton[i].interactable = true ;
-            }
+            //else if(currentCharacter.Skills[i].CurrentPP > 0)
+            //{
+            //    skillButton[i].interactable = true ;
+            //}
                 
 
             //PP가 0일때 

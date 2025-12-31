@@ -23,40 +23,17 @@ public partial class CharacterListModel : CharacterModelBase
     public int NeedShilling { get { return needShilling; } set { needShilling = value; } }
     #endregion
 
-    public void GradeCheck()
+    public void GradeCheck(int level)
     {
-        if (gradeData == null)
-        {
-            Debug.Log("[CharacterListModel] 딕셔너리 비었음");
-            return;
-        }
-        if (gradeData.Count == 0)
-        {
-            Debug.Log("[CharacterListModel] 딕셔너리 데이터 비었음");
-            return;
-        }
-
-        //1레벨 > 2레벨
-        if (level == 0)
-        {
-            gradeIDNum = gradeData[int.Parse(characterID)].Item1;
-            Debug.Log($"[CharacterListModel] ID 번호 {gradeIDNum}");
-        }
-        //2레벨 > 3레벨
-        else if (level == 1)
-        {
-            gradeIDNum = gradeData[int.Parse(characterID)].Item2;
-            Debug.Log($"[CharacterListModel] ID 번호 {gradeIDNum}");
-        }
-
-        plusStat = TableManager.Instance.GradeTable.Get($"{gradeIDNum}");
+        plusStat = TableManager.Instance.GetGradeData(characterID, level);
         Debug.Log($"[CharacterListModel] plusStat {plusStat}");
-
     }
 
     public void SetNeedShilling()
     {
-        GradeCheck();
+        int nextLevel = level + 1;
+
+        GradeCheck(nextLevel);
         if (plusStat == null)
         {
             Debug.Log($"[CharacterListModel] {plusStat} 값없음");
@@ -86,12 +63,12 @@ public partial class CharacterListModel : CharacterModelBase
         //Debug.Log($"[GrowthView] --- HP : {hpLevel} ---");
         //Debug.Log($"[GrowthView] --- 소모실링 : {needShilling} ---");
 
-        level++;
 
         //AttackLevel += plusStat.attackUP;
         //HpLevel += plusStat.hpUP;
 
-        plusStat = TableManager.Instance.GradeTable.Get($"{++gradeIDNum}");
+        level++;
+        GradeCheck(level);
         needShilling = plusStat.needShilling1;
 
 
@@ -113,7 +90,7 @@ public partial class CharacterListModel : CharacterModelBase
             presenter.GrowthButton(false);
         }
 
-
+        SetNeedShilling();
         presenter.ShillingUpdate(this);
     }
 }

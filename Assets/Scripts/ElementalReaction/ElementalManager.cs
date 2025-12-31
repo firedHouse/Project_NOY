@@ -70,7 +70,6 @@ public class ElementalManager : MonoBehaviour
     {
         if (overloadReamainTurn > 0)
         {
-            ReactionDamageProcesser.ApplyOverload(GetComponent<BattleUnit>());
             overloadReamainTurn--;
             if (overloadReamainTurn <= 0)
             {

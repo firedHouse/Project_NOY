@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public partial class CharacterListPresenter : CharacterPresenterBase
 {
@@ -96,4 +97,5 @@ public partial class CharacterListPresenter : CharacterPresenterBase
     {
         growthView.UpgradeCost(model);
     }
+
 }

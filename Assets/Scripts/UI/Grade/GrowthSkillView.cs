@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.InputManagerEntry;
 
 public partial class GrowthSkillView : MonoBehaviour
 {
@@ -94,11 +95,45 @@ public partial class GrowthSkillView : MonoBehaviour
     }
 
     //학년별 일러스트
+    int skinID;
+    Sprite IllustSprite;
+    string skinData;
+
     public void CharacterIllust(CharacterListModel model)
     {
-        Debug.Log("[GrowthView] : 일러스트 변경");
-        //illust.sprite = illustImage[grade];
+        //스킨 데이터 
+        skinID = int.Parse(model.CharacterSkin);
+
+        if (model.CharacterSkin == null || model.CharacterSkin == null)
+        {
+            Debug.Log("아이콘 없음 !");
+            return;
+        }
+
+        //레벨1일때
+        if (model.Level == 0)
+        {
+            skinData = TableManager.Instance.SkinTable.Get(model.CharacterSkin).imageFull;
+        }
+
+        else if (model.Level == 2)
+        {
+            skinID = skinID + 1;
+            skinData = TableManager.Instance.SkinTable.Get(skinID.ToString()).imageFull;
+        }
+
+        Sprite sprite = ResourceManager.Instance.LoadSprite(skinData);
+        Texture texture = sprite.texture;
+
+        if (texture == null)
+        {
+            Debug.LogWarning($"{gameObject.name} 스킨 Sprite 로드 실패 : {texture}");
+        }
+
+        illust.texture = texture;
     }
+
+
 
     //스킬
     public void CharacterSkill(CharacterListModel model)

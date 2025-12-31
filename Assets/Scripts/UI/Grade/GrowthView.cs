@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public partial class GrowthView : MonoBehaviour
@@ -22,9 +23,7 @@ public partial class GrowthView : MonoBehaviour
     [SerializeField] private Sprite grayStar;
 
     [Header("일러스트출력")]
-    [SerializeField] private Image illust;
-    [SerializeField] private Sprite[] illustImage = new Sprite[3];
-    [SerializeField] private Text illustText;
+    [SerializeField] private RawImage illust;
 
     [Header("실링부족텍스트")]
     [SerializeField] private GameObject notEnoughShilingPanel;
@@ -42,17 +41,17 @@ public partial class GrowthView : MonoBehaviour
 
     //재사용 안된다면 삭제
     #region 실링 부족 경고창
-    private void NotEnoughShiling ()
+    private void NotEnoughShiling()
     {
         notEnoughShilingText.text = "실링이 부족합니다.";
     }
 
-    private void OKText ()
+    private void OKText()
     {
         OKPanel.text = "인정";
     }
     #endregion
-   
+
     public void OnClickUpgradeButton()
     {
         Debug.Log("[GrowthView] 성장 버튼 클릭됨");
@@ -143,7 +142,7 @@ public partial class GrowthView : MonoBehaviour
         lineText.text = model.CharacterDialogue;
         infoText.text = "";
         if (model.IsUnlocked == true)
-        { 
+        {
             infoText.text = model.CharacterInfo;
         }
         // Debug.Log($"[GrowthView] 한마디 : {model.CharacterDialogue}");
@@ -151,37 +150,48 @@ public partial class GrowthView : MonoBehaviour
     }
 
     //학년별 일러스트
-        Sprite IllustSprite;
+    int skinID;
+    Sprite IllustSprite;
+    string skinData;
+
     public void CharacterIllust(CharacterListModel model)
     {
-        if (illustImage[0] == null)
-        {
-            illustText.text = $"{model.CharacterName} : {model.Level} 일러스트 출력";
+        //스킨 데이터 
+        skinID = int.Parse(model.CharacterSkin);
 
-            Debug.Log("[GrowthView] : 일러스트 이미지 없음");
+        if (model.CharacterSkin == null || model.CharacterSkin == null)
+        {
+            Debug.Log("아이콘 없음 !");
             return;
         }
 
-        switch(model.Level)
+        //레벨1일때
+        if (model.Level == 0)
         {
-            case 0:
-                IllustSprite = illustImage[0];
-                break;
-            case 1:
-                IllustSprite = illustImage[1];
-                break;
-            case 2:
-                IllustSprite = illustImage[2];
-                break;
+            skinData = TableManager.Instance.SkinTable.Get(model.CharacterSkin).imageFull;
         }
 
-        illust.sprite = IllustSprite;
+        else if (model.Level == 2)
+        {
+            skinID = skinID + 1;
+            skinData = TableManager.Instance.SkinTable.Get(skinID.ToString()).imageFull;
+        }
+
+        Sprite sprite = ResourceManager.Instance.LoadSprite(skinData);
+        Texture texture = sprite.texture;
+
+        if (texture == null)
+        {
+            Debug.LogWarning($"{gameObject.name} 스킨 Sprite 로드 실패 : {texture}");
+        }
+
+        illust.texture = texture;
     }
 
     //비용 업데이트
     public void UpgradeCost(CharacterListModel model)
     {
-        if(model.Level < 2)
+        if (model.Level < 2)
         {
             upgradeCostText.text = $"{model.NeedShilling}";
             Debug.Log($"[GrowthView] : 성장 비용({model.NeedShilling}) 변경");

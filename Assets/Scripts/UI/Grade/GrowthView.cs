@@ -154,7 +154,7 @@ public partial class GrowthView : MonoBehaviour
     {
 
         Debug.Log("[GrowthView] : 일러스트 변경");
-        //illust.sprite = illustImage[grade];
+        //illust.sprite = ;
     }
 
     //비용 업데이트

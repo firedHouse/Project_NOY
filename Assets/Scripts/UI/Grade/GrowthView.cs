@@ -23,7 +23,8 @@ public partial class GrowthView : MonoBehaviour
 
     [Header("일러스트출력")]
     [SerializeField] private Image illust;
-    //[SerializeField] private Sprite[] illustImage = new Sprite[3];
+    [SerializeField] private Sprite[] illustImage = new Sprite[3];
+    [SerializeField] private Text illustText;
 
     [Header("실링부족텍스트")]
     [SerializeField] private GameObject notEnoughShilingPanel;
@@ -150,11 +151,31 @@ public partial class GrowthView : MonoBehaviour
     }
 
     //학년별 일러스트
+        Sprite IllustSprite;
     public void CharacterIllust(CharacterListModel model)
     {
+        if (illustImage[0] == null)
+        {
+            illustText.text = $"{model.CharacterName} : {model.Level} 일러스트 출력";
 
-        Debug.Log("[GrowthView] : 일러스트 변경");
-        //illust.sprite = ;
+            Debug.Log("[GrowthView] : 일러스트 이미지 없음");
+            return;
+        }
+
+        switch(model.Level)
+        {
+            case 0:
+                IllustSprite = illustImage[0];
+                break;
+            case 1:
+                IllustSprite = illustImage[1];
+                break;
+            case 2:
+                IllustSprite = illustImage[2];
+                break;
+        }
+
+        illust.sprite = IllustSprite;
     }
 
     //비용 업데이트

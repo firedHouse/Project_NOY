@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public partial class CharacterListModel : CharacterModelBase
@@ -22,6 +23,13 @@ public partial class CharacterListModel : CharacterModelBase
     public string GradeID => gradeID;
     public int NeedShilling { get { return needShilling; } set { needShilling = value; } }
     #endregion
+
+    public void UpdateGradeInfo()
+    {
+        int currentLevel = UserDataManager.Instance.GetCharacterGrade(characterID);
+
+        level = currentLevel;
+    }
 
     public void GradeCheck(int level)
     {
@@ -46,38 +54,13 @@ public partial class CharacterListModel : CharacterModelBase
 
     public void SuccessUpgrade()
     {
-        //
         UserDataManager.Instance.TryUpgradeCharacter(characterID);
-
-        ////학년 체크
-        //GradeCheck();
-
-        ////업그레이드 전달
-        //isUpgrade = true;
-        ////레벨 체크 - 버튼 활성/비활성
-
-
-        //Debug.Log($"[GrowthView] --- 업그레이드 전 ---");
-        //Debug.Log($"[GrowthView] --- 레벨 : {level} ---");
-        //Debug.Log($"[GrowthView] --- 공격력 : {attackLevel} ---");
-        //Debug.Log($"[GrowthView] --- HP : {hpLevel} ---");
-        //Debug.Log($"[GrowthView] --- 소모실링 : {needShilling} ---");
-
-
-        //AttackLevel += plusStat.attackUP;
-        //HpLevel += plusStat.hpUP;
 
         level++;
         GradeCheck(level);
         needShilling = plusStat.needShilling1;
+        UpdateGradeInfo();
 
-
-        //Debug.Log($"[GrowthView] --- 업그레이드 목록---");
-        //Debug.Log($"[GrowthView] --- 레벨 : {level} ---");
-        //Debug.Log($"[GrowthView] --- 공격력 : {attackLevel} ---");
-        //Debug.Log($"[GrowthView] --- HP : {hpLevel} ---");
-        //Debug.Log($"[GrowthView] --- 소모실링 : {needShilling} ---");
-        //Debug.Log($"[GrowthView] --- 업그레이드 완료 ---");
         if (presenter == null)
         {
             Debug.Log($"[GrowthView] 프레젠터 null, 새로 참조");
@@ -92,5 +75,6 @@ public partial class CharacterListModel : CharacterModelBase
 
         SetNeedShilling();
         presenter.ShillingUpdate(this);
+        presenter.UpdateCharacterInfo(this);
     }
 }

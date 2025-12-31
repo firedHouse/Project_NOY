@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class MonsterInfoView : MonoBehaviour
 {
+    [Header("MonsterInfoPresenter")]
+    [SerializeField] private MonsterInfoPresenter presenter;
+
     [Header("몬스터 이름")]
     [SerializeField] private Text monsterNameText;
     [Header("몬스터 속성")] //현재 출력안됨
@@ -79,28 +82,27 @@ public class MonsterInfoView : MonoBehaviour
     }
 
     string imageLink = "";
-    int num;
+    bool isFirstMark = false;
+    bool isSecondMark = false;
+    bool isElementReaction;
+
     ElementType attackMark = ElementType.None;
 
-    public void UpdateMark(ElementType element)
+    public void UpdateMark(ElementType element, BattleUnit unit)
     {
-        //원소 반응이 일어 났으면 다음 턴에 초기화
-        if (num == 2)
-        {
-            InitMark();
-            num = 0;
-        }
-
         //빈 마크가 없을때까지 추가
-        if (firstMark.text == "" && secondMark.text == "")
+        if (isElementReaction == false)
         {
             //부여된 속성
             //첫번째는 그냥 등록
-            if(firstMark.text == "")
+            if(isFirstMark == false)
             {
                 attackMark = element;
                 ImageLik(attackMark);
-                num = 1;
+                UpdateFirstMark();
+                Debug.Log($"[MonsterInfoView] UI : {unit.UnitName} 에게 {imageLink} 표식");
+                isFirstMark = true;
+                return;
             }
 
             UpdateFirstMark();
@@ -116,29 +118,24 @@ public class MonsterInfoView : MonoBehaviour
             //다르면 마크 추가
             ImageLik(attackMark);
             UpdateSecondMark();
-            num = 2;
+            isSecondMark = true;
+            Debug.Log($"[MonsterInfoView] UI : {unit.UnitName} 에게 {imageLink} 표식");
+
         }
     }
 
     ElementReaction skillAttack;
-    public void SUpdateMark(ElementReaction skill)
+    public void SUpdateMark(ElementReaction skill, BattleUnit unit)
     {
-        //원소 반응이 일어 났으면 다음 턴에 초기화
-        if (num == 2)
-        {
-            InitMark();
-            num = 0;
-        }
-
         //두번째에서만
-        if (secondMark.text == "" )
+        if (isElementReaction == false)
         {
            skillAttack = skill;
            SImageLik(skillAttack);
 
             //두번째 속성
             //첫번째 속성이랑 같은지 비교
-            if (firstMark.text == imageLink)
+            if (isFirstMark == true && firstMark.text == imageLink)
             {
                 //같으면 리턴
                 return;
@@ -146,15 +143,26 @@ public class MonsterInfoView : MonoBehaviour
 
             //다르면 마크 추가
             UpdateSecondMark();
-            num = 2;
+            isSecondMark = true;
+            Debug.Log($"[MonsterInfoView] UI : {unit.UnitName} 에게 {imageLink} 표식");
         }
     }
 
-    public void InitMark()
+    public void InitMark(BattleUnit unit)
     {
         firstMark.text = "";
         secondMark.text = "";
-        Debug.Log("[MonsterInfoView] 표식 초기화");
+        UpdateFirstMark();
+        UpdateSecondMark();
+        isFirstMark = false;
+        isSecondMark = false;
+        Debug.Log($"[MonsterInfoView] {unit.UnitName}표식 초기화");
+    }
+
+    public void IsMarkReaction(bool isReaction)
+    {
+        isElementReaction = isReaction;
+        Debug.Log($"[MonsterInfoView] 원소 반응 여부 : {isElementReaction}");
     }
 
     public void UpdateFirstMark()

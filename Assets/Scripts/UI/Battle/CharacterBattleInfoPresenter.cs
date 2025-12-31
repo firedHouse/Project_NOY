@@ -14,6 +14,8 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
 
     [SerializeField] private SkillProcesser skillProcesser;
 
+    public ElementalManager elementalManager;
+
     #region position에서 사용
     private BattleUnit[] _character = new BattleUnit[3];
     [SerializeField] private GameObject[] _basePos = new GameObject[3];
@@ -30,10 +32,13 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         BattleManager.Instance.OnBattleSetted += Initialize;
         skillProcesser.OnMarkChanged += Mark;
         skillProcesser.OnMarkReaction += SMark;
+
     }
 
     private void Start()
     {
+        elementalManager = characterModel.GetComponent<ElementalManager>();
+        elementalManager.OnMarkReaction += characterView.IsMarkReaction;
     }
 
     //뷰 초기 설정
@@ -56,6 +61,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         characterView.UpdateCharacterPosition(characterModel.CharacterPosition);
 
         characterView.gameObject.SetActive(true);
+        characterView.InitMark(characterModel);
 
         // 캐릭터에는 속성이 없어서 코드 삭제
         //고유속성
@@ -91,8 +97,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         //표식
         if(unit.UnitID == characterModel.UnitID)
         {
-            characterView.UpdateMark(i);
-            Debug.Log($"[CharacterBattleInfoPresenter] {unit.UnitName}에게 {i} 부여");
+            characterView.UpdateMark(i, unit);
         }
     }
     public void SMark(BattleUnit unit, ElementReaction i)
@@ -100,8 +105,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         //표식
         if (unit.UnitID == characterModel.UnitID)
         {
-            characterView.SUpdateMark(i);
-            Debug.Log($"[CharacterBattleInfoPresenter] {unit.UnitName}에게 {i} 부여");
+            characterView.SUpdateMark(i, unit);
         }
 
     }

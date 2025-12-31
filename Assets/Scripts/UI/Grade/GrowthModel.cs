@@ -76,4 +76,9 @@ public partial class CharacterListModel : CharacterModelBase
         presenter.ShillingUpdate(this);
         presenter.UpdateCharacterInfo(this);
     }
+
+    public void GetSaveCharacterData()
+    {
+        level = UserDataManager.Instance.GetCharacterGrade(characterID);
+    }
 }

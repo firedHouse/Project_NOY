@@ -24,6 +24,8 @@ public partial class CharacterListPresenter : CharacterPresenterBase
     //레벨에 따라 변경되어야 할 사항
     public override void UpdateCharacterInfo(CharacterListModel model)
     {
+        //데이터 불러오기
+        model.GetSaveCharacterData();
         //비용 갱신
         growthView.UpgradeCost(model);
         //일러스트 갱신
@@ -97,5 +99,8 @@ public partial class CharacterListPresenter : CharacterPresenterBase
     {
         growthView.UpgradeCost(model);
     }
+
+    
+
 
 }

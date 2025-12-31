@@ -32,6 +32,9 @@ public partial class GrowthView : MonoBehaviour
         lockedIcon = GameObject.Find("CharacterLockIcon");
         MiddlePanel = GameObject.Find("MiddlePanel");
         RightPanel = GameObject.Find("RightPanel");
+        GameObject starParent = GameObject.Find("CharacterGradeImage");
+        starImage[0] = starParent.GetComponentInChildren<Image>();
+            
         //popup = GameObject.Find("NotifyPanel").GetComponent<AlertPopUpView>() ;
     }
 

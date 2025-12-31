@@ -65,6 +65,7 @@ public class RelicComponent : MonoBehaviour
                 appliedSpeed = owner.BaseSpeed * percent;
 
                 owner.IncreaseMaxHP(appliedHP);
+                owner.Heal(appliedHP);
                 owner.ApplyBuff(SkillType.AttackBuff, appliedAtk);
                 owner.ApplyBuff(SkillType.SpeedBuff, appliedSpeed);
                 break;

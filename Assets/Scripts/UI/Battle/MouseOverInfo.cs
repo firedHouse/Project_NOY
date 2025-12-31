@@ -66,11 +66,26 @@ public partial class MouseOverInfo : MonoBehaviour
 
     public void PPInfo (Character currentCharacter)
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 2; i >= 0; i--)
         {
             int maxPP = currentCharacter.Skills[i].Data.skillPP;
             PPText[i].text = $"{currentCharacter.Skills[i].CurrentPP} / {maxPP}";
             Debug.Log($"-------스킬이름 {currentCharacter.Skills[i].Data.skillName}");
+<<<<<<< Updated upstream
+=======
+
+            //PP가 0일때 
+            //if (currentCharacter.Skills[i].CurrentPP < 1)
+            //{
+            //    skillButton[i].interactable = false ;
+            //}
+
+            //else if(currentCharacter.Skills[i].CurrentPP > 0)
+            //{
+            //    skillButton[i].interactable = true ;
+            //}
+                
+>>>>>>> Stashed changes
         }
     }
 }

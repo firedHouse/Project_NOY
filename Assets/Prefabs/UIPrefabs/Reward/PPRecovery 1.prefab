@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillSlot
   button: {fileID: 1168608021460789739}
   icon: {fileID: 0}
+  currenSkillSprite: {fileID: 0}
 --- !u!114 &7958283729941718487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,7 +356,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5103899852449938380}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillSelectUI, Assembly-CSharp
         m_MethodName: Close
         m_Mode: 1
@@ -504,6 +505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillSlot
   button: {fileID: 650240165510154286}
   icon: {fileID: 0}
+  currenSkillSprite: {fileID: 0}
 --- !u!114 &8592911874801615890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,6 +1016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillSlot
   button: {fileID: 5936938991590328895}
   icon: {fileID: 0}
+  currenSkillSprite: {fileID: 0}
 --- !u!114 &3180109373574579715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1475,7 +1478,7 @@ GameObject:
   - component: {fileID: 2256503044765830509}
   - component: {fileID: 8914634741794733753}
   - component: {fileID: 3899903125849954927}
-  - component: {fileID: 5103899852449938380}
+  - component: {fileID: 2783559843755729563}
   m_Layer: 5
   m_Name: PPRecovery 1
   m_TagString: Untagged
@@ -1543,7 +1546,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5103899852449938380
+--- !u!114 &2783559843755729563
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1555,20 +1558,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e9a0794dbb386498dc857d776c1d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillSelectUI
-  selectedCharacterImage: {fileID: 4320244816988425622}
-  skillButtons:
-  - {fileID: 5936938991590328895}
-  - {fileID: 650240165510154286}
-  - {fileID: 1168608021460789739}
-  skillImage:
-  - {fileID: 3798501066110442505}
-  - {fileID: 8058311833036021272}
-  - {fileID: 8567386749381869533}
-  ppText:
-  - {fileID: 4433531956199065877}
-  - {fileID: 4413339673433792122}
-  - {fileID: 7599885581405987863}
-  CancelButton: {fileID: 9115795650477327342}
+  selectedCharacterImage: {fileID: 0}
+  skillSlots: []
+  skillNameText: {fileID: 0}
+  skillDiscriptText: {fileID: 0}
+  CancelButton: {fileID: 0}
 --- !u!1 &7627281175429389692
 GameObject:
   m_ObjectHideFlags: 0

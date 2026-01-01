@@ -5,36 +5,35 @@ using UnityEngine.UI;
 public partial class CharacterBattleInfoView
 {
     string imageLink = "";
-    int num;
+    bool isFirstMark = false;
+    bool isSecondMark = false;
+    bool isElementReaction;
 
     ElementType attackMark = ElementType.None;
 
-    public void UpdateMark(ElementType element)
+    public void UpdateMark(ElementType element, BattleUnit unit)
     {
-        //원소 반응이 일어 났으면 다음 턴에 초기화
-        if (num == 2)
-        {
-            InitMark();
-            num = 0;
-        }
-
         //빈 마크가 없을때까지 추가
-        if (firstMark.text == "" && secondMark.text == "")
+        //리엑션 없을때만 실행
+        if (isElementReaction == false)
         {
             //부여된 속성
             //첫번째는 그냥 등록
-            if (firstMark.text == "")
+            if (isFirstMark == false)
             {
                 attackMark = element;
                 ImageLik(attackMark);
-                num = 1;
+                isFirstMark = true;
+                UpdateFirstMark();
+                Debug.Log($"[CharacterBattleInfoView] UI : {unit.UnitName} 에게 {imageLink} 표식");
+                return;
             }
 
             UpdateFirstMark();
 
             //두번째 속성
             //첫번째 속성이랑 같은지 비교
-            if (attackMark == element)
+            if (isFirstMark == true && attackMark == element)
             {
                 //같으면 리턴
                 return;
@@ -43,22 +42,16 @@ public partial class CharacterBattleInfoView
             //다르면 마크 추가
             ImageLik(attackMark);
             UpdateSecondMark();
-            num = 2;
+            isSecondMark = true;
+            Debug.Log($"[CharacterBattleInfoView] UI : {unit.UnitName} 에게 {imageLink} 표식");
         }
     }
 
     ElementReaction skillAttack;
-    public void SUpdateMark(ElementReaction skill)
+    public void SUpdateMark(ElementReaction skill, BattleUnit unit)
     {
-        //원소 반응이 일어 났으면 다음 턴에 초기화
-        if (num == 2)
-        {
-            InitMark();
-            num = 0;
-        }
-
         //두번째에서만
-        if (secondMark.text == "")
+        if (isElementReaction == false)
         {
             skillAttack = skill;
             SImageLik(skillAttack);
@@ -73,17 +66,28 @@ public partial class CharacterBattleInfoView
 
             //다르면 마크 추가
             UpdateSecondMark();
-            num = 2;
+            isSecondMark = true;
+            Debug.Log($"[CharacterBattleInfoView] UI : {unit.UnitName} 에게 {imageLink} 표식");
         }
     }
 
 
-    public void InitMark()
+    public void InitMark(BattleUnit unit)
     {
         firstMark.text = "";
         secondMark.text = "";
-        Debug.Log("[MonsterInfoView] 표식 초기화");
+        UpdateFirstMark();
+        UpdateSecondMark();
+        isFirstMark = false;
+        isSecondMark = false;
+        Debug.Log($"[CharacterBattleInfoView] {unit.UnitName}표식 초기화");
     }
+    public void IsMarkReaction(bool isReaction)
+    {
+        isElementReaction = isReaction;
+        Debug.Log($"[CharacterBattleInfoView] 원소 반응 여부 : {isElementReaction}");
+    }
+
 
     public void UpdateFirstMark()
     {
@@ -110,7 +114,7 @@ public partial class CharacterBattleInfoView
                 break;
             case ElementType.None:
                 imageLink = "";
-                Debug.Log($"[MonsterInfoView] 무속성");
+                Debug.Log($"[CharacterBattleInfoView] 무속성");
                 break;
         }
     }

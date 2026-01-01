@@ -10,6 +10,7 @@ public class ElementalManager : MonoBehaviour
 
     public bool isReactedThisTurn { get; private set; }
 
+    public event Action<bool> OnMarkReaction;
 
     // ===== 원소 =====
     public bool CanReact()
@@ -19,12 +20,14 @@ public class ElementalManager : MonoBehaviour
 
     public void MarkReacted()
     {
+        OnMarkReaction?.Invoke(true);
         isReactedThisTurn = true;
     }
 
     // 턴 종료 시 호출 (Overload 소모 시점과 동일)
     public void ResetTurn()
     {
+        OnMarkReaction?.Invoke(false);
         isReactedThisTurn = false;
     }
 

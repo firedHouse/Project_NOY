@@ -14,6 +14,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
     [SerializeField] private UnitPosition position;
 
     [SerializeField] private SkillProcesser skillProcesser;
+    [SerializeField] public ElementalManager elementalManager;
 
     #region position에서 사용
     private BattleUnit[] _monster;
@@ -31,6 +32,12 @@ partial class MonsterInfoPresenter : MonoBehaviour
         BattleManager.Instance.OnBattleSetted += Initialize;
         skillProcesser.OnMarkChanged += Mark;
         skillProcesser.OnMarkReaction += SMark;
+    }
+
+    private void Start()
+    {
+        elementalManager = monsterModel.GetComponent<ElementalManager>();
+        elementalManager.OnMarkReaction += monsterView.IsMarkReaction;
     }
 
     void Initialize()
@@ -78,7 +85,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
 
 
         monsterView.UpdateMonsterClass(monsterModel.MonsterPosition);
-        monsterView.InitMark();
+        monsterView.InitMark(monsterModel);
 
         monsterView.gameObject.SetActive(true);
 
@@ -129,8 +136,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
         //표식
         if (unit.UnitID == monsterModel.UnitID)
         {
-            monsterView.UpdateMark(i);
-            Debug.Log($"[CharacterBattleInfoPresenter] {unit.UnitName}에게 {i} 부여");
+            monsterView.UpdateMark(i, unit);
         }
 
     }
@@ -140,8 +146,7 @@ partial class MonsterInfoPresenter : MonoBehaviour
         //표식
         if (unit.UnitID == monsterModel.UnitID)
         {
-            monsterView.SUpdateMark(i);
-            Debug.Log($"[CharacterBattleInfoPresenter] {unit.UnitName}에게 {i} 부여");
+            monsterView.SUpdateMark(i, unit);
         }
 
     }

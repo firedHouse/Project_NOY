@@ -28,9 +28,13 @@ public partial class GrowthView : MonoBehaviour
     {
         // 널참조 오류나면 주석처리하고 인스펙터에서 연결하기
         unlockButton = GameObject.Find("CharacterUnlockButton");
+        illust = GameObject.Find("CharacterListPanel").GetComponent<Image>();
         lockedIcon = GameObject.Find("CharacterLockIcon");
         MiddlePanel = GameObject.Find("MiddlePanel");
         RightPanel = GameObject.Find("RightPanel");
+        GameObject starParent = GameObject.Find("CharacterGradeImage");
+        starImage[0] = starParent.GetComponentInChildren<Image>();
+            
         //popup = GameObject.Find("NotifyPanel").GetComponent<AlertPopUpView>() ;
     }
 

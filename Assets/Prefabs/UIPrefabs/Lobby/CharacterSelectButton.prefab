@@ -136,7 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e3cf7aec6d1128498c170ecc20281fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSlot
-  slotButton: {fileID: 0}
+  slotButton: {fileID: 8131209179114598850}
+  slotImage: {fileID: 2700111479384006968}
   slotModel: {fileID: 0}
   slotCharacter: {fileID: 0}
 --- !u!1 &1949083637607252280

@@ -8,6 +8,9 @@ public class CharacterSlotBase : MonoBehaviour
     [Header("캐릭터 슬롯 프리팹")]
     [SerializeField]
     protected Button slotButton;
+    [SerializeField] protected Image slotImage;
+
+    public Image SlotImage { get => slotImage; set => slotImage = value; }
 
     [SerializeField] protected CharacterListModel slotModel;
 

@@ -184,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillSlot
   button: {fileID: 3015635890798500350}
   icon: {fileID: 0}
+  currenSkillSprite: {fileID: 0}
 --- !u!1 &6725784016271835971
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,10 +292,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3650767581195261310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 110, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3675810695808544505
 CanvasRenderer:

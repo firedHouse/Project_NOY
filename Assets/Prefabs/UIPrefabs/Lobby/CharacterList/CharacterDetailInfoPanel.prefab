@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 5137519570635830033}
   - component: {fileID: 8738475505682044432}
   m_Layer: 5
-  m_Name: GameObject (1)
+  m_Name: DetailInfoBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 5628185222665369664}
   - component: {fileID: 6939847530565359340}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: LineBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -102,18 +102,18 @@ public class RecruitUI : MonoBehaviour
                 }
 
                 //이름 설정
-                Transform nameTr = boxTr.Find("NameText");
+                Transform nameTr = boxTr.Find("NameLabel/NameText");
                 if (nameTr != null)
                 {
-                    Text nameTxt = nameTr.GetComponent<Text>();
+                    Text nameTxt = nameTr.GetComponentInChildren<Text>();
                     if (nameTxt != null) nameTxt.text = picked.characterName;
                 }
 
                 //역할군 설정
-                Transform classTr = boxTr.Find("ClassText");
+                Transform classTr = boxTr.Find("ClassLabel/ClassText");
                 if (classTr != null)
                 {
-                    Text classTxt = classTr.GetComponent<Text>();
+                    Text classTxt = classTr.GetComponentInChildren<Text>();
                     if (classTxt != null)
                     {
                         //아래에 있는 GetRoleText 함수로 변환해서 넣기

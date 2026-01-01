@@ -5,9 +5,8 @@ using UnityEngine.SceneManagement;
 public class ResultUI : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private Text resultTitle;
     [SerializeField] private Text resultShillingText;
-    [SerializeField] private Button backToLobby;
+    [SerializeField] private Button GameExitButton;
 
     private int earnedShilling;
 
@@ -18,11 +17,6 @@ public class ResultUI : MonoBehaviour
 
     private void InitResult()
     {
-        if (resultTitle != null)
-        {
-            resultTitle.text = "결과";
-        }
-
         earnedShilling = EconomyManager.Instance.ResultShilling();
 
         if (resultShillingText != null)
@@ -30,11 +24,11 @@ public class ResultUI : MonoBehaviour
             resultShillingText.text = $"획득 실링 : {earnedShilling}";
         }
 
-        backToLobby.onClick.RemoveAllListeners();
-        backToLobby.onClick.AddListener(OnClickGoLobby);
+        GameExitButton.onClick.RemoveAllListeners();
+        GameExitButton.onClick.AddListener(OnClickGameExit);
     }
 
-    private void OnClickGoLobby()
+    private void OnClickGameExit()
     {
         if (earnedShilling > 0)
         {
@@ -42,8 +36,12 @@ public class ResultUI : MonoBehaviour
         }
 
         EconomyManager.Instance.ResetEconomy();
-
-        SceneManager.LoadScene("LobbyScene");
+        //게임 종료
+        Debug.Log("게임 종료!");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit(); 
+#endif
     }
-
 }

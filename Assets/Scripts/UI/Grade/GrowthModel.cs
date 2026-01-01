@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public partial class CharacterListModel : CharacterModelBase
@@ -76,5 +75,10 @@ public partial class CharacterListModel : CharacterModelBase
         SetNeedShilling();
         presenter.ShillingUpdate(this);
         presenter.UpdateCharacterInfo(this);
+    }
+
+    public void GetSaveCharacterData()
+    {
+        level = UserDataManager.Instance.GetCharacterGrade(characterID);
     }
 }

@@ -3253,6 +3253,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2695240701852972085}
     m_Modifications:
+    - target: {fileID: 273177863638321995, guid: dac0062f2c3e0434382e62950212e229, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 461499491285233930, guid: dac0062f2c3e0434382e62950212e229, type: 3}
       propertyPath: m_Name
       value: PPRecovery
@@ -3285,6 +3289,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillIconBox 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1772718047083394906, guid: dac0062f2c3e0434382e62950212e229, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2026230437087797277, guid: dac0062f2c3e0434382e62950212e229, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -3313,6 +3321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillIconBox 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3398480437723645656, guid: dac0062f2c3e0434382e62950212e229, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4240492264771929756, guid: dac0062f2c3e0434382e62950212e229, type: 3}
       propertyPath: m_Name
       value: SkillIconBox 3
@@ -3325,6 +3337,18 @@ PrefabInstance:
       propertyPath: 'skillSlots.Array.data[2]'
       value: 
       objectReference: {fileID: 2963366435006054539}
+    - target: {fileID: 5477052582833191159, guid: dac0062f2c3e0434382e62950212e229, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980914138887239012, guid: dac0062f2c3e0434382e62950212e229, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913257075855706485, guid: dac0062f2c3e0434382e62950212e229, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 9183076577062106009, guid: dac0062f2c3e0434382e62950212e229, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3405,7 +3429,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2460371284794906681, guid: dac0062f2c3e0434382e62950212e229, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

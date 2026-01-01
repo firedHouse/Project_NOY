@@ -449,9 +449,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBattleInfoPresenter
   characterModel: {fileID: 0}
   characterView: {fileID: 5918203193094852762}
-  characterMoveView: {fileID: 0}
   position: 0
   skillProcesser: {fileID: 0}
+  relicStatusUI: {fileID: 4232060511067203159}
   _basePos:
   - {fileID: 0}
   - {fileID: 0}
@@ -1630,6 +1630,7 @@ GameObject:
   - component: {fileID: 6905740915812075821}
   - component: {fileID: 5884771999611326091}
   - component: {fileID: 265868494549055942}
+  - component: {fileID: 4232060511067203159}
   m_Layer: 0
   m_Name: Relic
   m_TagString: Untagged
@@ -1684,7 +1685,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5eec0cf9e8ff94ee38a599e54bdc32b6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1694,6 +1695,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4232060511067203159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7961592264412263502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fffc1e8f122dc15428b43195b7d35100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RelicStatusUI
+  relicIcon: {fileID: 265868494549055942}
 --- !u!1 &8255028758774691652
 GameObject:
   m_ObjectHideFlags: 0

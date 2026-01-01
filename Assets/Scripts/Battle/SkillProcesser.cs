@@ -44,15 +44,17 @@ public class SkillProcesser : MonoBehaviour
 
         else
         {
+            //이번 턴에 원소 반응을 했었다면 Return;
+            if (!elemental.CanReact())
+            {
+                return;
+            }
+
+            elemental.MarkReacted();
+
             OnMarkReaction?.Invoke(target, reaction);
         }
 
-
-        //이번 턴에 원소 반응을 했었다면 Return;
-        if (!elemental.CanReact())
-        {
-            return;
-        }
 
         switch (reaction)
         {
@@ -73,7 +75,6 @@ public class SkillProcesser : MonoBehaviour
             break;
         }
             
-         elemental.MarkReacted();
          elemental.ClearElement();
     }
  

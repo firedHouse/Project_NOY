@@ -188,9 +188,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8668155872949062771}
   - {fileID: 426676776631428483}
   - {fileID: 841419605113495825}
-  - {fileID: 8668155872949062771}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillSlot
   button: {fileID: 8109853921779967621}
   icon: {fileID: 4431990516901816108}
-  currenSkillSprite: {fileID: 0}
+  currentSkillSprite: {fileID: 0}
 --- !u!114 &1066727499840694969
 MonoBehaviour:
   m_ObjectHideFlags: 0

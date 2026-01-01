@@ -39,8 +39,8 @@ public enum UnitType
 public enum MonsterClass
 {
     Tanker = 0,
-    Dealer = 1,
-    Healer = 2
+    Hybrid = 1,
+    Boss = 2
 }
 
 public enum SkillArea //SkillTable 참조 참조

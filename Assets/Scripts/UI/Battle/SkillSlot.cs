@@ -8,7 +8,7 @@ public class SkillSlot : MonoBehaviour
 {
     public Button button;
     public Image icon;
-    public Sprite currenSkillSprite;
+    public Sprite currentSkillSprite;
 
 
     private Skill mySkill;
@@ -35,6 +35,11 @@ public class SkillSlot : MonoBehaviour
     public void ChangeButtonAvailable(bool isAvailable)
     {
         button.interactable = isAvailable;
+        Color targetColor = isAvailable ? Color.white : new Color(0.5f, 0.5f, 0.5f, 0.5f); ;
+        if (icon != null)
+        {
+            icon.color = targetColor;
+        }
     }
 
     public void SKillResource(Skill skill)
@@ -52,8 +57,15 @@ public class SkillSlot : MonoBehaviour
             Debug.LogWarning($"{gameObject.name} 스킨 Sprite 로드 실패 : {skill.Data.skillIcon}");
         }
 
-        currenSkillSprite = sprite;
+        currentSkillSprite = sprite;
 
-        GetComponent<Image>().sprite = currenSkillSprite;
+        if (icon != null)
+        {
+            icon.sprite = currentSkillSprite;
+        }
+        else
+        {
+            Debug.LogError($"{currentSkillSprite} is null");
+        }
     }
 }

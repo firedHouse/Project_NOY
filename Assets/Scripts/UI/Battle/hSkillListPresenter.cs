@@ -69,8 +69,6 @@ public class SkillListPresenter : MonoBehaviour
             return;
         }
 
-        //한번 클릭하면 버튼 비활성화
-        skillList.SetSkillSlotAvailable(false);
 
         //현재 행동하는 캐릭터
         Character actingCharacter = playerTeam[currentActorIndex];
@@ -106,5 +104,8 @@ public class SkillListPresenter : MonoBehaviour
         Debug.Log("아군 3명의 스킬 선택이 모두 완료되었습니다.");
         mouseOverInfo.UpdateTurnChanged();
         BattleManager.Instance.OnPlayerInputFinished();
+
+        //한번 클릭하면 버튼 비활성화
+        skillList.SetSkillSlotAvailable(false);
     }
 }

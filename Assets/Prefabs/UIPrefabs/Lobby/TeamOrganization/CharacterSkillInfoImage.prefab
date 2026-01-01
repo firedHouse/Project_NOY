@@ -183,8 +183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillSlot
   button: {fileID: 3015635890798500350}
-  icon: {fileID: 0}
-  currenSkillSprite: {fileID: 0}
+  icon: {fileID: 8732118326171906585}
+  currentSkillSprite: {fileID: 0}
 --- !u!1 &6725784016271835971
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,11 @@ public class TeamOrganizationSkillList : MonoBehaviour
 
     // public BattleUnit BattleUnit { get => _battleUnit; set => _battleUnit = value; }
 
-    public CharacterListModel Model => model;
+    public CharacterListModel Model
+    {
+        get => model;
+        set => model = value;
+    } 
     private void Awake()
     {
         skillUI = new Skill[3];
@@ -33,6 +37,7 @@ public class TeamOrganizationSkillList : MonoBehaviour
         for (int i = 0; i < currentSkills.Count; i++)
         {
             slots[i].MySkill = currentSkills[i];
+            slots[i].SKillResource(currentSkills[i]);
             skillUI[i] = currentSkills[i];
             Debug.Log($"[TeamOrganizationSkillList] {slots[i].MySkill.Data.skillName}");        
         }

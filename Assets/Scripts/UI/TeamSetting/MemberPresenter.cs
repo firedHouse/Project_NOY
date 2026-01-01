@@ -82,6 +82,7 @@ public class MemberPresenter : CharacterPresenterBase
         ShowDetailView(character);
         skillView.SetDetailView(true);
         selectView.SetAllButtonInteractable(true);
+        skillList.Model = character;
     }
 
     protected override void ShowDetailView(CharacterListModel character)
@@ -108,7 +109,7 @@ public class MemberPresenter : CharacterPresenterBase
         Debug.Log($"[CharacterListPresenter] 기본 정보 업데이트");
         skillView.CharacterName(character);
         skillView.CharacterElement(character);
-        skillView.CharacterSkill(character);
+        // skillView.CharacterSkill(character);
         
     }
 

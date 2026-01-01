@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public partial class GrowthSkillView : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public partial class GrowthSkillView : MonoBehaviour
     [Header("스킬이름/설명")]
     [SerializeField] private Text skillNameText;
     [SerializeField] private Text skillInfoText;
+
+    [SerializeField] private List<SkillSlot> slots;
 
     //이름, 코드네임
     public void CharacterName(CharacterListModel model)
@@ -145,11 +148,11 @@ public partial class GrowthSkillView : MonoBehaviour
             Debug.Log("[GrowthSkillView] 스킬 출력 오브젝트가 없습니다.");
             return;
         }
-        
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    //skill[i].sprite = skillImage[i];
-        //}
+        // for (int i = 0; i < 3; i++)
+        // { 
+        //     skill[i].text = model.Skills[i].Data.skillName;
+        //     //skill[i].sprite = skillImage[i];
+        // }
 
         //for (int i = 0; i < 3; i++)
         //{

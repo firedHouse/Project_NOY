@@ -58,7 +58,7 @@ public class SkillSlot : MonoBehaviour
         }
 
         currentSkillSprite = sprite;
-
+        icon.sprite = sprite; 
         if (icon != null)
         {
             icon.sprite = currentSkillSprite;

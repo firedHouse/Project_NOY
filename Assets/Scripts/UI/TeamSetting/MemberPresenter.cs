@@ -94,6 +94,7 @@ public class MemberPresenter : CharacterPresenterBase
             UpdateMainInfo(model);
             // 스킬 리스트에게 지금 모델의 스킬들 가져오라고 전달
             UpdateSkillInfo(character);
+            skillView.GradeSet(model);
         }
         else
         {
@@ -109,9 +110,8 @@ public class MemberPresenter : CharacterPresenterBase
         Debug.Log($"[CharacterListPresenter] 기본 정보 업데이트");
         skillView.CharacterName(character);
         skillView.CharacterElement(character);
-        skillView.GradeSet(character);
         // skillView.CharacterSkill(character);
-
+        
     }
 
     // 전/중/후열 중에 하나를 클릭하면 해당 캐릭터 슬롯을 받아감

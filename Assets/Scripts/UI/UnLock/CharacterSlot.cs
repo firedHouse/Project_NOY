@@ -38,6 +38,9 @@ public class CharacterSlot : CharacterSlotBase
     // 성장 레벨에 따라 일러스트 UI 변경
     public void SlotIllustration(CharacterListModel model)
     {
+        int saveDataLevel = UserDataManager.Instance.GetCharacterGrade(model.CharacterID);
+        Debug.Log($"[CharacterListPresenter] {saveDataLevel}");
+
         int skinID = int.Parse(model.CharacterSkin);
         
         if (model.CharacterSkin == null)
@@ -46,7 +49,7 @@ public class CharacterSlot : CharacterSlotBase
             return;
         }
 
-        if (model.Level == 2)
+        if (saveDataLevel == 2)
         {
             skinID += 1;
         }

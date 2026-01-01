@@ -107,10 +107,25 @@ public partial class CharacterListPresenter : CharacterPresenterBase
             shillingPresenter?.UpdateUI();
             growthView.ChangeUnlockUIActivation(model.IsUnlocked);
             GrowthButton(model.IsUnlocked);
+
+            for (int i = 0; i < characters.Count; i++)
+            {
+                characterSlots[i].UpdateCharacterSlot(characters[i]);
+                characterSlots[i].SlotIllustration(characters[i]);
+            }
         }
         else
         {
             Debug.Log($"[CharacterListPresenter] 캐릭터가 존재하지 않아 해금 상태 변경 실패");
+        }
+    }
+
+    public void GrowthUp(CharacterListModel character)
+    {
+        for (int i = 0; i < characters.Count; i++)
+        {
+            characterSlots[i].UpdateCharacterSlot(characters[i]);
+            characterSlots[i].SlotIllustration(characters[i]);
         }
     }
 

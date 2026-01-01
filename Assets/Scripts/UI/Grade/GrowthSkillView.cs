@@ -21,7 +21,7 @@ public partial class GrowthSkillView : MonoBehaviour
     [SerializeField] private Sprite grayStar;
 
     [Header("일러스트출력")]
-    [SerializeField] private RawImage illust;
+    [SerializeField] private Image illust;
 
     [Header("스킬출력")]
     [SerializeField] private Text[] skill = new Text[3];
@@ -123,14 +123,13 @@ public partial class GrowthSkillView : MonoBehaviour
         }
 
         Sprite sprite = ResourceManager.Instance.LoadSprite(skinData);
-        Texture texture = sprite.texture;
 
-        if (texture == null)
+        if (sprite == null)
         {
-            Debug.LogWarning($"{gameObject.name} 스킨 Sprite 로드 실패 : {texture}");
+            Debug.LogWarning($"{gameObject.name} 스킨 Sprite 로드 실패 : {sprite}");
         }
 
-        illust.texture = texture;
+        illust.sprite = sprite;
     }
 
 

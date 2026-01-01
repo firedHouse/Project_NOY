@@ -5,7 +5,6 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 // 각 캐릭터마다 리스트에 표시해줄 View
-// 캐릭터 unlock 속성이 unlock이면 검은 실루엣 이미지로 처리
 [RequireComponent(typeof(Button))]
 public class CharacterSlot : CharacterSlotBase
 {
@@ -23,8 +22,33 @@ public class CharacterSlot : CharacterSlotBase
         id = model.CharacterID;
         slotModel = model;
         slotCharacter.text = model.CharacterName;
+        SlotIllustration(model);
         // Debug.Log($"[CharacterSlot] {id} 슬롯에 {model.CharacterName} 로드 완료");
     }
 
     // 성장 레벨에 따라 일러스트 UI 변경
+    public void SlotIllustration(CharacterListModel model)
+    {
+        int skinID = int.Parse(model.CharacterSkin);
+        
+        if (model.CharacterSkin == null)
+        {
+            Debug.Log($"[CharacterSlot] {model.CharacterID}의 일러스트를 불러올 수 없습니다");
+            return;
+        }
+
+        if (model.Level == 2)
+        {
+            skinID += 1;
+        }
+
+        string skinData = TableManager.Instance.SkinTable.Get(skinID.ToString()).imageFace;
+        Sprite sprite = ResourceManager.Instance.LoadSprite(skinData);
+
+        if (sprite == null)
+        {
+            Debug.LogWarning($"[CharacterSlot] {model.CharacterID} 스킨 Sprite 로드 실패 : {sprite}");
+        }
+        slotImage.sprite = sprite;
+    }
 }

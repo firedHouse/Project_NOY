@@ -240,6 +240,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2956084121328421627}
     m_Modifications:
+    - target: {fileID: 2679352390542622804, guid: 6c114c3778fe87d4586640e6bc13c3c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2977089559183988242, guid: 6c114c3778fe87d4586640e6bc13c3c1, type: 3}
       propertyPath: m_Name
       value: MemberSelectButton

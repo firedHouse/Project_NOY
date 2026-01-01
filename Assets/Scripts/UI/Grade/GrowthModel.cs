@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public partial class CharacterListModel : CharacterModelBase
 {
@@ -75,6 +76,7 @@ public partial class CharacterListModel : CharacterModelBase
         SetNeedShilling();
         presenter.ShillingUpdate(this);
         presenter.UpdateCharacterInfo(this);
+        presenter.GrowthUp(this);
     }
 
     public void GetSaveCharacterData()

@@ -69,9 +69,12 @@ public partial class GrowthSkillView : MonoBehaviour
         Debug.Log($"[GrowthSkillView] 레벨 : {saveData}");
 
         // 하나씩 밝히는 느낌
-
         switch (saveData)
         {
+            case 0:
+                starImage[2].color = new Color32(26, 26, 26, 255);
+                starImage[1].color = new Color32(26, 26, 26, 255);
+                break;
             case 1:
                 starImage[1].color = new Color(1f, 1f, 1f, 1f);
                 break;
@@ -80,7 +83,7 @@ public partial class GrowthSkillView : MonoBehaviour
                 starImage[2].color = new Color(1f, 1f, 1f, 1f);
                 break;
         }
-}
+    }
 
     //public void InitStar()
     //{

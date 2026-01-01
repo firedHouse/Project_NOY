@@ -101,6 +101,10 @@ public partial class GrowthView : MonoBehaviour
 
         switch(saveData)
         {
+            case 0:
+                starImage[2].color = new Color32(26, 26, 26, 255);
+                starImage[1].color = new Color32(26, 26, 26, 255);
+                break;
             case 1:
                 starImage[1].color = new Color(1f, 1f, 1f, 1f);
                 break;
@@ -108,14 +112,6 @@ public partial class GrowthView : MonoBehaviour
                 starImage[1].color = new Color(1f, 1f, 1f, 1f);
                 starImage[2].color = new Color(1f, 1f, 1f, 1f);
                 break;
-        }
-    }
-
-    public void InitStar()
-    {
-        for (int i = 0; i < 2; i++)
-        {
-            starImage[i].color = new Color32(26, 26, 26, 255);
         }
     }
 

@@ -110,8 +110,6 @@ public class MonsterInfoView : MonoBehaviour
     bool isSecondMark = false;
     bool isElementReaction;
 
-    ElementType attackMark = ElementType.None;
-
     public void UpdateMark(ElementType element, BattleUnit unit)
     {
         //원소반응이 일어나면 true가 됨
@@ -121,15 +119,19 @@ public class MonsterInfoView : MonoBehaviour
             //첫번째는 그냥 등록
             if (isFirstMark == false)
             {
-                attackMark = element;
-                ImageLik(attackMark);
+                ImageLik(element);
                 UpdateFirstMark();
+
+                if (imageLink == null)
+                { 
+                    Debug.Log($"[MonsterInfoView] 대상 : {unit.UnitName} 표식 스프라이트 없음");
+                    return;
+                }
                 Debug.Log($"[MonsterInfoView] UI : {unit.UnitName} 에게 {imageLink.name} 표식");
-                isFirstMark = true;
                 return;
             }
 
-            ImageLik(attackMark);
+            ImageLik(element);
             //두번째 속성
             //첫번째 속성이랑 같은지 비교
             if (firstMark.sprite.name == imageLink.name)
@@ -138,10 +140,12 @@ public class MonsterInfoView : MonoBehaviour
                 return;
             }
 
-            //다르면 마크 추가
-            attackMark = element;
             UpdateSecondMark();
-            isSecondMark = true;
+            if (imageLink == null)
+            {
+                Debug.Log($"[MonsterInfoView] 대상 : {unit.UnitName} 표식 스프라이트 없음");
+                return;
+            }
             Debug.Log($"[MonsterInfoView] UI : {unit.UnitName} 에게 {imageLink.name} 표식");
 
         }
@@ -149,6 +153,7 @@ public class MonsterInfoView : MonoBehaviour
 
     public void SUpdateMark(ElementReaction skill, BattleUnit unit)
     {
+
         //두번째에서만
         if (isElementReaction == false)
         {
@@ -156,15 +161,23 @@ public class MonsterInfoView : MonoBehaviour
 
             //두번째 속성
             //첫번째 속성이랑 같은지 비교
+            //다르면 마크 추가
+            
+
+            if (firstMark.sprite == null || imageLink == null)
+            {
+                //같으면 리턴
+                Debug.Log($"[MonsterInfoView] 대상 : {unit.UnitName} 첫번째 표식 없음");
+                return;
+            }
             if (firstMark.sprite.name == imageLink.name)
             {
                 //같으면 리턴
+                Debug.Log($"[MonsterInfoView] 대상 : {unit.UnitName} 첫번째 표식과 동일 표식");
                 return;
             }
 
-            //다르면 마크 추가
             UpdateSecondMark();
-            isSecondMark = true;
             Debug.Log($"[MonsterInfoView] UI : {unit.UnitName} 에게 {imageLink.name} 표식");
         }
     }
@@ -173,10 +186,12 @@ public class MonsterInfoView : MonoBehaviour
     {
         firstMark.sprite = null;
         secondMark.sprite = null;
-        UpdateFirstMark();
-        UpdateSecondMark();
+        ImageColor(firstMark, 0f);
+        ImageColor(secondMark, 0f);
+
         isFirstMark = false;
         isSecondMark = false;
+        imageLink = null;
         Debug.Log($"[MonsterInfoView] {unit.UnitName}표식 초기화");
     }
 
@@ -194,6 +209,7 @@ public class MonsterInfoView : MonoBehaviour
         }
         firstMark.sprite = imageLink;
         ImageColor(firstMark, 1f);
+        isFirstMark = true;
     }
 
     public void UpdateSecondMark()
@@ -204,6 +220,7 @@ public class MonsterInfoView : MonoBehaviour
         }
         secondMark.sprite = imageLink;
         ImageColor(secondMark, 1f);
+        isSecondMark = true;
     }
 
     public void ImageLik(ElementType element)
@@ -228,6 +245,12 @@ public class MonsterInfoView : MonoBehaviour
 
     public void SImageLik(ElementReaction element)
     {
+        imageLink = null;
+        if (firstMark.sprite == null)
+        {
+            Debug.Log($"[MonsterInfoView] 첫번째 마크 비어있음");
+            return;
+        }
 
         switch (element)
         {

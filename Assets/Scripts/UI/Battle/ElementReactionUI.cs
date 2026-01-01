@@ -12,8 +12,6 @@ public partial class CharacterBattleInfoView
     bool isSecondMark = false;
     bool isElementReaction;
 
-    ElementType attackMark = ElementType.None;
-
     Sprite waterMark;
     Sprite fireMark;
     Sprite elecMark;
@@ -41,6 +39,8 @@ public partial class CharacterBattleInfoView
 
     public void UpdateMark(ElementType element, BattleUnit unit)
     {
+        
+
         //빈 마크가 없을때까지 추가
         //리엑션 없을때만 실행
         if (isElementReaction == false)
@@ -49,15 +49,19 @@ public partial class CharacterBattleInfoView
             //첫번째는 그냥 등록
             if (isFirstMark == false)
             {
-                attackMark = element;
-                ImageLik(attackMark);
-                isFirstMark = true;
+                ImageLik(element);
                 UpdateFirstMark();
+
+                if (imageLink == null)
+                {
+                    Debug.Log($"[CharacterBattleInfoView] 대상 : {unit.UnitName} 표식 스프라이트 없음");
+                    return;
+                }
                 Debug.Log($"[CharacterBattleInfoView] UI : {unit.UnitName} 에게 {imageLink.name} 표식");
                 return;
             }
 
-            ImageLik(attackMark);
+            ImageLik(element);
             //두번째 속성
             //첫번째 속성이랑 같은지 비교
             if (firstMark.sprite.name == imageLink.name)
@@ -67,15 +71,20 @@ public partial class CharacterBattleInfoView
             }
 
             //다르면 마크 추가
-            attackMark = element;
             UpdateSecondMark();
-            isSecondMark = true;
+
+            if (imageLink == null)
+            {
+                Debug.Log($"[CharacterBattleInfoView] 대상 : {unit.UnitName}대상 : 표식 스프라이트 없음");
+                return;
+            }
             Debug.Log($"[CharacterBattleInfoView] UI : {unit.UnitName} 에게 {imageLink.name} 표식");
         }
     }
 
     public void SUpdateMark(ElementReaction skill, BattleUnit unit)
     {
+        
         //두번째에서만
         if (isElementReaction == false)
         {
@@ -83,15 +92,24 @@ public partial class CharacterBattleInfoView
 
             //두번째 속성
             //첫번째 속성이랑 같은지 비교
-            if (firstMark.sprite.name == imageLink.name)
+            if (firstMark.sprite == null || imageLink == null)
             {
-                //같으면 리턴
+                Debug.Log($"[CharacterBattleInfoView] 대상 : {unit.UnitName} 첫번째 표식 없음");
                 return;
             }
 
+            if (firstMark.sprite.name == imageLink.name)
+            {
+                //같으면 리턴
+                Debug.Log($"[CharacterBattleInfoView] 대상 : {unit.UnitName} 첫번째 표식과 동일 표식");
+                return;
+            }
+
+
+
+
             //다르면 마크 추가
             UpdateSecondMark();
-            isSecondMark = true;
             Debug.Log($"[CharacterBattleInfoView] UI : {unit.UnitName} 에게 {imageLink.name} 표식");
         }
     }
@@ -101,10 +119,12 @@ public partial class CharacterBattleInfoView
     {
         firstMark.sprite = null;
         secondMark.sprite = null;
-        UpdateFirstMark();
-        UpdateSecondMark();
+        ImageColor(firstMark, 0f);
+        ImageColor(secondMark, 0f);
+
         isFirstMark = false;
         isSecondMark = false;
+        imageLink = null;
         Debug.Log($"[CharacterBattleInfoView] {unit.UnitName}표식 초기화");
     }
     public void IsMarkReaction(bool isReaction)
@@ -122,6 +142,7 @@ public partial class CharacterBattleInfoView
         }
         firstMark.sprite = imageLink;
         ImageColor(firstMark, 1f);
+        isFirstMark= true;
     }
 
     public void UpdateSecondMark()
@@ -132,6 +153,7 @@ public partial class CharacterBattleInfoView
         }
         secondMark.sprite = imageLink;
         ImageColor(secondMark, 1f);
+        isSecondMark= true;
     }
 
     public void ImageLik(ElementType element)
@@ -156,6 +178,12 @@ public partial class CharacterBattleInfoView
 
     public void SImageLik(ElementReaction element)
     {
+        imageLink = null;
+        if (firstMark.sprite == null)
+        {
+            Debug.Log($"[CharacterBattleInfoView] 첫번째 마크 비어있음");
+            return;
+        }
 
         switch (element)
         {

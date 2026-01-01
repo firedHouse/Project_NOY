@@ -134,7 +134,7 @@ public class MonsterInfoView : MonoBehaviour
             ImageLik(element);
             //두번째 속성
             //첫번째 속성이랑 같은지 비교
-            if (firstMark.sprite.name == imageLink.name)
+            if (firstMark.sprite == imageLink)
             {
                 //같으면 리턴
                 return;

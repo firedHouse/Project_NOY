@@ -31,7 +31,7 @@ public class ElementalManager : MonoBehaviour
     //원소 적용 및 초기화
     public void SetElement(ElementType element)
     {
-        if (CanReact())
+        if (!CanReact())
         {
             Debug.Log("이미 원소 반응을 일으킨 상태, 원소 부여 불가");
             return;

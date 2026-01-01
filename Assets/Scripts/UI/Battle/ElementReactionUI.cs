@@ -1,15 +1,43 @@
+using System.Resources;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public partial class CharacterBattleInfoView
 {
-    string imageLink = "";
+    Sprite imageLink = null;
     bool isFirstMark = false;
     bool isSecondMark = false;
     bool isElementReaction;
 
     ElementType attackMark = ElementType.None;
+
+    Sprite waterMark;
+    Sprite fireMark;
+    Sprite elecMark;
+
+    private void Awake()
+    {
+        ImageColor(firstMark, 0f);
+        ImageColor(secondMark, 0f);
+        waterMark = Resources.Load<Sprite>("Image/Spum_Icon2");
+        fireMark = Resources.Load<Sprite>("Image/Spum_Icon1");
+        elecMark = Resources.Load<Sprite>("Image/Spum_Icon4");
+        if (waterMark == null)
+        {
+            Debug.LogError($"[CharacterBattleInfoView] 속성 아이콘 없음 / Spum_Icon2, Spum_Icon1, Spum_Icon4를 Image 폴더 안에 넣어주세요.)");
+        }
+    }
+
+    public void ImageColor(Image target, float n)
+    {
+        Color color = target.color;
+        color.a = n;
+        target.color = color;
+    }
+
 
     public void UpdateMark(ElementType element, BattleUnit unit)
     {
@@ -25,40 +53,37 @@ public partial class CharacterBattleInfoView
                 ImageLik(attackMark);
                 isFirstMark = true;
                 UpdateFirstMark();
-                Debug.Log($"[CharacterBattleInfoView] UI : {unit.UnitName} 에게 {imageLink} 표식");
+                Debug.Log($"[CharacterBattleInfoView] UI : {unit.UnitName} 에게 {imageLink.name} 표식");
                 return;
             }
 
-            UpdateFirstMark();
-
+            ImageLik(attackMark);
             //두번째 속성
             //첫번째 속성이랑 같은지 비교
-            if (isFirstMark == true && attackMark == element)
+            if (firstMark.sprite.name == imageLink.name)
             {
                 //같으면 리턴
                 return;
             }
 
             //다르면 마크 추가
-            ImageLik(attackMark);
+            attackMark = element;
             UpdateSecondMark();
             isSecondMark = true;
-            Debug.Log($"[CharacterBattleInfoView] UI : {unit.UnitName} 에게 {imageLink} 표식");
+            Debug.Log($"[CharacterBattleInfoView] UI : {unit.UnitName} 에게 {imageLink.name} 표식");
         }
     }
 
-    ElementReaction skillAttack;
     public void SUpdateMark(ElementReaction skill, BattleUnit unit)
     {
         //두번째에서만
         if (isElementReaction == false)
         {
-            skillAttack = skill;
-            SImageLik(skillAttack);
+            SImageLik(skill);
 
             //두번째 속성
             //첫번째 속성이랑 같은지 비교
-            if (firstMark.text == imageLink)
+            if (firstMark.sprite.name == imageLink.name)
             {
                 //같으면 리턴
                 return;
@@ -67,15 +92,15 @@ public partial class CharacterBattleInfoView
             //다르면 마크 추가
             UpdateSecondMark();
             isSecondMark = true;
-            Debug.Log($"[CharacterBattleInfoView] UI : {unit.UnitName} 에게 {imageLink} 표식");
+            Debug.Log($"[CharacterBattleInfoView] UI : {unit.UnitName} 에게 {imageLink.name} 표식");
         }
     }
 
 
     public void InitMark(BattleUnit unit)
     {
-        firstMark.text = "";
-        secondMark.text = "";
+        firstMark.sprite = null;
+        secondMark.sprite = null;
         UpdateFirstMark();
         UpdateSecondMark();
         isFirstMark = false;
@@ -91,12 +116,22 @@ public partial class CharacterBattleInfoView
 
     public void UpdateFirstMark()
     {
-        firstMark.text = imageLink;
+        if (imageLink == null)
+        {
+            return;
+        }
+        firstMark.sprite = imageLink;
+        ImageColor(firstMark, 1f);
     }
 
     public void UpdateSecondMark()
     {
-        secondMark.text = imageLink;
+        if (imageLink == null)
+        {
+            return;
+        }
+        secondMark.sprite = imageLink;
+        ImageColor(secondMark, 1f);
     }
 
     public void ImageLik(ElementType element)
@@ -104,16 +139,16 @@ public partial class CharacterBattleInfoView
         switch (element)
         {
             case ElementType.Fire:
-                imageLink = "불";
+                imageLink = fireMark;
                 break;
             case ElementType.Water:
-                imageLink = "물";
+                imageLink = waterMark;
                 break;
             case ElementType.Electric:
-                imageLink = "전기";
+                imageLink = elecMark;
                 break;
             case ElementType.None:
-                imageLink = "";
+                imageLink = null;
                 Debug.Log($"[CharacterBattleInfoView] 무속성");
                 break;
         }
@@ -125,19 +160,19 @@ public partial class CharacterBattleInfoView
         switch (element)
         {
             case ElementReaction.None:
-                imageLink = "";
+                imageLink = null;
 
                 break;
             //증발
             case ElementReaction.Vaporize:
                 {
-                    if (firstMark.text == "물")
+                    if (firstMark.sprite.name == waterMark.name)
                     {
-                        imageLink = "불";
+                        imageLink = fireMark;
                     }
-                    else if (firstMark.text == "불")
+                    else if (firstMark.sprite.name == fireMark.name)
                     {
-                        imageLink = "물";
+                        imageLink = waterMark;
                     }
 
                 }
@@ -146,13 +181,13 @@ public partial class CharacterBattleInfoView
             //감전
             case ElementReaction.ElectroShock:
                 {
-                    if (firstMark.text == "물")
+                    if (firstMark.sprite.name == waterMark.name)
                     {
-                        imageLink = "전기";
+                        imageLink = elecMark;
                     }
-                    else if (firstMark.text == "전기")
+                    else if (firstMark.sprite.name == elecMark.name)
                     {
-                        imageLink = "물";
+                        imageLink = waterMark;
                     }
 
                 }
@@ -161,13 +196,13 @@ public partial class CharacterBattleInfoView
             //과부하
             case ElementReaction.Overload:
                 {
-                    if (firstMark.text == "불")
+                    if (firstMark.sprite.name == fireMark.name)
                     {
-                        imageLink = "전기";
+                        imageLink = elecMark;
                     }
-                    else if (firstMark.text == "전기")
+                    else if (firstMark.sprite.name == elecMark.name)
                     {
-                        imageLink = "불";
+                        imageLink = fireMark;
                     }
 
                 }

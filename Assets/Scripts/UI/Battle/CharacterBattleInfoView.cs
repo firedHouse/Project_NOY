@@ -25,10 +25,10 @@ public partial class CharacterBattleInfoView : MonoBehaviour
     //추후에 이미지로 변경
 
     [Header("표식1")]
-    [SerializeField] Text firstMark;
+    [SerializeField] Image firstMark;
     //[SerializeField] Image firstMark;
     [Header("표식2")]
-    [SerializeField] Text secondMark;
+    [SerializeField] Image secondMark;
     //[SerializeField] Image secondMark;
 
     private List<Skill> characterskills;

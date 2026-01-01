@@ -4,12 +4,12 @@ using UnityEngine;
 
 public partial class CharacterBattleInfoPresenter : MonoBehaviour
 {
-    [Header("紐⑤뜽, �윴����엫 以� �옄�룞 異붽���맖.")]
+    [Header("모델, 런타임 중 자동 추가됨.")]
     [SerializeField] private Character characterModel;
-    [Header("罹먮┃�꽣 CharacterBox Panel, �쟾以묓썑�뿴�뿉 留욊쾶 媛곴컖 異붽��")]
+    [Header("캐릭터 CharacterBox Panel, 전중후열에 맞게 각각 추가")]
     [SerializeField] private CharacterBattleInfoView characterView;
     //private CharacterData characterData;
-    [Header("�쟾以묓썑�뿴 媛�")]
+    [Header("전중후열 값")]
     [SerializeField] private UnitPosition position;
 
     [SerializeField] private SkillProcesser skillProcesser;
@@ -18,7 +18,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
     private RelicComponent relicComponent;
     public ElementalManager elementalManager;
 
-    #region position�뿉�꽌 �궗�슜
+    #region position에서 사용
     private BattleUnit[] _character = new BattleUnit[3];
     [SerializeField] private GameObject[] _basePos = new GameObject[3];
     private Dictionary<BattleUnit, int> characterBoxPos = new Dictionary<BattleUnit, int>();
@@ -43,10 +43,10 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         elementalManager.OnMarkReaction += characterView.IsMarkReaction;
     }
 
-    //酉� 珥덇린 �꽕�젙
+    //뷰 초기 설정
     public void Initialize()
     {
-        Debug.Log("[CharacterBattleInfoPresenter] 珥덇린�솕");
+        Debug.Log("[CharacterBattleInfoPresenter] 초기화");
         characterModel = BattleManager.Instance.PlayerTeam[(int)position];
         characterModel.OnDeath += HandleDeath;
         //characterModel.OnDeath += HandlePositionChanged;
@@ -54,7 +54,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         //characterModel.OnMarkChanged += HandleMarkChanged;
 
 
-        //HP諛� �닔�젙 > �쁽�옱 泥대젰�쑝濡�
+        //HP바 수정 > 현재 체력으로
         characterView.SetMaxHP(characterModel.MaxHP);
         characterView.UpdateHPBar(characterModel.CurrentHP);
         characterView.SetSkillList(characterModel.Skills);
@@ -65,9 +65,9 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         characterView.gameObject.SetActive(true);
         characterView.InitMark(characterModel);
 
-        // 罹먮┃�꽣�뿉�뒗 �냽�꽦�씠 �뾾�뼱�꽌 肄붾뱶 �궘�젣
-        //怨좎쑀�냽�꽦
-        //elementUI濡� 蹂�寃쏀빐�빞 �븿
+        // 캐릭터에는 속성이 없어서 코드 삭제
+        //고유속성
+        //elementUI로 변경해야 함
         // characterView.UpdateClass(characterModel.CurrentMark.ToString());
         // characterView.InitMark();
 
@@ -80,7 +80,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
 
     }
 
-    // �냽�꽦 �몴�떆 蹂�寃� �뜲�씠�꽣�씤�뜲 �냽�꽦�씠 �뜲�씠�꽣 �뀒�씠釉붿뿉 �뾾�뼱�꽌 吏�湲덉�� �궗�슜 �븞�븿
+    // 속성 표시 변경 데이터인데 속성이 데이터 테이블에 없어서 지금은 사용 안함
     //private void HandleMarkChanged(BattleUnit character, ElementType elementType)
     //{
     //}
@@ -98,7 +98,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
 
     public void Mark(BattleUnit unit, ElementType i)
     {
-        //�몴�떇
+        //표식
         if (unit.UnitID == characterModel.UnitID)
         {
             characterView.UpdateMark(i, unit);
@@ -106,7 +106,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
     }
     public void SMark(BattleUnit unit, ElementReaction i)
     {
-        //�몴�떇
+        //표식
         if (unit.UnitID == characterModel.UnitID)
         {
             characterView.SUpdateMark(i, unit);
@@ -123,7 +123,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
 
         relicComponent.OnRelicChanged += relicStatusUI.Refresh;
 
-        // 珥덇린 �긽�깭 1�쉶 諛섏쁺
+        // 초기 상태 1회 반영
         relicStatusUI.Refresh(relicComponent.CurrentRelic);
     }
 

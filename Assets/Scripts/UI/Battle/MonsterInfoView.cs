@@ -1,3 +1,4 @@
+using System.Resources;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,12 +21,35 @@ public class MonsterInfoView : MonoBehaviour
     [SerializeField] private Slider HPSlider;
 
     [Header("표식1")]
-    [SerializeField] Text firstMark;
+    [SerializeField] Image firstMark;
     //[SerializeField] Image firstMark;
     [Header("표식2")]
-    [SerializeField] Text secondMark;
+    [SerializeField] Image secondMark;
     //[SerializeField] Image secondMark;
 
+    Sprite waterMark;
+    Sprite fireMark;
+    Sprite elecMark;
+
+    private void Awake()
+    {
+        ImageColor(firstMark, 0f);
+        ImageColor(secondMark, 0f);
+        waterMark = Resources.Load<Sprite>("Image/Spum_Icon2");
+        fireMark = Resources.Load<Sprite>("Image/Spum_Icon1");
+        elecMark = Resources.Load<Sprite>("Image/Spum_Icon4");
+        if(waterMark == null)
+        {
+            Debug.LogError($"[MonsterInfoView] 속성 아이콘 없음 / Spum_Icon2, Spum_Icon1, Spum_Icon4를 Image 폴더 안에 넣어주세요.)");
+        }
+    }
+
+    public void ImageColor(Image target, float n)
+    {
+        Color color = target.color;
+        color.a = n;
+        target.color = color;
+    }
 
     public void UpdateMonsterName(string text)
     {
@@ -81,7 +105,7 @@ public class MonsterInfoView : MonoBehaviour
         monsterPowerText.text = "공격력 : " + monsterPower.ToString();
     }
 
-    string imageLink = "";
+    Sprite imageLink = null;
     bool isFirstMark = false;
     bool isSecondMark = false;
     bool isElementReaction;
@@ -90,52 +114,49 @@ public class MonsterInfoView : MonoBehaviour
 
     public void UpdateMark(ElementType element, BattleUnit unit)
     {
-        //빈 마크가 없을때까지 추가
+        //원소반응이 일어나면 true가 됨
         if (isElementReaction == false)
         {
             //부여된 속성
             //첫번째는 그냥 등록
-            if(isFirstMark == false)
+            if (isFirstMark == false)
             {
                 attackMark = element;
                 ImageLik(attackMark);
                 UpdateFirstMark();
-                Debug.Log($"[MonsterInfoView] UI : {unit.UnitName} 에게 {imageLink} 표식");
+                Debug.Log($"[MonsterInfoView] UI : {unit.UnitName} 에게 {imageLink.name} 표식");
                 isFirstMark = true;
                 return;
             }
 
-            UpdateFirstMark();
-
+            ImageLik(attackMark);
             //두번째 속성
             //첫번째 속성이랑 같은지 비교
-            if (attackMark == element)
+            if (firstMark.sprite.name == imageLink.name)
             {
                 //같으면 리턴
                 return;
             }
 
             //다르면 마크 추가
-            ImageLik(attackMark);
+            attackMark = element;
             UpdateSecondMark();
             isSecondMark = true;
-            Debug.Log($"[MonsterInfoView] UI : {unit.UnitName} 에게 {imageLink} 표식");
+            Debug.Log($"[MonsterInfoView] UI : {unit.UnitName} 에게 {imageLink.name} 표식");
 
         }
     }
 
-    ElementReaction skillAttack;
     public void SUpdateMark(ElementReaction skill, BattleUnit unit)
     {
         //두번째에서만
         if (isElementReaction == false)
         {
-           skillAttack = skill;
-           SImageLik(skillAttack);
+            SImageLik(skill);
 
             //두번째 속성
             //첫번째 속성이랑 같은지 비교
-            if (isFirstMark == true && firstMark.text == imageLink)
+            if (firstMark.sprite.name == imageLink.name)
             {
                 //같으면 리턴
                 return;
@@ -144,14 +165,14 @@ public class MonsterInfoView : MonoBehaviour
             //다르면 마크 추가
             UpdateSecondMark();
             isSecondMark = true;
-            Debug.Log($"[MonsterInfoView] UI : {unit.UnitName} 에게 {imageLink} 표식");
+            Debug.Log($"[MonsterInfoView] UI : {unit.UnitName} 에게 {imageLink.name} 표식");
         }
     }
 
     public void InitMark(BattleUnit unit)
     {
-        firstMark.text = "";
-        secondMark.text = "";
+        firstMark.sprite = null;
+        secondMark.sprite = null;
         UpdateFirstMark();
         UpdateSecondMark();
         isFirstMark = false;
@@ -167,12 +188,22 @@ public class MonsterInfoView : MonoBehaviour
 
     public void UpdateFirstMark()
     {
-        firstMark.text = imageLink;
+        if (imageLink == null)
+        {
+            return;
+        }
+        firstMark.sprite = imageLink;
+        ImageColor(firstMark, 1f);
     }
 
     public void UpdateSecondMark()
     {
-        secondMark.text = imageLink;
+        if (imageLink == null)
+        {
+            return;
+        }
+        secondMark.sprite = imageLink;
+        ImageColor(secondMark, 1f);
     }
 
     public void ImageLik(ElementType element)
@@ -180,16 +211,16 @@ public class MonsterInfoView : MonoBehaviour
         switch (element)
         {
             case ElementType.Fire:
-                imageLink = "불";
+                imageLink = fireMark;
                 break;
             case ElementType.Water:
-                imageLink = "물";
+                imageLink = waterMark;
                 break;
             case ElementType.Electric:
-                imageLink = "전기";
+                imageLink = elecMark;
                 break;
             case ElementType.None:
-                imageLink = "";
+                imageLink = null;
                 Debug.Log($"[MonsterInfoView] 무속성");
                 break;
         }
@@ -197,53 +228,53 @@ public class MonsterInfoView : MonoBehaviour
 
     public void SImageLik(ElementReaction element)
     {
-         
+
         switch (element)
         {
             case ElementReaction.None:
-                imageLink = "";
+                imageLink = null;
 
                 break;
-                //증발
+            //증발
             case ElementReaction.Vaporize:
                 {
-                    if (firstMark.text == "물")
+                    if (firstMark.sprite.name == waterMark.name)
                     {
-                        imageLink = "불";
+                        imageLink = fireMark;
                     }
-                    else if(firstMark.text == "불")
+                    else if (firstMark.sprite.name == fireMark.name)
                     {
-                        imageLink = "물";
+                        imageLink = waterMark;
                     }
 
                 }
                 break;
 
-                //감전
+            //감전
             case ElementReaction.ElectroShock:
                 {
-                    if (firstMark.text == "물")
+                    if (firstMark.sprite.name == waterMark.name)
                     {
-                        imageLink = "전기";
+                        imageLink = elecMark;
                     }
-                    else if (firstMark.text == "전기")
+                    else if (firstMark.sprite.name == elecMark.name)
                     {
-                        imageLink = "물";
+                        imageLink = waterMark;
                     }
 
                 }
                 break;
 
-                //과부하
+            //과부하
             case ElementReaction.Overload:
                 {
-                    if (firstMark.text == "불")
+                    if (firstMark.sprite.name == fireMark.name)
                     {
-                        imageLink = "전기";
+                        imageLink = elecMark;
                     }
-                    else if (firstMark.text == "전기")
+                    else if (firstMark.sprite.name == elecMark.name)
                     {
-                        imageLink = "불";
+                        imageLink = fireMark;
                     }
 
                 }

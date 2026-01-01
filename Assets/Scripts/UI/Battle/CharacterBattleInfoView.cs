@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public partial class CharacterBattleInfoView : MonoBehaviour
 {
+    [Header("CharacterBattleInfoPresenter")]
+    [SerializeField] private CharacterBattleInfoPresenter presenter;
+
     [Header("캐릭터 이름")]
     [SerializeField] private Text characterNameText;
     [Header("캐릭터 속성")]

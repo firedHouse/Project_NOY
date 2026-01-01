@@ -1,9 +1,5 @@
 using System;
-using System.IO;
-using Unity.VisualScripting;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public partial class GrowthView : MonoBehaviour

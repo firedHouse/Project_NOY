@@ -14,6 +14,9 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
 
     [SerializeField] private SkillProcesser skillProcesser;
 
+    [SerializeField] private RelicStatusUI relicStatusUI;
+    private RelicComponent relicComponent;
+
     #region position에서 사용
     private BattleUnit[] _character = new BattleUnit[3];
     [SerializeField] private GameObject[] _basePos = new GameObject[3];
@@ -62,11 +65,13 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
         //elementUI로 변경해야 함
         // characterView.UpdateClass(characterModel.CurrentMark.ToString());
         // characterView.InitMark();
+
+        BindRelicUI(characterModel);
     }
 
     private void HandleHpChanged(BattleUnit character, float hpChangedAmount)
     {
-        characterView.UpdateHPBar(hpChangedAmount);        
+        characterView.UpdateHPBar(hpChangedAmount);
 
     }
 
@@ -89,7 +94,7 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
     public void Mark(BattleUnit unit, ElementType i)
     {
         //표식
-        if(unit.UnitID == characterModel.UnitID)
+        if (unit.UnitID == characterModel.UnitID)
         {
             characterView.UpdateMark(i);
             Debug.Log($"[CharacterBattleInfoPresenter] {unit.UnitName}에게 {i} 부여");
@@ -106,5 +111,23 @@ public partial class CharacterBattleInfoPresenter : MonoBehaviour
 
     }
 
+    private void BindRelicUI(Character character)
+    {
+        relicComponent = character.GetComponent<RelicComponent>();
+
+        if (relicComponent == null || relicStatusUI == null)
+            return;
+
+        relicComponent.OnRelicChanged += relicStatusUI.Refresh;
+
+        // 초기 상태 1회 반영
+        relicStatusUI.Refresh(relicComponent.CurrentRelic);
+    }
+
+    private void OnDestroy()
+    {
+        if (relicComponent != null && relicStatusUI != null)
+            relicComponent.OnRelicChanged -= relicStatusUI.Refresh;
+    }
 }
 

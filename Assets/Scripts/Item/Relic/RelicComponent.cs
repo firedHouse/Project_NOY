@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class RelicComponent : MonoBehaviour
     private RunTimeRelic currentRelic;
 
     public RunTimeRelic CurrentRelic => currentRelic;
+
+    public event Action<RunTimeRelic> OnRelicChanged;
 
     private float appliedHP;
     private float appliedAtk;
@@ -34,7 +37,7 @@ public class RelicComponent : MonoBehaviour
         ApplyRelic(newRelic);
 
         Debug.Log($"{owner.UnitName} → 유물 장착: {newRelic.itemData.itemEquipName}");
-
+        OnRelicChanged?.Invoke(currentRelic);
     }
 
     private void ApplyRelic(RunTimeRelic newRelic)
@@ -89,5 +92,7 @@ public class RelicComponent : MonoBehaviour
 
         appliedHP = appliedAtk = appliedSpeed = 0;
         currentRelic = null;
+
+        OnRelicChanged?.Invoke(null);
     }
 }

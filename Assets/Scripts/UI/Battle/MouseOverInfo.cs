@@ -122,6 +122,6 @@ public partial class MouseOverInfo : MonoBehaviour
     public void UpdateTurnChanged()
     {
         Debug.Log("[MouseOverInfo] 행동선택완료");
-        _turnInfo.text = "행동 선택 완료";
+        _turnInfo.text = "다음 행동을 선택해주세요";
     }
 }

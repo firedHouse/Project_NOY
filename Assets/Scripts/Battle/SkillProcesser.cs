@@ -41,10 +41,6 @@ public class SkillProcesser : MonoBehaviour
             OnMarkChanged?.Invoke(target, attackElement);
             return;
         }
-        else
-        {
-            OnMarkReaction?.Invoke(target, reaction);
-        }
 
         //이번 턴에 원소 반응을 했었다면 Return;
         if (!elemental.CanReact())
@@ -56,21 +52,22 @@ public class SkillProcesser : MonoBehaviour
         switch (reaction)
         {
             case ElementReaction.Vaporize:
-                Debug.Log("증발");
+                Debug.Log($"대상 : {target.UnitName} 증발");
                 BattleLogManager.Instance.AddLog("증발 반응 발동");
                 ReactionDamageProcesser.ApplyVaporize(target);
                 break;
             case ElementReaction.ElectroShock:
-                Debug.Log("감전");
+                Debug.Log($"대상 : {target.UnitName} 감전");
                 BattleLogManager.Instance.AddLog("감전 반응 발동");
                 ReactionDamageProcesser.ApplyElectroShock(enemyTeam);
                 break;
             case ElementReaction.Overload:
-                Debug.Log("과부하 타이머 시작");
+                Debug.Log($"대상 : {target.UnitName} 과부하 타이머 시작");
                 BattleLogManager.Instance.AddLog("과부하 반응 발동");
                 elemental.ActiveOverload(overloadDuration);
                 break;
         }
+        OnMarkReaction?.Invoke(target, reaction);
 
         elemental.MarkReacted();
         elemental.ClearElement();

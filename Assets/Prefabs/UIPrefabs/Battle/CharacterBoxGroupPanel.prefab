@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4877083020921638346}
   - component: {fileID: 9131157803942685230}
   - component: {fileID: 8653989066091431456}
-  - component: {fileID: 3965629401495003668}
   m_Layer: 5
   m_Name: CharacterBoxGroupPanel
   m_TagString: Untagged
@@ -104,22 +103,6 @@ MonoBehaviour:
   m_Spacing: {x: 20, y: 20}
   m_Constraint: 0
   m_ConstraintCount: 3
---- !u!114 &3965629401495003668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2628477370230318201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1202d00120a3c8e4d9f31307f6631415, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterPositionView
-  _characterBox:
-  - {fileID: 3578861005664047663}
-  - {fileID: 8775590753870290395}
-  - {fileID: 61115031478473504}
 --- !u!1001 &347458962858894771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -267,7 +250,7 @@ PrefabInstance:
     - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: HPSlider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 35602673703738310}
     - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: firstMark
       value: 
@@ -285,6 +268,17 @@ PrefabInstance:
       insertIndex: 3
       addedObject: {fileID: 5612949245549753894}
   m_SourcePrefab: {fileID: 100100000, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+--- !u!114 &35602673703738310 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 336662096379952757, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+  m_PrefabInstance: {fileID: 347458962858894771}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!114 &1060037997560205099 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 748845366597970584, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
@@ -435,10 +429,6 @@ PrefabInstance:
       propertyPath: position
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 3268719508118344517, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
-      propertyPath: characterMoveView
-      value: 
-      objectReference: {fileID: 3965629401495003668}
     - target: {fileID: 3486559367524539434, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -494,7 +484,7 @@ PrefabInstance:
     - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: HPSlider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3534701880892857033}
     - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: firstMark
       value: 
@@ -509,11 +499,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
---- !u!1 &61115031478473504 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+--- !u!114 &3534701880892857033 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 336662096379952757, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
   m_PrefabInstance: {fileID: 3864608302685398204}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!224 &4499620638894303169 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 851186819685483389, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
@@ -637,10 +633,6 @@ PrefabInstance:
       propertyPath: position
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3268719508118344517, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
-      propertyPath: characterMoveView
-      value: 
-      objectReference: {fileID: 3965629401495003668}
     - target: {fileID: 3486559367524539434, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -696,7 +688,7 @@ PrefabInstance:
     - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: HPSlider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5196588983052932146}
     - target: {fileID: 5918203193094852762, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
       propertyPath: firstMark
       value: 
@@ -738,8 +730,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 851186819685483389, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
   m_PrefabInstance: {fileID: 5526460181279713863}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8775590753870290395 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3853048329262905244, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
+--- !u!114 &5196588983052932146 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 336662096379952757, guid: 56c692a1dd1ce76499ee1131231994e4, type: 3}
   m_PrefabInstance: {fileID: 5526460181279713863}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider

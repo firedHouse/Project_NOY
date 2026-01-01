@@ -122,12 +122,14 @@ public class MemberPresenter : CharacterPresenterBase
         {
             teamMembers[idx] = null;
             selectView.slots[idx].SlotModel = null;
-            selectView.slots[idx].selectedCharacterName.text = "";
+            // selectView.slots[idx].selectedCharacterName.text = "";
+            selectView.slots[idx].DeleteSlotIllustration();
             Debug.Log($"[MemberPresenter] 위치 중복으로 이동됨 {teamMembers[idx]} {selectView.slots[idx].SlotModel}");
         }
         Debug.Log($"[MemberPresenter] {selectedSlot.transform.parent.name} {model.CharacterName}");
         selectedSlot.SlotModel = model;
-        selectedSlot.SlotCharacter.text = model.CharacterName;
+        // selectedSlot.SlotCharacter.text = model.CharacterName;
+        selectedSlot.SetSlotIllustration(selectedSlot.SlotModel);
         // 해당 슬롯에 모델 저장
         teamMembers[selectedSlot.memberPosition] = model;
     }

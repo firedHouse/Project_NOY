@@ -13,6 +13,7 @@ public partial class GrowthSkillView : MonoBehaviour
     [Header("캐릭터 이름/코드네임")]
     [SerializeField] private Text charName;
     [SerializeField] private Text codeName;
+    [SerializeField] private Text position;
 
     [Header("별 출력 배열/리소스")]
     [SerializeField] private Image[] starImage = new Image[3];
@@ -40,8 +41,11 @@ public partial class GrowthSkillView : MonoBehaviour
         }
         charName.text = model.CharacterName;
         codeName.text = model.CharacterCodeName;
+        CharacterPosition pos= (CharacterPosition)model.Position;
+        position.text = pos.ToString();
         Debug.Log($"[GrowthSkillView] 이름 : {model.CharacterName}");
         Debug.Log($"[GrowthSkillView] 코드네임 : {model.CharacterCodeName}");
+        Debug.Log($"[GrowthSkillView] 포지션 : {position.text}");
     }
 
     //고유속성 출력 : ElementUI elementUI
@@ -141,7 +145,7 @@ public partial class GrowthSkillView : MonoBehaviour
             Debug.Log("[GrowthSkillView] 스킬 출력 오브젝트가 없습니다.");
             return;
         }
-
+        
         //for (int i = 0; i < 3; i++)
         //{
         //    //skill[i].sprite = skillImage[i];

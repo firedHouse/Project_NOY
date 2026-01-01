@@ -23,7 +23,16 @@ public class CharacterSlot : CharacterSlotBase
         slotModel = model;
         slotCharacter.text = model.CharacterName;
         SlotIllustration(model);
-        // Debug.Log($"[CharacterSlot] {id} 슬롯에 {model.CharacterName} 로드 완료");
+
+        //미해금 색조정
+        if (model.IsUnlocked)
+        {
+            slotImage.color = Color.white;
+        }
+        else
+        {
+            slotImage.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        }
     }
 
     // 성장 레벨에 따라 일러스트 UI 변경

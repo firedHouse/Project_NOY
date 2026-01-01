@@ -5,59 +5,69 @@ public class RewardManager : MonoBehaviour
 {
     public HashSet<string> usedRelics = new();
 
+    private const string HPSmallID = "70001";
+    private const string HPMiddleID = "70002";
+    private const string PPSmallID = "70003";
+    private const string PPMiddleID = "70004";
+    private const string reviveID = "70005";
+
     //보상 산출 (무료/유료, 중복 방지 및 사망 규칙 반영)
     //유료 아이템 산출(부활 아이템 포함)
     public List<RunTimeItem> CreatePaidItems(bool hasDeadTeam)
     {
-        List<RunTimeItem> pool = new List<RunTimeItem>();
+        List<RunTimeItem> result = new();
 
-        foreach (var item in TableManager.Instance.ItemTable.GetAll())
-        {
-            var type = ItemTypeResolver.ResolveItem(item.itemID);
+        // 슬롯 1 : 소형 HP
+        result.Add(CreateItem(HPSmallID));
 
-            if (hasDeadTeam && type == UsableItemType.PPPotion) continue;
+        // 슬롯 2 : 중형 HP
+        result.Add(CreateItem(HPMiddleID));
 
-            pool.Add(new RunTimeItem(item, type));
-        }
-
+        // 슬롯 3 : PP 또는 부활
         if (hasDeadTeam)
-        {
-            var revive = TableManager.Instance.ItemTable.Get("70005"); //팀이 죽은 상태라면 부활의 조각 드롭
-            pool.Add(new RunTimeItem(revive, UsableItemType.Revive));
-        }
+            result.Add(CreateItem(reviveID, UsableItemType.Revive));
+        else
+            result.Add(CreateItem(PPMiddleID));
 
-        Debug.Log("유료 아이템 리스트 산출 완료");
-        return PickRandom(pool, 3);
+        return result;
     }
 
     //무료 아이템 산출(부활 아이템 제외, 유물 포함)
     public List<object> CreateFreeItems()
     {
-        List<object> pool = new List<object>();
+        List<object> pool = new();
 
-        Debug.Log(TableManager.Instance);
-        Debug.Log(TableManager.Instance.ItemTable);
-        Debug.Log(TableManager.Instance.ItemTable.GetAll());
-        // 무료 아이템(소비) 산출
-        foreach (var item in TableManager.Instance.ItemTable.GetAll())
-        {
-            var type = ItemTypeResolver.ResolveItem(item.itemID);
-            if (type != UsableItemType.Revive)
-            {
-                pool.Add(new RunTimeItem(item, type));
-            }
-        }
-        //유물 산출
+        // 소비 아이템 4종
+        pool.Add(CreateItem(HPSmallID));
+        pool.Add(CreateItem(HPMiddleID));
+        pool.Add(CreateItem(PPSmallID));
+        pool.Add(CreateItem(PPMiddleID)); // 중형 PP 회복약
+
+        // 유물
         foreach (var relic in TableManager.Instance.ItemEquipTable.GetAll())
         {
-            if (usedRelics.Contains(relic.itemEquipID)) continue;
+            if (usedRelics.Contains(relic.itemEquipID))
+                continue;
 
             var state = ItemTypeResolver.ResolveRelic(relic.itemEquipID);
             pool.Add(new RunTimeRelic(relic, state));
         }
 
-        Debug.Log("무료 아이템 리스트 산출 완료");
         return PickRandom(pool, 3);
+    }
+
+    private RunTimeItem CreateItem(string itemID, UsableItemType? overrideType = null)
+    {
+        var itemData = TableManager.Instance.ItemTable.Get(itemID);
+
+        if (itemData == null)
+        {
+            Debug.LogError($"ItemData not found: {itemID}");
+            return null;
+        }
+
+        var type = overrideType ?? ItemTypeResolver.ResolveItem(itemID);
+        return new RunTimeItem(itemData, type);
     }
 
     //리스트에서 랜덤으로 count개 선택(중복 없음)

@@ -33,7 +33,6 @@ public partial class GrowthView : MonoBehaviour
         MiddlePanel = GameObject.Find("MiddlePanel");
         RightPanel = GameObject.Find("RightPanel");
         GameObject starParent = GameObject.Find("CharacterGradeImage");
-        starImage[0] = starParent.GetComponentInChildren<Image>();
             
         //popup = GameObject.Find("NotifyPanel").GetComponent<AlertPopUpView>() ;
     }

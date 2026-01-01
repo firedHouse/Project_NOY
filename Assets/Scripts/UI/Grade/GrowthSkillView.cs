@@ -18,8 +18,6 @@ public partial class GrowthSkillView : MonoBehaviour
 
     [Header("별 출력 배열/리소스")]
     [SerializeField] private Image[] starImage = new Image[3];
-    [SerializeField] private Sprite yellowStar;
-    [SerializeField] private Sprite grayStar;
 
     [Header("일러스트출력")]
     [SerializeField] private Image illust;
@@ -67,38 +65,31 @@ public partial class GrowthSkillView : MonoBehaviour
     //별 이미지 갱신
     public void GradeSet(CharacterListModel model)
     {
-        if (starImage[0] == null)
-        {
-            Debug.Log("[GrowthSkillView] 별 이미지(테스트버전-텍스트)오보젝트가 없습니다.");
-            return;
-        }
+        int saveData = UserDataManager.Instance.GetCharacterGrade(model.CharacterID);
+        Debug.Log($"[GrowthSkillView] 레벨 : {saveData}");
 
-        if (yellowStar == null || grayStar == null)
-        {
-            Debug.Log("[GrowthView] 별 이미지 정보 없음");
-            return;
-        }
+        // 하나씩 밝히는 느낌
 
-        if (model.Level > 3)
+        switch (saveData)
         {
-            Debug.Log("[GrowthView] 등급 최대치 넘어감");
-            return;
+            case 1:
+                starImage[1].color = new Color(1f, 1f, 1f, 1f);
+                break;
+            case 2:
+                starImage[1].color = new Color(1f, 1f, 1f, 1f);
+                starImage[2].color = new Color(1f, 1f, 1f, 1f);
+                break;
         }
+}
 
-        //등급만큼 노란별
+    //public void InitStar()
+    //{
 
-        for (int i = 0; i < model.Level; i++)
-        {
-            //starImage[i].text = $"★";
-            starImage[i].sprite = yellowStar;
-        }
-
-        for (int i = model.Level; i < 3; i++)
-        {
-            //starImage[i].text = $"☆";
-            starImage[i].sprite = grayStar;
-        }
-    }
+    //    for (int i = 0; i < 2; i++)
+    //    {
+    //        starImage[i].color = new Color(26, 26, 26, 255);
+    //    }
+    //}
 
     //학년별 일러스트
     int skinID;
@@ -107,6 +98,9 @@ public partial class GrowthSkillView : MonoBehaviour
 
     public void CharacterIllust(CharacterListModel model)
     {
+        int saveData = UserDataManager.Instance.GetCharacterGrade(model.CharacterID);
+        Debug.Log($"[CharacterListPresenter] {saveData}");
+
         //스킨 데이터 
         skinID = int.Parse(model.CharacterSkin);
 
@@ -117,12 +111,12 @@ public partial class GrowthSkillView : MonoBehaviour
         }
 
         //레벨1일때
-        if (model.Level == 0)
+        if (saveData == 0)
         {
             skinData = TableManager.Instance.SkinTable.Get(model.CharacterSkin).imageFull;
         }
 
-        else if (model.Level == 2)
+        else if (saveData == 2)
         {
             skinID = skinID + 1;
             skinData = TableManager.Instance.SkinTable.Get(skinID.ToString()).imageFull;

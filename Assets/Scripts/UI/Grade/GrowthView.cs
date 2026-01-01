@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public partial class GrowthView : MonoBehaviour
 {
@@ -17,8 +18,6 @@ public partial class GrowthView : MonoBehaviour
 
     [Header("별 출력 배열/리소스")]
     [SerializeField] private Image[] starImage = new Image[3];
-    [SerializeField] private Sprite yellowStar;
-    [SerializeField] private Sprite grayStar;
 
     [Header("일러스트출력")]
     [SerializeField] private Image illust;
@@ -103,22 +102,20 @@ public partial class GrowthView : MonoBehaviour
         switch(saveData)
         {
             case 1:
-                starImage[1].color = new Color(255, 255, 255, 255);
+                starImage[1].color = new Color(1f, 1f, 1f, 1f);
                 break;
             case 2:
-                starImage[2].color = new Color(255, 255, 255, 255);
+                starImage[1].color = new Color(1f, 1f, 1f, 1f);
+                starImage[2].color = new Color(1f, 1f, 1f, 1f);
                 break;
         }
     }
 
     public void InitStar()
     {
-        string ImageName = "SPUM/Retro UI Set/1_UI_Images/Theme2/06_UI/Spum_Icon139";
-
         for (int i = 0; i < 2; i++)
         {
-            starImage[i].sprite = Resources.Load<Sprite>(ImageName);
-            starImage[i].color = new Color(26, 26, 26, 255);
+            starImage[i].color = new Color32(26, 26, 26, 255);
         }
     }
 

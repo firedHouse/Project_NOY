@@ -109,8 +109,9 @@ public class MemberPresenter : CharacterPresenterBase
         Debug.Log($"[CharacterListPresenter] 기본 정보 업데이트");
         skillView.CharacterName(character);
         skillView.CharacterElement(character);
+        skillView.GradeSet(character);
         // skillView.CharacterSkill(character);
-        
+
     }
 
     // 전/중/후열 중에 하나를 클릭하면 해당 캐릭터 슬롯을 받아감

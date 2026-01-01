@@ -182,8 +182,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4286629100637768575}
   - {fileID: 4583240050432651444}
+  - {fileID: 4286629100637768575}
   - {fileID: 7231483782466995970}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -287,10 +287,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MemberSlot
   slotButton: {fileID: 0}
+  slotImage: {fileID: 0}
   slotModel: {fileID: 0}
   slotCharacter: {fileID: 0}
   memberPosition: 0
   selectedCharacterName: {fileID: 4837858479724929350}
+  selectedCharacterIllust: {fileID: 9150962191172719834}
 --- !u!1 &8437876433230457834
 GameObject:
   m_ObjectHideFlags: 0

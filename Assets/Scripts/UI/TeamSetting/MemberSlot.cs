@@ -6,6 +6,7 @@ public class MemberSlot : CharacterSlotBase
 {
     [SerializeField] public int memberPosition;
     [SerializeField] public Text selectedCharacterName;
+    [SerializeField] public Image selectedCharacterIllust;
 
     public int MemberPosition => memberPosition;
     private void Start()

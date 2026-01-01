@@ -33,26 +33,25 @@ public class SkillProcesser : MonoBehaviour
 
         //원소 반응 판정
         ElementReaction reaction = ElementReactionResolver.Resolve(elemental.currentElement, attackElement);
-        
+
         //표식 부여
-        if(reaction == ElementReaction.None)
+        if (reaction == ElementReaction.None)
         {
             elemental.SetElement(attackElement);
             OnMarkChanged?.Invoke(target, attackElement);
             return;
         }
-
         else
         {
             OnMarkReaction?.Invoke(target, reaction);
         }
-
 
         //이번 턴에 원소 반응을 했었다면 Return;
         if (!elemental.CanReact())
         {
             return;
         }
+
 
         switch (reaction)
         {
@@ -70,11 +69,11 @@ public class SkillProcesser : MonoBehaviour
                 Debug.Log("과부하 타이머 시작");
                 BattleLogManager.Instance.AddLog("과부하 반응 발동");
                 elemental.ActiveOverload(overloadDuration);
-            break;
+                break;
         }
-            
-         elemental.MarkReacted();
-         elemental.ClearElement();
+
+        elemental.MarkReacted();
+        elemental.ClearElement();
     }
  
 }

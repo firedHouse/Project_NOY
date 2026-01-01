@@ -5,22 +5,14 @@ public class RelicStatusUI : MonoBehaviour
 {
     [SerializeField] private Image relicIcon;
 
-    public void Refresh(Character character)
+    public void Refresh(RunTimeRelic relic)
     {
-        if (character == null)
+        if (relic == null)
         {
             Clear();
             return;
         }
 
-        var relicComp = character.GetComponent<RelicComponent>();
-        if (relicComp == null || relicComp.CurrentRelic == null)
-        {
-            Clear();
-            return;
-        }
-
-        var relic = relicComp.CurrentRelic;
 
         relicIcon.sprite = ResourceManager.Instance.LoadSprite(relic.itemData.itemEquipImage);
         relicIcon.gameObject.SetActive(true);
@@ -29,6 +21,7 @@ public class RelicStatusUI : MonoBehaviour
     private void Clear()
     {
         relicIcon.sprite = null;
+        relicIcon.gameObject.SetActive(false);
     }
 
 }

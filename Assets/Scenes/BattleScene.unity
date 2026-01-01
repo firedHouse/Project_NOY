@@ -2186,7 +2186,7 @@ PrefabInstance:
     - target: {fileID: 6101969984148227906, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
       propertyPath: HPSlider
       value: 
-      objectReference: {fileID: 4111442481768125232}
+      objectReference: {fileID: 4111442481768125235}
     - target: {fileID: 7153810843349982963, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
       propertyPath: m_Type
       value: 2
@@ -2424,6 +2424,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
+--- !u!114 &4111442481768125235 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 154023200187001261, guid: dedd5ad8f9be97c429cfb3ff399d8b87, type: 3}
+  m_PrefabInstance: {fileID: 4111442481768125230}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1001 &5388306462162781156
 PrefabInstance:
   m_ObjectHideFlags: 0

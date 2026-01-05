@@ -26,8 +26,8 @@ public enum UnitPosition
 public enum CharacterPosition
 {
     Tanker = 0,
-    Dealer = 1,
-    Healer = 2
+    Healer = 1,
+    Dealer = 2
 }
 
 public enum UnitType
